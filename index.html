@@ -384,6 +384,67 @@
       0% { box-shadow: 0 0 8px rgba(99, 102, 241, 0.4); transform: scale(0.96); }
       100% { box-shadow: 0 0 24px rgba(99, 102, 241, 0.95); transform: scale(0.93); }
     }
+    /* ===== Calendar: hover tooltip, keyboard focus, selection + swap animations ===== */
+    .cal-tooltip {
+      position: fixed;
+      z-index: 2000;
+      min-width: 150px;
+      max-width: 240px;
+      padding: 0.55rem 0.75rem;
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(30, 38, 72, 0.88), rgba(12, 16, 32, 0.92));
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      color: #f1f5f9;
+      font-size: 0.74rem;
+      line-height: 1.45;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.14s ease-out, transform 0.14s ease-out;
+    }
+    .cal-tooltip.visible { opacity: 1; transform: translateY(0); }
+    .cal-tooltip-date { font-weight: 800; font-size: 0.78rem; margin-bottom: 0.25rem; }
+    .cal-tooltip-row { display: flex; align-items: center; gap: 0.45rem; }
+    .cal-tooltip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .cal-tooltip-empty { color: #94a3b8; }
+    .cal-tooltip-hint { margin-top: 0.3rem; color: #94a3b8; font-size: 0.68rem; }
+    .cal-day-cell:focus-visible, .cal-week-row:focus-visible {
+      outline: 2px solid #a5b4fc;
+      outline-offset: 2px;
+    }
+    @keyframes calPop {
+      0% { transform: scale(0.9); }
+      60% { transform: scale(1.08); }
+      100% { transform: scale(1.04); }
+    }
+    .cal-day-cell.selected-day { animation: calPop 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
+    @keyframes timelineSwap {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #timelineListContainer.timeline-swap > * { animation: timelineSwap 0.24s ease-out both; }
+    #timelineListContainer.timeline-swap > *:nth-child(2) { animation-delay: 0.04s; }
+    #timelineListContainer.timeline-swap > *:nth-child(3) { animation-delay: 0.08s; }
+    #timelineListContainer.timeline-swap > *:nth-child(n+4) { animation-delay: 0.12s; }
+    @media (prefers-reduced-motion: reduce) {
+      .cal-day-cell.selected-day,
+      #timelineListContainer.timeline-swap > *,
+      .cal-tooltip { animation: none !important; transition: none !important; }
+    }
+    /* Glass sidebar: light theme + browsers without backdrop-filter */
+    :root[data-theme="light"] .app-sidebar {
+      background: linear-gradient(180deg, rgba(99, 102, 241, 0.16) 0%, rgba(255, 255, 255, 0.60) 45%, rgba(6, 182, 212, 0.12) 100%);
+      border-right-color: rgba(15, 23, 42, 0.10);
+      box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.6), 8px 0 28px rgba(15, 23, 42, 0.08);
+    }
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .app-sidebar { background: rgba(10, 14, 26, 0.94); }
+      :root[data-theme="light"] .app-sidebar { background: rgba(248, 250, 252, 0.96); }
+    }
+
     .cal-dots-container {
       display: flex;
       gap: 3px;
@@ -521,15 +582,31 @@
     .app-layout-root {
       display: flex;
       min-height: 100vh;
-      background: var(--bg);
+      background: transparent; /* let the body gradients show through the glass sidebar */
       width: 100%;
+      position: relative;
+      isolation: isolate;
+    }
+    /* Ambient colour blobs behind the glass sidebar so the blur has something to refract */
+    .app-layout-root::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(420px 360px at 4% 12%, rgba(99, 102, 241, 0.38), transparent 70%),
+        radial-gradient(380px 340px at 2% 55%, rgba(6, 182, 212, 0.26), transparent 70%),
+        radial-gradient(420px 380px at 8% 96%, rgba(168, 85, 247, 0.30), transparent 70%);
     }
 
     .app-sidebar {
       width: 250px;
-      background: rgba(8, 12, 22, 0.95);
-      backdrop-filter: blur(20px);
-      border-right: 1px solid rgba(255, 255, 255, 0.07);
+      background: linear-gradient(180deg, rgba(99, 102, 241, 0.20) 0%, rgba(14, 18, 32, 0.52) 45%, rgba(6, 182, 212, 0.14) 100%);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.06), 8px 0 32px rgba(0, 0, 0, 0.35);
       display: flex;
       flex-direction: column;
       padding: 1.25rem 0.85rem;
@@ -600,10 +677,12 @@
     }
 
     .sidebar-nav-item.active {
-      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.62) 0%, rgba(129, 140, 248, 0.34) 100%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 6px 20px -2px rgba(99, 102, 241, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 6px 20px -2px rgba(99, 102, 241, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.4);
       border-radius: 12px;
     }
 
@@ -2697,7 +2776,7 @@
                       <h3 style="font-size:1.25rem; font-weight:900; color:#ffffff; letter-spacing:-0.02em; margin:0;" id="calSelectedDateText">Thursday, October 15, 2026</h3>
                       <span class="pill-badge" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:#e2e8f0; font-size:0.72rem; font-weight:800; padding:3px 9px; border-radius:20px; backdrop-filter:blur(8px);" id="timelineCountBadge">13 Items Aggregated</span>
                     </div>
-                    <div style="font-size:0.75rem; color:var(--text-muted); margin-top:3px;">Here's what's planned for today.</div>
+                    <div id="calSelectedDateSub" style="font-size:0.75rem; color:var(--text-muted); margin-top:3px;">Here's what's planned for today.</div>
                   </div>
                   <button class="btn btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.76rem; font-weight:800; background:rgba(99,102,241,0.18); border:1px solid rgba(99,102,241,0.4); color:#c7d2fe; border-radius:10px; box-shadow:0 2px 10px rgba(99,102,241,0.25); backdrop-filter:blur(10px);" onclick="openQuickAddModal()">＋ Add</button>
                 </div>
@@ -7443,6 +7522,13 @@
       const txtElem = document.getElementById('calSelectedDateText');
       if (txtElem) txtElem.textContent = dateStr;
 
+      const subElem = document.getElementById('calSelectedDateSub');
+      if (subElem) {
+        const n = new Date();
+        const isToday = (calSelectedDay === n.getDate() && calCurrentMonth === n.getMonth() && calCurrentYear === n.getFullYear());
+        subElem.textContent = isToday ? "Here's what's planned for today." : "Here's what's planned for this day.";
+      }
+
       // Update daily spend calculation
       calculateAndDisplayDailySpend();
     }
@@ -7452,11 +7538,99 @@
       if (year !== undefined) calCurrentYear = year;
       calSelectedDay = day;
       
+      hideCalTooltip();
       syncCalendarControls();
       updateFocusedDateDisplay();
       renderCalendarEngine();
       renderTimeline();
-      showToast(`📅 Focused on ${calMonthNames[calCurrentMonth]} ${day}, ${calCurrentYear}`);
+      playTimelineSwap();
+    }
+
+    // Re-trigger the fade/slide animation so the previous day's items visibly give way to the new day's
+    function playTimelineSwap() {
+      const c = document.getElementById('timelineListContainer');
+      if (!c) return;
+      c.classList.remove('timeline-swap');
+      void c.offsetWidth; // force reflow so the animation restarts
+      c.classList.add('timeline-swap');
+    }
+
+    /* ---- Calendar hover / focus tooltip (built with textContent; no user HTML) ---- */
+    const CAL_TYPE_LABELS = {
+      pill: ['Medication', 'var(--emerald)'],
+      bill: ['Bills', 'var(--amber)'],
+      fitness: ['Fitness', 'var(--purple)'],
+      appointment: ['Appointments', '#6366f1'],
+      habit: ['Habits', 'var(--cyan)']
+    };
+    let _calTooltipEl = null;
+
+    function getCalTooltip() {
+      if (!_calTooltipEl) {
+        _calTooltipEl = document.createElement('div');
+        _calTooltipEl.className = 'cal-tooltip';
+        _calTooltipEl.setAttribute('role', 'tooltip');
+        _calTooltipEl.id = 'calTooltip';
+        document.body.appendChild(_calTooltipEl);
+      }
+      return _calTooltipEl;
+    }
+
+    function showCalTooltip(anchor, day, month, year) {
+      const tip = getCalTooltip();
+      tip.textContent = '';
+
+      const dateObj = new Date(year, month, day);
+      const head = document.createElement('div');
+      head.className = 'cal-tooltip-date';
+      head.textContent = `${calWeekdayFullNames[dateObj.getDay()]}, ${calMonthNames[month]} ${day}`;
+      tip.appendChild(head);
+
+      const events = getEventsForDay(day, month, year);
+      if (events.length === 0) {
+        const none = document.createElement('div');
+        none.className = 'cal-tooltip-empty';
+        none.textContent = 'No tasks';
+        tip.appendChild(none);
+      } else {
+        const counts = {};
+        events.forEach(e => { counts[e.type] = (counts[e.type] || 0) + 1; });
+        Object.keys(CAL_TYPE_LABELS).forEach(type => {
+          if (!counts[type]) return;
+          const row = document.createElement('div');
+          row.className = 'cal-tooltip-row';
+          const dot = document.createElement('span');
+          dot.className = 'cal-tooltip-dot';
+          dot.style.background = CAL_TYPE_LABELS[type][1];
+          const label = document.createElement('span');
+          label.textContent = `${counts[type]} ${CAL_TYPE_LABELS[type][0]}`;
+          row.appendChild(dot);
+          row.appendChild(label);
+          tip.appendChild(row);
+        });
+      }
+      const hint = document.createElement('div');
+      hint.className = 'cal-tooltip-hint';
+      hint.textContent = 'Click to open · double-click to add';
+      tip.appendChild(hint);
+
+      // Position above the cell; flip below if there is no room; clamp to the viewport
+      tip.style.left = '0px';
+      tip.style.top = '0px';
+      const r = anchor.getBoundingClientRect();
+      const tr = tip.getBoundingClientRect();
+      let left = r.left + r.width / 2 - tr.width / 2;
+      left = Math.max(8, Math.min(left, window.innerWidth - tr.width - 8));
+      let top = r.top - tr.height - 8;
+      if (top < 8) top = r.bottom + 8;
+      tip.style.left = `${left}px`;
+      tip.style.top = `${top}px`;
+      anchor.setAttribute('aria-describedby', 'calTooltip');
+      tip.classList.add('visible');
+    }
+
+    function hideCalTooltip() {
+      if (_calTooltipEl) _calTooltipEl.classList.remove('visible');
     }
 
     function calculateAndDisplayDailySpend() {
@@ -7556,10 +7730,16 @@
       const dateObj = new Date(year, month, day);
       const dayOfWeek = (dateObj.getDay() + 6) % 7; // 0=Mon, 2=Wed, 4=Fri
 
-      // 1. Pills: active course only during prescription duration
+      // 1. Pills: active only on the real dates of each course (today is course day p.day)
       if (pillsData.length > 0) {
+        const _midnight = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+        const _DAY = 86400000;
+        const _todayMs = _midnight(new Date());
         pillsData.forEach(p => {
-          if (day <= (p.totalDays || 30)) {
+          const startMs = _todayMs - ((p.day || 1) - 1) * _DAY;
+          const endMs = startMs + ((p.totalDays || 30) - 1) * _DAY;
+          const thisMs = _midnight(dateObj);
+          if (thisMs >= startMs && thisMs <= endMs) {
             events.push({ type: 'pill', color: 'var(--emerald)', title: `${p.name} ${p.dosage}`, icon: '💊', time: p.time || '08:30 AM' });
           }
         });
@@ -7622,10 +7802,9 @@
       return events;
     }
 
+    // Single click/tap or Enter = open that day's tasks. Double-click or long-press = add an entry.
     function handleCellClick(day, month, year) {
       selectCalendarDay(day, month, year);
-      openQuickAddModal();
-      showToast(`➕ Add Entry for ${calMonthNames[calCurrentMonth]} ${day}, ${calCurrentYear}`);
     }
 
     function attachCellInteractions(element, day, month, year) {
@@ -7697,6 +7876,31 @@
       element.addEventListener('mousedown', startPress);
       element.addEventListener('mouseup', cancelPress);
       element.addEventListener('mouseleave', cancelPress);
+
+      // Hover / keyboard-focus tooltip and keyboard activation (month cells and week rows)
+      if (element.classList.contains('cal-day-cell') || element.classList.contains('cal-week-row')) {
+        const count = getEventsForDay(day, month, year).length;
+        const selected = (day === calSelectedDay && month === calCurrentMonth && year === calCurrentYear);
+        element.setAttribute('role', 'button');
+        element.setAttribute('tabindex', '0');
+        element.setAttribute('aria-pressed', selected ? 'true' : 'false');
+        element.setAttribute('aria-label', `${calMonthNames[month]} ${day}, ${year}, ${count} ${count === 1 ? 'task' : 'tasks'}`);
+        element.addEventListener('mouseenter', () => showCalTooltip(element, day, month, year));
+        element.addEventListener('mouseleave', hideCalTooltip);
+        element.addEventListener('focus', () => showCalTooltip(element, day, month, year));
+        element.addEventListener('blur', hideCalTooltip);
+        element.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectCalendarDay(day, month, year);
+            // re-focus the rebuilt cell so keyboard users keep their place
+            const again = document.querySelector('.cal-day-cell.selected-day, .cal-week-row.selected-week-row');
+            if (again) again.focus();
+          } else if (e.key === 'Escape') {
+            hideCalTooltip();
+          }
+        });
+      }
     }
 
     function renderCalendarEngine() {
@@ -7739,7 +7943,6 @@
         const dayNum = prevMonthDays - i;
         const cell = document.createElement('div');
         cell.className = 'cal-day-cell other-month';
-        cell.title = `Double-click or hold 5s: Add Entry for ${calMonthNames[prevMonth]} ${dayNum}, ${prevYear}`;
         cell.innerHTML = `<span>${dayNum}</span>`;
         attachCellInteractions(cell, dayNum, prevMonth, prevYear);
         grid.appendChild(cell);
@@ -7751,7 +7954,6 @@
       for (let d = 1; d <= daysInMonth; d++) {
         const cell = document.createElement('div');
         cell.className = 'cal-day-cell';
-        cell.title = `Double-click or hold 5s: Add Entry for ${calMonthNames[calCurrentMonth]} ${d}, ${calCurrentYear}`;
         
         const isSelected = (d === calSelectedDay);
         const isToday = (d === todayDay && calCurrentMonth === todayMonth && calCurrentYear === todayYear);
@@ -7789,7 +7991,6 @@
       for (let n = 1; n <= remainingCells; n++) {
         const cell = document.createElement('div');
         cell.className = 'cal-day-cell other-month';
-        cell.title = `Double-click or hold 5s: Add Entry for ${calMonthNames[nextMonth]} ${n}, ${nextYear}`;
         cell.innerHTML = `<span>${n}</span>`;
         attachCellInteractions(cell, n, nextMonth, nextYear);
         grid.appendChild(cell);
@@ -7817,7 +8018,6 @@
 
         const row = document.createElement('div');
         row.className = `cal-week-row ${isSelected ? 'selected-week-row' : ''}`;
-        row.title = `Double-click or hold 5s: Add Entry for ${calMonthNames[m]} ${d}, ${y}`;
 
         let eventBadges = events.slice(0, 4).map(e => 
           `<span class="pill-badge" style="background:${e.color}22; color:${e.color}; font-size:0.72rem;">${e.icon} ${e.title}</span>`
