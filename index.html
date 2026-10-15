@@ -868,6 +868,40 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     }
 
+    /* Category Separation Breakdown Cards */
+    .cat-breakdown-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cat-breakdown-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .cat-breakdown-card.active-cat {
+      border-color: var(--accent);
+      background: rgba(99, 102, 241, 0.08);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .active-filter-pill {
+      background: var(--accent) !important;
+      color: #ffffff !important;
+      border-color: var(--accent) !important;
+      font-weight: 800 !important;
+    }
+
     /* Week Calendar View Grid (Screen 2) */
     .cal-week-grid-table {
       display: grid;
@@ -2950,6 +2984,81 @@
            TAB VIEW 3: 💳 EXPENSES & BILLS HUB
            ====================================================================== -->
       <div class="app-view-panel" id="view_expense">
+
+        <!-- Top Monthly Financial Health & Salary Cockpit -->
+        <div class="panel-box" style="margin-bottom:1.25rem; background:linear-gradient(135deg, rgba(24, 32, 56, 0.95), rgba(15, 23, 42, 0.98)); border:1px solid rgba(99, 102, 241, 0.35); box-shadow:0 10px 30px -5px rgba(0,0,0,0.5);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; border-bottom:1px solid var(--surface-border); padding-bottom:0.85rem; margin-bottom:1rem;">
+            <div>
+              <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted); font-weight:800;">Monthly Financial Health & Budget Control</div>
+              <h2 style="font-size:1.35rem; font-weight:900; margin:2px 0 0 0; display:flex; align-items:center; gap:0.5rem;">
+                <span>💰 October Cashflow & Salary Tracking</span>
+              </h2>
+            </div>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <button class="btn btn-secondary" onclick="openSalaryModal()" style="font-size:0.78rem; padding:0.35rem 0.75rem; border-color:var(--accent); color:var(--accent); font-weight:700;">
+                ✏️ Edit Monthly Salary
+              </button>
+            </div>
+          </div>
+
+          <!-- 3 High-Level Metric Tiles -->
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap:1rem;">
+            <!-- Tile 1: Monthly Salary -->
+            <div class="module-card" style="background:rgba(255,255,255,0.02); border-left:4px solid var(--accent);">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.74rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Monthly Salary / Income</span>
+                <span style="font-size:1.15rem;">💵</span>
+              </div>
+              <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--text); margin-top:4px;" id="dispMonthlySalary">$5,000.00</div>
+              <div style="font-size:0.72rem; color:var(--text-muted); margin-top:2px;">Configured monthly earnings base</div>
+            </div>
+
+            <!-- Tile 2: Total Spent This Month -->
+            <div class="module-card" style="background:rgba(255,255,255,0.02); border-left:4px solid var(--amber);">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.74rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Total Month Expenses</span>
+                <span class="pill-badge" id="dispSpendPctBadge" style="background:var(--amber-bg); color:var(--amber); font-size:0.68rem;">18% of Salary</span>
+              </div>
+              <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--amber); margin-top:4px;" id="dispTotalSpentMonth">$0.00</div>
+              <div style="font-size:0.72rem; color:var(--text-muted); margin-top:2px;" id="dispSpentCountText">0 expenses logged</div>
+            </div>
+
+            <!-- Tile 3: Remaining Savings / Cashflow -->
+            <div class="module-card" style="background:rgba(255,255,255,0.02); border-left:4px solid var(--emerald);">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.74rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Remaining Net Savings</span>
+                <span class="pill-badge" id="dispSavingsStatusBadge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.68rem;">✨ In Surplus</span>
+              </div>
+              <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--emerald); margin-top:4px;" id="dispNetSavings">$5,000.00</div>
+              <div style="font-size:0.72rem; color:var(--emerald); margin-top:2px;" id="dispSavingsPctText">82% of income retained</div>
+            </div>
+          </div>
+
+          <!-- Salary Capacity Bar -->
+          <div style="margin-top:1.1rem; padding-top:0.85rem; border-top:1px solid var(--surface-border);">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; margin-bottom:6px;">
+              <span style="color:var(--text-muted); font-weight:700;">Monthly Salary Burn Velocity</span>
+              <span style="font-weight:800; font-family:'JetBrains Mono',monospace;" id="dispCapacityRatio">0.0% Burned</span>
+            </div>
+            <div class="progress-track" style="height:12px; border-radius:6px; background:rgba(255,255,255,0.06);">
+              <div class="progress-fill" id="dispSalaryBurnFill" style="width:0%; background:linear-gradient(90deg, var(--emerald), var(--amber)); border-radius:6px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Distinct Category Breakdown Cards (Utility, Food, Travel, Household) -->
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
+            <div style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted); font-weight:800;">
+              Spend Separation by Category (Click to Filter)
+            </div>
+            <span style="font-size:0.72rem; color:var(--accent); font-weight:700;">Categorized in real time</span>
+          </div>
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem;" id="categoryBreakdownGrid">
+            <!-- Rendered dynamically by renderExpenses() -->
+          </div>
+        </div>
+
         <div class="grid-2col">
           
           <!-- Bills & Payments -->
@@ -2966,10 +3075,10 @@
               <!-- Dynamic Bills Rendered by JS -->
             </div>
 
-            <!-- Monthly Budget Meter -->
+            <!-- Monthly Budget Meter (Preserved) -->
             <div class="module-card">
               <div class="card-top">
-                <div class="card-title">Monthly Budget Tracking</div>
+                <div class="card-title">Utility & Household Allowance</div>
                 <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);" id="budgetRemainingBadge">$680.00 Remaining</span>
               </div>
               <div class="card-sub" id="budgetSubtitleText">$171.70 spent of $850.00 monthly allowance.</div>
@@ -2984,6 +3093,16 @@
             <div class="panel-header">
               <span>📊 Categorized Expense Ledger (October)</span>
               <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.2rem 0.5rem;" onclick="exportExpenseCSV()">💾 Export CSV</button>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div style="display:flex; gap:0.35rem; overflow-x:auto; padding-bottom:0.4rem; margin-bottom:0.75rem;" id="ledgerCategoryFilterRow">
+              <button class="pill-badge active-filter-pill" onclick="filterExpenseLedger('All')" id="catFilter_All" style="cursor:pointer; border:1px solid var(--surface-border); padding:0.3rem 0.65rem; font-size:0.75rem;">All</button>
+              <button class="pill-badge" onclick="filterExpenseLedger('Utility')" id="catFilter_Utility" style="cursor:pointer; border:1px solid var(--surface-border); padding:0.3rem 0.65rem; font-size:0.75rem;">💡 Utility</button>
+              <button class="pill-badge" onclick="filterExpenseLedger('Food')" id="catFilter_Food" style="cursor:pointer; border:1px solid var(--surface-border); padding:0.3rem 0.65rem; font-size:0.75rem;">🍔 Food</button>
+              <button class="pill-badge" onclick="filterExpenseLedger('Travel')" id="catFilter_Travel" style="cursor:pointer; border:1px solid var(--surface-border); padding:0.3rem 0.65rem; font-size:0.75rem;">🚗 Travel</button>
+              <button class="pill-badge" onclick="filterExpenseLedger('Household')" id="catFilter_Household" style="cursor:pointer; border:1px solid var(--surface-border); padding:0.3rem 0.65rem; font-size:0.75rem;">🏠 Household</button>
+              <button class="pill-badge" onclick="filterExpenseLedger('Medical')" id="catFilter_Medical" style="cursor:pointer; border:1px solid var(--surface-border); padding:0.3rem 0.65rem; font-size:0.75rem;">💊 Medical</button>
             </div>
 
             <div id="ledgerList" style="display:flex; flex-direction:column; gap:0.5rem;">
@@ -3469,6 +3588,18 @@
         </select>
       </div>
 
+      <div class="form-group" id="addExpenseCategoryGroup" style="display:none;">
+        <label>Expense Category (Separation)</label>
+        <select class="form-input" id="addExpenseCategorySelect">
+          <option value="Utility">💡 Utility & Bills (Electric, Water, Gas, WiFi)</option>
+          <option value="Food">🍔 Food & Dining (Groceries, Restaurants, Coffee)</option>
+          <option value="Travel">🚗 Travel & Commute (Gas, Transit, Flights, Rideshare)</option>
+          <option value="Household">🏠 Household (Rent, Maintenance, Supplies)</option>
+          <option value="Medical">💊 Medical & Health (Pharmacy, Care, Co-pay)</option>
+          <option value="Other">🛍️ Other / General</option>
+        </select>
+      </div>
+
       <div class="form-group">
         <label id="addTitleLabel">Title / Name (Mandatory Field 1)</label>
         <input type="text" class="form-input" id="addTitleInput" placeholder="e.g. Lisinopril 10mg or Internet Bill">
@@ -3482,6 +3613,43 @@
       <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
         <button class="btn btn-secondary" onclick="closeQuickAddModal()">Cancel</button>
         <button class="btn" onclick="saveQuickAddEntry()">💾 Save Entry</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Set / Edit Monthly Salary -->
+  <div class="modal-backdrop" id="salaryModal">
+    <div class="modal-box" style="max-width:440px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <span style="font-size:1.2rem;">💵</span>
+          <h3 style="font-size:1.05rem; font-weight:800;">Set Monthly Salary / Income</h3>
+        </div>
+        <button class="btn btn-secondary" style="padding:0.2rem 0.5rem;" onclick="closeSalaryModal()">✕</button>
+      </div>
+      <p style="font-size:0.78rem; color:var(--text-muted); margin-top:4px; line-height:1.4;">
+        Set your monthly take-home salary or allowance. OmniTask will dynamically measure all utility, food, travel, and household expenses against this baseline.
+      </p>
+
+      <div class="form-group" style="margin-top:0.85rem;">
+        <label style="font-size:0.75rem; font-weight:700;">Monthly Salary Amount ($ USD)</label>
+        <div style="position:relative;">
+          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-weight:800; font-size:1.15rem; color:var(--text-muted);">$</span>
+          <input type="number" step="50" min="0" class="form-input" id="inpMonthlySalary" value="5000" style="padding-left:1.85rem; font-size:1.15rem; font-weight:800; font-family:'JetBrains Mono',monospace;">
+        </div>
+      </div>
+
+      <div style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.4rem;">
+        <span style="font-size:0.72rem; color:var(--text-muted); width:100%; font-weight:600;">Quick Salary Presets:</span>
+        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(3500)">$3,500</button>
+        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(5000)">$5,000</button>
+        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(6500)">$6,500</button>
+        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(8000)">$8,000</button>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.25rem; border-top:1px solid var(--surface-border); padding-top:0.85rem;">
+        <button class="btn btn-secondary" onclick="closeSalaryModal()">Cancel</button>
+        <button class="btn" onclick="saveMonthlySalary()">💾 Save Salary</button>
       </div>
     </div>
   </div>
@@ -4089,11 +4257,17 @@
       }
     ];
 
-    // 3. Dynamic Expenses Data
+    // 3. Dynamic Expenses Data (Categorized by Utility, Food, Travel, Household, Medical, Other)
     let expensesData = [
-      { id: "exp_1", name: "🛒 Whole Foods Market", amount: 45.20, category: "Groceries", date: "Oct 4" },
-      { id: "exp_2", name: "☕ Blue Bottle Coffee", amount: 6.50, category: "Dining", date: "Oct 5" }
+      { id: "exp_1", name: "💡 ConEd Electric & Gas", amount: 142.50, category: "Utility", date: "Oct 2" },
+      { id: "exp_2", name: "🍔 Whole Foods Groceries", amount: 68.20, category: "Food", date: "Oct 4" },
+      { id: "exp_3", name: "🚗 MetroCard & Gas Refill", amount: 45.00, category: "Travel", date: "Oct 5" },
+      { id: "exp_4", name: "🏠 Home Supplies & Cleaning", amount: 52.40, category: "Household", date: "Oct 5" },
+      { id: "exp_5", name: "💊 CVS Pharmacy Rx Refill", amount: 25.00, category: "Medical", date: "Oct 6" }
     ];
+
+    let monthlySalary = 5000.00;
+    let activeExpenseCategoryFilter = 'All';
 
     // 4. Dynamic Workouts Data
     let workoutsData = [
@@ -4160,6 +4334,8 @@
         if (b) billsData = JSON.parse(b);
         const e = localStorage.getItem('omnitask_expenses');
         if (e) expensesData = JSON.parse(e);
+        const sal = localStorage.getItem('omnitask_monthly_salary');
+        if (sal) monthlySalary = parseFloat(sal) || 5000.00;
         const w = localStorage.getItem('omnitask_workouts');
         if (w) workoutsData = JSON.parse(w);
         const h = localStorage.getItem('omnitask_habits');
@@ -4180,6 +4356,7 @@
         localStorage.setItem('omnitask_pills', JSON.stringify(pillsData));
         localStorage.setItem('omnitask_bills', JSON.stringify(billsData));
         localStorage.setItem('omnitask_expenses', JSON.stringify(expensesData));
+        localStorage.setItem('omnitask_monthly_salary', monthlySalary.toString());
         localStorage.setItem('omnitask_workouts', JSON.stringify(workoutsData));
         localStorage.setItem('omnitask_habits', JSON.stringify(habitsData));
         localStorage.setItem('omnitask_appointments', JSON.stringify(appointmentsData));
@@ -4753,12 +4930,12 @@
       lastActionUndo = { type: 'bill', id: b.id, wasPaid: false };
       b.isPaid = true;
 
-      // Auto-create Expense entry
+      // Auto-create Expense entry categorized under Utility
       expensesData.unshift({
         id: "exp_" + Date.now(),
-        name: `⚡ ${b.title} (Auto-Linked)`,
+        name: `💡 ${b.title} (Auto-Linked)`,
         amount: b.amount,
-        category: "Utilities/Bills",
+        category: "Utility",
         date: "Today"
       });
 
@@ -4770,33 +4947,278 @@
       showToast(`💳 Paid ${b.title} ($${b.amount.toFixed(2)}) • Auto-linked to Expense Ledger!`);
     }
 
-    // 3. Render Expenses Ledger
+    // Category Normalization Helper (Supports Utility, Food, Travel, Household, Medical, Other)
+    function normalizeExpenseCategory(cat) {
+      if (!cat) return 'Other';
+      const c = cat.toLowerCase();
+      if (c.includes('util') || c.includes('bill') || c.includes('electric') || c.includes('water') || c.includes('internet') || c.includes('gas') || c.includes('coned') || c.includes('power')) return 'Utility';
+      if (c.includes('food') || c.includes('grocer') || c.includes('dining') || c.includes('coffee') || c.includes('restaurant') || c.includes('market') || c.includes('whole foods') || c.includes('lunch') || c.includes('snack')) return 'Food';
+      if (c.includes('travel') || c.includes('commute') || c.includes('transit') || c.includes('gas') || c.includes('uber') || c.includes('flight') || c.includes('metro') || c.includes('car')) return 'Travel';
+      if (c.includes('house') || c.includes('rent') || c.includes('home') || c.includes('clean') || c.includes('supplies') || c.includes('repair') || c.includes('furniture')) return 'Household';
+      if (c.includes('med') || c.includes('pharm') || c.includes('health') || c.includes('rx') || c.includes('doctor') || c.includes('clinic')) return 'Medical';
+      return 'Other';
+    }
+
+    // Salary Modal Handlers
+    function openSalaryModal() {
+      const inp = document.getElementById('inpMonthlySalary');
+      if (inp) inp.value = monthlySalary;
+      document.getElementById('salaryModal').style.display = 'flex';
+      setTimeout(() => { if (inp) inp.focus(); }, 50);
+    }
+
+    function closeSalaryModal() {
+      document.getElementById('salaryModal').style.display = 'none';
+    }
+
+    function setSalaryPreset(amount) {
+      const inp = document.getElementById('inpMonthlySalary');
+      if (inp) inp.value = amount;
+    }
+
+    function saveMonthlySalary() {
+      const inp = document.getElementById('inpMonthlySalary');
+      const val = parseFloat(inp ? inp.value : 0);
+      if (isNaN(val) || val <= 0) {
+        alert("Please enter a valid monthly salary amount (greater than $0).");
+        return;
+      }
+      monthlySalary = val;
+      persistAllData();
+      renderExpenses();
+      closeSalaryModal();
+      showToast(`💰 Monthly salary updated to $${monthlySalary.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}!`);
+    }
+
+    function filterExpenseLedger(category) {
+      activeExpenseCategoryFilter = category;
+      renderExpenses();
+      showToast(`🔍 Showing ${category === 'All' ? 'all expenses' : category + ' expenses'}`);
+    }
+
+    // 3. Render Expenses Ledger with Category Separation & Monthly Salary Cashflow
     function renderExpenses() {
       const container = document.getElementById('ledgerList');
       if (!container) return;
       container.innerHTML = '';
 
-      if (expensesData.length === 0) {
-        container.innerHTML = '<div style="color:var(--text-muted); font-size:0.85rem; padding:0.5rem;">No expenses recorded yet. Click "📷 Scan Bill / Receipt" or "➕ Add Manual Expense" to create one.</div>';
+      // Compute total spent and breakdown by category
+      let total = 0;
+      const categoryTotals = {
+        Utility: 0,
+        Food: 0,
+        Travel: 0,
+        Household: 0,
+        Medical: 0,
+        Other: 0
+      };
+      const categoryCounts = {
+        Utility: 0,
+        Food: 0,
+        Travel: 0,
+        Household: 0,
+        Medical: 0,
+        Other: 0
+      };
+
+      expensesData.forEach(e => {
+        const amt = parseFloat(e.amount || 0);
+        total += amt;
+        const normCat = normalizeExpenseCategory(e.category);
+        categoryTotals[normCat] = (categoryTotals[normCat] || 0) + amt;
+        categoryCounts[normCat] = (categoryCounts[normCat] || 0) + 1;
+      });
+
+      // Update Monthly Salary & Cashflow Cockpit Metrics
+      const dispSal = document.getElementById('dispMonthlySalary');
+      if (dispSal) dispSal.textContent = `$${monthlySalary.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+      const dispTot = document.getElementById('dispTotalSpentMonth');
+      if (dispTot) dispTot.textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+      const netSavings = monthlySalary - total;
+      const dispSav = document.getElementById('dispNetSavings');
+      if (dispSav) {
+        const sign = netSavings >= 0 ? '+' : '-';
+        dispSav.textContent = `${sign}$${Math.abs(netSavings).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        dispSav.style.color = netSavings >= 0 ? 'var(--emerald)' : 'var(--rose)';
       }
 
-      let total = 0;
-      expensesData.forEach(e => {
-        total += parseFloat(e.amount || 0);
+      const burnPct = monthlySalary > 0 ? (total / monthlySalary) * 100 : 0;
+      const savingsPct = Math.max(0, 100 - burnPct);
+
+      const dispBurnBadge = document.getElementById('dispSpendPctBadge');
+      if (dispBurnBadge) {
+        dispBurnBadge.textContent = `${burnPct.toFixed(1)}% of Salary`;
+        if (burnPct > 90) {
+          dispBurnBadge.style.background = 'var(--rose-bg)';
+          dispBurnBadge.style.color = 'var(--rose)';
+        } else if (burnPct > 70) {
+          dispBurnBadge.style.background = 'var(--amber-bg)';
+          dispBurnBadge.style.color = 'var(--amber)';
+        } else {
+          dispBurnBadge.style.background = 'var(--emerald-bg)';
+          dispBurnBadge.style.color = 'var(--emerald)';
+        }
+      }
+
+      const dispStatusBadge = document.getElementById('dispSavingsStatusBadge');
+      if (dispStatusBadge) {
+        if (burnPct > 100) {
+          dispStatusBadge.textContent = '🚨 Deficit (Over Budget)';
+          dispStatusBadge.style.background = 'var(--rose-bg)';
+          dispStatusBadge.style.color = 'var(--rose)';
+        } else if (burnPct > 80) {
+          dispStatusBadge.textContent = '⚠️ Tight Cashflow';
+          dispStatusBadge.style.background = 'var(--amber-bg)';
+          dispStatusBadge.style.color = 'var(--amber)';
+        } else {
+          dispStatusBadge.textContent = '✨ In Surplus';
+          dispStatusBadge.style.background = 'var(--emerald-bg)';
+          dispStatusBadge.style.color = 'var(--emerald)';
+        }
+      }
+
+      const dispSpentCount = document.getElementById('dispSpentCountText');
+      if (dispSpentCount) {
+        dispSpentCount.textContent = `${expensesData.length} expense${expensesData.length === 1 ? '' : 's'} recorded this month`;
+      }
+
+      const dispSavPctText = document.getElementById('dispSavingsPctText');
+      if (dispSavPctText) {
+        dispSavPctText.textContent = netSavings >= 0 
+          ? `${savingsPct.toFixed(1)}% of income retained in savings`
+          : `Deficit of $${Math.abs(netSavings).toFixed(2)} beyond monthly salary`;
+      }
+
+      const dispCapRatio = document.getElementById('dispCapacityRatio');
+      if (dispCapRatio) {
+        dispCapRatio.textContent = `${burnPct.toFixed(1)}% Burned ($${total.toFixed(2)} of $${monthlySalary.toFixed(2)})`;
+      }
+
+      const dispBurnFill = document.getElementById('dispSalaryBurnFill');
+      if (dispBurnFill) {
+        dispBurnFill.style.width = `${Math.min(100, burnPct)}%`;
+        if (burnPct > 90) {
+          dispBurnFill.style.background = 'var(--rose)';
+        } else if (burnPct > 70) {
+          dispBurnFill.style.background = 'var(--amber)';
+        } else {
+          dispBurnFill.style.background = 'linear-gradient(90deg, var(--emerald), var(--cyan))';
+        }
+      }
+
+      // Render 5 Distinct Category Breakdown Cards (Utility, Food, Travel, Household, + Medical)
+      const catGrid = document.getElementById('categoryBreakdownGrid');
+      if (catGrid) {
+        catGrid.innerHTML = '';
+        const displayCategories = [
+          { key: 'Utility', name: 'Utility & Bills', icon: '💡', color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.12)' },
+          { key: 'Food', name: 'Food & Dining', icon: '🍔', color: '#10b981', bg: 'rgba(16, 185, 129, 0.12)' },
+          { key: 'Travel', name: 'Travel & Commute', icon: '🚗', color: '#06b6d4', bg: 'rgba(6, 182, 212, 0.12)' },
+          { key: 'Household', name: 'Household', icon: '🏠', color: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.12)' },
+          { key: 'Medical', name: 'Medical & Care', icon: '💊', color: '#f43f5e', bg: 'rgba(244, 63, 94, 0.12)' }
+        ];
+
+        displayCategories.forEach(cat => {
+          const catSpent = categoryTotals[cat.key] || 0;
+          const catCount = categoryCounts[cat.key] || 0;
+          const catShareOfTotal = total > 0 ? ((catSpent / total) * 100).toFixed(0) : 0;
+          const catShareOfSalary = monthlySalary > 0 ? ((catSpent / monthlySalary) * 100).toFixed(1) : 0;
+          const isFilterActive = activeExpenseCategoryFilter === cat.key;
+
+          const card = document.createElement('div');
+          card.className = `cat-breakdown-card ${isFilterActive ? 'active-cat' : ''}`;
+          card.onclick = () => filterExpenseLedger(cat.key);
+          card.innerHTML = `
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="display:flex; align-items:center; gap:0.45rem; font-weight:800; font-size:0.85rem; color:${cat.color};">
+                  <span>${cat.icon}</span>
+                  <span>${cat.name}</span>
+                </div>
+                <span class="pill-badge" style="background:${cat.bg}; color:${cat.color}; font-size:0.65rem;">
+                  ${catCount} logged
+                </span>
+              </div>
+              <div style="font-size:1.35rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:0.4rem; color:var(--text);">
+                $${catSpent.toFixed(2)}
+              </div>
+              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">
+                ${catShareOfTotal}% of total spend • ${catShareOfSalary}% of salary
+              </div>
+            </div>
+
+            <div style="margin-top:0.65rem;">
+              <div class="progress-track" style="height:6px; background:rgba(255,255,255,0.06); border-radius:3px;">
+                <div class="progress-fill" style="width:${Math.min(100, catShareOfTotal)}%; background:${cat.color}; border-radius:3px;"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.45rem;">
+                <span style="font-size:0.68rem; color:${isFilterActive ? 'var(--accent)' : 'var(--text-muted)'}; font-weight:700;">
+                  ${isFilterActive ? '✓ Filtering' : 'Click to filter'}
+                </span>
+                <button type="button" class="btn btn-secondary" style="padding:0.15rem 0.45rem; font-size:0.68rem; border-color:${cat.color}; color:${cat.color};" onclick="event.stopPropagation(); openQuickAddModal('expense', '${cat.key}')" title="Add ${cat.name} Expense">
+                  + Add
+                </button>
+              </div>
+            </div>
+          `;
+          catGrid.appendChild(card);
+        });
+      }
+
+      // Update Ledger Category Filter Pills Active State
+      const filterPills = ['All', 'Utility', 'Food', 'Travel', 'Household', 'Medical'];
+      filterPills.forEach(k => {
+        const btn = document.getElementById(`catFilter_${k}`);
+        if (btn) {
+          if (activeExpenseCategoryFilter === k) {
+            btn.classList.add('active-filter-pill');
+          } else {
+            btn.classList.remove('active-filter-pill');
+          }
+        }
+      });
+
+      // Filter and Render Ledger List
+      const filteredExpenses = expensesData.filter(e => {
+        if (activeExpenseCategoryFilter === 'All') return true;
+        const norm = normalizeExpenseCategory(e.category);
+        return norm === activeExpenseCategoryFilter;
+      });
+
+      if (filteredExpenses.length === 0) {
+        container.innerHTML = `<div style="color:var(--text-muted); font-size:0.85rem; padding:0.75rem; text-align:center;">No expenses recorded under <strong>${activeExpenseCategoryFilter}</strong>. Click "+ Add Manual Expense" to create one.</div>`;
+      }
+
+      const catBadges = {
+        Utility: { icon: '💡', label: 'Utility', color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.15)' },
+        Food: { icon: '🍔', label: 'Food & Dining', color: '#10b981', bg: 'rgba(16, 185, 129, 0.15)' },
+        Travel: { icon: '🚗', label: 'Travel', color: '#06b6d4', bg: 'rgba(6, 182, 212, 0.15)' },
+        Household: { icon: '🏠', label: 'Household', color: '#8b5cf6', bg: 'rgba(139, 92, 246, 0.15)' },
+        Medical: { icon: '💊', label: 'Medical', color: '#f43f5e', bg: 'rgba(244, 63, 94, 0.15)' },
+        Other: { icon: '🛍️', label: 'Other', color: '#94a3b8', bg: 'rgba(148, 163, 184, 0.15)' }
+      };
+
+      filteredExpenses.forEach(e => {
         const name = escapeHTML(e.name || 'Expense');
-        const cat = escapeHTML(e.category || 'General');
+        const normCat = normalizeExpenseCategory(e.category);
+        const meta = catBadges[normCat] || catBadges.Other;
         const date = escapeHTML(e.date || 'Oct 6');
 
         const row = document.createElement('div');
         row.className = 'module-card';
-        row.style.padding = '0.75rem';
+        row.style.padding = '0.75rem 0.9rem';
         row.style.flexDirection = 'row';
         row.style.justifyContent = 'space-between';
         row.style.alignItems = 'center';
         row.innerHTML = `
           <div>
-            <div style="font-weight:700; font-size:0.88rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
+            <div style="font-weight:700; font-size:0.88rem; display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
               <span>${name}</span>
+              <span class="pill-badge" style="background:${meta.bg}; color:${meta.color}; border:1px solid ${meta.color}40; font-size:0.68rem; padding:0.12rem 0.45rem;">
+                ${meta.icon} ${meta.label}
+              </span>
               ${e.receiptImage ? `
                 <button class="sample-pill-btn" style="padding:0.12rem 0.4rem; font-size:0.68rem; color:var(--accent); border-color:var(--accent);" onclick="openReceiptViewer('${e.id}')">🧾 Receipt</button>
               ` : ''}
@@ -4804,24 +5226,25 @@
                 <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.65rem; padding:0.1rem 0.35rem;">AI ${Math.round(e.confidence * 100)}%</span>
               ` : ''}
             </div>
-            <div class="card-sub">Category: ${cat} • ${date} ${e.tax ? `• Tax: $${parseFloat(e.tax).toFixed(2)}` : ''}</div>
+            <div class="card-sub" style="font-size:0.72rem; margin-top:2px;">Date: ${date} ${e.tax ? `• Tax: $${parseFloat(e.tax).toFixed(2)}` : ''}</div>
           </div>
           <div style="display:flex; align-items:center; gap:0.6rem;">
-            <strong style="font-family:'JetBrains Mono',monospace; font-size:0.95rem;">$${parseFloat(e.amount || 0).toFixed(2)}</strong>
-            <button class="btn btn-secondary" style="padding:0.2rem 0.4rem; font-size:0.7rem; color:var(--rose);" onclick="deleteItem('expense', '${e.id}')">🗑️</button>
+            <strong style="font-family:'JetBrains Mono',monospace; font-size:0.98rem; color:var(--text);">$${parseFloat(e.amount || 0).toFixed(2)}</strong>
+            <button class="btn btn-secondary" style="padding:0.2rem 0.4rem; font-size:0.7rem; color:var(--rose);" onclick="deleteItem('expense', '${e.id}')" title="Delete Expense">🗑️</button>
           </div>
         `;
         container.appendChild(row);
       });
 
+      // Preserve compatibility for existing meter elements
       const budgetTotal = 850.00;
-      const remaining = Math.max(0, budgetTotal - total);
-      const pct = Math.min(100, Math.round((total / budgetTotal) * 100));
+      const remaining = Math.max(0, budgetTotal - (categoryTotals.Utility + categoryTotals.Household));
+      const pct = Math.min(100, Math.round(((categoryTotals.Utility + categoryTotals.Household) / budgetTotal) * 100));
 
       const badge = document.getElementById('budgetRemainingBadge');
       if (badge) badge.textContent = `$${remaining.toFixed(2)} Remaining`;
       const sub = document.getElementById('budgetSubtitleText');
-      if (sub) sub.textContent = `$${total.toFixed(2)} spent of $${budgetTotal.toFixed(2)} monthly allowance.`;
+      if (sub) sub.textContent = `$${(categoryTotals.Utility + categoryTotals.Household).toFixed(2)} spent of $${budgetTotal.toFixed(2)} utility allowance.`;
       const fill = document.getElementById('budgetProgressFill');
       if (fill) fill.style.width = `${pct}%`;
 
@@ -5116,7 +5539,7 @@
     /* ==========================================================================
        SPEED-DIAL QUICK INGESTION (All 6 Domains)
        ========================================================================== */
-    function openQuickAddModal(defaultDomain) {
+    function openQuickAddModal(defaultDomain, defaultCategory) {
       let domainToSet = defaultDomain;
       if (!domainToSet) {
         if (activePrimaryTab === 'expense') domainToSet = 'expense';
@@ -5128,6 +5551,11 @@
       if (sel) sel.value = domainToSet;
       updateQuickAddFields();
       
+      if (defaultCategory && domainToSet === 'expense') {
+        const catSel = document.getElementById('addExpenseCategorySelect');
+        if (catSel) catSel.value = defaultCategory;
+      }
+
       const header = document.getElementById('quickAddModalHeader');
       if (header) {
         header.textContent = `➕ Add Entry — ${calMonthNames[calCurrentMonth]} ${calSelectedDay}, ${calCurrentYear}`;
@@ -5152,33 +5580,40 @@
       const amountLabel = document.getElementById('addAmountLabel');
       const titleInput = document.getElementById('addTitleInput');
       const amountInput = document.getElementById('addAmountInput');
+      const catGroup = document.getElementById('addExpenseCategoryGroup');
 
       if (domain === 'pill') {
+        if (catGroup) catGroup.style.display = 'none';
         titleLabel.textContent = "Medication Name (e.g. Metformin or Lisinopril)";
         titleInput.placeholder = "e.g. Lisinopril";
         amountLabel.textContent = "Dosage & Frequency (e.g. 10mg Daily)";
         amountInput.placeholder = "e.g. 10mg Once Daily";
       } else if (domain === 'bill') {
+        if (catGroup) catGroup.style.display = 'none';
         titleLabel.textContent = "Bill Name / Payee (e.g. Electric or Internet)";
         titleInput.placeholder = "e.g. High-Speed Internet";
         amountLabel.textContent = "Bill Amount ($)";
         amountInput.placeholder = "e.g. 85.00";
       } else if (domain === 'expense') {
+        if (catGroup) catGroup.style.display = 'block';
         titleLabel.textContent = "Expense Description / Merchant";
-        titleInput.placeholder = "e.g. Trader Joe's Groceries";
+        titleInput.placeholder = "e.g. Trader Joe's Groceries, ConEd, Uber";
         amountLabel.textContent = "Expense Amount ($)";
         amountInput.placeholder = "e.g. 42.50";
       } else if (domain === 'fitness') {
+        if (catGroup) catGroup.style.display = 'none';
         titleLabel.textContent = "Workout Title / Muscle Group";
         titleInput.placeholder = "e.g. Leg Day & Cardio Blast";
         amountLabel.textContent = "Routine Subtitle / Target";
         amountInput.placeholder = "e.g. AI Routine • Quads & 20m Elliptical";
       } else if (domain === 'habit') {
+        if (catGroup) catGroup.style.display = 'none';
         titleLabel.textContent = "Habit Name (e.g. Hydration or Reading)";
         titleInput.placeholder = "e.g. Read 20 Pages";
         amountLabel.textContent = "Emoji & Schedule Details";
         amountInput.placeholder = "e.g. 📚 Evening Reading (20m)";
       } else if (domain === 'appointment') {
+        if (catGroup) catGroup.style.display = 'none';
         titleLabel.textContent = "Appointment Title & Clinic";
         titleInput.placeholder = "e.g. Dental Checkup & Cleaning";
         amountLabel.textContent = "Date & Time (e.g. Oct 24 • 02:00 PM)";
@@ -5225,11 +5660,16 @@
         switchPrimaryTab('expense');
       } else if (domain === 'expense') {
         const num = parseFloat(amount.replace(/[^0-9.]/g, '')) || 25.00;
+        const catSelect = document.getElementById('addExpenseCategorySelect');
+        const selectedCat = catSelect ? catSelect.value : "Food";
+        const catIcons = { Utility: "💡", Food: "🍔", Travel: "🚗", Household: "🏠", Medical: "💊", Other: "🛍️" };
+        const icon = catIcons[selectedCat] || "🛍️";
+
         expensesData.unshift({
           id: "exp_" + Date.now(),
-          name: title.startsWith('🛒') || title.startsWith('☕') || title.startsWith('⚡') ? title : `🛒 ${title}`,
+          name: title.startsWith(icon) ? title : `${icon} ${title}`,
           amount: num,
-          category: "General",
+          category: selectedCat,
           date: "Today"
         });
         destinationName = "Expense Ledger";
