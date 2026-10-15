@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -653,6 +653,53 @@
       display: none !important;
     }
 
+    /* Floating Emergency SOS Button */
+    .floating-sos-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 450;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #ffffff;
+      padding: 0.8rem 1.35rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.5), 0 8px 10px -6px rgba(239, 68, 68, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+      user-select: none;
+      animation: pulseSos 2.5s infinite;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .floating-sos-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px -5px rgba(239, 68, 68, 0.7);
+    }
+
+    .floating-sos-btn:active {
+      transform: scale(0.96);
+    }
+
+    body.senior-mode .floating-sos-btn {
+      bottom: 30px;
+      right: 30px;
+      padding: 1.1rem 1.8rem;
+      font-size: 1.25rem;
+      min-height: 64px;
+      border-radius: 9999px;
+      box-shadow: 0 12px 32px rgba(239, 68, 68, 0.6);
+    }
+
+    @keyframes pulseSos {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+      50% { box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
+    }
+
     /* Caregiver Telemetry Bar */
     .caregiver-bar {
       background: rgba(244, 63, 94, 0.12);
@@ -1217,7 +1264,7 @@
           </div>
           <div class="dropdown-item" onclick="openFamilySettingsModal(); toggleProfileDropdown();">
             <span>👨‍👩‍👧 Family Circle & Senior PIN</span>
-            <span style="font-size:0.7rem; color:var(--emerald);" id="dropdownSeniorPinVal">1234</span>
+            <span style="font-size:0.7rem; color:var(--text-muted);" id="dropdownSeniorPinVal">••••</span>
           </div>
 
           <div class="dropdown-divider"></div>
@@ -1264,12 +1311,12 @@
           <span>🛡️ Monitored by Caregiver John Vance</span>
           <span class="pill-badge" style="background:var(--surface); color:var(--emerald); font-size:0.85rem;">Adherence 96%</span>
         </div>
-        <div style="display:flex; gap:0.5rem;">
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
           <button class="btn btn-secondary" style="background:var(--surface); border:2px solid var(--emerald); font-weight:800;" onclick="speakSeniorSchedule()">
             🗣️ Listen to Schedule (Voice)
           </button>
-          <button class="btn btn-secondary" style="background:var(--surface); border:2px solid var(--emerald); font-weight:800;" onclick="triggerSeniorPrivacyPause()">
-            🔒 Pause Telemetry (2 Hrs)
+          <button class="btn btn-secondary" id="seniorPrivacyBtn" style="background:var(--surface); border:2px solid var(--emerald); font-weight:800;" onclick="openPrivacyPauseModal()">
+            🔒 Pause Telemetry
           </button>
         </div>
       </div>
@@ -1314,7 +1361,7 @@
                   <option value="6">July</option>
                   <option value="7">August</option>
                   <option value="8">September</option>
-                  <option value="9" selected>October</option>
+                  <option value="9">October</option>
                   <option value="10">November</option>
                   <option value="11">December</option>
                 </select>
@@ -1338,7 +1385,7 @@
             <!-- View Mode Switcher (Month / Week / Day) -->
             <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg); padding:0.35rem 0.65rem; border-radius:10px; border:1px solid var(--surface-border); flex-wrap:wrap; gap:0.4rem;">
               <div style="font-size:0.76rem; font-weight:700; color:var(--text-muted);" id="calHeaderLabel">
-                October 2026
+                Current Calendar
               </div>
               <div style="display:flex; gap:0.2rem; background:var(--surface); padding:2px; border-radius:8px; border:1px solid var(--surface-border);">
                 <button class="cal-view-btn active" id="btnViewMonth" onclick="setCalendarViewMode('month')">Month</button>
@@ -1350,7 +1397,7 @@
             <!-- Focused Date Header Card -->
             <div style="background:var(--bg); border:1px solid var(--surface-border); border-radius:10px; padding:0.85rem; text-align:center;">
               <div style="font-size:0.74rem; color:var(--text-muted);">Active Focused Date</div>
-              <div style="font-size:1.35rem; font-weight:800; margin:3px 0;" id="calSelectedDateText">Tuesday, October 6, 2026</div>
+              <div style="font-size:1.35rem; font-weight:800; margin:3px 0;" id="calSelectedDateText">Today's Schedule</div>
               <div style="font-size:0.76rem; color:var(--emerald); font-weight:700;" id="calEventCountBadge">🟢 Dynamic Events Aggregated</div>
               <div style="font-size:0.72rem; color:var(--text-muted); margin-top:5px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:0.4rem; background:rgba(99,102,241,0.08); padding:0.25rem 0.5rem; border-radius:6px; border:1px solid rgba(99,102,241,0.18);">
                 <span>✨ <strong>Click or Tap any date</strong> to immediately open the Add Entry modal for that date.</span>
@@ -1635,6 +1682,46 @@
               </div>
             </div>
 
+          </div>
+
+          <!-- Card 4: Missed Dose Escalation Protocol (T0 -> T+5m -> T+12m) -->
+          <div class="panel-box" style="grid-column: 1 / -1;">
+            <div class="panel-header">
+              <span>⚡ Missed Dose Escalation Protocol (Life Safety IA Rule 3.3)</span>
+              <span class="pill-badge" id="escalationStatusBadge" style="background:var(--emerald-bg); color:var(--emerald);">Status: Active & Nominal</span>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:0.75rem;">
+              
+              <div class="module-card" id="escStage1Card" style="border-left:4px solid var(--amber);">
+                <div style="font-weight:800; font-size:0.85rem;">⏱️ T0: Window Elapsed</div>
+                <div class="card-sub" style="font-size:0.75rem;">Morning dose (08:30 AM) passes without sensor confirmation or patient check-in.</div>
+                <div style="font-size:0.72rem; color:var(--text-muted); margin-top:4px;">Action: System transitions from Idle to Pending Verification.</div>
+              </div>
+
+              <div class="module-card" id="escStage2Card" style="border-left:4px solid var(--cyan);">
+                <div style="font-weight:800; font-size:0.85rem;">🔔 T+5m: Senior Nudge</div>
+                <div class="card-sub" style="font-size:0.75rem;">Soft tablet chime and prominent reminder card displayed on Eleanor's interface.</div>
+                <div style="font-size:0.72rem; color:var(--text-muted); margin-top:4px;">Action: In-app prompt with voice readout option.</div>
+              </div>
+
+              <div class="module-card" id="escStage3Card" style="border-left:4px solid var(--rose);">
+                <div style="font-weight:800; font-size:0.85rem;">🚨 T+12m: Caregiver Escalation</div>
+                <div class="card-sub" style="font-size:0.75rem;">If unconfirmed, automated push notification and SMS dispatched to Caregiver John.</div>
+                <div style="font-size:0.72rem; color:var(--text-muted); margin-top:4px;">Action: Household Ribbon displays red warning badge.</div>
+              </div>
+
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid var(--surface-border);">
+              <div style="font-size:0.78rem; color:var(--text-muted);" id="escalationSimLog">
+                Simulation Ready: Verify the 3-tier safety escalation cascade.
+              </div>
+              <div style="display:flex; gap:0.4rem;">
+                <button class="btn btn-secondary" style="font-size:0.75rem;" onclick="simulateDoseEscalationNext()">⚡ Simulate Next Stage</button>
+                <button class="btn btn-secondary" style="font-size:0.75rem; color:var(--text-muted);" onclick="resetDoseEscalation()">↺ Reset Protocol</button>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -2103,6 +2190,112 @@
     </div>
   </div>
 
+  <!-- Floating Emergency SOS Button (Always Accessible, Prominent in Senior Mode) -->
+  <div id="floatingSosBtn" class="floating-sos-btn" onclick="openSosModal()" title="Emergency SOS — Immediate Family & Medical Alert">
+    <span style="font-size:1.25rem;">🚨</span>
+    <span>EMERGENCY SOS</span>
+  </div>
+
+  <!-- Modal 6: Emergency SOS & Medical ID Modal -->
+  <div class="modal-backdrop" id="sosModal" onclick="closeSosModal()">
+    <div class="modal-box" style="max-width:520px; border:2px solid #ef4444;" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid rgba(239,68,68,0.3); padding-bottom:0.75rem;">
+        <div style="display:flex; align-items:center; gap:0.6rem;">
+          <span style="font-size:1.8rem; animation:pulseSos 1.5s infinite;">🚨</span>
+          <div>
+            <h3 style="font-size:1.2rem; font-weight:900; margin:0; color:#ef4444;">EMERGENCY SOS</h3>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Immediate Family & Emergency Response Gateway</div>
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-weight:800;" onclick="closeSosModal()">✕</button>
+      </div>
+
+      <!-- Quick Dial Numbers -->
+      <div style="display:flex; flex-direction:column; gap:0.55rem;">
+        <a href="tel:911" class="btn" style="background:#ef4444; color:#fff; font-size:1.05rem; font-weight:900; padding:0.9rem; text-decoration:none; display:flex; justify-content:center; align-items:center; gap:0.6rem; border-radius:12px; box-shadow:0 4px 14px rgba(239,68,68,0.4);" onclick="trackEmergencyDial('911')">
+          📞 DIAL 911 (EMERGENCY SERVICES)
+        </a>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.55rem;">
+          <a href="tel:+15550144" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Caregiver John')">
+            <span style="font-weight:800; font-size:0.88rem;">🛡️ John Vance</span>
+            <span style="font-size:0.72rem; color:var(--text-muted);">Caregiver • 555-0144</span>
+          </a>
+          <a href="tel:+15550188" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Master Admin Aswin')">
+            <span style="font-weight:800; font-size:0.88rem;">👤 Aswin</span>
+            <span style="font-size:0.72rem; color:var(--text-muted);">Family Admin • 555-0188</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Emergency Medical ID Card Snapshot -->
+      <div style="background:var(--bg); border:1px solid var(--surface-border); border-radius:12px; padding:0.9rem; display:flex; flex-direction:column; gap:0.4rem;">
+        <div style="font-size:0.8rem; font-weight:800; color:var(--accent); display:flex; justify-content:space-between;">
+          <span>📋 ELEANOR VANCE (MEDICAL ID)</span>
+          <span>BLOOD: O+</span>
+        </div>
+        <div style="font-size:0.78rem; line-height:1.45; color:var(--text);">
+          • <strong>DOB:</strong> March 12, 1948 (Age 78)<br>
+          • <strong>Critical Regimen:</strong> Metformin 500mg Oral Tablet (Rx #89421)<br>
+          • <strong>Severe Allergy:</strong> <span style="color:#ef4444; font-weight:800;">PENICILLIN (Anaphylaxis Risk)</span><br>
+          • <strong>Attending Physician:</strong> Dr. Sarah Lin (Phone: 555-0199)<br>
+          • <strong>Hospital Preference:</strong> St. Jude Memorial Hospital
+        </div>
+      </div>
+
+      <!-- Broadcast SOS Button -->
+      <button class="btn" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#fff; font-weight:800; padding:0.75rem;" onclick="broadcastSosEmergency()">
+        📡 Broadcast SOS Alarm to Household Devices
+      </button>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <button class="btn btn-secondary" onclick="closeSosModal()">I Am Safe / Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 7: Senior Privacy Pause Duration Selector -->
+  <div class="modal-backdrop" id="privacyPauseModal" onclick="closePrivacyPauseModal()">
+    <div class="modal-box" style="max-width:440px;" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--surface-border); padding-bottom:0.6rem;">
+        <h3 style="font-size:1.1rem; font-weight:800; margin:0; display:flex; align-items:center; gap:0.4rem;">
+          <span>🔒</span> Senior Privacy Pause
+        </h3>
+        <button class="btn btn-secondary" style="padding:0.2rem 0.5rem;" onclick="closePrivacyPauseModal()">✕</button>
+      </div>
+
+      <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.45; margin:0;">
+        Pauses real-time caregiver adherence telemetry while keeping <strong>Emergency Alarms & SOS</strong> 100% active.
+      </p>
+
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <button class="btn btn-secondary" style="justify-content:space-between; padding:0.75rem 1rem; font-weight:700;" onclick="applyPrivacyPause(2)">
+          <span>⏱️ 2 Hours (Personal Rest)</span>
+          <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);">Standard</span>
+        </button>
+        <button class="btn btn-secondary" style="justify-content:space-between; padding:0.75rem 1rem; font-weight:700;" onclick="applyPrivacyPause(6)">
+          <span>🌙 6 Hours (Overnight Sleep)</span>
+          <span class="pill-badge" style="background:var(--purple-bg); color:var(--purple);">Night</span>
+        </button>
+        <button class="btn btn-secondary" style="justify-content:space-between; padding:0.75rem 1rem; font-weight:700;" onclick="applyPrivacyPause(24)">
+          <span>☀️ 24 Hours (Full Day Pause)</span>
+          <span class="pill-badge" style="background:var(--amber-bg); color:var(--amber);">Full Day</span>
+        </button>
+      </div>
+
+      <div id="activePauseStatusBox" style="display:none; background:var(--amber-bg); border:1px solid var(--amber); border-radius:10px; padding:0.75rem; font-size:0.8rem; color:var(--amber);">
+        <div style="font-weight:800;">🟡 Privacy Pause is currently ACTIVE</div>
+        <div id="activePauseCountdownText" style="margin-top:2px;">Time remaining: calculating...</div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem;">
+        <button class="btn btn-secondary" style="color:var(--rose); font-size:0.8rem;" onclick="cancelPrivacyPause()">
+          🔓 Resume Telemetry Now
+        </button>
+        <button class="btn btn-secondary" onclick="closePrivacyPauseModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Floating Feedback Toast -->
   <div class="toast-popup" id="toast">
     <span id="toastMsg">✅ Action Saved</span>
@@ -2114,6 +2307,16 @@
        ========================================================================== -->
   <script>
     // State Model
+    function escapeHTML(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     let currentRole = 'power';
     let landingPersonaRole = 'power';
     let activePrimaryTab = 'home';
@@ -2268,16 +2471,19 @@
 
       if (role === 'senior') {
         document.getElementById('landEmail').value = 'eleanor.vance@senior.care';
-        document.getElementById('landPassLabel').textContent = `Senior 4-Digit PIN (Master Configured: ${securityConfig.seniorPin})`;
-        document.getElementById('landPass').value = securityConfig.seniorPin;
+        document.getElementById('landPassLabel').textContent = 'Senior 4-Digit PIN';
+        document.getElementById('landPass').value = '';
+        document.getElementById('landPass').placeholder = 'Enter 4-digit PIN (default: 1234)';
       } else if (role === 'caregiver') {
         document.getElementById('landEmail').value = 'john.vance@caregiver.guardian';
         document.getElementById('landPassLabel').textContent = 'Caregiver Access Password';
-        document.getElementById('landPass').value = securityConfig.caregiverPass;
+        document.getElementById('landPass').value = '';
+        document.getElementById('landPass').placeholder = 'Enter password (default: caregiver2026)';
       } else {
         document.getElementById('landEmail').value = 'aswin@omnitask.app';
         document.getElementById('landPassLabel').textContent = 'Password';
-        document.getElementById('landPass').value = '••••••••';
+        document.getElementById('landPass').value = '';
+        document.getElementById('landPass').placeholder = 'Enter password';
       }
     }
 
@@ -2294,6 +2500,18 @@
     }
 
     function enterDashboard() {
+      const passInp = document.getElementById('landPass');
+      const passVal = passInp ? passInp.value.trim() : '';
+
+      if (landingPersonaRole === 'senior' && passVal && passVal !== securityConfig.seniorPin) {
+        showToast("❌ Incorrect Senior PIN. Please verify with Family Admin.");
+        return;
+      }
+      if (landingPersonaRole === 'caregiver' && passVal && passVal !== securityConfig.caregiverPass) {
+        showToast("❌ Incorrect Caregiver Password.");
+        return;
+      }
+
       toggleLoginScreen(false);
       setMode(landingPersonaRole);
       let userName = 'Aswin';
@@ -2481,11 +2699,16 @@
         const pct = Math.min(100, Math.round((p.day / p.totalDays) * 100));
         const daysLeft = Math.max(0, p.totalDays - p.day);
         
-        let displayName = p.name || 'Prescription';
-        let displayDosage = p.dosage || '10mg Daily';
+        let rawName = p.name || 'Prescription';
+        let rawDosage = p.dosage || '10mg Daily';
         if (p.name && p.dosage && p.name.toLowerCase().endsWith(p.dosage.toLowerCase())) {
-          displayName = p.name.substring(0, p.name.length - p.dosage.length).trim();
+          rawName = p.name.substring(0, p.name.length - p.dosage.length).trim();
         }
+
+        const displayName = escapeHTML(rawName);
+        const displayDosage = escapeHTML(rawDosage);
+        const doctor = escapeHTML(p.doctor || 'Dr. Sarah Lin');
+        const rxNum = escapeHTML(p.rxNum || 'Rx #89421');
 
         const card = document.createElement('div');
         card.className = 'module-card';
@@ -2498,7 +2721,7 @@
                   💊 ${displayDosage} <span style="font-size:0.68rem; opacity:0.8;">✏️</span>
                 </span>
               </div>
-              <div class="card-sub" style="margin-top:3px;">${p.doctor || 'Dr. Sarah Lin'} • ${p.rxNum || 'Rx #89421'}</div>
+              <div class="card-sub" style="margin-top:3px;">${doctor} • ${rxNum}</div>
             </div>
             <div style="display:flex; gap:0.35rem; align-items:center;">
               <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.72rem; color:var(--emerald); font-weight:700; border-color:rgba(16,185,129,0.35);" onclick="openEditDoseModal('${p.id}')" title="Edit Dose and Course Schedule Separately">
@@ -2566,13 +2789,17 @@
       }
 
       billsData.forEach(b => {
+        const title = escapeHTML(b.title || 'Bill');
+        const payee = escapeHTML(b.payee || 'Provider');
+        const dueDate = escapeHTML(b.dueDate || 'Soon');
+
         const card = document.createElement('div');
         card.className = 'module-card';
         card.innerHTML = `
           <div class="card-top">
             <div>
-              <div class="card-title" style="font-size:1.1rem;">${b.title}</div>
-              <div class="card-sub">${b.payee || 'Provider'} • Due ${b.dueDate || 'Soon'}</div>
+              <div class="card-title" style="font-size:1.1rem;">${title}</div>
+              <div class="card-sub">${payee} • Due ${dueDate}</div>
             </div>
             <div style="display:flex; gap:0.3rem;">
               <button class="btn btn-secondary senior-hide" style="padding:0.25rem 0.5rem; font-size:0.72rem;" onclick="openEditModal('bill', '${b.id}')">✏️ Edit</button>
@@ -2634,6 +2861,10 @@
       let total = 0;
       expensesData.forEach(e => {
         total += parseFloat(e.amount || 0);
+        const name = escapeHTML(e.name || 'Expense');
+        const cat = escapeHTML(e.category || 'General');
+        const date = escapeHTML(e.date || 'Oct 6');
+
         const row = document.createElement('div');
         row.className = 'module-card';
         row.style.padding = '0.75rem';
@@ -2643,7 +2874,7 @@
         row.innerHTML = `
           <div>
             <div style="font-weight:700; font-size:0.88rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
-              <span>${e.name}</span>
+              <span>${name}</span>
               ${e.receiptImage ? `
                 <button class="sample-pill-btn" style="padding:0.12rem 0.4rem; font-size:0.68rem; color:var(--accent); border-color:var(--accent);" onclick="openReceiptViewer('${e.id}')">🧾 Receipt</button>
               ` : ''}
@@ -2651,7 +2882,7 @@
                 <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.65rem; padding:0.1rem 0.35rem;">AI ${Math.round(e.confidence * 100)}%</span>
               ` : ''}
             </div>
-            <div class="card-sub">Category: ${e.category || 'General'} • ${e.date || 'Oct 6'} ${e.tax ? `• Tax: $${parseFloat(e.tax).toFixed(2)}` : ''}</div>
+            <div class="card-sub">Category: ${cat} • ${date} ${e.tax ? `• Tax: $${parseFloat(e.tax).toFixed(2)}` : ''}</div>
           </div>
           <div style="display:flex; align-items:center; gap:0.6rem;">
             <strong style="font-family:'JetBrains Mono',monospace; font-size:0.95rem;">$${parseFloat(e.amount || 0).toFixed(2)}</strong>
@@ -2688,27 +2919,32 @@
       }
 
       workoutsData.forEach(w => {
+        const title = escapeHTML(w.title || 'Workout');
+        const sub = escapeHTML(w.sub || 'Routine');
+
         const card = document.createElement('div');
         card.className = 'module-card';
         let exercisesHTML = '';
         if (w.exercises && w.exercises.length) {
           w.exercises.forEach((ex, idx) => {
+            const exName = escapeHTML(ex.name);
+            const exSets = escapeHTML(ex.sets);
             exercisesHTML += `
               <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
                 <input type="checkbox" ${ex.done ? 'checked' : ''} style="width:18px; height:18px;" onchange="toggleExercise('${w.id}', ${idx}, this.checked)">
-                <span><strong>${ex.name}:</strong> ${ex.sets}</span>
+                <span><strong>${exName}:</strong> ${exSets}</span>
               </label>
             `;
           });
         } else {
-          exercisesHTML = `<div class="card-sub">${w.sub}</div>`;
+          exercisesHTML = `<div class="card-sub">${sub}</div>`;
         }
 
         card.innerHTML = `
           <div class="card-top">
             <div>
-              <div class="card-title" style="font-size:1.1rem;">${w.title}</div>
-              <div class="card-sub">${w.sub || 'Routine'}</div>
+              <div class="card-title" style="font-size:1.1rem;">${title}</div>
+              <div class="card-sub">${sub}</div>
             </div>
             <div style="display:flex; align-items:center; gap:0.3rem;">
               <span class="pill-badge" style="background:var(--purple-bg); color:var(--purple);">${(w.exercises || []).length || 1} Routine</span>
@@ -2754,17 +2990,21 @@
       }
 
       habitsData.forEach(h => {
+        const emoji = escapeHTML(h.emoji || '✨');
+        const title = escapeHTML(h.title || 'Habit');
+        const details = escapeHTML(h.details || '');
+
         const card = document.createElement('div');
         card.className = 'module-card';
         card.innerHTML = `
           <div class="card-top">
-            <div class="card-title">${h.emoji || '✨'} ${h.title}</div>
+            <div class="card-title">${emoji} ${title}</div>
             <div style="display:flex; align-items:center; gap:0.3rem;">
-              <span class="pill-badge" style="background:var(--cyan-bg); color:var(--cyan);">${h.emoji || '✨'} ×${h.count || 0}</span>
+              <span class="pill-badge" style="background:var(--cyan-bg); color:var(--cyan);">${emoji} ×${h.count || 0}</span>
               <button class="btn btn-secondary" style="padding:0.2rem 0.4rem; font-size:0.7rem; color:var(--rose);" onclick="deleteItem('habit', '${h.id}')">🗑️</button>
             </div>
           </div>
-          <div class="card-sub">${h.details || ''}</div>
+          <div class="card-sub">${details}</div>
           <button class="btn btn-secondary" style="font-size:0.78rem; padding:0.4rem 0.8rem; align-self:flex-start;" onclick="incrementHabit('${h.id}')">
             ➕ Log Session (+1)
           </button>
@@ -2796,16 +3036,20 @@
       }
 
       appointmentsData.forEach(a => {
+        const title = escapeHTML(a.title || 'Appointment');
+        const sub = escapeHTML(a.sub || 'Medical Clinic');
+        const date = escapeHTML(a.date || 'Upcoming');
+
         const card = document.createElement('div');
         card.className = 'module-card';
         card.innerHTML = `
           <div class="card-top">
             <div>
-              <div class="card-title">${a.title}</div>
-              <div class="card-sub">${a.sub || 'Medical Clinic'}</div>
+              <div class="card-title">${title}</div>
+              <div class="card-sub">${sub}</div>
             </div>
             <div style="display:flex; align-items:center; gap:0.3rem;">
-              <span class="pill-badge" style="background:var(--surface-hover); color:var(--text);">${a.date || 'Upcoming'}</span>
+              <span class="pill-badge" style="background:var(--surface-hover); color:var(--text);">${date}</span>
               <button class="btn btn-secondary" style="padding:0.2rem 0.4rem; font-size:0.7rem; color:var(--rose);" onclick="deleteItem('appointment', '${a.id}')">🗑️</button>
             </div>
           </div>
@@ -2822,14 +3066,19 @@
 
       // Add Pills
       pillsData.forEach(p => {
+        const name = escapeHTML(p.name || 'Rx');
+        const dosage = escapeHTML(p.dosage || '');
+        const doctor = escapeHTML(p.doctor || 'Dr. Sarah Lin');
+        const rxNum = escapeHTML(p.rxNum || 'Rx Active');
+
         const div = document.createElement('div');
         div.className = 'module-card';
         div.style.borderLeft = '4px solid var(--emerald)';
         div.innerHTML = `
           <div class="card-top">
             <div>
-              <div class="card-title">💊 ${p.name} ${p.dosage} (Dose #${p.day})</div>
-              <div class="card-sub">08:30 AM • ${p.rxNum || 'Rx Active'} • ${p.doctor || 'Dr. Sarah Lin'}</div>
+              <div class="card-title">💊 ${name} ${dosage} (Dose #${p.day})</div>
+              <div class="card-sub">08:30 AM • ${rxNum} • ${doctor}</div>
             </div>
             <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);">Active</span>
           </div>
@@ -2839,14 +3088,18 @@
 
       // Add Bills
       billsData.forEach(b => {
+        const title = escapeHTML(b.title || 'Bill');
+        const payee = escapeHTML(b.payee || 'Utility');
+        const dueDate = escapeHTML(b.dueDate || 'Upcoming');
+
         const div = document.createElement('div');
         div.className = 'module-card';
         div.style.borderLeft = '4px solid var(--amber)';
         div.innerHTML = `
           <div class="card-top">
             <div>
-              <div class="card-title">💳 ${b.title} (${b.payee || 'Utility'})</div>
-              <div class="card-sub">Due: ${b.dueDate || 'Upcoming'} • Amount: $${parseFloat(b.amount || 0).toFixed(2)}</div>
+              <div class="card-title">💳 ${title} (${payee})</div>
+              <div class="card-sub">Due: ${dueDate} • Amount: $${parseFloat(b.amount || 0).toFixed(2)}</div>
             </div>
             <span class="pill-badge" style="background:${b.isPaid ? 'var(--emerald-bg)' : 'var(--amber-bg)'}; color:${b.isPaid ? 'var(--emerald)' : 'var(--amber)'};">
               ${b.isPaid ? 'Paid ✅' : 'Pending'}
@@ -2858,13 +3111,14 @@
 
       // Add Workouts
       workoutsData.forEach(w => {
+        const title = escapeHTML(w.title || 'Workout');
         const div = document.createElement('div');
         div.className = 'module-card';
         div.style.borderLeft = '4px solid var(--purple)';
         div.innerHTML = `
           <div class="card-top">
             <div>
-              <div class="card-title">🏋️ ${w.title}</div>
+              <div class="card-title">🏋️ ${title}</div>
               <div class="card-sub">05:30 PM • ${(w.exercises || []).length || 1} Routine Scheduled</div>
             </div>
             <span class="pill-badge" style="background:var(--purple-bg); color:var(--purple);">Planned</span>
@@ -2875,16 +3129,19 @@
 
       // Add Habits
       habitsData.forEach(h => {
+        const emoji = escapeHTML(h.emoji || '✨');
+        const title = escapeHTML(h.title || 'Habit');
+
         const div = document.createElement('div');
         div.className = 'module-card';
         div.style.borderLeft = '4px solid var(--cyan)';
         div.innerHTML = `
           <div class="card-top">
             <div>
-              <div class="card-title">${h.emoji || '✨'} ${h.title}</div>
+              <div class="card-title">${emoji} ${title}</div>
               <div class="card-sub">${h.count || 0} Sessions Logged Today</div>
             </div>
-            <span class="pill-badge" style="background:var(--cyan-bg); color:var(--cyan);">${h.emoji || '✨'} ×${h.count || 0}</span>
+            <span class="pill-badge" style="background:var(--cyan-bg); color:var(--cyan);">${emoji} ×${h.count || 0}</span>
           </div>
         `;
         container.appendChild(div);
@@ -3356,12 +3613,151 @@
       }
     }
 
+    /* ==========================================================================
+       SENIOR PRIVACY PAUSE & EMERGENCY SOS SYSTEM
+       ========================================================================== */
+    function openPrivacyPauseModal() {
+      const until = parseInt(localStorage.getItem('omnitask_privacy_pause_until') || '0', 10);
+      const statusBox = document.getElementById('activePauseStatusBox');
+      if (until && until > Date.now()) {
+        if (statusBox) statusBox.style.display = 'block';
+      } else {
+        if (statusBox) statusBox.style.display = 'none';
+      }
+      document.getElementById('privacyPauseModal').style.display = 'flex';
+    }
+
+    function closePrivacyPauseModal() {
+      document.getElementById('privacyPauseModal').style.display = 'none';
+    }
+
     function triggerSeniorPrivacyPause() {
-      showToast("🔒 Eleanor Vance activated Senior Privacy Pause for 2 Hours (Telemetry masked; Emergency alarms remain active).");
+      openPrivacyPauseModal();
+    }
+
+    function applyPrivacyPause(hours) {
+      const until = Date.now() + hours * 3600 * 1000;
+      localStorage.setItem('omnitask_privacy_pause_until', until.toString());
+      showToast(`🔒 Privacy Pause activated for ${hours} Hours. Telemetry masked; emergency alarms remain 100% active.`);
+      closePrivacyPauseModal();
+      updatePrivacyPauseUI();
+    }
+
+    function cancelPrivacyPause() {
+      localStorage.removeItem('omnitask_privacy_pause_until');
+      showToast("🟢 Senior Privacy Pause ended. Telemetry stream resumed.");
+      closePrivacyPauseModal();
+      updatePrivacyPauseUI();
+    }
+
+    function updatePrivacyPauseUI() {
+      const until = parseInt(localStorage.getItem('omnitask_privacy_pause_until') || '0', 10);
       const cgLive = document.getElementById('cgLiveStatus');
-      if (cgLive) {
-        cgLive.textContent = "🟡 Privacy Pause (2h)";
-        cgLive.style.color = "var(--amber)";
+      const seniorBtn = document.getElementById('seniorPrivacyBtn');
+      const countdownTxt = document.getElementById('activePauseCountdownText');
+      const statusBox = document.getElementById('activePauseStatusBox');
+
+      if (until && until > Date.now()) {
+        const diffMs = until - Date.now();
+        const hrs = Math.floor(diffMs / 3600000);
+        const mins = Math.floor((diffMs % 3600000) / 60000);
+        const timeStr = hrs > 0 ? `${hrs}h ${mins}m` : `${mins}m`;
+
+        if (cgLive) {
+          cgLive.textContent = `🟡 Privacy Pause (${timeStr})`;
+          cgLive.style.color = "var(--amber)";
+          cgLive.style.background = "var(--amber-bg)";
+        }
+        if (seniorBtn) {
+          seniorBtn.innerHTML = `🔒 Paused (${timeStr}) • Manage`;
+          seniorBtn.style.borderColor = "var(--amber)";
+        }
+        if (countdownTxt) {
+          countdownTxt.textContent = `Time remaining: ${timeStr} until telemetry auto-resumes.`;
+        }
+        if (statusBox) statusBox.style.display = 'block';
+      } else {
+        if (until && until <= Date.now()) {
+          localStorage.removeItem('omnitask_privacy_pause_until');
+          showToast("🟢 Senior Privacy Pause concluded; telemetry resumed.");
+        }
+        if (cgLive) {
+          cgLive.textContent = "🟢 Stream: Live";
+          cgLive.style.color = "var(--cyan)";
+          cgLive.style.background = "rgba(6,182,212,0.15)";
+        }
+        if (seniorBtn) {
+          seniorBtn.innerHTML = "🔒 Pause Telemetry";
+          seniorBtn.style.borderColor = "var(--emerald)";
+        }
+        if (statusBox) statusBox.style.display = 'none';
+      }
+    }
+
+    /* Emergency SOS Functions */
+    function openSosModal() {
+      document.getElementById('sosModal').style.display = 'flex';
+      if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+    }
+
+    function closeSosModal() {
+      document.getElementById('sosModal').style.display = 'none';
+    }
+
+    function trackEmergencyDial(contact) {
+      showToast(`🚨 Initiated direct emergency call to ${contact}`);
+    }
+
+    function broadcastSosEmergency() {
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 400]);
+      alert("🚨 HIGH PRIORITY SOS BROADCAST SENT:\n• Urgent push notification dispatched to Caregiver John Vance.\n• Master Admin Aswin alerted.\n• Location: Living Room Hub (Online).\n• Medical ID Attached.");
+      showToast("🚨 High-Priority SOS Alarm Broadcast to all paired family devices!");
+      closeSosModal();
+    }
+
+    /* Missed Dose Escalation Simulator (Rule 3.3) */
+    let currentEscalationStage = 0;
+
+    function simulateDoseEscalationNext() {
+      currentEscalationStage = (currentEscalationStage + 1) % 4;
+      applyEscalationStage(currentEscalationStage);
+    }
+
+    function resetDoseEscalation() {
+      currentEscalationStage = 0;
+      applyEscalationStage(0);
+    }
+
+    function applyEscalationStage(stage) {
+      const badge = document.getElementById('escalationStatusBadge');
+      const log = document.getElementById('escalationSimLog');
+      const c1 = document.getElementById('escStage1Card');
+      const c2 = document.getElementById('escStage2Card');
+      const c3 = document.getElementById('escStage3Card');
+
+      if (c1) c1.style.background = 'var(--card-bg)';
+      if (c2) c2.style.background = 'var(--card-bg)';
+      if (c3) c3.style.background = 'var(--card-bg)';
+
+      if (stage === 1) {
+        if (c1) c1.style.background = 'var(--amber-bg)';
+        if (badge) { badge.textContent = "Status: T0 (Pending Check-in)"; badge.style.background = 'var(--amber-bg)'; badge.style.color = 'var(--amber)'; }
+        if (log) log.innerHTML = "🟡 <strong>T0 Triggered:</strong> Metformin 500mg morning window elapsed. Waiting 5m buffer.";
+        showToast("⏱️ T0 Triggered: Metformin morning dose unconfirmed. Buffer active.");
+      } else if (stage === 2) {
+        if (c2) c2.style.background = 'rgba(6,182,212,0.18)';
+        if (badge) { badge.textContent = "Status: T+5m (Senior Nudge Active)"; badge.style.background = 'rgba(6,182,212,0.18)'; badge.style.color = 'var(--cyan)'; }
+        if (log) log.innerHTML = "🔔 <strong>T+5m Triggered:</strong> Soft tablet chime dispatched to Eleanor Vance's iPad.";
+        showToast("🔔 T+5m: Gentle chime prompt sent to Eleanor Vance.");
+      } else if (stage === 3) {
+        if (c3) c3.style.background = 'var(--rose-bg)';
+        if (badge) { badge.textContent = "Status: 🚨 T+12m (Caregiver Escalated)"; badge.style.background = 'var(--rose-bg)'; badge.style.color = 'var(--rose)'; }
+        if (log) log.innerHTML = "🚨 <strong>T+12m Triggered:</strong> Priority push dispatched to Caregiver John Vance (+1 555-0144) and Admin Aswin!";
+        showToast("🚨 T+12m: Caregiver escalation alert dispatched to John Vance!");
+      } else {
+        if (badge) { badge.textContent = "Status: Active & Nominal"; badge.style.background = 'var(--emerald-bg)'; badge.style.color = 'var(--emerald)'; }
+        if (log) log.textContent = "Simulation Ready: Verify the 3-tier safety escalation cascade.";
+        showToast("✅ Escalation Protocol reset to nominal state.");
       }
     }
 
@@ -4120,13 +4516,13 @@
         const tax = parseFloat(e.tax || 0).toFixed(2);
         const conf = e.confidence ? `${Math.round(e.confidence * 100)}%` : 'Manual';
         const hasRec = e.receiptImage ? 'Yes' : 'No';
-        csv += `"${e.name}","${e.vendor || e.name}",${amt},${cents},${tax},"${e.category || 'Utilities'}","${e.date || '2026-10-06'}",${hasRec},${conf}\n`;
+        csv += `"${e.name}","${e.vendor || e.name}",${amt},${cents},${tax},"${e.category || 'Utilities'}","${e.date || new Date().toISOString().split('T')[0]}",${hasRec},${conf}\n`;
       });
       const blob = new Blob([csv], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `omnitask_expense_statement_oct2026.csv`;
+      a.download = `omnitask_expense_statement_${calCurrentYear}_${calCurrentMonth + 1}.csv`;
       a.click();
       showToast("💾 Downloaded Expense Ledger Statement with Vision Audit fields!");
     }
@@ -4134,9 +4530,10 @@
     /* ==========================================================================
        DYNAMIC CALENDAR ENGINE (Month, Week, Day with Full Navigation)
        ========================================================================== */
-    let calCurrentYear = 2026;
-    let calCurrentMonth = 9; // 0-indexed: 9 = October
-    let calSelectedDay = 6;
+    const _initNow = new Date();
+    let calCurrentYear = _initNow.getFullYear();
+    let calCurrentMonth = _initNow.getMonth(); // 0-indexed
+    let calSelectedDay = _initNow.getDate();
     let calViewMode = 'month'; // 'month' | 'week' | 'day'
 
     const calMonthNames = [
@@ -4196,11 +4593,12 @@
     }
 
     function goToToday() {
-      calCurrentYear = 2026;
-      calCurrentMonth = 9;
-      calSelectedDay = 6;
+      const now = new Date();
+      calCurrentYear = now.getFullYear();
+      calCurrentMonth = now.getMonth();
+      calSelectedDay = now.getDate();
       syncCalendarControls();
-      selectCalendarDay(6, 9, 2026);
+      selectCalendarDay(now.getDate(), now.getMonth(), now.getFullYear());
     }
 
     function syncCalendarControls() {
@@ -4208,7 +4606,15 @@
       const yearSel = document.getElementById('calYearSelect');
       const headerLabel = document.getElementById('calHeaderLabel');
       if (monthSel) monthSel.value = calCurrentMonth.toString();
-      if (yearSel) yearSel.value = calCurrentYear.toString();
+      if (yearSel) {
+        if (!yearSel.querySelector(`option[value="${calCurrentYear}"]`)) {
+          const opt = document.createElement('option');
+          opt.value = calCurrentYear.toString();
+          opt.textContent = calCurrentYear.toString();
+          yearSel.appendChild(opt);
+        }
+        yearSel.value = calCurrentYear.toString();
+      }
       if (headerLabel) headerLabel.textContent = `${calMonthNames[calCurrentMonth]} ${calCurrentYear}`;
     }
 
@@ -4239,17 +4645,43 @@
       let total = 0;
       let spendItems = [];
 
+      // Format focused date: YYYY-MM-DD
+      const mStr = String(calCurrentMonth + 1).padStart(2, '0');
+      const dStr = String(calSelectedDay).padStart(2, '0');
+      const focusedISO = `${calCurrentYear}-${mStr}-${dStr}`;
+      const shortMonth = calMonthNames[calCurrentMonth].slice(0, 3).toLowerCase();
+      const realNow = new Date();
+      const isTodayFocused = (calSelectedDay === realNow.getDate() && calCurrentMonth === realNow.getMonth() && calCurrentYear === realNow.getFullYear());
+
       // Check bills due around or on this date
       billsData.forEach(b => {
-        if (b.dueDate && (b.dueDate.includes(calSelectedDay.toString()) || b.dueDate.toLowerCase().includes(calMonthNames[calCurrentMonth].slice(0, 3).toLowerCase()))) {
+        const bDate = (b.dueDate || '').toLowerCase();
+        const matchesISO = bDate.includes(focusedISO);
+        const matchesFmt = bDate.includes(shortMonth) && (
+          bDate.includes(` ${calSelectedDay},`) || 
+          bDate.includes(` ${calSelectedDay} `) || 
+          bDate.endsWith(` ${calSelectedDay}`) || 
+          bDate.includes(`${calSelectedDay}th`) || 
+          bDate.includes(`${calSelectedDay}st`) || 
+          bDate.includes(`${calSelectedDay}nd`) || 
+          bDate.includes(`${calSelectedDay}rd`)
+        );
+        if (matchesISO || matchesFmt) {
           total += parseFloat(b.amount || 0);
-          spendItems.push(`${b.title} ($${b.amount})`);
+          spendItems.push(`${b.title} ($${parseFloat(b.amount || 0).toFixed(2)})`);
         }
       });
 
-      // Check expenses on this date
+      // Check expenses strictly on this date
       expensesData.forEach(e => {
-        total += parseFloat(e.amount || 0);
+        const eDate = (e.date || '').toLowerCase();
+        const matchesISO = (eDate === focusedISO);
+        const matchesToday = isTodayFocused && (eDate === 'today');
+        const matchesShort = (eDate.includes(shortMonth) && (eDate.includes(` ${calSelectedDay}`) || eDate.includes(`${calSelectedDay}`)));
+        if (matchesISO || matchesToday || matchesShort) {
+          total += parseFloat(e.amount || 0);
+          spendItems.push(`${e.name} ($${parseFloat(e.amount || 0).toFixed(2)})`);
+        }
       });
 
       const spendElem = document.getElementById('calDailySpend');
@@ -4257,9 +4689,9 @@
       if (spendElem) spendElem.textContent = `$${total.toFixed(2)}`;
       if (descElem) {
         if (spendItems.length > 0) {
-          descElem.innerHTML = `Includes: <strong>${spendItems.slice(0, 2).join(', ')}</strong>${spendItems.length > 2 ? ` +${spendItems.length - 2} more` : ''} + categorized daily spend.`;
+          descElem.innerHTML = `Includes: <strong>${spendItems.slice(0, 3).map(escapeHTML).join(', ')}</strong>${spendItems.length > 3 ? ` +${spendItems.length - 3} more` : ''}.`;
         } else {
-          descElem.textContent = `Auto-calculated from scheduled bills and categorized expenses for this date.`;
+          descElem.textContent = `No scheduled bills or recorded expenses on this date ($0.00).`;
         }
       }
     }
@@ -4421,7 +4853,8 @@
       }
 
       // 4. Current Month Days
-      const todayYear = 2026, todayMonth = 9, todayDay = 6;
+      const realNow = new Date();
+      const todayYear = realNow.getFullYear(), todayMonth = realNow.getMonth(), todayDay = realNow.getDate();
       for (let d = 1; d <= daysInMonth; d++) {
         const cell = document.createElement('div');
         cell.className = 'cal-day-cell';
@@ -4596,7 +5029,11 @@
         saveSessionState(true, 'power', 'Aswin', 'aswin@omnitask.app');
       }
 
+      syncCalendarControls();
+      updateFocusedDateDisplay();
+      updatePrivacyPauseUI();
       renderAllViews();
+      setInterval(updatePrivacyPauseUI, 30000);
     });
   </script>
 </body>
