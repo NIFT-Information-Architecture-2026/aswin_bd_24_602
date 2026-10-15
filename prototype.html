@@ -851,6 +851,14 @@
       font-size: 1.25rem;
     }
 
+    body.senior-mode .grid-bento-cockpit {
+      display: none !important;
+    }
+
+    body.senior-mode .household-status-banner {
+      display: none !important;
+    }
+
     body.senior-mode .grid-2col,
     body.senior-mode .grid-3col {
       grid-template-columns: 1fr !important;
@@ -891,6 +899,130 @@
 
     body.senior-mode .senior-hide {
       display: none !important;
+    }
+
+    /* Senior Tablet Cockpit UI */
+    .senior-tablet-cockpit {
+      display: none;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 940px;
+      margin: 0 auto;
+      width: 100%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    body.senior-mode .senior-tablet-cockpit {
+      display: flex !important;
+    }
+
+    .senior-hero-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(6, 182, 212, 0.12));
+      border: 2px solid var(--emerald);
+      border-radius: 22px;
+      padding: 1.6rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.25);
+    }
+
+    .senior-clock-display {
+      font-size: 2.8rem;
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--emerald);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .senior-pill-card {
+      background: var(--surface);
+      border: 3px solid var(--emerald);
+      border-radius: 20px;
+      padding: 1.6rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .senior-pill-card.completed {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .btn-senior-giant {
+      min-height: 70px;
+      font-size: 1.45rem !important;
+      font-weight: 900 !important;
+      border-radius: 18px !important;
+      padding: 1.15rem 1.8rem !important;
+      justify-content: center;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff !important;
+      box-shadow: 0 10px 25px -2px rgba(16, 185, 129, 0.5);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      letter-spacing: 0.02em;
+      user-select: none;
+    }
+
+    .btn-senior-giant:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -2px rgba(16, 185, 129, 0.7);
+    }
+
+    .btn-senior-giant:active {
+      transform: scale(0.97);
+    }
+
+    .senior-touch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .senior-touch-tile {
+      background: var(--surface);
+      border: 2px solid var(--surface-border);
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .senior-touch-tile:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.4);
+    }
+
+    .senior-touch-tile.sos-tile {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.25));
+      border: 3px solid #ef4444;
+      box-shadow: 0 8px 24px -4px rgba(239, 68, 68, 0.4);
+    }
+
+    .senior-touch-tile.sos-tile:hover {
+      border-color: #f87171;
+      box-shadow: 0 12px 30px -4px rgba(239, 68, 68, 0.6);
+    }
+
+    .senior-touch-tile.caregiver-tile {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(99, 102, 241, 0.15));
+      border: 2px solid var(--accent);
     }
 
     /* Floating Emergency SOS Button */
@@ -940,7 +1072,29 @@
       50% { box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
     }
 
-    /* Caregiver Telemetry Bar */
+    /* Caregiver Telemetry Cockpit UI */
+    .caregiver-telemetry-cockpit {
+      display: none;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 1240px;
+      margin: 0 auto;
+      width: 100%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    body.caregiver-mode .grid-bento-cockpit {
+      display: none !important;
+    }
+
+    body.caregiver-mode .household-status-banner {
+      display: none !important;
+    }
+
+    body.caregiver-mode .caregiver-telemetry-cockpit {
+      display: flex !important;
+    }
+
     .caregiver-bar {
       background: rgba(244, 63, 94, 0.12);
       border: 1px solid var(--rose);
@@ -957,6 +1111,99 @@
 
     body.caregiver-mode .caregiver-bar {
       display: flex;
+    }
+
+    .cg-guardian-header {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.12), rgba(99, 102, 241, 0.12));
+      border: 1px solid var(--surface-border);
+      border-left: 4px solid var(--rose);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .cg-telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 960px) {
+      .cg-telemetry-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .cg-telemetry-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cg-telemetry-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .cg-telemetry-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    /* Escalation Ladder Nodes */
+    .escalation-ladder-container {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .escalation-ladder-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+    }
+
+    @media (max-width: 860px) {
+      .escalation-ladder-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .escalation-step-node {
+      background: var(--bg);
+      border: 2px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .escalation-step-node.active-stage {
+      border-color: var(--rose) !important;
+      background: rgba(244, 63, 94, 0.12) !important;
+      box-shadow: 0 0 18px -2px rgba(244, 63, 94, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .escalation-step-node.completed-stage {
+      border-color: var(--emerald) !important;
+      background: rgba(16, 185, 129, 0.08) !important;
     }
 
     /* Modals */
@@ -1770,6 +2017,321 @@
           </div>
 
         </div>
+
+        <!-- 2. SENIOR TABLET COCKPIT: Giant Tactile & Accessible System (Step 3) -->
+        <div class="senior-tablet-cockpit" id="seniorTabletCockpit">
+          <!-- Hero Banner with Greeting, Digital Clock & TTS Action -->
+          <div class="senior-hero-banner">
+            <div style="display:flex; align-items:center; gap:1.25rem;">
+              <div style="width:68px; height:68px; border-radius:20px; background:var(--emerald); color:#fff; display:flex; align-items:center; justify-content:center; font-size:2.2rem; flex-shrink:0; box-shadow:0 8px 20px -4px rgba(16,185,129,0.5);">
+                👵
+              </div>
+              <div>
+                <h2 style="font-size:1.85rem; font-weight:900; margin:0; color:var(--text); line-height:1.2;">Good Morning, Eleanor! 🌸</h2>
+                <div style="font-size:1.15rem; color:var(--text); margin-top:4px;">
+                  Today is <strong>Tuesday, October 6</strong> • Your caregiver <strong>John Vance</strong> is online.
+                </div>
+              </div>
+            </div>
+            
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.5rem;">
+              <div class="senior-clock-display" id="seniorClockDisplay">08:30 AM</div>
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <button class="btn btn-secondary" style="font-size:1rem; font-weight:800; padding:0.55rem 1rem; border:2px solid var(--emerald); border-radius:12px;" onclick="speakSeniorSchedule()">
+                  🗣️ Read Schedule
+                </button>
+                <button class="btn btn-secondary" style="font-size:1rem; font-weight:800; padding:0.55rem 1rem; border:2px solid var(--emerald); border-radius:12px;" onclick="openPrivacyPauseModal()">
+                  🔒 Pause Tracking
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 1: Giant Tactile Medication Cards -->
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <h3 style="font-size:1.45rem; font-weight:900; margin:0; color:var(--emerald);">
+                💊 Today's Prescriptions (Tap to Confirm Taken)
+              </h3>
+              <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.95rem; font-weight:800; padding:0.4rem 0.85rem;" id="seniorAdherenceBadge">
+                96% Weekly Adherence
+              </span>
+            </div>
+
+            <!-- Dynamic Senior Pills Container -->
+            <div id="seniorTabletPillsContainer" style="display:flex; flex-direction:column; gap:1.25rem;">
+              <!-- Dynamically populated by renderSeniorTabletPills() -->
+            </div>
+          </div>
+
+          <!-- Section 2: Big Tactile Quick Action Grid -->
+          <div>
+            <h3 style="font-size:1.4rem; font-weight:900; margin:0 0 0.85rem 0; color:var(--text);">
+              🆘 Quick Help & Family Contacts
+            </h3>
+            
+            <div class="senior-touch-grid">
+              <!-- Tile 1: Emergency SOS -->
+              <div class="senior-touch-tile sos-tile" onclick="openSosModal()">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:2.4rem;">🚨</div>
+                  <span class="pill-badge" style="background:#ef4444; color:#fff; font-weight:900; font-size:0.85rem; padding:0.35rem 0.75rem;">1-TAP SOS</span>
+                </div>
+                <div>
+                  <div style="font-size:1.55rem; font-weight:900; color:#ef4444;">EMERGENCY SOS</div>
+                  <div style="font-size:1.05rem; color:var(--text); margin-top:4px; line-height:1.35;">
+                    Tap once to alert Caregiver John & dispatch emergency contacts.
+                  </div>
+                </div>
+                <div style="font-size:1.1rem; font-weight:900; color:#ef4444; margin-top:auto; padding-top:0.4rem;">
+                  🚨 TAP FOR IMMEDIATE HELP →
+                </div>
+              </div>
+
+              <!-- Tile 2: Call Caregiver John -->
+              <div class="senior-touch-tile caregiver-tile" onclick="callSeniorPatient()">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:2.4rem;">🛡️</div>
+                  <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); font-weight:900; font-size:0.85rem; padding:0.35rem 0.75rem;">🟢 ONLINE</span>
+                </div>
+                <div>
+                  <div style="font-size:1.5rem; font-weight:900; color:var(--accent);">Call Caregiver John</div>
+                  <div style="font-size:1.05rem; color:var(--text); margin-top:4px; line-height:1.35;">
+                    Direct voice line to John Vance (+1 555-0144).
+                  </div>
+                </div>
+                <div style="font-size:1.1rem; font-weight:900; color:var(--accent); margin-top:auto; padding-top:0.4rem;">
+                  📞 TAP TO CALL JOHN →
+                </div>
+              </div>
+
+              <!-- Tile 3: Water & Hydration Tracker -->
+              <div class="senior-touch-tile" onclick="showToast('💧 Great job, Eleanor! Logged 1 glass of fresh water.')">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:2.4rem;">💧</div>
+                  <span class="pill-badge" style="background:rgba(6,182,212,0.15); color:var(--cyan); font-weight:900; font-size:0.85rem; padding:0.35rem 0.75rem;">HYDRATION</span>
+                </div>
+                <div>
+                  <div style="font-size:1.45rem; font-weight:900;">Drink Fresh Water</div>
+                  <div style="font-size:1.05rem; color:var(--text-muted); margin-top:4px; line-height:1.35;">
+                    Goal: 6 glasses today • Tap whenever you finish a cup of water.
+                  </div>
+                </div>
+                <div style="font-size:1.05rem; font-weight:900; color:var(--cyan); margin-top:auto; padding-top:0.4rem;">
+                  💧 + LOG 1 GLASS OF WATER →
+                </div>
+              </div>
+
+              <!-- Tile 4: Doctor Lin & Medical ID -->
+              <div class="senior-touch-tile" onclick="showMedicalId()">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:2.4rem;">🩺</div>
+                  <span class="pill-badge" style="background:rgba(168,85,247,0.15); color:var(--purple); font-weight:900; font-size:0.85rem; padding:0.35rem 0.75rem;">DOCTOR</span>
+                </div>
+                <div>
+                  <div style="font-size:1.45rem; font-weight:900;">Dr. Sarah Lin (Cardio)</div>
+                  <div style="font-size:1.05rem; color:var(--text-muted); margin-top:4px; line-height:1.35;">
+                    Physician Phone: 555-0199 • Blood: O+ • Allergy: Penicillin.
+                  </div>
+                </div>
+                <div style="font-size:1.05rem; font-weight:900; color:var(--purple); margin-top:auto; padding-top:0.4rem;">
+                  📋 VIEW EMERGENCY MEDICAL ID →
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. CAREGIVER TELEMETRY COCKPIT: Real-Time Guardian Stream & Escalation Ladder (Step 4) -->
+        <div class="caregiver-telemetry-cockpit" id="caregiverCockpit">
+          
+          <!-- Guardian Stream Header -->
+          <div class="cg-guardian-header">
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <div style="width:54px; height:54px; border-radius:16px; background:var(--rose-bg); color:var(--rose); border:1px solid var(--rose); display:flex; align-items:center; justify-content:center; font-size:1.8rem; flex-shrink:0;">
+                🛡️
+              </div>
+              <div>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <h3 style="font-size:1.35rem; font-weight:900; margin:0;">Eleanor Vance (Mom) • Live Guardian Stream</h3>
+                  <span class="pill-badge" style="background:rgba(16,185,129,0.15); color:var(--emerald); font-weight:800; font-size:0.75rem;">🟢 Telemetry Active</span>
+                </div>
+                <div style="font-size:0.82rem; color:var(--text-muted); margin-top:3px;">
+                  Assigned Caregiver: <strong>John Vance (+1 555-0144)</strong> • Primary Residence: Living Room Hub
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <button class="btn btn-secondary" onclick="callSeniorPatient()">📞 Call Eleanor's iPad</button>
+              <button class="btn btn-secondary" onclick="printDoctorSummary()">📋 1-Tap Doctor PDF</button>
+            </div>
+          </div>
+
+          <!-- Real-Time Sensor & Vitals Grid -->
+          <div class="cg-telemetry-grid">
+            <!-- Sensor 1: Smart Pillbox -->
+            <div class="cg-telemetry-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">💊 Smart Pillbox Sensor</span>
+                <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.68rem;">Verified</span>
+              </div>
+              <div style="font-size:1.4rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--emerald);">08:32 AM ✅</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">
+                Compartment #1 opened • Metformin 500mg dose verified. Next: 12:30 PM.
+              </div>
+            </div>
+
+            <!-- Sensor 2: Biometrics / Heart Rate -->
+            <div class="cg-telemetry-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">❤️ Biometrics & Pulse</span>
+                <span class="pill-badge" style="background:rgba(14,165,233,0.15); color:var(--accent); font-size:0.68rem;">Normal Sinus</span>
+              </div>
+              <div style="font-size:1.4rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--text);">72 BPM</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">
+                BP: 118 / 76 mmHg • SpO2: 98% • Continuous smartwatch stream.
+              </div>
+            </div>
+
+            <!-- Sensor 3: Ambient Motion Activity -->
+            <div class="cg-telemetry-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">🚶 Ambient Motion IoT</span>
+                <span class="pill-badge" style="background:var(--cyan-bg); color:var(--cyan); font-size:0.68rem;">Kitchen Motion</span>
+              </div>
+              <div style="font-size:1.4rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--cyan);">08:15 AM</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">
+                1,420 steps logged today • Motion detected in Kitchen and Living Room.
+              </div>
+            </div>
+
+            <!-- Sensor 4: Device Fleet & Battery -->
+            <div class="cg-telemetry-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">🔋 Hardware Fleet</span>
+                <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.68rem;">All Online</span>
+              </div>
+              <div style="font-size:1.4rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--emerald);">78% / 95%</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">
+                iPad: 78% (Charging) • Smart Pillbox: 95% Battery • Zigbee Hub Normal.
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Escalation Ladder (T0 -> T+5m -> T+10m -> T+12m) -->
+          <div class="escalation-ladder-container">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <h4 style="font-size:1.05rem; font-weight:900; margin:0; display:flex; align-items:center; gap:0.4rem;">
+                  <span>⚡ Missed Dose Escalation Protocol</span>
+                  <span style="font-size:0.75rem; font-weight:600; color:var(--text-muted);">(Life Safety IA Rule 3.3)</span>
+                </h4>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">
+                  Automatic 4-stage escalation triggers if scheduled medication is unconfirmed.
+                </div>
+              </div>
+              <span class="pill-badge" id="cgEscalationStatusBadge" style="background:var(--emerald-bg); color:var(--emerald); font-weight:800; font-size:0.78rem;">
+                Status: Nominal (All Doses Logged)
+              </span>
+            </div>
+
+            <!-- 4 Step Escalation Grid -->
+            <div class="escalation-ladder-steps">
+              <!-- Stage 0: T0 -->
+              <div class="escalation-step-node" id="cgStage0Card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:0.72rem; font-weight:800; color:var(--amber);">STAGE 1</span>
+                  <span class="pill-badge" style="background:var(--amber-bg); color:var(--amber); font-size:0.65rem;">T0 • 08:30 AM</span>
+                </div>
+                <div style="font-weight:900; font-size:0.9rem;">Scheduled Window</div>
+                <div style="font-size:0.72rem; color:var(--text-muted);">
+                  Morning window opens. System waits 5m buffer for sensor or check-in.
+                </div>
+              </div>
+
+              <!-- Stage 1: T+5m -->
+              <div class="escalation-step-node" id="cgStage1Card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:0.72rem; font-weight:800; color:var(--cyan);">STAGE 2</span>
+                  <span class="pill-badge" style="background:var(--cyan-bg); color:var(--cyan); font-size:0.65rem;">T+5m • 08:35 AM</span>
+                </div>
+                <div style="font-weight:900; font-size:0.9rem;">Tablet Audio Nudge</div>
+                <div style="font-size:0.72rem; color:var(--text-muted);">
+                  Gentle chime & high-contrast reminder prompt spoken on Eleanor's iPad.
+                </div>
+              </div>
+
+              <!-- Stage 2: T+10m -->
+              <div class="escalation-step-node" id="cgStage2Card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:0.72rem; font-weight:800; color:var(--purple);">STAGE 3</span>
+                  <span class="pill-badge" style="background:var(--purple-bg); color:var(--purple); font-size:0.65rem;">T+10m • 08:40 AM</span>
+                </div>
+                <div style="font-weight:900; font-size:0.9rem;">Caregiver SMS Alert</div>
+                <div style="font-size:0.72rem; color:var(--text-muted);">
+                  Priority push & SMS alert dispatched to John's phone (+1 555-0144).
+                </div>
+              </div>
+
+              <!-- Stage 3: T+12m -->
+              <div class="escalation-step-node" id="cgStage3Card">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:0.72rem; font-weight:800; color:var(--rose);">STAGE 4</span>
+                  <span class="pill-badge" style="background:var(--rose-bg); color:var(--rose); font-size:0.65rem;">T+12m • 08:42 AM</span>
+                </div>
+                <div style="font-weight:900; font-size:0.9rem;">Critical Voice Dispatch</div>
+                <div style="font-size:0.72rem; color:var(--text-muted);">
+                  Automated phone call initiated & neighbor/emergency contacts notified.
+                </div>
+              </div>
+            </div>
+
+            <!-- Escalation Simulator Controls -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.65rem; border-top:1px solid var(--surface-border); padding-top:0.85rem;">
+              <div id="cgSimLog" style="font-size:0.78rem; color:var(--text-muted);">
+                Protocol Status: Nominal. Tap "Simulate Next Stage" to test the 4-tier cascade.
+              </div>
+              <div style="display:flex; gap:0.45rem;">
+                <button class="btn btn-secondary" style="font-size:0.75rem; font-weight:800;" onclick="simulateDoseEscalationNext()">
+                  ⚡ Simulate Next Stage
+                </button>
+                <button class="btn btn-secondary" style="font-size:0.75rem; color:var(--text-muted);" onclick="resetDoseEscalation()">
+                  ↺ Reset Protocol
+                </button>
+                <button class="btn btn-emerald" style="font-size:0.75rem; font-weight:800;" onclick="acknowledgeCaregiverDose()">
+                  ✓ Acknowledge & Log Dose
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Caregiver Audit Stream & Clinical Notes -->
+          <div class="panel-box">
+            <div class="panel-header">
+              <span>📋 Caregiver Real-Time Audit Log</span>
+              <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.2rem 0.5rem;" onclick="showToast('📝 Note saved to Eleanor Vance clinical chart.')">
+                + Add Note
+              </button>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.45rem; font-size:0.78rem; color:var(--text);">
+              <div style="display:flex; justify-content:space-between; padding:0.4rem 0.6rem; background:var(--bg); border-radius:8px;">
+                <span>✅ <strong>08:35 AM:</strong> Morning dose Metformin 500mg verified by Smart Pillbox sensor.</span>
+                <span style="color:var(--text-muted); font-size:0.72rem;">Verified by System</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; padding:0.4rem 0.6rem; background:var(--bg); border-radius:8px;">
+                <span>🚶 <strong>08:15 AM:</strong> Kitchen motion sensor detected activity (Eleanor preparing breakfast).</span>
+                <span style="color:var(--text-muted); font-size:0.72rem;">IoT Sensor #3</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; padding:0.4rem 0.6rem; background:var(--bg); border-radius:8px;">
+                <span>❤️ <strong>08:00 AM:</strong> Morning biometrics sync: 72 BPM, SpO2 98%, BP 118/76.</span>
+                <span style="color:var(--text-muted); font-size:0.72rem;">Smart Watch</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
       <!-- ======================================================================
@@ -3038,12 +3600,14 @@
       renderCalendarEngine();
       renderPills();
       renderCockpitMedications();
+      renderSeniorTabletPills();
       renderBills();
       renderExpenses();
       renderWorkouts();
       renderHabits();
       renderAppointments();
       renderTimeline();
+      updateSeniorClock();
     }
 
     // 1. Render Pills & Medication Cards
@@ -3187,6 +3751,93 @@
       });
     }
 
+    // 1c. Render Senior Tablet Pills (Giant Tactile Buttons - Step 3)
+    function renderSeniorTabletPills() {
+      const container = document.getElementById('seniorTabletPillsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (pillsData.length === 0) {
+        container.innerHTML = '<div style="color:var(--text-muted); font-size:1.2rem; padding:1.5rem; text-align:center;">No medications scheduled for today. You are all set!</div>';
+        return;
+      }
+
+      pillsData.forEach((p) => {
+        const isCompleted = p.day >= p.totalDays;
+        const daysLeft = Math.max(0, p.totalDays - p.day);
+        
+        let rawName = p.name || 'Prescription';
+        let rawDosage = p.dosage || 'Standard Dose';
+        if (p.name && p.dosage && p.name.toLowerCase().endsWith(p.dosage.toLowerCase())) {
+          rawName = p.name.substring(0, p.name.length - p.dosage.length).trim();
+        }
+
+        const card = document.createElement('div');
+        card.className = `senior-pill-card ${isCompleted ? 'completed' : ''}`;
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.75rem;">
+            <div style="display:flex; align-items:center; gap:0.85rem;">
+              <div style="width:52px; height:52px; border-radius:14px; background:${isCompleted ? 'rgba(16,185,129,0.2)' : 'rgba(14,165,233,0.15)'}; display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:${isCompleted ? 'var(--emerald)' : 'var(--accent)'}; flex-shrink:0;">
+                ${isCompleted ? '✓' : '💊'}
+              </div>
+              <div>
+                <div style="font-size:1.6rem; font-weight:900; color:var(--text); line-height:1.2;">
+                  ${escapeHTML(rawName)} <span style="font-size:1.25rem; font-weight:700; color:var(--emerald);">${escapeHTML(rawDosage)}</span>
+                </div>
+                <div style="font-size:1.1rem; color:var(--text); margin-top:4px;">
+                  Take with breakfast • <strong>Day ${p.day} of ${p.totalDays}</strong>
+                </div>
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <span class="pill-badge" style="background:${isCompleted ? 'var(--emerald-bg)' : 'var(--surface-hover)'}; color:${isCompleted ? 'var(--emerald)' : 'var(--text-muted)'}; font-size:0.95rem; padding:0.4rem 0.8rem; font-weight:800;">
+                ${isCompleted ? 'Course Completed ✓' : `${daysLeft} Days Remaining`}
+              </span>
+              <div style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">${escapeHTML(p.doctor || 'Dr. Sarah Lin')} • ${escapeHTML(p.rxNum || 'Rx #89421')}</div>
+            </div>
+          </div>
+
+          <div>
+            ${isCompleted ? `
+              <div style="background:rgba(16,185,129,0.15); border:2px solid var(--emerald); border-radius:16px; padding:1.1rem; text-align:center; color:var(--emerald); font-weight:900; font-size:1.35rem;">
+                🎉 Dose Recorded for Today!
+              </div>
+            ` : `
+              <button class="btn-senior-giant" onclick="takePillDoseDynamic('${p.id}')">
+                ✓ I TOOK MY PILL (DAY ${p.day})
+              </button>
+            `}
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; font-size:0.92rem; color:var(--text-muted); border-top:1px solid var(--surface-border); padding-top:0.75rem;">
+            <span>Prescribed schedule: 08:30 AM Daily</span>
+            <span style="color:var(--emerald); cursor:pointer; text-decoration:underline; font-weight:700;" onclick="openEditDoseModal('${p.id}')">
+              ✏️ Edit Dose / Schedule Separately
+            </span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function updateSeniorClock() {
+      const elem = document.getElementById('seniorClockDisplay');
+      if (!elem) return;
+      const now = new Date();
+      elem.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function acknowledgeCaregiverDose() {
+      const p = pillsData[0];
+      if (p && p.day < p.totalDays) {
+        p.day += 1;
+        persistAllData();
+      }
+      resetDoseEscalation();
+      renderAllViews();
+      showToast("🛡️ Caregiver Acknowledged: Morning dose verified and recorded.");
+    }
+
     function takePillDoseDynamic(pillId) {
       const p = pillsData.find(x => x.id === pillId) || pillsData[0];
       if (p.day >= p.totalDays) {
@@ -3198,6 +3849,7 @@
       persistAllData();
       renderPills();
       renderCockpitMedications();
+      renderSeniorTabletPills();
       renderTimeline();
       showToast(`💊 Logged Dose: ${p.name} • Day ${p.day}/${p.totalDays}`);
     }
@@ -3965,6 +4617,7 @@
       persistAllData();
       renderPills();
       renderCockpitMedications();
+      renderSeniorTabletPills();
       renderTimeline();
       renderCalendarEngine();
       closeEditDoseModal();
@@ -3978,6 +4631,7 @@
         persistAllData();
         renderPills();
         renderCockpitMedications();
+        renderSeniorTabletPills();
         renderTimeline();
         showToast("↩️ Undone: Reverted pill dose log.");
       } else if (lastActionUndo && lastActionUndo.type === 'bill') {
@@ -4142,11 +4796,11 @@
       closeSosModal();
     }
 
-    /* Missed Dose Escalation Simulator (Rule 3.3) */
+    /* Missed Dose Escalation Simulator (Life Safety Rule 3.3) */
     let currentEscalationStage = 0;
 
     function simulateDoseEscalationNext() {
-      currentEscalationStage = (currentEscalationStage + 1) % 4;
+      currentEscalationStage = (currentEscalationStage + 1) % 5;
       applyEscalationStage(currentEscalationStage);
     }
 
@@ -4156,34 +4810,82 @@
     }
 
     function applyEscalationStage(stage) {
-      const badge = document.getElementById('escalationStatusBadge');
-      const log = document.getElementById('escalationSimLog');
+      const badge1 = document.getElementById('escalationStatusBadge');
+      const badge2 = document.getElementById('cgEscalationStatusBadge');
+      const log1 = document.getElementById('escalationSimLog');
+      const log2 = document.getElementById('cgSimLog');
+
       const c1 = document.getElementById('escStage1Card');
       const c2 = document.getElementById('escStage2Card');
       const c3 = document.getElementById('escStage3Card');
 
-      if (c1) c1.style.background = 'var(--card-bg)';
-      if (c2) c2.style.background = 'var(--card-bg)';
-      if (c3) c3.style.background = 'var(--card-bg)';
+      const n0 = document.getElementById('cgStage0Card');
+      const n1 = document.getElementById('cgStage1Card');
+      const n2 = document.getElementById('cgStage2Card');
+      const n3 = document.getElementById('cgStage3Card');
+
+      // Reset styles
+      [c1, c2, c3].forEach(el => { if (el) el.style.background = 'var(--card-bg)'; });
+      [n0, n1, n2, n3].forEach(el => {
+        if (el) {
+          el.classList.remove('active-stage', 'completed-stage');
+          el.style.background = 'var(--bg)';
+        }
+      });
 
       if (stage === 1) {
         if (c1) c1.style.background = 'var(--amber-bg)';
-        if (badge) { badge.textContent = "Status: T0 (Pending Check-in)"; badge.style.background = 'var(--amber-bg)'; badge.style.color = 'var(--amber)'; }
-        if (log) log.innerHTML = "🟡 <strong>T0 Triggered:</strong> Metformin 500mg morning window elapsed. Waiting 5m buffer.";
+        if (n0) n0.classList.add('active-stage');
+        const txt = "Status: T0 (Window Elapsed)";
+        if (badge1) { badge1.textContent = txt; badge1.style.background = 'var(--amber-bg)'; badge1.style.color = 'var(--amber)'; }
+        if (badge2) { badge2.textContent = txt; badge2.style.background = 'var(--amber-bg)'; badge2.style.color = 'var(--amber)'; }
+        const msg = "🟡 <strong>T0 Triggered (08:30 AM):</strong> Scheduled dose window elapsed without smart pillbox sensor confirmation. Waiting 5m buffer.";
+        if (log1) log1.innerHTML = msg;
+        if (log2) log2.innerHTML = msg;
         showToast("⏱️ T0 Triggered: Metformin morning dose unconfirmed. Buffer active.");
       } else if (stage === 2) {
         if (c2) c2.style.background = 'rgba(6,182,212,0.18)';
-        if (badge) { badge.textContent = "Status: T+5m (Senior Nudge Active)"; badge.style.background = 'rgba(6,182,212,0.18)'; badge.style.color = 'var(--cyan)'; }
-        if (log) log.innerHTML = "🔔 <strong>T+5m Triggered:</strong> Soft tablet chime dispatched to Eleanor Vance's iPad.";
-        showToast("🔔 T+5m: Gentle chime prompt sent to Eleanor Vance.");
+        if (n0) n0.classList.add('completed-stage');
+        if (n1) n1.classList.add('active-stage');
+        const txt = "Status: T+5m (Tablet Nudge Active)";
+        if (badge1) { badge1.textContent = txt; badge1.style.background = 'rgba(6,182,212,0.18)'; badge1.style.color = 'var(--cyan)'; }
+        if (badge2) { badge2.textContent = txt; badge2.style.background = 'rgba(6,182,212,0.18)'; badge2.style.color = 'var(--cyan)'; }
+        const msg = "🔔 <strong>T+5m Triggered (08:35 AM):</strong> Soft tablet chime & voice prompt dispatched to Eleanor Vance's iPad.";
+        if (log1) log1.innerHTML = msg;
+        if (log2) log2.innerHTML = msg;
+        showToast("🔔 T+5m: Gentle chime prompt & voice readout sent to Eleanor.");
       } else if (stage === 3) {
+        if (c2) c2.style.background = 'rgba(168,85,247,0.18)';
+        if (n0) n0.classList.add('completed-stage');
+        if (n1) n1.classList.add('completed-stage');
+        if (n2) n2.classList.add('active-stage');
+        const txt = "Status: T+10m (Caregiver SMS Sent)";
+        if (badge1) { badge1.textContent = txt; badge1.style.background = 'rgba(168,85,247,0.18)'; badge1.style.color = 'var(--purple)'; }
+        if (badge2) { badge2.textContent = txt; badge2.style.background = 'rgba(168,85,247,0.18)'; badge2.style.color = 'var(--purple)'; }
+        const msg = "📱 <strong>T+10m Triggered (08:40 AM):</strong> Priority SMS alert dispatched to Caregiver John Vance (+1 555-0144).";
+        if (log1) log1.innerHTML = msg;
+        if (log2) log2.innerHTML = msg;
+        showToast("📱 T+10m: Caregiver SMS alert dispatched to John Vance.");
+      } else if (stage === 4) {
         if (c3) c3.style.background = 'var(--rose-bg)';
-        if (badge) { badge.textContent = "Status: 🚨 T+12m (Caregiver Escalated)"; badge.style.background = 'var(--rose-bg)'; badge.style.color = 'var(--rose)'; }
-        if (log) log.innerHTML = "🚨 <strong>T+12m Triggered:</strong> Priority push dispatched to Caregiver John Vance (+1 555-0144) and Admin Aswin!";
-        showToast("🚨 T+12m: Caregiver escalation alert dispatched to John Vance!");
+        if (n0) n0.classList.add('completed-stage');
+        if (n1) n1.classList.add('completed-stage');
+        if (n2) n2.classList.add('completed-stage');
+        if (n3) n3.classList.add('active-stage');
+        const txt = "Status: 🚨 T+12m (Critical Escalation Active)";
+        if (badge1) { badge1.textContent = txt; badge1.style.background = 'var(--rose-bg)'; badge1.style.color = 'var(--rose)'; }
+        if (badge2) { badge2.textContent = txt; badge2.style.background = 'var(--rose-bg)'; badge2.style.color = 'var(--rose)'; }
+        const msg = "🚨 <strong>T+12m Triggered (08:42 AM):</strong> Automated voice phone call initiated & neighbor/emergency contacts alerted!";
+        if (log1) log1.innerHTML = msg;
+        if (log2) log2.innerHTML = msg;
+        showToast("🚨 T+12m: Priority escalation call & emergency alert dispatched!");
       } else {
-        if (badge) { badge.textContent = "Status: Active & Nominal"; badge.style.background = 'var(--emerald-bg)'; badge.style.color = 'var(--emerald)'; }
-        if (log) log.textContent = "Simulation Ready: Verify the 3-tier safety escalation cascade.";
+        const txt = "Status: Nominal (All Doses Logged)";
+        if (badge1) { badge1.textContent = txt; badge1.style.background = 'var(--emerald-bg)'; badge1.style.color = 'var(--emerald)'; }
+        if (badge2) { badge2.textContent = txt; badge2.style.background = 'var(--emerald-bg)'; badge2.style.color = 'var(--emerald)'; }
+        const msg = "Protocol Status: Nominal. Tap 'Simulate Next Stage' to test the 4-tier cascade.";
+        if (log1) log1.textContent = msg;
+        if (log2) log2.textContent = msg;
         showToast("✅ Escalation Protocol reset to nominal state.");
       }
     }
