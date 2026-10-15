@@ -495,6 +495,450 @@
       gap: 1.25rem;
     }
 
+    /* ==========================================================================
+       SIDEBAR & MODERN WORKSPACE LAYOUT (Matches Screen 1 Mockup)
+       ========================================================================== */
+    .app-layout-root {
+      display: flex;
+      min-height: 100vh;
+      background: var(--bg);
+      width: 100%;
+    }
+
+    .app-sidebar {
+      width: 250px;
+      background: #0a0e1a;
+      border-right: 1px solid var(--surface-border);
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 0.85rem;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 120;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem 1.25rem 0.5rem;
+    }
+
+    .sidebar-logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      box-shadow: 0 0 16px rgba(99, 102, 241, 0.5);
+    }
+
+    .sidebar-brand-name {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .sidebar-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      width: 100%;
+      text-align: left;
+    }
+
+    .sidebar-nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+    }
+
+    .sidebar-nav-item.active {
+      background: #182038;
+      color: #818cf8;
+      border-color: rgba(99, 102, 241, 0.35);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--surface-border);
+      margin: 1.25rem 0;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0 0.5rem 0.5rem 0.5rem;
+    }
+
+    .family-members-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .family-member-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.5rem 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      position: relative;
+    }
+
+    .family-member-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .family-member-item.active-user {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+    }
+
+    .member-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--surface-border);
+    }
+
+    .member-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .member-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .member-role {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .btn-add-member {
+      margin-top: 0.6rem;
+      background: transparent;
+      border: 1px dashed var(--surface-border);
+      border-radius: 8px;
+      padding: 0.45rem;
+      color: var(--accent);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.15s ease;
+    }
+
+    .btn-add-member:hover {
+      background: rgba(99, 102, 241, 0.1);
+      border-color: var(--accent);
+    }
+
+    .app-main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow-x: hidden;
+    }
+
+    .app-topbar {
+      background: rgba(10, 14, 26, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--surface-border);
+      padding: 0.75rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    .topbar-search {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 10px;
+      padding: 0.42rem 0.85rem;
+      width: 280px;
+      max-width: 100%;
+    }
+
+    .topbar-search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-size: 0.82rem;
+      width: 100%;
+    }
+
+    .topbar-date-weather {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .weather-pill {
+      background: var(--surface-hover);
+      color: var(--text);
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 1px solid var(--surface-border);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .topbar-icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .topbar-icon-btn:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 16px;
+      height: 16px;
+      background: #ef4444;
+      color: white;
+      border-radius: 50%;
+      font-size: 0.65rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-avatar-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .user-avatar-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .topbar-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Scenic Hero Banner (Screen 1 Inspiration) */
+    .scenic-hero-banner {
+      background: linear-gradient(180deg, rgba(10, 14, 26, 0.3) 0%, rgba(10, 14, 26, 0.95) 100%),
+                  url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .scenic-hero-title {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin: 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .scenic-hero-subtitle {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 4px;
+    }
+
+    .scenic-chips-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .scenic-chip {
+      background: rgba(13, 18, 34, 0.78);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 0.45rem 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .scenic-chip:hover {
+      background: rgba(25, 33, 58, 0.9);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Motivational Card (Screen 3) */
+    .motivational-banner-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 0.85rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Week Calendar View Grid (Screen 2) */
+    .cal-week-grid-table {
+      display: grid;
+      grid-template-columns: 65px repeat(7, 1fr);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .cal-week-header-cell {
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--surface-border);
+      border-right: 1px solid var(--surface-border);
+      background: var(--bg);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .cal-week-header-cell.active-day-col {
+      background: rgba(99, 102, 241, 0.15);
+      color: var(--accent);
+    }
+
+    .cal-week-time-cell {
+      padding: 0.65rem 0.4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--surface-border);
+      border-right: 1px solid var(--surface-border);
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+    }
+
+    .cal-week-slot {
+      border-bottom: 1px solid var(--surface-border);
+      border-right: 1px solid var(--surface-border);
+      min-height: 48px;
+      padding: 3px;
+      position: relative;
+    }
+
+    .cal-event-pill-block {
+      border-radius: 6px;
+      padding: 0.25rem 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .cal-event-pill-block:hover {
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 900px) {
+      .app-layout-root {
+        flex-direction: column;
+      }
+      .app-sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+      }
+    }
+
     /* View Containers */
     .app-view-panel {
       display: none;
@@ -1694,140 +2138,248 @@
   <!-- ==========================================================================
        MAIN APP CONTAINER
        ========================================================================== -->
-  <div id="appContainer" style="display:none; flex-direction:column; min-height:100vh;">
+  <div id="appContainer" class="app-layout-root" style="display:none;">
 
-    <!-- Global App Header -->
-    <header>
-      <div class="brand-group" onclick="switchPrimaryTab('home')">
-        <div class="logo-icon">OT</div>
-        <div>
-          <div class="brand-title">OmniTask</div>
+    <!-- Persistent Left Sidebar Navigation (Screens 1, 2, 3, 5, etc.) -->
+    <aside class="app-sidebar" id="appSidebar">
+      <!-- Brand & Status -->
+      <div class="sidebar-brand" onclick="switchPrimaryTab('home')">
+        <div class="sidebar-logo-icon">OT</div>
+        <div style="flex:1;">
+          <div class="sidebar-brand-name">OmniTask</div>
+          <div style="font-size:0.7rem; color:var(--emerald); display:flex; align-items:center; gap:4px; font-weight:700;">
+            <span class="online-indicator"></span> Life OS • Connected
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <button class="sidebar-nav-item active" id="sideBtn_home" onclick="switchPrimaryTab('home')">
+          <span style="font-size:1.1rem;">🏠</span>
+          <span>Home</span>
+        </button>
+        <button class="sidebar-nav-item" id="sideBtn_calendar" onclick="switchPrimaryTab('calendar')">
+          <span style="font-size:1.1rem;">📅</span>
+          <span>Calendar</span>
+        </button>
+        <button class="sidebar-nav-item" id="sideBtn_reminders" onclick="switchPrimaryTab('reminders')">
+          <span style="font-size:1.1rem;">💊</span>
+          <span>Medications</span>
+        </button>
+        <button class="sidebar-nav-item" id="sideBtn_expense" onclick="switchPrimaryTab('expense')">
+          <span style="font-size:1.1rem;">💳</span>
+          <span>Expenses & Bills</span>
+        </button>
+        <button class="sidebar-nav-item" id="sideBtn_fitness" onclick="switchPrimaryTab('fitness')">
+          <span style="font-size:1.1rem;">🏃</span>
+          <span>Fitness & Habits</span>
+        </button>
+        <button class="sidebar-nav-item" id="sideBtn_oversight" onclick="switchPrimaryTab('oversight')">
+          <span style="font-size:1.1rem;">🛡️</span>
+          <span>Household</span>
+        </button>
+        <button class="sidebar-nav-item" id="sideBtn_insights" onclick="switchPrimaryTab('insights')">
+          <span style="font-size:1.1rem;">📊</span>
+          <span>Insights</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+
+      <!-- Family Circle Sub-Section -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; padding:0 0.5rem;">
+        <span class="sidebar-section-title" style="padding:0; margin:0;">Family Circle</span>
+        <button class="btn btn-secondary" style="padding:0.15rem 0.4rem; font-size:0.7rem; border-radius:6px;" onclick="openFamilySettingsModal()" title="Add Member or Edit Family Hub">+</button>
+      </div>
+
+      <div class="family-members-list">
+        <!-- Eleanor Vance -->
+        <div class="family-member-item" onclick="switchPrimaryTab('oversight')" title="Eleanor Vance (Senior Mode) • 96% Adherence">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" class="member-avatar" alt="Eleanor">
+          <div class="member-info">
+            <div class="member-name">Eleanor Vance</div>
+            <div class="member-role" style="color:var(--emerald);">Senior • 96% Adherence</div>
+          </div>
+          <span class="online-indicator"></span>
+        </div>
+
+        <!-- John Vance -->
+        <div class="family-member-item" onclick="switchPrimaryTab('oversight')" title="John Vance (Caregiver) • Online">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" class="member-avatar" alt="John">
+          <div class="member-info">
+            <div class="member-name">John Vance</div>
+            <div class="member-role" style="color:var(--cyan);">Caregiver • Active</div>
+          </div>
+          <span class="online-indicator"></span>
+        </div>
+
+        <!-- Aswin -->
+        <div class="family-member-item active-user" onclick="switchPrimaryTab('home')" title="Aswin (Account Owner / Power User)">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" class="member-avatar" alt="Aswin">
+          <div class="member-info">
+            <div class="member-name">Aswin</div>
+            <div class="member-role" style="color:var(--accent);">Master • You</div>
+          </div>
+          <span class="online-indicator"></span>
         </div>
       </div>
 
-      <!-- Primary Navigation Tabs (Home, Reminders, Expense, Fitness, Oversight) -->
-      <div class="nav-tabs-group" id="mainNavTabs">
-        <button class="nav-tab-btn active" id="tabBtn_home" onclick="switchPrimaryTab('home')">📅 Home Calendar</button>
-        <button class="nav-tab-btn" id="tabBtn_reminders" onclick="switchPrimaryTab('reminders')">💊 Reminders & Pills</button>
-        <button class="nav-tab-btn" id="tabBtn_expense" onclick="switchPrimaryTab('expense')">💳 Expenses & Bills</button>
-        <button class="nav-tab-btn" id="tabBtn_fitness" onclick="switchPrimaryTab('fitness')">🏋️ Fitness & Habits</button>
-        <button class="nav-tab-btn" id="tabBtn_oversight" onclick="switchPrimaryTab('oversight')" style="border-left:1px solid var(--surface-border); margin-left:4px; color:var(--cyan);">
-          🛡️ Household Oversight
-        </button>
+      <button class="btn-add-member" onclick="openFamilySettingsModal()">
+        + Add Member
+      </button>
+
+      <!-- Bottom System Status Pill -->
+      <div style="margin-top:auto; padding-top:1rem; border-top:1px solid var(--surface-border); display:flex; align-items:center; justify-content:space-between; font-size:0.7rem; color:var(--text-muted);">
+        <span>v2.4 Pro</span>
+        <span style="color:var(--emerald);">● Connected</span>
       </div>
+    </aside>
 
-      <!-- Persona Fast Switcher -->
-      <div class="role-switch-pills">
-        <button class="role-btn active" id="btnRolePower" onclick="setMode('power')">⚡ Power</button>
-        <button class="role-btn" id="btnRoleSenior" onclick="setMode('senior')">👵 Senior</button>
-        <button class="role-btn" id="btnRoleCaregiver" onclick="setMode('caregiver')">🛡️ Caregiver</button>
-      </div>
+    <!-- App Main Content Area -->
+    <div class="app-main-content">
 
-      <!-- Header Actions -->
-      <div class="header-actions">
-        <button class="btn btn-secondary" onclick="openFamilySettingsModal()" id="btnHeaderFamily" title="Master User: Senior PIN & Household Hub">
-          👨‍👩‍👧 Family Hub
-        </button>
+      <!-- Modern Topbar Header -->
+      <header class="app-topbar">
+        <!-- Global Search -->
+        <div class="topbar-search">
+          <span>🔍</span>
+          <input type="text" id="globalOmniSearchInput" placeholder="Search tasks, pills, bills... (⌘K)" oninput="handleGlobalSearch(this.value)">
+        </div>
 
-        <button class="btn btn-secondary" onclick="toggleTheme()" id="themeBtn">☀️ Light</button>
-        <button class="btn" onclick="openQuickAddModal()">➕ Add Entry</button>
+        <!-- Date & Weather Pill -->
+        <div class="topbar-date-weather">
+          <span id="topbarDateStr">Tue, Oct 6, 2026</span>
+          <span class="weather-pill">☀️ 26°C Sunny</span>
+        </div>
 
-        <!-- Profile Button with Dropdown Trigger -->
-        <button class="btn btn-secondary" style="border-radius:20px; padding:0.35rem 0.75rem;" onclick="toggleProfileDropdown()" id="userProfileBtn">
-          👤 <span id="activeUserName">Aswin</span> <span style="font-size:0.7rem; opacity:0.7;">▾</span>
-        </button>
+        <!-- Persona Switcher Pills -->
+        <div class="role-switch-pills">
+          <button class="role-btn active" id="btnRolePower" onclick="setMode('power')">⚡ Power</button>
+          <button class="role-btn" id="btnRoleSenior" onclick="setMode('senior')">👵 Senior</button>
+          <button class="role-btn" id="btnRoleCaregiver" onclick="setMode('caregiver')">🛡️ Caregiver</button>
+        </div>
 
-        <!-- Master Profile Dropdown Menu -->
-        <div class="profile-dropdown-menu" id="profileDropdown">
-          <div class="dropdown-header">
-            <div style="font-weight:800; font-size:0.88rem;" id="dropdownUserName">Aswin</div>
-            <div style="font-size:0.72rem; color:var(--text-muted);" id="dropdownUserEmail">aswin@omnitask.app</div>
-            <span class="pill-badge" style="background:var(--accent-light); color:var(--accent); align-self:flex-start; margin-top:2px;">⚡ Master Account Owner</span>
-          </div>
+        <!-- Topbar Action Icons & Profile -->
+        <div class="topbar-actions">
+          <button class="btn btn-secondary" onclick="openFamilySettingsModal()" id="btnHeaderFamily" title="Master User: Senior PIN & Household Hub" style="padding:0.35rem 0.7rem; font-size:0.78rem;">
+            👨‍👩‍👧 Family Hub
+          </button>
+          <button class="topbar-icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle Theme">☀️</button>
+          <button class="topbar-icon-btn" onclick="showToast('🔔 2 Notifications: Dr. Martinez appointment at 11:00 AM & ConEd Bill due today.')" title="Notifications">
+            🔔
+            <span class="notification-badge">2</span>
+          </button>
+          <button class="btn" onclick="openQuickAddModal()" style="padding:0.4rem 0.8rem; font-size:0.8rem;">➕ Add</button>
 
-          <div class="dropdown-item" onclick="switchPrimaryTab('oversight'); toggleProfileDropdown();">
-            <span>🛡️ Household Oversight Hub</span>
-            <span style="font-size:0.7rem; color:var(--cyan);">Open →</span>
-          </div>
-          <div class="dropdown-item" onclick="openFamilySettingsModal(); toggleProfileDropdown();">
-            <span>👨‍👩‍👧 Family Circle & Senior PIN</span>
-            <span style="font-size:0.7rem; color:var(--text-muted);" id="dropdownSeniorPinVal">••••</span>
-          </div>
+          <!-- User Profile Avatar Pill -->
+          <button class="user-avatar-btn" onclick="toggleProfileDropdown()" id="userProfileBtn">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" class="topbar-avatar" alt="Aswin">
+            <span id="activeUserName" style="font-weight:700; font-size:0.82rem;">Aswin</span>
+            <span style="font-size:0.68rem; opacity:0.7;">▾</span>
+          </button>
 
-          <div class="dropdown-divider"></div>
+          <!-- Profile Dropdown (Preserved for compatibility) -->
+          <div class="profile-dropdown-menu" id="profileDropdown" style="top:58px; right:1.5rem;">
+            <div class="dropdown-header">
+              <div style="font-weight:800; font-size:0.88rem;" id="dropdownUserName">Aswin</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);" id="dropdownUserEmail">aswin@omnitask.app</div>
+              <span class="pill-badge" style="background:var(--accent-light); color:var(--accent); align-self:flex-start; margin-top:2px;">⚡ Master Account Owner</span>
+            </div>
 
-          <div class="dropdown-item" onclick="printDoctorSummary(); toggleProfileDropdown();">
-            <span>📋 Doctor Visit Summary (PDF)</span>
-            <span>📄</span>
-          </div>
-          <div class="dropdown-item" onclick="exportExpenseCSV(); toggleProfileDropdown();">
-            <span>📊 Export Expense Ledger (CSV)</span>
-            <span>💾</span>
-          </div>
+            <div class="dropdown-item" onclick="switchPrimaryTab('oversight'); toggleProfileDropdown();">
+              <span>🛡️ Household Oversight Hub</span>
+              <span style="font-size:0.7rem; color:var(--cyan);">Open →</span>
+            </div>
+            <div class="dropdown-item" onclick="openFamilySettingsModal(); toggleProfileDropdown();">
+              <span>👨‍👩‍👧 Family Circle & Senior PIN</span>
+              <span style="font-size:0.7rem; color:var(--text-muted);" id="dropdownSeniorPinVal">••••</span>
+            </div>
 
-          <div class="dropdown-divider"></div>
+            <div class="dropdown-divider"></div>
 
-          <div class="dropdown-item" onclick="toggleLoginScreen(true); toggleProfileDropdown();" style="color:var(--rose);">
-            <span>🚪 Sign Out / Switch User</span>
-            <span>→</span>
+            <div class="dropdown-item" onclick="printDoctorSummary(); toggleProfileDropdown();">
+              <span>📋 Doctor Visit Summary (PDF)</span>
+              <span>📄</span>
+            </div>
+            <div class="dropdown-item" onclick="exportExpenseCSV(); toggleProfileDropdown();">
+              <span>📊 Export Expense Ledger (CSV)</span>
+              <span>💾</span>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="dropdown-item" onclick="toggleLoginScreen(true); toggleProfileDropdown();" style="color:var(--rose);">
+              <span>🚪 Sign Out / Switch User</span>
+              <span>→</span>
+            </div>
           </div>
         </div>
 
-      </div>
-    </header>
+        <!-- Hidden legacy mainNavTabs to satisfy existing DOM ID checks -->
+        <div id="mainNavTabs" style="display:none;">
+          <button class="nav-tab-btn active" id="tabBtn_home" onclick="switchPrimaryTab('home')">Home</button>
+          <button class="nav-tab-btn" id="tabBtn_calendar" onclick="switchPrimaryTab('calendar')">Calendar</button>
+          <button class="nav-tab-btn" id="tabBtn_reminders" onclick="switchPrimaryTab('reminders')">Reminders</button>
+          <button class="nav-tab-btn" id="tabBtn_expense" onclick="switchPrimaryTab('expense')">Expenses</button>
+          <button class="nav-tab-btn" id="tabBtn_fitness" onclick="switchPrimaryTab('fitness')">Fitness</button>
+          <button class="nav-tab-btn" id="tabBtn_oversight" onclick="switchPrimaryTab('oversight')">Oversight</button>
+          <button class="nav-tab-btn" id="tabBtn_insights" onclick="switchPrimaryTab('insights')">Insights</button>
+        </div>
+      </header>
 
-    <!-- Main Viewport Container -->
-    <main class="app-viewport">
+      <!-- Main Viewport Container -->
+      <main class="app-viewport">
 
-      <!-- Ambient Master User Household Status Bar (Shown in Power Mode) -->
-      <div id="masterTelemetryRibbon" class="household-status-banner">
-        <div class="household-status-left">
-          <span class="status-label">Household Status ▾</span>
-          <div class="status-chips-scroll">
-            
+        <!-- Scenic Hero Mountain Vista Header (#masterTelemetryRibbon) -->
+        <div id="masterTelemetryRibbon" class="scenic-hero-banner">
+          <div>
+            <h1 class="scenic-hero-title">Good morning, Aswin</h1>
+            <p class="scenic-hero-subtitle">Here's what is happening across your family today • Tuesday, October 6</p>
+          </div>
+
+          <div class="scenic-chips-row">
             <!-- Chip 1: Eleanor Vance -->
-            <div class="status-chip" onclick="switchPrimaryTab('oversight')" title="Click to view Eleanor's Health Stream">
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" class="chip-avatar" alt="Eleanor">
-              <div class="chip-info">
-                <div class="chip-title">Eleanor Vance <span class="online-indicator"></span></div>
-                <div class="chip-sub"><strong style="color:var(--emerald);">96% adherence</strong> • All good today</div>
+            <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Eleanor's Health Stream">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" style="width:28px; height:28px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,0.3);" alt="Eleanor">
+              <div>
+                <div style="font-size:0.78rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:4px;">
+                  Eleanor Vance <span class="online-indicator"></span>
+                </div>
+                <div style="font-size:0.68rem; color:#86efac; font-weight:700;">96% adherence • All good today</div>
               </div>
             </div>
 
-            <!-- Chip 2: John Vance (Caregiver) -->
-            <div class="status-chip" onclick="switchPrimaryTab('oversight')" title="Click to view Caregiver Stream">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" class="chip-avatar" alt="John">
-              <div class="chip-info">
-                <div class="chip-title">John Vance <span class="online-indicator"></span></div>
-                <div class="chip-sub">Caregiver • Online</div>
+            <!-- Chip 2: John Vance -->
+            <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Caregiver Stream">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" style="width:28px; height:28px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,0.3);" alt="John">
+              <div>
+                <div style="font-size:0.78rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:4px;">
+                  John Vance <span class="online-indicator"></span>
+                </div>
+                <div style="font-size:0.68rem; color:#67e8f9; font-weight:700;">Caregiver • Online</div>
               </div>
             </div>
 
-            <!-- Chip 3: Home Systems -->
-            <div class="status-chip" title="All IoT & Household Sensors Nominal">
-              <div class="chip-icon-box">🏠</div>
-              <div class="chip-info">
-                <div class="chip-title">Home</div>
-                <div class="chip-sub">All systems normal</div>
+            <!-- Chip 3: Home & Devices -->
+            <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="All Home Systems & IoT Sensors Active">
+              <span style="font-size:1.1rem;">📱</span>
+              <div>
+                <div style="font-size:0.78rem; font-weight:800; color:#fff;">3 Active Devices</div>
+                <div style="font-size:0.68rem; color:#cbd5e1;">All systems nominal</div>
               </div>
             </div>
 
-            <!-- Chip 4: Paired Devices -->
-            <div class="status-chip" onclick="switchPrimaryTab('oversight')" title="3 Connected Devices">
-              <div class="chip-icon-box">📱</div>
-              <div class="chip-info">
-                <div class="chip-title">3 Active Devices</div>
-                <div class="chip-sub">1 offline</div>
+            <!-- Chip 4: Needs Attention -->
+            <div class="scenic-chip" onclick="switchPrimaryTab('home')" title="2 items require your attention">
+              <span style="font-size:1.1rem;">⚡</span>
+              <div>
+                <div style="font-size:0.78rem; font-weight:800; color:#fde047;">2 items need attention</div>
+                <div style="font-size:0.68rem; color:#cbd5e1;">Doctor Appt 11 AM • ConEd Bill</div>
               </div>
             </div>
-
           </div>
         </div>
-
-        <div class="household-quote">
-          <span>A calmer, more organised life together.</span>
-        </div>
-      </div>
 
       <!-- Senior Dignity & Audio Readout Bar (Shown in Senior Mode) -->
       <div id="seniorDignityBar" style="background:var(--emerald-bg); border:2px solid var(--emerald); padding:0.9rem 1.25rem; border-radius:14px; display:none; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
@@ -1948,6 +2500,20 @@
                 </div>
                 <button class="btn" style="background:var(--accent); padding:0.45rem 0.95rem; font-size:0.82rem; font-weight:800; border-radius:8px;" onclick="switchPrimaryTab('expense')">
                   Pay Now
+                </button>
+              </div>
+
+              <!-- Motivational Botanical Quote Card (Screen 3) -->
+              <div class="motivational-banner-card" style="margin-top:0.75rem;">
+                <div style="display:flex; align-items:center; gap:0.75rem;">
+                  <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=120&q=80" alt="Botanical Plant" style="width:46px; height:46px; border-radius:10px; object-fit:cover; flex-shrink:0; border:1px solid rgba(255,255,255,0.1);">
+                  <div>
+                    <div style="font-size:0.82rem; font-weight:800; color:var(--text); font-style:italic;">"Small consistent actions create big results"</div>
+                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">5 of 8 scheduled tasks completed today. Keep up the momentum!</div>
+                  </div>
+                </div>
+                <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.72rem; white-space:nowrap;" onclick="switchPrimaryTab('fitness')">
+                  Routine →
                 </button>
               </div>
             </div>
@@ -2628,9 +3194,256 @@
 
       </div>
 
+      <!-- ======================================================================
+           TAB VIEW: 📅 EXPANDED WEEK & MONTH CALENDAR (Screen 2)
+           ====================================================================== -->
+      <div class="app-view-panel" id="view_calendar">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <div>
+            <h2 style="font-size:1.35rem; font-weight:900; margin:0;">Family & Personal Calendar</h2>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Cross-domain schedule view: Meds, Bills, Fitness, and Appointments.</p>
+          </div>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <button class="btn btn-secondary" onclick="goToToday()">Today</button>
+            <button class="btn" onclick="openQuickAddModal()">➕ Add Event</button>
+          </div>
+        </div>
+
+        <!-- Weekly Time-Blocking Matrix (Screen 2) -->
+        <div class="cal-week-grid-table">
+          <!-- Header row -->
+          <div class="cal-week-header-cell">Time</div>
+          <div class="cal-week-header-cell">Sun 10/4</div>
+          <div class="cal-week-header-cell">Mon 10/5</div>
+          <div class="cal-week-header-cell active-day-col">Tue 10/6 (Today)</div>
+          <div class="cal-week-header-cell">Wed 10/7</div>
+          <div class="cal-week-header-cell">Thu 10/8</div>
+          <div class="cal-week-header-cell">Fri 10/9</div>
+          <div class="cal-week-header-cell">Sat 10/10</div>
+
+          <!-- 08:00 AM Slot -->
+          <div class="cal-week-time-cell">08:00</div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-med" onclick="switchPrimaryTab('reminders')">
+              <strong>💊 08:30</strong> Metformin 500mg
+            </div>
+          </div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-med">💊 Metformin</div>
+          </div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+
+          <!-- 10:00 AM Slot -->
+          <div class="cal-week-time-cell">10:00</div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-work">💼 Sprint Planning</div>
+          </div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-fitness" onclick="switchPrimaryTab('fitness')">
+              <strong>🏃 10:00</strong> 5km Morning Run
+            </div>
+          </div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-fitness">🏃 Gym Workout</div>
+          </div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-fitness">🧘 Morning Yoga</div>
+          </div>
+
+          <!-- 11:00 AM Slot -->
+          <div class="cal-week-time-cell">11:00</div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-health" onclick="switchPrimaryTab('home')">
+              <strong>🩺 11:00</strong> Dr. Martinez (Telehealth)
+            </div>
+          </div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+
+          <!-- 01:00 PM Slot -->
+          <div class="cal-week-time-cell">13:00</div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-work">🥗 Lunch & Reset</div>
+          </div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+
+          <!-- 04:00 PM Slot -->
+          <div class="cal-week-time-cell">16:00</div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-bill" onclick="switchPrimaryTab('expense')">
+              <strong>💳 16:00</strong> ConEd Electric Due ($142.50)
+            </div>
+          </div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-bill">💳 Water Utility ($55)</div>
+          </div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+
+          <!-- 07:00 PM Slot -->
+          <div class="cal-week-time-cell">19:00</div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-family" onclick="callSeniorPatient()">
+              <strong>👨‍👩‍👧 19:00</strong> Family Video Check-in
+            </div>
+          </div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
+          <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-family">👨‍👩‍👧 Movie Night</div>
+          </div>
+          <div class="cal-week-slot"></div>
+        </div>
+      </div>
+
+      <!-- ======================================================================
+           TAB VIEW: 📊 INSIGHTS & HEALTH ANALYTICS (Screen 12)
+           ====================================================================== -->
+      <div class="app-view-panel" id="view_insights">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+          <div>
+            <h2 style="font-size:1.35rem; font-weight:900; margin:0;">Insights & Life Analytics</h2>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Weekly compliance trends, financial velocity, and routine consistency.</p>
+          </div>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <button class="btn btn-secondary" onclick="printDoctorSummary()">📄 Export Summary</button>
+            <button class="btn btn-secondary" onclick="exportExpenseCSV()">💾 Export CSV</button>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
+          <!-- Card 1: Eleanor's Adherence Radial Ring -->
+          <div class="panel-box">
+            <div class="panel-header">
+              <span>💊 Eleanor's 30-Day Medication Adherence</span>
+              <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);">Tier 1 High</span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:center; gap:2rem; padding:1.5rem 0;">
+              <!-- Radial Progress Ring SVG -->
+              <div style="position:relative; width:130px; height:130px; display:flex; align-items:center; justify-content:center;">
+                <svg width="130" height="130" viewBox="0 0 120 120" style="transform:rotate(-90deg);">
+                  <circle cx="60" cy="60" r="50" fill="transparent" stroke="rgba(255,255,255,0.08)" stroke-width="12" />
+                  <circle cx="60" cy="60" r="50" fill="transparent" stroke="var(--emerald)" stroke-width="12" stroke-dasharray="314.159" stroke-dashoffset="12.56" stroke-linecap="round" />
+                </svg>
+                <div style="position:absolute; text-align:center;">
+                  <div style="font-size:1.8rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--emerald); line-height:1;">96%</div>
+                  <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; margin-top:2px;">Adherent</div>
+                </div>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                <div style="font-size:0.82rem; font-weight:700;">
+                  <span style="color:var(--emerald);">●</span> 27 of 28 doses on time
+                </div>
+                <div style="font-size:0.82rem; font-weight:700;">
+                  <span style="color:var(--amber);">●</span> 1 dose nudged (+5m)
+                </div>
+                <div style="font-size:0.82rem; font-weight:700;">
+                  <span style="color:var(--rose);">●</span> 0 missed escalations
+                </div>
+                <div style="font-size:0.72rem; color:var(--text-muted); margin-top:4px;">
+                  Dr. Sarah Lin reviewed on Oct 1.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Weekly Task Completion Velocity -->
+          <div class="panel-box">
+            <div class="panel-header">
+              <span>📈 Weekly Task & Habit Completion</span>
+              <span class="pill-badge" style="background:var(--accent-light); color:var(--accent);">88% Average</span>
+            </div>
+            <div style="padding:1rem 0;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-end; height:120px; gap:8px; padding-top:10px;">
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+                  <div style="width:100%; background:var(--accent); height:75%; border-radius:6px 6px 0 0;"></div>
+                  <span style="font-size:0.68rem; color:var(--text-muted);">Mon</span>
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+                  <div style="width:100%; background:var(--accent); height:90%; border-radius:6px 6px 0 0;"></div>
+                  <span style="font-size:0.68rem; color:var(--text-muted);">Tue</span>
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+                  <div style="width:100%; background:var(--accent); height:60%; border-radius:6px 6px 0 0;"></div>
+                  <span style="font-size:0.68rem; color:var(--text-muted);">Wed</span>
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+                  <div style="width:100%; background:var(--accent); height:85%; border-radius:6px 6px 0 0;"></div>
+                  <span style="font-size:0.68rem; color:var(--text-muted);">Thu</span>
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+                  <div style="width:100%; background:var(--accent); height:95%; border-radius:6px 6px 0 0;"></div>
+                  <span style="font-size:0.68rem; color:var(--text-muted);">Fri</span>
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+                  <div style="width:100%; background:var(--cyan); height:70%; border-radius:6px 6px 0 0;"></div>
+                  <span style="font-size:0.68rem; color:var(--text-muted);">Sat</span>
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+                  <div style="width:100%; background:var(--cyan); height:80%; border-radius:6px 6px 0 0;"></div>
+                  <span style="font-size:0.68rem; color:var(--text-muted);">Sun</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Monthly Spend Breakdown -->
+          <div class="panel-box" style="grid-column: 1 / -1;">
+            <div class="panel-header">
+              <span>💳 October Financial Summary by Category</span>
+              <span class="pill-badge" style="background:var(--surface-hover); color:var(--text);">$2,840.50 Total</span>
+            </div>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:0.5rem;">
+              <div class="module-card">
+                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Utilities & Bills</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$642.50</div>
+                <div style="font-size:0.72rem; color:var(--emerald); margin-top:2px;">● On track vs $700 budget</div>
+              </div>
+              <div class="module-card">
+                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Pharmacy & Medical</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$218.00</div>
+                <div style="font-size:0.72rem; color:var(--cyan); margin-top:2px;">● Fully reimbursed ($45 pending)</div>
+              </div>
+              <div class="module-card">
+                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Groceries & Household</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$840.00</div>
+                <div style="font-size:0.72rem; color:var(--amber); margin-top:2px;">● 84% of monthly target</div>
+              </div>
+              <div class="module-card">
+                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Discretionary & Leisure</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$1,140.00</div>
+                <div style="font-size:0.72rem; color:var(--purple); margin-top:2px;">● Normal spend velocity</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
 
-  </div>
+    </div> <!-- Close .app-main-content -->
 
   <!-- ==========================================================================
        MODALS: INGESTION, FAMILY HUB, CASCADE EDIT
@@ -3503,10 +4316,17 @@
     function switchPrimaryTab(tab) {
       activePrimaryTab = tab;
       
+      // Update legacy nav buttons
       document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
       const activeBtn = document.getElementById(`tabBtn_${tab}`);
       if (activeBtn) activeBtn.classList.add('active');
 
+      // Update sidebar nav buttons
+      document.querySelectorAll('.sidebar-nav-item').forEach(b => b.classList.remove('active'));
+      const activeSideBtn = document.getElementById(`sideBtn_${tab}`);
+      if (activeSideBtn) activeSideBtn.classList.add('active');
+
+      // Update view panels
       document.querySelectorAll('.app-view-panel').forEach(v => v.classList.remove('active-view'));
       const targetView = document.getElementById(`view_${tab}`);
       if (targetView) targetView.classList.add('active-view');
@@ -3514,14 +4334,39 @@
       saveSessionState(true);
 
       const tabNames = {
-        home: "📅 Home Calendar Aggregator",
+        home: "🏠 Home Overview & Bento Cockpit",
+        calendar: "📅 Unified Family & Personal Calendar",
         reminders: "💊 Reminders & Medication Hub",
         expense: "💳 Expenses & Budget Ledger",
         fitness: "🏋️ Fitness & Habits Hub",
-        oversight: "🛡️ Household Oversight Command Center"
+        oversight: "🛡️ Household Oversight Command Center",
+        insights: "📊 Insights & Health Analytics"
       };
       showToast(`Switched to ${tabNames[tab] || tab}`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* Global Search Omni-Bar Handler */
+    function handleGlobalSearch(query) {
+      if (!query || query.trim() === '') return;
+      const q = query.toLowerCase().trim();
+      if (q.includes('pill') || q.includes('med') || q.includes('metformin') || q.includes('lisinopril') || q.includes('atorvastatin')) {
+        showToast(`🔍 Found medication matching "${query}". Redirecting to Medications...`);
+        switchPrimaryTab('reminders');
+      } else if (q.includes('bill') || q.includes('expense') || q.includes('coned') || q.includes('spend') || q.includes('water')) {
+        showToast(`🔍 Found financial ledger item matching "${query}". Redirecting to Expenses...`);
+        switchPrimaryTab('expense');
+      } else if (q.includes('run') || q.includes('gym') || q.includes('fitness') || q.includes('water') || q.includes('habit')) {
+        showToast(`🔍 Found habit/workout matching "${query}". Redirecting to Fitness...`);
+        switchPrimaryTab('fitness');
+      } else if (q.includes('eleanor') || q.includes('caregiver') || q.includes('senior') || q.includes('pin') || q.includes('vance')) {
+        showToast(`🔍 Found household profile matching "${query}". Redirecting to Oversight...`);
+        switchPrimaryTab('oversight');
+      } else if (q.includes('cal') || q.includes('week') || q.includes('sched')) {
+        switchPrimaryTab('calendar');
+      } else if (q.includes('insight') || q.includes('report') || q.includes('adherence') || q.includes('stat')) {
+        switchPrimaryTab('insights');
+      }
     }
 
     /* Role Modes (Power, Senior, Caregiver) */
