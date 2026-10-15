@@ -1769,9 +1769,128 @@
         <p style="color:var(--text-muted); margin-top:2px;">Editing this bill will automatically update the linked entry in the Expense Ledger and recalculate daily calendar spend.</p>
       </div>
 
+      <div style="background:var(--emerald-bg); border:1px solid var(--emerald); padding:0.65rem 0.85rem; border-radius:8px; font-size:0.75rem; display:none; justify-content:space-between; align-items:center;" id="pillDoseShortcutBox">
+        <div>
+          <strong style="color:var(--emerald);">💊 Need to adjust dose or course progress?</strong>
+          <div style="color:var(--text-muted); font-size:0.72rem;">Edit dose strength, frequency, current day, or total duration separately.</div>
+        </div>
+        <button type="button" class="btn btn-secondary" style="font-size:0.72rem; padding:0.25rem 0.55rem; color:var(--emerald); font-weight:800; border-color:var(--emerald);" onclick="switchToDoseModal()">
+          Open Dose Editor →
+        </button>
+      </div>
+
       <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
         <button class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
         <button class="btn" onclick="saveEdit()">💾 Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3B: Specialized Edit Dose & Course Progress Modal -->
+  <div class="modal-backdrop" id="editDoseModal">
+    <div class="modal-box" style="max-width:490px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--surface-border); padding-bottom:0.6rem;">
+        <div style="display:flex; align-items:center; gap:0.55rem;">
+          <div style="width:34px; height:34px; border-radius:8px; background:var(--emerald-bg); color:var(--emerald); display:flex; align-items:center; justify-content:center; font-size:1.15rem; font-weight:800;">💊</div>
+          <div>
+            <h3 style="font-size:1.05rem; font-weight:800; margin:0;" id="editDoseMedName">Edit Prescription Dose</h3>
+            <div style="font-size:0.72rem; color:var(--text-muted);" id="editDoseSubText">Dr. Sarah Lin • Rx #89421</div>
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="padding:0.2rem 0.5rem;" onclick="closeEditDoseModal()">✕</button>
+      </div>
+
+      <input type="hidden" id="editDosePillId">
+
+      <!-- Dose Strength / Amount -->
+      <div class="form-group">
+        <label style="font-size:0.75rem; font-weight:700;">Dose Strength / Amount</label>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="text" class="form-input" id="editDoseStrength" placeholder="e.g. 12 mg or 500 mg" style="flex:1;" oninput="updateDosePreview()">
+          <select class="form-input" id="editDoseUnitSelect" style="width:115px;" onchange="applyDoseUnitPreset()">
+            <option value="custom">Presets...</option>
+            <option value="5 mg">5 mg</option>
+            <option value="10 mg">10 mg</option>
+            <option value="12 mg">12 mg</option>
+            <option value="20 mg">20 mg</option>
+            <option value="25 mg">25 mg</option>
+            <option value="50 mg">50 mg</option>
+            <option value="100 mg">100 mg</option>
+            <option value="500 mg">500 mg</option>
+            <option value="1000 mg">1000 mg</option>
+            <option value="1 Drop">1 Drop</option>
+            <option value="5 ml">5 ml</option>
+            <option value="1 Puff">1 Puff</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Frequency & Schedule -->
+      <div class="form-group">
+        <label style="font-size:0.75rem; font-weight:700;">Frequency / Schedule</label>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="text" class="form-input" id="editDoseFrequency" placeholder="e.g. Twice a day or Once daily" style="flex:1;" oninput="updateDosePreview()">
+          <select class="form-input" id="editDoseFreqPreset" style="width:130px;" onchange="applyFreqPreset()">
+            <option value="">Presets...</option>
+            <option value="Once Daily (Morning)">Once Daily</option>
+            <option value="Twice a Day (Morning & Evening)">Twice a Day</option>
+            <option value="3x Daily (With Meals)">3x Daily</option>
+            <option value="4x Daily (Every 6h)">4x Daily</option>
+            <option value="Every 12 Hours">Every 12h</option>
+            <option value="At Bedtime (Nightly)">At Bedtime</option>
+            <option value="As Needed (PRN)">As Needed</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Course Dose & Progress Tracker -->
+      <div style="background:var(--bg); border:1px solid var(--surface-border); border-radius:10px; padding:0.85rem; display:flex; flex-direction:column; gap:0.6rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:0.78rem; font-weight:800; color:var(--text);">Course Dose Tracker</span>
+          <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.72rem;" id="editDosePercentBadge">Course: 3%</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem;">
+          <!-- Current Dose / Day -->
+          <div class="form-group">
+            <label style="font-size:0.72rem; color:var(--text-muted); font-weight:700;">Current Dose / Day</label>
+            <div style="display:flex; align-items:center; gap:0.3rem;">
+              <button type="button" class="btn btn-secondary" style="padding:0.4rem 0.6rem; font-size:0.85rem; font-weight:800;" onclick="adjustEditDoseDay(-1)">−</button>
+              <input type="number" class="form-input" id="editDoseCurrentDay" min="1" max="365" value="1" style="text-align:center; font-weight:800; font-family:'JetBrains Mono',monospace;" oninput="updateDosePreview()">
+              <button type="button" class="btn btn-secondary" style="padding:0.4rem 0.6rem; font-size:0.85rem; font-weight:800;" onclick="adjustEditDoseDay(1)">+</button>
+            </div>
+          </div>
+
+          <!-- Total Days Course -->
+          <div class="form-group">
+            <label style="font-size:0.72rem; color:var(--text-muted); font-weight:700;">Total Course Duration (Days)</label>
+            <div style="display:flex; align-items:center; gap:0.3rem;">
+              <button type="button" class="btn btn-secondary" style="padding:0.4rem 0.6rem; font-size:0.85rem; font-weight:800;" onclick="adjustEditDoseTotal(-5)">−</button>
+              <input type="number" class="form-input" id="editDoseTotalDays" min="1" max="365" value="30" style="text-align:center; font-weight:800; font-family:'JetBrains Mono',monospace;" oninput="updateDosePreview()">
+              <button type="button" class="btn btn-secondary" style="padding:0.4rem 0.6rem; font-size:0.85rem; font-weight:800;" onclick="adjustEditDoseTotal(5)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Bar Preview -->
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.72rem; color:var(--text-muted); margin-bottom:3px; font-weight:600;">
+            <span id="editDoseProgressLabel">Dose 1 of 30</span>
+            <span id="editDoseDaysLeftLabel">29 Days Left</span>
+          </div>
+          <div class="progress-track" style="height:8px;">
+            <div class="progress-fill" id="editDoseProgressFill" style="width:3%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:0.5rem; margin-top:0.35rem; flex-wrap:wrap;">
+        <button class="btn btn-secondary" style="color:var(--rose); padding:0.45rem 0.75rem; font-size:0.76rem;" onclick="resetDoseToStart()">🔄 Reset to Day 1</button>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn btn-secondary" onclick="closeEditDoseModal()">Cancel</button>
+          <button class="btn btn-emerald" style="padding:0.55rem 1.15rem; font-weight:800;" onclick="saveEditDose()">💾 Save Dose Changes</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2361,25 +2480,45 @@
       pillsData.forEach((p, idx) => {
         const pct = Math.min(100, Math.round((p.day / p.totalDays) * 100));
         const daysLeft = Math.max(0, p.totalDays - p.day);
+        
+        let displayName = p.name || 'Prescription';
+        let displayDosage = p.dosage || '10mg Daily';
+        if (p.name && p.dosage && p.name.toLowerCase().endsWith(p.dosage.toLowerCase())) {
+          displayName = p.name.substring(0, p.name.length - p.dosage.length).trim();
+        }
+
         const card = document.createElement('div');
         card.className = 'module-card';
         card.innerHTML = `
           <div class="card-top">
             <div>
-              <div class="card-title" style="font-size:1.1rem;">${p.name} ${p.dosage}</div>
-              <div class="card-sub">${p.doctor || 'Dr. Sarah Lin'} • ${p.rxNum || 'Rx #89421'}</div>
+              <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+                <span class="card-title" style="font-size:1.15rem; font-weight:800;">${displayName}</span>
+                <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); border:1px solid rgba(16,185,129,0.3); font-size:0.78rem; cursor:pointer;" onclick="openEditDoseModal('${p.id}')" title="Click to edit dose separately">
+                  💊 ${displayDosage} <span style="font-size:0.68rem; opacity:0.8;">✏️</span>
+                </span>
+              </div>
+              <div class="card-sub" style="margin-top:3px;">${p.doctor || 'Dr. Sarah Lin'} • ${p.rxNum || 'Rx #89421'}</div>
             </div>
-            <div style="display:flex; gap:0.3rem;">
-              <button class="btn btn-secondary senior-hide" style="padding:0.25rem 0.5rem; font-size:0.72rem;" onclick="openEditModal('pill', '${p.id}')">✏️ Edit</button>
+            <div style="display:flex; gap:0.35rem; align-items:center;">
+              <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.72rem; color:var(--emerald); font-weight:700; border-color:rgba(16,185,129,0.35);" onclick="openEditDoseModal('${p.id}')" title="Edit Dose and Course Schedule Separately">
+                💊 Edit Dose
+              </button>
+              <button class="btn btn-secondary senior-hide" style="padding:0.25rem 0.5rem; font-size:0.72rem;" onclick="openEditModal('pill', '${p.id}')" title="Edit Medication Details">
+                ✏️ Edit
+              </button>
               <button class="btn btn-secondary senior-hide" style="padding:0.25rem 0.5rem; font-size:0.72rem; color:var(--rose);" onclick="deleteItem('pill', '${p.id}')">🗑️</button>
             </div>
           </div>
           <div>
-            <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:700;">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; font-weight:700;">
               <span>Course Progress: ${pct}%</span>
-              <span style="color:var(--text-muted);">${daysLeft} Days Left</span>
+              <div style="display:flex; align-items:center; gap:0.4rem;">
+                <span style="color:var(--text-muted);">${daysLeft} Days Left</span>
+                <span style="color:var(--emerald); cursor:pointer; font-size:0.72rem; text-decoration:underline; font-weight:700;" onclick="openEditDoseModal('${p.id}')">✏️ Adjust Dose</span>
+              </div>
             </div>
-            <div class="progress-track" style="height:10px;">
+            <div class="progress-track" style="height:10px; cursor:pointer;" onclick="openEditDoseModal('${p.id}')" title="Click to adjust course progress">
               <div class="progress-fill" style="width:${pct}%;"></div>
             </div>
           </div>
@@ -2388,9 +2527,14 @@
               ⚠️ Proactive Refill Alert: ${daysLeft} days remaining in bottle.
             </div>
           ` : ''}
-          <button class="btn btn-emerald btn-senior-touch" style="padding:0.65rem 1.25rem; font-size:0.95rem;" onclick="takePillDoseDynamic('${p.id}')">
-            ✓ Take Dose (Day ${p.day} / ${p.totalDays})
-          </button>
+          <div style="display:flex; gap:0.45rem; align-items:stretch;">
+            <button class="btn btn-emerald btn-senior-touch" style="flex:1; padding:0.65rem 1.25rem; font-size:0.95rem; justify-content:center;" onclick="takePillDoseDynamic('${p.id}')">
+              ✓ Take Dose (Day ${p.day} / ${p.totalDays})
+            </button>
+            <button class="btn btn-secondary senior-hide" style="padding:0.65rem 0.85rem; font-size:0.82rem; font-weight:700; border-color:rgba(16,185,129,0.3);" onclick="openEditDoseModal('${p.id}')" title="Adjust dose number or schedule separately">
+              ✏️ Dose
+            </button>
+          </div>
         `;
         container.appendChild(card);
       });
@@ -2966,6 +3110,8 @@
         document.getElementById('editField2Label').textContent = 'Amount ($)';
         document.getElementById('editField2').value = b.amount;
         document.getElementById('cascadeBox').style.display = 'block';
+        const shortcut = document.getElementById('pillDoseShortcutBox');
+        if (shortcut) shortcut.style.display = 'none';
       } else {
         const p = pillsData.find(x => x.id === itemId) || pillsData[0];
         document.getElementById('modalTitle').textContent = '✏️ Edit Prescription Regimen';
@@ -2974,7 +3120,15 @@
         document.getElementById('editField2Label').textContent = 'Dosage';
         document.getElementById('editField2').value = p.dosage;
         document.getElementById('cascadeBox').style.display = 'none';
+        const shortcut = document.getElementById('pillDoseShortcutBox');
+        if (shortcut) shortcut.style.display = 'flex';
       }
+    }
+
+    function switchToDoseModal() {
+      const id = editingItemId;
+      closeEditModal();
+      openEditDoseModal(id);
     }
 
     function closeEditModal() {
@@ -3000,6 +3154,138 @@
       persistAllData();
       renderAllViews();
       closeEditModal();
+    }
+
+    /* ==========================================================================
+       DEDICATED DOSE & REGIMEN EDITING ENGINE
+       ========================================================================== */
+    function openEditDoseModal(pillId) {
+      const p = pillsData.find(x => x.id === pillId) || pillsData[0];
+      if (!p) return;
+
+      document.getElementById('editDosePillId').value = p.id;
+      document.getElementById('editDoseMedName').textContent = `Edit Dose: ${p.name}`;
+      document.getElementById('editDoseSubText').textContent = `${p.doctor || 'Dr. Sarah Lin'} • ${p.rxNum || 'Rx #89421'}`;
+
+      let dosageStr = (p.dosage || '').trim();
+      let strength = dosageStr;
+      let frequency = '';
+
+      // Pattern detection to extract strength & frequency separately
+      const freqKeywords = ['twice a day', 'twice daily', '2x daily', 'once daily', 'once a day', '3x daily', '3 times a day', 'every 12', 'every 8', 'at bedtime', 'as needed', 'daily', 'with meals'];
+      for (const kw of freqKeywords) {
+        const regex = new RegExp(`[\\(\\-–—]?\\s*(${kw}[^\\)]*)\\)?`, 'i');
+        const match = dosageStr.match(regex);
+        if (match) {
+          frequency = match[1];
+          strength = dosageStr.replace(match[0], '').trim();
+          break;
+        }
+      }
+
+      document.getElementById('editDoseStrength').value = strength || dosageStr || '12 mg';
+      document.getElementById('editDoseFrequency').value = frequency || p.frequency || 'Twice a day';
+      document.getElementById('editDoseCurrentDay').value = p.day || 1;
+      document.getElementById('editDoseTotalDays').value = p.totalDays || 30;
+
+      updateDosePreview();
+      document.getElementById('editDoseModal').style.display = 'flex';
+    }
+
+    function closeEditDoseModal() {
+      document.getElementById('editDoseModal').style.display = 'none';
+    }
+
+    function updateDosePreview() {
+      const cur = parseInt(document.getElementById('editDoseCurrentDay').value, 10) || 1;
+      const total = parseInt(document.getElementById('editDoseTotalDays').value, 10) || 30;
+      const safeCur = Math.max(1, Math.min(cur, total));
+      const pct = Math.min(100, Math.round((safeCur / total) * 100));
+      const left = Math.max(0, total - safeCur);
+
+      const pctBadge = document.getElementById('editDosePercentBadge');
+      if (pctBadge) pctBadge.textContent = `Course: ${pct}%`;
+
+      const progLabel = document.getElementById('editDoseProgressLabel');
+      if (progLabel) progLabel.textContent = `Dose ${safeCur} of ${total}`;
+
+      const leftLabel = document.getElementById('editDoseDaysLeftLabel');
+      if (leftLabel) leftLabel.textContent = `${left} Days Left`;
+
+      const fill = document.getElementById('editDoseProgressFill');
+      if (fill) fill.style.width = `${pct}%`;
+    }
+
+    function adjustEditDoseDay(delta) {
+      const inp = document.getElementById('editDoseCurrentDay');
+      const total = parseInt(document.getElementById('editDoseTotalDays').value, 10) || 30;
+      let val = (parseInt(inp.value, 10) || 1) + delta;
+      val = Math.max(1, Math.min(val, total));
+      inp.value = val;
+      updateDosePreview();
+    }
+
+    function adjustEditDoseTotal(delta) {
+      const inp = document.getElementById('editDoseTotalDays');
+      let val = (parseInt(inp.value, 10) || 30) + delta;
+      val = Math.max(1, Math.min(val, 365));
+      inp.value = val;
+      updateDosePreview();
+    }
+
+    function applyDoseUnitPreset() {
+      const sel = document.getElementById('editDoseUnitSelect');
+      if (sel && sel.value && sel.value !== 'custom') {
+        document.getElementById('editDoseStrength').value = sel.value;
+        sel.value = 'custom';
+        updateDosePreview();
+      }
+    }
+
+    function applyFreqPreset() {
+      const sel = document.getElementById('editDoseFreqPreset');
+      if (sel && sel.value) {
+        document.getElementById('editDoseFrequency').value = sel.value;
+        sel.value = '';
+        updateDosePreview();
+      }
+    }
+
+    function resetDoseToStart() {
+      document.getElementById('editDoseCurrentDay').value = 1;
+      updateDosePreview();
+      showToast("🔄 Reset dose progress back to Day 1.");
+    }
+
+    function saveEditDose() {
+      const pillId = document.getElementById('editDosePillId').value;
+      const p = pillsData.find(x => x.id === pillId);
+      if (!p) {
+        closeEditDoseModal();
+        return;
+      }
+
+      const strength = document.getElementById('editDoseStrength').value.trim();
+      const freq = document.getElementById('editDoseFrequency').value.trim();
+      const curDay = parseInt(document.getElementById('editDoseCurrentDay').value, 10) || 1;
+      const totalDays = parseInt(document.getElementById('editDoseTotalDays').value, 10) || 30;
+
+      let combinedDosage = strength;
+      if (freq) {
+        combinedDosage = strength ? `${strength} (${freq})` : freq;
+      }
+
+      p.dosage = combinedDosage || p.dosage || '10mg Daily';
+      p.frequency = freq;
+      p.day = Math.max(1, Math.min(curDay, totalDays));
+      p.totalDays = Math.max(1, totalDays);
+
+      persistAllData();
+      renderPills();
+      renderTimeline();
+      renderCalendarEngine();
+      closeEditDoseModal();
+      showToast(`💊 Updated Dose: <b>${p.name}</b> • <b>${p.dosage}</b> (Day ${p.day}/${p.totalDays})`);
     }
 
     function undoLastAction() {
