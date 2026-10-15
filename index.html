@@ -519,6 +519,246 @@
       gap: 1.25rem;
     }
 
+    .grid-bento-cockpit {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 1080px) {
+      .grid-bento-cockpit {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 1. Household Status Banner */
+    .household-status-banner {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      padding: 0.65rem 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.85rem;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.25);
+      flex-wrap: wrap;
+    }
+
+    .household-status-left {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .status-label {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .status-chips-scroll {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .status-chip {
+      background: var(--bg);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 0.35rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .status-chip:hover {
+      border-color: var(--accent);
+      background: var(--surface-hover);
+      transform: translateY(-1px);
+    }
+
+    .chip-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--emerald);
+    }
+
+    .chip-icon-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.88rem;
+    }
+
+    .chip-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .chip-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .chip-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .online-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      display: inline-block;
+      box-shadow: 0 0 6px var(--emerald);
+    }
+
+    .household-quote {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      white-space: nowrap;
+    }
+
+    /* 2. Unified Split Calendar Grid */
+    .unified-calendar-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 820px) {
+      .unified-calendar-split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cal-split-left {
+      padding: 1.1rem;
+      border-right: 1px solid var(--surface-border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .cal-split-right {
+      padding: 1.1rem;
+      background: rgba(13, 17, 23, 0.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.85rem;
+    }
+
+    .cal-legend-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--surface-border);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .legend-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    /* 3. Today's Spend Banner */
+    .today-spend-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(13, 17, 23, 0.6));
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    /* 4. Bento Row on Right Side */
+    .bento-tiles-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+    }
+
+    @media (max-width: 600px) {
+      .bento-tiles-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .bento-tile {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .bento-tile:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 5. Medication Item in Cockpit */
+    .cockpit-rx-item {
+      background: var(--bg);
+      border: 1px solid var(--surface-border);
+      border-radius: 12px;
+      padding: 0.7rem 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      transition: border-color 0.15s ease;
+    }
+
+    .cockpit-rx-item:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
     .grid-3col {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1292,16 +1532,53 @@
     <!-- Main Viewport Container -->
     <main class="app-viewport">
 
-      <!-- Ambient Master User Telemetry Ribbon (Shown in Power Mode) -->
-      <div id="masterTelemetryRibbon" style="background:var(--surface); border:1px solid var(--surface-border); border-left:4px solid var(--accent); padding:0.65rem 1.25rem; border-radius:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; font-size:0.82rem;">
-        <div style="display:flex; align-items:center; gap:0.75rem;">
-          <span><strong>👨‍👩‍👧 Family Circle:</strong> 👵 Eleanor Vance (96% Adherence • Day 18/30 ✅)</span>
-          <span style="color:var(--text-muted);">|</span>
-          <span>🛡️ Caregiver John Vance: <em>Active • Online</em></span>
+      <!-- Ambient Master User Household Status Bar (Shown in Power Mode) -->
+      <div id="masterTelemetryRibbon" class="household-status-banner">
+        <div class="household-status-left">
+          <span class="status-label">Household Status ▾</span>
+          <div class="status-chips-scroll">
+            
+            <!-- Chip 1: Eleanor Vance -->
+            <div class="status-chip" onclick="switchPrimaryTab('oversight')" title="Click to view Eleanor's Health Stream">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" class="chip-avatar" alt="Eleanor">
+              <div class="chip-info">
+                <div class="chip-title">Eleanor Vance <span class="online-indicator"></span></div>
+                <div class="chip-sub"><strong style="color:var(--emerald);">96% adherence</strong> • All good today</div>
+              </div>
+            </div>
+
+            <!-- Chip 2: John Vance (Caregiver) -->
+            <div class="status-chip" onclick="switchPrimaryTab('oversight')" title="Click to view Caregiver Stream">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" class="chip-avatar" alt="John">
+              <div class="chip-info">
+                <div class="chip-title">John Vance <span class="online-indicator"></span></div>
+                <div class="chip-sub">Caregiver • Online</div>
+              </div>
+            </div>
+
+            <!-- Chip 3: Home Systems -->
+            <div class="status-chip" title="All IoT & Household Sensors Nominal">
+              <div class="chip-icon-box">🏠</div>
+              <div class="chip-info">
+                <div class="chip-title">Home</div>
+                <div class="chip-sub">All systems normal</div>
+              </div>
+            </div>
+
+            <!-- Chip 4: Paired Devices -->
+            <div class="status-chip" onclick="switchPrimaryTab('oversight')" title="3 Connected Devices">
+              <div class="chip-icon-box">📱</div>
+              <div class="chip-info">
+                <div class="chip-title">3 Active Devices</div>
+                <div class="chip-sub">1 offline</div>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <div style="display:flex; gap:0.4rem; align-items:center;">
-          <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);">Escalation: Normal</span>
-          <button class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.74rem;" onclick="switchPrimaryTab('oversight')">🛡️ Open Oversight Hub</button>
+
+        <div class="household-quote">
+          <span>A calmer, more organised life together.</span>
         </div>
       </div>
 
@@ -1334,101 +1611,162 @@
       </div>
 
       <!-- ======================================================================
-           TAB VIEW 1: 📅 HOME CALENDAR AGGREGATOR
+           TAB VIEW 1: 📅 HOME CALENDAR AGGREGATOR (Bento Cockpit)
            ====================================================================== -->
       <div class="app-view-panel active-view" id="view_home">
-        <div class="grid-2col">
+        <div class="grid-bento-cockpit">
           
-          <!-- Left Column: Interactive Month Grid -->
-          <div class="panel-box">
-            <!-- Calendar Navigation Header -->
-            <div class="panel-header" style="flex-wrap:wrap; gap:0.5rem;">
-              <div style="display:flex; align-items:center; gap:0.4rem;">
-                <span style="font-weight:800; font-size:0.98rem;">📅 Calendar Aggregator</span>
+          <!-- Left/Center Column: Unified Split Calendar & Agenda Card -->
+          <div class="unified-calendar-split">
+            <!-- Left Split: Calendar Month Matrix -->
+            <div class="cal-split-left">
+              <!-- Calendar Navigation Header -->
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.4rem;">
+                <div style="display:flex; align-items:center; gap:0.4rem;">
+                  <button class="btn btn-secondary" style="padding:0.25rem 0.5rem; font-size:0.75rem;" onclick="prevCalendarMonth()" title="Previous Month">◀</button>
+                  <span style="font-weight:800; font-size:1.05rem;" id="calHeaderLabel">Current Calendar</span>
+                  <button class="btn btn-secondary" style="padding:0.25rem 0.5rem; font-size:0.75rem;" onclick="nextCalendarMonth()" title="Next Month">▶</button>
+                </div>
+
+                <!-- Controls & View Switcher -->
+                <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
+                  <button class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem; color:var(--accent); font-weight:800;" onclick="goToToday()">Today</button>
+
+                  <select class="form-input" id="calMonthSelect" onchange="changeCalMonth(this.value)" style="padding:0.2rem 0.4rem; font-size:0.74rem; font-weight:700; width:auto; display:none;">
+                    <option value="0">January</option><option value="1">February</option><option value="2">March</option><option value="3">April</option><option value="4">May</option><option value="5">June</option><option value="6">July</option><option value="7">August</option><option value="8">September</option><option value="9">October</option><option value="10">November</option><option value="11">December</option>
+                  </select>
+
+                  <select class="form-input" id="calYearSelect" onchange="changeCalYear(this.value)" style="padding:0.2rem 0.4rem; font-size:0.74rem; font-weight:700; width:auto; display:none;">
+                    <option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option>
+                  </select>
+
+                  <div style="display:flex; gap:2px; background:var(--bg); padding:2px; border-radius:8px; border:1px solid var(--surface-border);">
+                    <button class="cal-view-btn active" id="btnViewMonth" onclick="setCalendarViewMode('month')" style="padding:0.18rem 0.45rem; font-size:0.72rem;">Month</button>
+                    <button class="cal-view-btn" id="btnViewWeek" onclick="setCalendarViewMode('week')" style="padding:0.18rem 0.45rem; font-size:0.72rem;">Week</button>
+                    <button class="cal-view-btn" id="btnViewDay" onclick="setCalendarViewMode('day')" style="padding:0.18rem 0.45rem; font-size:0.72rem;">Day</button>
+                  </div>
+
+                  <span class="pill-badge" style="background:var(--surface-hover); color:var(--text-muted); font-size:0.7rem;" id="calEventCountBadge">11 events</span>
+                </div>
               </div>
 
-              <!-- Month & Year Controls -->
-              <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap;">
-                <button class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.75rem;" onclick="prevCalendarMonth()" title="Previous Month">◀</button>
-                
-                <select class="form-input" id="calMonthSelect" onchange="changeCalMonth(this.value)" style="padding:0.25rem 0.45rem; font-size:0.78rem; font-weight:700; width:auto;">
-                  <option value="0">January</option>
-                  <option value="1">February</option>
-                  <option value="2">March</option>
-                  <option value="3">April</option>
-                  <option value="4">May</option>
-                  <option value="5">June</option>
-                  <option value="6">July</option>
-                  <option value="7">August</option>
-                  <option value="8">September</option>
-                  <option value="9">October</option>
-                  <option value="10">November</option>
-                  <option value="11">December</option>
-                </select>
-
-                <select class="form-input" id="calYearSelect" onchange="changeCalYear(this.value)" style="padding:0.25rem 0.45rem; font-size:0.78rem; font-weight:700; width:auto;">
-                  <option value="2024">2024</option>
-                  <option value="2025">2025</option>
-                  <option value="2026" selected>2026</option>
-                  <option value="2027">2027</option>
-                  <option value="2028">2028</option>
-                  <option value="2029">2029</option>
-                  <option value="2030">2030</option>
-                </select>
-
-                <button class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.75rem;" onclick="nextCalendarMonth()" title="Next Month">▶</button>
-                
-                <button class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem; color:var(--accent); font-weight:800;" onclick="goToToday()">Today</button>
+              <!-- Dynamic Calendar Grid Container -->
+              <div id="calendarGridContainer" style="margin-top:0.25rem;">
+                <!-- Rendered dynamically by JS -->
               </div>
-            </div>
 
-            <!-- View Mode Switcher (Month / Week / Day) -->
-            <div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg); padding:0.35rem 0.65rem; border-radius:10px; border:1px solid var(--surface-border); flex-wrap:wrap; gap:0.4rem;">
-              <div style="font-size:0.76rem; font-weight:700; color:var(--text-muted);" id="calHeaderLabel">
-                Current Calendar
-              </div>
-              <div style="display:flex; gap:0.2rem; background:var(--surface); padding:2px; border-radius:8px; border:1px solid var(--surface-border);">
-                <button class="cal-view-btn active" id="btnViewMonth" onclick="setCalendarViewMode('month')">Month</button>
-                <button class="cal-view-btn" id="btnViewWeek" onclick="setCalendarViewMode('week')">Week</button>
-                <button class="cal-view-btn" id="btnViewDay" onclick="setCalendarViewMode('day')">Day</button>
+              <!-- Multi-Category Legend Row -->
+              <div class="cal-legend-row">
+                <span class="legend-item"><span class="legend-dot" style="background:var(--emerald);"></span> Medication</span>
+                <span class="legend-item"><span class="legend-dot" style="background:var(--amber);"></span> Bills</span>
+                <span class="legend-item"><span class="legend-dot" style="background:var(--purple);"></span> Fitness</span>
+                <span class="legend-item"><span class="legend-dot" style="background:#6366f1;"></span> Appointments</span>
+                <span class="legend-item"><span class="legend-dot" style="background:var(--cyan);"></span> Habits</span>
               </div>
             </div>
 
-            <!-- Focused Date Header Card -->
-            <div style="background:var(--bg); border:1px solid var(--surface-border); border-radius:10px; padding:0.85rem; text-align:center;">
-              <div style="font-size:0.74rem; color:var(--text-muted);">Active Focused Date</div>
-              <div style="font-size:1.35rem; font-weight:800; margin:3px 0;" id="calSelectedDateText">Today's Schedule</div>
-              <div style="font-size:0.76rem; color:var(--emerald); font-weight:700;" id="calEventCountBadge">🟢 Dynamic Events Aggregated</div>
-              <div style="font-size:0.72rem; color:var(--text-muted); margin-top:5px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:0.4rem; background:rgba(99,102,241,0.08); padding:0.25rem 0.5rem; border-radius:6px; border:1px solid rgba(99,102,241,0.18);">
-                <span>✨ <strong>Click or Tap any date</strong> to immediately open the Add Entry modal for that date.</span>
+            <!-- Right Split: Focused Day Agenda & Today's Spend -->
+            <div class="cal-split-right">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                  <div>
+                    <div style="display:flex; align-items:center; gap:0.4rem;">
+                      <h3 style="font-size:1.15rem; font-weight:800; margin:0;" id="calSelectedDateText">Tuesday, Oct 6, 2026</h3>
+                      <span class="pill-badge" style="background:var(--surface-hover); color:var(--text-muted); font-size:0.68rem;" id="timelineCountBadge">3 events</span>
+                    </div>
+                    <div style="font-size:0.74rem; color:var(--text-muted); margin-top:2px;">Here's what's planned for today.</div>
+                  </div>
+                  <button class="btn btn-secondary" style="padding:0.2rem 0.5rem; font-size:0.7rem;" onclick="openQuickAddModal()">➕ Add</button>
+                </div>
+
+                <!-- Daily Agenda Feed -->
+                <div id="timelineListContainer" style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.85rem; max-height:270px; overflow-y:auto; padding-right:4px;">
+                  <!-- Dynamic agenda slots rendered by JS -->
+                </div>
+
+                <div style="margin-top:0.6rem; text-align:right;">
+                  <span style="font-size:0.72rem; color:var(--accent); font-weight:700; cursor:pointer;" onclick="switchPrimaryTab('reminders')">View full schedule →</span>
+                </div>
+              </div>
+
+              <!-- Today's Spend Bento Card -->
+              <div class="today-spend-card">
+                <div style="display:flex; align-items:center; gap:0.65rem;">
+                  <div style="font-size:1.35rem; background:rgba(99,102,241,0.2); padding:0.4rem; border-radius:10px;">🛍️</div>
+                  <div>
+                    <div style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; font-weight:800; letter-spacing:0.04em;">Today's Spend</div>
+                    <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace;" id="calDailySpend">$124.50</div>
+                    <div style="font-size:0.68rem; color:var(--amber); font-weight:600;" id="calSpendDesc">1 bill pending</div>
+                  </div>
+                </div>
+                <button class="btn" style="background:var(--accent); padding:0.45rem 0.95rem; font-size:0.82rem; font-weight:800; border-radius:8px;" onclick="switchPrimaryTab('expense')">
+                  Pay Now
+                </button>
               </div>
             </div>
 
-            <!-- Dynamic Calendar View Container -->
-            <div id="calendarGridContainer">
-              <!-- Rendered dynamically by JS (Month Matrix, Week View, or Day Schedule) -->
-            </div>
-
-            <!-- Daily Spend Widget -->
-            <div class="module-card">
-              <div class="card-top">
-                <div class="card-title">💰 Focused Date Spend Total</div>
-                <span class="pill-badge" style="background:var(--amber-bg); color:var(--amber);" id="calDailySpend">$120.00</span>
-              </div>
-              <div class="card-sub" id="calSpendDesc">Auto-calculated from scheduled bills and categorized expenses for this date.</div>
-            </div>
           </div>
 
-          <!-- Right Column: Timeline & Aggregated Daily Feed -->
-          <div class="panel-box">
-            <div class="panel-header">
-              <span>⏱️ Daily Timeline Schedule & Tasks</span>
-              <span class="pill-badge" style="background:var(--surface-hover); color:var(--text);" id="timelineCountBadge">Active Feed</span>
+          <!-- Right Column: Active Medications & 3 Bento Status Tiles -->
+          <div style="display:flex; flex-direction:column; gap:1rem;">
+            
+            <!-- Active Medications Card -->
+            <div class="panel-box" style="flex:1;">
+              <div class="panel-header">
+                <div style="display:flex; align-items:center; gap:0.4rem;">
+                  <span>💊 Active Medications</span>
+                  <span class="pill-badge" style="background:rgba(16,185,129,0.15); color:var(--emerald); font-size:0.7rem;" id="activeRxCountBadge">3 today</span>
+                </div>
+                <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.2rem 0.55rem;" onclick="switchPrimaryTab('reminders')">View all →</button>
+              </div>
+
+              <div id="activeMedicationsCockpitList" style="display:flex; flex-direction:column; gap:0.6rem;">
+                <!-- Dynamically rendered pill cards matching mockup -->
+              </div>
             </div>
 
-            <div id="timelineListContainer" style="display:flex; flex-direction:column; gap:0.65rem;">
-              <!-- Dynamic Timeline Items Rendered by JS -->
+            <!-- 3 Bottom Bento Tiles Row -->
+            <div class="bento-tiles-row">
+              <!-- Tile 1: Bills & Expenses -->
+              <div class="bento-tile" onclick="switchPrimaryTab('expense')">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:1.2rem;">💳</div>
+                  <span class="pill-badge" style="background:var(--amber-bg); color:var(--amber); font-size:0.65rem;">2 pending</span>
+                </div>
+                <div>
+                  <div style="font-size:0.78rem; font-weight:800;">Bills & Expenses</div>
+                  <div style="font-size:1.1rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:2px;">$124.50</div>
+                </div>
+                <div style="font-size:0.7rem; color:var(--accent); font-weight:700;">Pay Bills →</div>
+              </div>
+
+              <!-- Tile 2: Fitness & Habits -->
+              <div class="bento-tile" onclick="switchPrimaryTab('fitness')">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:1.2rem;">🏋️</div>
+                  <span class="pill-badge" style="background:var(--purple-bg); color:var(--purple); font-size:0.65rem;">4/6 today</span>
+                </div>
+                <div>
+                  <div style="font-size:0.78rem; font-weight:800;">Fitness & Habits</div>
+                  <div style="font-size:0.75rem; color:var(--emerald); font-weight:800; margin-top:2px;">🔥 7-Day Streak</div>
+                </div>
+                <div style="font-size:0.7rem; color:var(--accent); font-weight:700;">Log Workout →</div>
+              </div>
+
+              <!-- Tile 3: Household Tasks -->
+              <div class="bento-tile" onclick="switchPrimaryTab('oversight')">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:1.2rem;">🏠</div>
+                  <span class="pill-badge" style="background:var(--rose-bg); color:var(--rose); font-size:0.65rem;">2 urgent</span>
+                </div>
+                <div>
+                  <div style="font-size:0.78rem; font-weight:800;">Household Tasks</div>
+                  <div style="font-size:0.72rem; color:var(--text-muted); margin-top:2px;">3 open tasks</div>
+                </div>
+                <div style="font-size:0.7rem; color:var(--cyan); font-weight:700;">View Tasks →</div>
+              </div>
             </div>
+
           </div>
 
         </div>
@@ -2337,7 +2675,30 @@
         rxNum: "Rx #89421",
         day: 18,
         totalDays: 30,
-        refillWarningDays: 5
+        refillWarningDays: 5,
+        time: "08:30 AM"
+      },
+      {
+        id: "pill_2",
+        name: "Dolo",
+        dosage: "500mg (1x Daily)",
+        doctor: "Dr. Sarah Lin",
+        rxNum: "Rx #77120",
+        day: 1,
+        totalDays: 5,
+        refillWarningDays: 2,
+        time: "08:30 AM"
+      },
+      {
+        id: "pill_3",
+        name: "Levo citr",
+        dosage: "12mg (2x Daily)",
+        doctor: "Dr. Robert Chen",
+        rxNum: "Rx #91044",
+        day: 1,
+        totalDays: 7,
+        refillWarningDays: 3,
+        time: "08:30 AM"
       }
     ];
 
@@ -2676,6 +3037,7 @@
     function renderAllViews() {
       renderCalendarEngine();
       renderPills();
+      renderCockpitMedications();
       renderBills();
       renderExpenses();
       renderWorkouts();
@@ -2763,6 +3125,68 @@
       });
     }
 
+    // 1b. Render Cockpit Medications (Home Dashboard Bento)
+    function renderCockpitMedications() {
+      const container = document.getElementById('activeMedicationsCockpitList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const countBadge = document.getElementById('activeRxCountBadge');
+      if (countBadge) {
+        countBadge.textContent = `${pillsData.length} active`;
+      }
+
+      if (pillsData.length === 0) {
+        container.innerHTML = '<div style="color:var(--text-muted); font-size:0.82rem; padding:0.6rem; text-align:center;">No active prescriptions. Click <a href="javascript:void(0)" onclick="switchPrimaryTab(\'reminders\')" style="color:var(--emerald); font-weight:700;">Reminders</a> to add.</div>';
+        return;
+      }
+
+      pillsData.forEach((p) => {
+        const pct = Math.min(100, Math.round((p.day / p.totalDays) * 100));
+        const isCompleted = p.day >= p.totalDays;
+
+        let rawName = p.name || 'Prescription';
+        let rawDosage = p.dosage || 'Standard Dose';
+        if (p.name && p.dosage && p.name.toLowerCase().endsWith(p.dosage.toLowerCase())) {
+          rawName = p.name.substring(0, p.name.length - p.dosage.length).trim();
+        }
+
+        const item = document.createElement('div');
+        item.className = 'cockpit-rx-item';
+        item.innerHTML = `
+          <div style="display:flex; align-items:center; gap:0.65rem; min-width:0; flex:1;">
+            <div style="width:36px; height:36px; border-radius:10px; background:${isCompleted ? 'rgba(16,185,129,0.15)' : 'rgba(14,165,233,0.12)'}; color:${isCompleted ? 'var(--emerald)' : 'var(--accent)'}; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;">
+              ${isCompleted ? '✓' : '💊'}
+            </div>
+            <div style="min-width:0; flex:1;">
+              <div style="display:flex; align-items:center; gap:0.4rem; justify-content:space-between;">
+                <div style="font-weight:800; font-size:0.86rem; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                  ${escapeHTML(rawName)} <span style="font-size:0.75rem; font-weight:600; color:var(--text-muted);">${escapeHTML(rawDosage)}</span>
+                </div>
+                <span style="font-size:0.7rem; font-family:'JetBrains Mono',monospace; color:${isCompleted ? 'var(--emerald)' : 'var(--text-muted)'}; font-weight:700;">
+                  ${isCompleted ? 'Done' : `Day ${p.day}/${p.totalDays}`}
+                </span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-top:4px;">
+                <div class="progress-track" style="height:6px; flex:1; margin:0;" title="${pct}% Completed">
+                  <div class="progress-fill" style="width:${pct}%; background:${isCompleted ? 'var(--emerald)' : 'linear-gradient(90deg, var(--accent), var(--emerald))'};"></div>
+                </div>
+                <span style="font-size:0.68rem; color:var(--text-muted); cursor:pointer; font-weight:600;" onclick="openEditDoseModal('${p.id}')" title="Edit dosage separately">✏️ Dose</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.35rem; margin-left:0.5rem; flex-shrink:0;">
+            ${isCompleted ? `
+              <button class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem; color:var(--emerald);" onclick="openEditDoseModal('${p.id}')">Completed ✓</button>
+            ` : `
+              <button class="btn btn-emerald" style="padding:0.28rem 0.65rem; font-size:0.75rem; font-weight:700;" onclick="takePillDoseDynamic('${p.id}')">✓ Mark Taken</button>
+            `}
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
     function takePillDoseDynamic(pillId) {
       const p = pillsData.find(x => x.id === pillId) || pillsData[0];
       if (p.day >= p.totalDays) {
@@ -2773,6 +3197,7 @@
       p.day += 1;
       persistAllData();
       renderPills();
+      renderCockpitMedications();
       renderTimeline();
       showToast(`💊 Logged Dose: ${p.name} • Day ${p.day}/${p.totalDays}`);
     }
@@ -3539,6 +3964,7 @@
 
       persistAllData();
       renderPills();
+      renderCockpitMedications();
       renderTimeline();
       renderCalendarEngine();
       closeEditDoseModal();
@@ -3551,6 +3977,7 @@
         p.day = lastActionUndo.prevDay;
         persistAllData();
         renderPills();
+        renderCockpitMedications();
         renderTimeline();
         showToast("↩️ Undone: Reverted pill dose log.");
       } else if (lastActionUndo && lastActionUndo.type === 'bill') {
