@@ -25,7 +25,7 @@
       --card-bg: #11182c;
       --card-border: rgba(255, 255, 255, 0.07);
       --text: #f8fafc;
-      --text-muted: #94a3b8;
+      --text-muted: #cbd5e1;
       --text-subtle: #64748b;
       
       /* Semantic Domain Tokens */
@@ -508,7 +508,7 @@
       max-width: 1440px;
       width: 100%;
       margin: 0 auto;
-      padding: 1.5rem;
+      padding: 1.5rem 1.5rem 6.5rem 1.5rem;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -803,8 +803,9 @@
       gap: 0.5rem;
       padding: 0.25rem 0.65rem;
       border-radius: 9999px;
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
       cursor: pointer;
       transition: all 0.15s ease;
       user-select: none;
@@ -812,6 +813,7 @@
 
     .user-avatar-btn:hover {
       border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.12);
     }
 
     .topbar-avatar {
@@ -2442,33 +2444,41 @@
         <!-- Date & Weather Pill -->
         <div class="topbar-date-weather">
           <span id="topbarDateStr">Tue, Oct 6, 2026</span>
-          <span class="weather-pill">☀️ 26°C Sunny</span>
+          <span class="weather-pill" id="weatherPillDisplay">☀️ 22°C Sunny</span>
         </div>
 
-        <!-- Persona Switcher Pills -->
+        <!-- Persona Switcher Pills (Clean Line SVGs) -->
         <div class="role-switch-pills">
-          <button class="role-btn active" id="btnRolePower" onclick="setMode('power')">⚡ Power</button>
-          <button class="role-btn" id="btnRoleSenior" onclick="setMode('senior')">👵 Senior</button>
-          <button class="role-btn" id="btnRoleCaregiver" onclick="setMode('caregiver')">🛡️ Caregiver</button>
+          <button class="role-btn active" id="btnRolePower" onclick="setMode('power')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Power
+          </button>
+          <button class="role-btn" id="btnRoleSenior" onclick="setMode('senior')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Senior
+          </button>
+          <button class="role-btn" id="btnRoleCaregiver" onclick="setMode('caregiver')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Caregiver
+          </button>
         </div>
 
         <!-- Topbar Action Icons & Profile -->
         <div class="topbar-actions">
-          <button class="btn btn-secondary" onclick="openFamilySettingsModal()" id="btnHeaderFamily" title="Master User: Senior PIN & Household Hub" style="padding:0.35rem 0.7rem; font-size:0.78rem;">
-            👨‍👩‍👧 Family Hub
+          <button class="btn btn-secondary" onclick="openFamilySettingsModal()" id="btnHeaderFamily" title="Master User: Senior PIN & Household Hub" style="padding:0.35rem 0.7rem; font-size:0.78rem; display:inline-flex; align-items:center; gap:5px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Family Hub
           </button>
-          <button class="topbar-icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle Theme">☀️</button>
+          <button class="topbar-icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle Theme">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
           <button class="topbar-icon-btn" onclick="showToast('🔔 2 Notifications: Dr. Martinez appointment at 11:00 AM & ConEd Bill due today.')" title="Notifications">
-            🔔
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
             <span class="notification-badge">2</span>
           </button>
-          <button class="btn" onclick="openQuickAddModal()" style="padding:0.4rem 0.8rem; font-size:0.8rem;">➕ Add</button>
 
           <!-- User Profile Avatar Pill -->
           <button class="user-avatar-btn" onclick="toggleProfileDropdown()" id="userProfileBtn">
             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" class="topbar-avatar" alt="Aswin">
-            <span id="activeUserName" style="font-weight:700; font-size:0.82rem;">Aswin</span>
-            <span style="font-size:0.68rem; opacity:0.7;">▾</span>
+            <span id="activeUserName" style="font-weight:800; font-size:0.84rem; color:#ffffff; text-shadow:0 1px 2px rgba(0,0,0,0.6);">Aswin</span>
+            <span style="font-size:0.68rem; opacity:0.8; color:#ffffff;">▾</span>
           </button>
 
           <!-- Profile Dropdown (Preserved for compatibility) -->
@@ -2497,6 +2507,10 @@
             <div class="dropdown-item" onclick="exportExpenseCSV(); toggleProfileDropdown();">
               <span>📊 Export Expense Ledger (CSV)</span>
               <span>💾</span>
+            </div>
+            <div class="dropdown-item" onclick="resetDemoData(); toggleProfileDropdown();" style="color:var(--amber);">
+              <span>🔄 Reset Demo Data (Clean Sample)</span>
+              <span>↺</span>
             </div>
 
             <div class="dropdown-divider"></div>
@@ -2529,10 +2543,10 @@
             <div>
               <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(7, 10, 19, 0.65); backdrop-filter:blur(10px); padding:4px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.14); margin-bottom:0.5rem;">
                 <span class="online-indicator" style="box-shadow:0 0 10px #22c55e;"></span>
-                <span style="font-size:0.74rem; color:#86efac; font-weight:800; letter-spacing:0.03em; text-transform:uppercase;">Family Network Synchronized</span>
+                <span style="font-size:0.74rem; color:#86efac; font-weight:800; letter-spacing:0.03em; text-transform:uppercase;">🔒 Local Encrypted Vault • Private & Offline</span>
               </div>
-              <h1 class="scenic-hero-title">Good morning, Aswin</h1>
-              <p class="scenic-hero-subtitle">"A calmer, more organised life together." • Tuesday, October 6</p>
+              <h1 class="scenic-hero-title" id="heroGreetingTitle">Good morning, Aswin</h1>
+              <p class="scenic-hero-subtitle" id="heroDateSubtitle">"A calmer, more organised life together." • Tuesday, October 6</p>
             </div>
             <div style="display:flex; align-items:center; gap:0.6rem;">
               <button class="btn btn-secondary" style="background:rgba(15, 23, 42, 0.7); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.18); color:#fff; font-size:0.78rem; font-weight:700; border-radius:10px;" onclick="openQuickAddModal()">
@@ -2563,7 +2577,7 @@
                 <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;">
                   John Vance <span class="online-indicator" style="box-shadow:0 0 8px #38bdf8;"></span>
                 </div>
-                <div style="font-size:0.68rem; color:#67e8f9; font-weight:700;">Caregiver • Online</div>
+                <div style="font-size:0.68rem; color:#67e8f9; font-weight:700;">Caregiver Profile • Ready</div>
               </div>
             </div>
 
@@ -2573,8 +2587,8 @@
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
               </div>
               <div>
-                <div style="font-size:0.8rem; font-weight:800; color:#fff;">3 Active Devices</div>
-                <div style="font-size:0.68rem; color:#cbd5e1;">All systems nominal</div>
+                <div style="font-size:0.8rem; font-weight:800; color:#fff;">3 Household Profiles</div>
+                <div style="font-size:0.68rem; color:#cbd5e1;">Local encrypted storage</div>
               </div>
             </div>
 
@@ -2704,11 +2718,11 @@
                   <div style="width:46px; height:46px; border-radius:14px; background:linear-gradient(135deg, rgba(99,102,241,0.35) 0%, rgba(168,85,247,0.22) 100%); border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:1.45rem; box-shadow:0 4px 16px rgba(99,102,241,0.35); flex-shrink:0;">🛍️</div>
                   <div>
                     <div style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; font-weight:800; letter-spacing:0.06em;">Today's Spend</div>
-                    <div style="font-size:1.4rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff; text-shadow:0 2px 10px rgba(0,0,0,0.5);" id="calDailySpend">$124.50</div>
-                    <div style="font-size:0.7rem; color:#fbbf24; font-weight:700; margin-top:2px;" id="calSpendDesc">1 bill pending</div>
+                    <div style="font-size:1.4rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff; text-shadow:0 2px 10px rgba(0,0,0,0.5);" id="calDailySpend">$0.00</div>
+                    <div style="font-size:0.7rem; color:#fbbf24; font-weight:700; margin-top:2px;" id="calSpendDesc">No scheduled bills pending</div>
                   </div>
                 </div>
-                <button class="btn" style="background:linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); border:1px solid rgba(255,255,255,0.28); color:#ffffff; padding:0.55rem 1.15rem; font-size:0.85rem; font-weight:800; border-radius:10px; box-shadow:0 4px 18px rgba(99,102,241,0.55), inset 0 1px 1px rgba(255,255,255,0.4);" onclick="switchPrimaryTab('expense')">
+                <button class="btn" id="calPayNowBtn" style="background:linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); border:1px solid rgba(255,255,255,0.28); color:#ffffff; padding:0.55rem 1.15rem; font-size:0.85rem; font-weight:800; border-radius:10px; box-shadow:0 4px 18px rgba(99,102,241,0.55), inset 0 1px 1px rgba(255,255,255,0.4);" onclick="switchPrimaryTab('expense')">
                   Pay Now
                 </button>
               </div>
@@ -2738,9 +2752,12 @@
               <div class="panel-header">
                 <div style="display:flex; align-items:center; gap:0.4rem;">
                   <span>💊 Active Medications</span>
-                  <span class="pill-badge" style="background:rgba(16,185,129,0.15); color:var(--emerald); font-size:0.7rem;" id="activeRxCountBadge">3 today</span>
+                  <span class="pill-badge" style="background:rgba(16,185,129,0.15); color:var(--emerald); font-size:0.7rem;" id="activeRxCountBadge">3 active</span>
                 </div>
-                <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.2rem 0.55rem;" onclick="switchPrimaryTab('reminders')">View all →</button>
+                <div style="display:flex; align-items:center; gap:0.4rem;">
+                  <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.2rem 0.55rem; color:var(--emerald); font-weight:700; border-color:rgba(16,185,129,0.35);" onclick="openQuickAddModal('pill')">＋ Add Rx</button>
+                  <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.2rem 0.55rem;" onclick="switchPrimaryTab('reminders')">View all →</button>
+                </div>
               </div>
 
               <div id="activeMedicationsCockpitList" style="display:flex; flex-direction:column; gap:0.6rem;">
@@ -2809,8 +2826,8 @@
                 👵
               </div>
               <div>
-                <h2 style="font-size:1.85rem; font-weight:900; margin:0; color:var(--text); line-height:1.2;">Good Morning, Eleanor! 🌸</h2>
-                <div style="font-size:1.15rem; color:var(--text); margin-top:4px;">
+                <h2 style="font-size:1.85rem; font-weight:900; margin:0; color:var(--text); line-height:1.2;" id="seniorGreetingTitle">Good Morning, Eleanor! 🌸</h2>
+                <div style="font-size:1.15rem; color:var(--text); margin-top:4px;" id="seniorDateSubtitle">
                   Today is <strong>Tuesday, October 6</strong> • Your caregiver <strong>John Vance</strong> is online.
                 </div>
               </div>
@@ -3633,37 +3650,37 @@
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1rem;">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.25rem;">
           <!-- Card 1: Eleanor's Adherence Radial Ring -->
           <div class="panel-box">
             <div class="panel-header">
               <span>💊 Eleanor's 30-Day Medication Adherence</span>
-              <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);">Tier 1 High</span>
+              <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); font-weight:800;">Excellent Adherence (96%)</span>
             </div>
-            <div style="display:flex; align-items:center; justify-content:center; gap:2rem; padding:1.5rem 0;">
+            <div style="display:flex; align-items:center; justify-content:center; gap:2rem; padding:1.25rem 0;">
               <!-- Radial Progress Ring SVG -->
-              <div style="position:relative; width:130px; height:130px; display:flex; align-items:center; justify-content:center;">
+              <div style="position:relative; width:130px; height:130px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
                 <svg width="130" height="130" viewBox="0 0 120 120" style="transform:rotate(-90deg);">
                   <circle cx="60" cy="60" r="50" fill="transparent" stroke="rgba(255,255,255,0.08)" stroke-width="12" />
                   <circle cx="60" cy="60" r="50" fill="transparent" stroke="var(--emerald)" stroke-width="12" stroke-dasharray="314.159" stroke-dashoffset="12.56" stroke-linecap="round" />
                 </svg>
                 <div style="position:absolute; text-align:center;">
                   <div style="font-size:1.8rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--emerald); line-height:1;">96%</div>
-                  <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; margin-top:2px;">Adherent</div>
+                  <div style="font-size:0.65rem; color:#cbd5e1; text-transform:uppercase; font-weight:700; margin-top:2px;">Adherent</div>
                 </div>
               </div>
 
               <div style="display:flex; flex-direction:column; gap:0.5rem;">
-                <div style="font-size:0.82rem; font-weight:700;">
+                <div style="font-size:0.82rem; font-weight:700; color:#ffffff;">
                   <span style="color:var(--emerald);">●</span> 27 of 28 doses on time
                 </div>
-                <div style="font-size:0.82rem; font-weight:700;">
+                <div style="font-size:0.82rem; font-weight:700; color:#ffffff;">
                   <span style="color:var(--amber);">●</span> 1 dose nudged (+5m)
                 </div>
-                <div style="font-size:0.82rem; font-weight:700;">
+                <div style="font-size:0.82rem; font-weight:700; color:#ffffff;">
                   <span style="color:var(--rose);">●</span> 0 missed escalations
                 </div>
-                <div style="font-size:0.72rem; color:var(--text-muted); margin-top:4px;">
+                <div style="font-size:0.75rem; color:#cbd5e1; margin-top:4px;">
                   Dr. Sarah Lin reviewed on Oct 1.
                 </div>
               </div>
@@ -3674,66 +3691,117 @@
           <div class="panel-box">
             <div class="panel-header">
               <span>📈 Weekly Task & Habit Completion</span>
-              <span class="pill-badge" style="background:var(--accent-light); color:var(--accent);">88% Average</span>
+              <span class="pill-badge" style="background:var(--accent-light); color:var(--accent); font-weight:800;">88% Average Target</span>
             </div>
-            <div style="padding:1rem 0;">
-              <div style="display:flex; justify-content:space-between; align-items:flex-end; height:120px; gap:8px; padding-top:10px;">
-                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
-                  <div style="width:100%; background:var(--accent); height:75%; border-radius:6px 6px 0 0;"></div>
-                  <span style="font-size:0.68rem; color:var(--text-muted);">Mon</span>
+            <div style="padding:0.75rem 0 0.25rem 0;">
+              <!-- Target benchmark dashed line -->
+              <div style="position:relative; height:130px; margin-bottom:0.5rem;">
+                <div style="position:absolute; top:12%; left:0; right:0; border-top:1.5px dashed rgba(99,102,241,0.6); z-index:2; pointer-events:none;">
+                  <span style="position:absolute; right:0; top:-16px; font-size:0.65rem; color:#818cf8; font-weight:700; font-family:'JetBrains Mono',monospace;">88% Target</span>
                 </div>
-                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
-                  <div style="width:100%; background:var(--accent); height:90%; border-radius:6px 6px 0 0;"></div>
-                  <span style="font-size:0.68rem; color:var(--text-muted);">Tue</span>
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; height:100%; gap:8px;">
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                    <span style="font-size:0.65rem; color:#cbd5e1; font-weight:700; font-family:'JetBrains Mono',monospace;">75%</span>
+                    <div style="width:100%; background:var(--accent); height:75%; border-radius:6px 6px 0 0;" title="Monday: 75%"></div>
+                    <span style="font-size:0.68rem; color:#cbd5e1; font-weight:600;">Mon</span>
+                  </div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                    <span style="font-size:0.65rem; color:#cbd5e1; font-weight:700; font-family:'JetBrains Mono',monospace;">90%</span>
+                    <div style="width:100%; background:var(--accent); height:90%; border-radius:6px 6px 0 0;" title="Tuesday: 90%"></div>
+                    <span style="font-size:0.68rem; color:#cbd5e1; font-weight:600;">Tue</span>
+                  </div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                    <span style="font-size:0.65rem; color:#cbd5e1; font-weight:700; font-family:'JetBrains Mono',monospace;">60%</span>
+                    <div style="width:100%; background:var(--accent); height:60%; border-radius:6px 6px 0 0;" title="Wednesday: 60%"></div>
+                    <span style="font-size:0.68rem; color:#cbd5e1; font-weight:600;">Wed</span>
+                  </div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                    <span style="font-size:0.65rem; color:#cbd5e1; font-weight:700; font-family:'JetBrains Mono',monospace;">85%</span>
+                    <div style="width:100%; background:var(--accent); height:85%; border-radius:6px 6px 0 0;" title="Thursday: 85%"></div>
+                    <span style="font-size:0.68rem; color:#cbd5e1; font-weight:600;">Thu</span>
+                  </div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                    <span style="font-size:0.65rem; color:#cbd5e1; font-weight:700; font-family:'JetBrains Mono',monospace;">95%</span>
+                    <div style="width:100%; background:var(--accent); height:95%; border-radius:6px 6px 0 0;" title="Friday: 95%"></div>
+                    <span style="font-size:0.68rem; color:#cbd5e1; font-weight:600;">Fri</span>
+                  </div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                    <span style="font-size:0.65rem; color:#cbd5e1; font-weight:700; font-family:'JetBrains Mono',monospace;">70%</span>
+                    <div style="width:100%; background:var(--cyan); height:70%; border-radius:6px 6px 0 0;" title="Saturday (Recovery): 70%"></div>
+                    <span style="font-size:0.68rem; color:#cbd5e1; font-weight:600;">Sat</span>
+                  </div>
+                  <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                    <span style="font-size:0.65rem; color:#cbd5e1; font-weight:700; font-family:'JetBrains Mono',monospace;">80%</span>
+                    <div style="width:100%; background:var(--cyan); height:80%; border-radius:6px 6px 0 0;" title="Sunday (Recovery): 80%"></div>
+                    <span style="font-size:0.68rem; color:#cbd5e1; font-weight:600;">Sun</span>
+                  </div>
                 </div>
-                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
-                  <div style="width:100%; background:var(--accent); height:60%; border-radius:6px 6px 0 0;"></div>
-                  <span style="font-size:0.68rem; color:var(--text-muted);">Wed</span>
+              </div>
+
+              <!-- Bar chart legend explaining colors -->
+              <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; font-size:0.7rem; color:#cbd5e1; padding-top:6px; border-top:1px solid rgba(255,255,255,0.06);">
+                <span style="display:inline-flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:2px; background:var(--accent);"></span> Weekday Core Routines</span>
+                <span style="display:inline-flex; align-items:center; gap:4px;"><span style="width:8px; height:8px; border-radius:2px; background:var(--cyan);"></span> Weekend Recovery / Habits</span>
+                <span style="display:inline-flex; align-items:center; gap:4px;"><span style="width:14px; border-top:1.5px dashed #818cf8;"></span> 88% Target</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Clinical Milestones & Consistency Stream -->
+          <div class="panel-box">
+            <div class="panel-header">
+              <span>🎯 Clinical Milestones & Consistency</span>
+              <span class="pill-badge" style="background:rgba(16,185,129,0.15); color:var(--emerald); font-weight:800;">On Track</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.65rem; padding:0.5rem 0;">
+              <div style="display:flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.03); padding:0.65rem 0.85rem; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                <div style="width:36px; height:36px; border-radius:10px; background:rgba(16,185,129,0.15); color:var(--emerald); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;">🔥</div>
+                <div>
+                  <div style="font-size:0.84rem; font-weight:800; color:#ffffff;">4-Day Perfect Adherence Streak</div>
+                  <div style="font-size:0.7rem; color:#cbd5e1;">Zero missed doses across morning & evening routines.</div>
                 </div>
-                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
-                  <div style="width:100%; background:var(--accent); height:85%; border-radius:6px 6px 0 0;"></div>
-                  <span style="font-size:0.68rem; color:var(--text-muted);">Thu</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.03); padding:0.65rem 0.85rem; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                <div style="width:36px; height:36px; border-radius:10px; background:rgba(99,102,241,0.15); color:#a5b4fc; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;">🩺</div>
+                <div>
+                  <div style="font-size:0.84rem; font-weight:800; color:#ffffff;">Next Lab: Blood Panel & Fasting</div>
+                  <div style="font-size:0.7rem; color:#cbd5e1;">Quest Diagnostics • Scheduled Oct 22 at 08:00 AM.</div>
                 </div>
-                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
-                  <div style="width:100%; background:var(--accent); height:95%; border-radius:6px 6px 0 0;"></div>
-                  <span style="font-size:0.68rem; color:var(--text-muted);">Fri</span>
-                </div>
-                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
-                  <div style="width:100%; background:var(--cyan); height:70%; border-radius:6px 6px 0 0;"></div>
-                  <span style="font-size:0.68rem; color:var(--text-muted);">Sat</span>
-                </div>
-                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
-                  <div style="width:100%; background:var(--cyan); height:80%; border-radius:6px 6px 0 0;"></div>
-                  <span style="font-size:0.68rem; color:var(--text-muted);">Sun</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.03); padding:0.65rem 0.85rem; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+                <div style="width:36px; height:36px; border-radius:10px; background:rgba(6,182,212,0.15); color:#67e8f9; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;">🛡️</div>
+                <div>
+                  <div style="font-size:0.84rem; font-weight:800; color:#ffffff;">Caregiver Active Check-ins</div>
+                  <div style="font-size:0.7rem; color:#cbd5e1;">John Vance completed morning verification at 08:35 AM.</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 3: Monthly Spend Breakdown -->
-          <div class="panel-box" style="grid-column: 1 / -1;">
+          <!-- Card 4: Monthly Spend Breakdown (Full Width) -->
+          <div class="panel-box" style="grid-column: 1 / -1; margin-top:0.25rem;">
             <div class="panel-header">
               <span>💳 October Financial Summary by Category</span>
               <span class="pill-badge" style="background:var(--surface-hover); color:var(--text);">$2,840.50 Total</span>
             </div>
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:0.5rem;">
               <div class="module-card">
-                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Utilities & Bills</div>
+                <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Utilities & Bills</div>
                 <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$642.50</div>
                 <div style="font-size:0.72rem; color:var(--emerald); margin-top:2px;">● On track vs $700 budget</div>
               </div>
               <div class="module-card">
-                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Pharmacy & Medical</div>
+                <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Pharmacy & Medical</div>
                 <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$218.00</div>
                 <div style="font-size:0.72rem; color:var(--cyan); margin-top:2px;">● Fully reimbursed ($45 pending)</div>
               </div>
               <div class="module-card">
-                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Groceries & Household</div>
+                <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Groceries & Household</div>
                 <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$840.00</div>
                 <div style="font-size:0.72rem; color:var(--amber); margin-top:2px;">● 84% of monthly target</div>
               </div>
               <div class="module-card">
-                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Discretionary & Leisure</div>
+                <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Discretionary & Leisure</div>
                 <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$1,140.00</div>
                 <div style="font-size:0.72rem; color:var(--purple); margin-top:2px;">● Normal spend velocity</div>
               </div>
@@ -4380,6 +4448,10 @@
         .replace(/'/g, '&#39;');
     }
 
+    function stopPropagation(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+    }
+
     let currentRole = 'power';
     let landingPersonaRole = 'power';
     let activePrimaryTab = 'home';
@@ -4390,8 +4462,8 @@
       escalationDelay: '30'
     };
 
-    // 1. Dynamic Prescriptions / Pills Data
-    let pillsData = [
+    // 1. Dynamic Prescriptions / Pills Data (Pristine Clinical Sample Records)
+    const defaultPillsData = [
       {
         id: "pill_1",
         name: "Metformin",
@@ -4405,51 +4477,80 @@
       },
       {
         id: "pill_2",
-        name: "Dolo",
-        dosage: "500mg (1x Daily)",
+        name: "Lisinopril",
+        dosage: "10mg (1x Daily)",
         doctor: "Dr. Sarah Lin",
         rxNum: "Rx #77120",
-        day: 1,
-        totalDays: 5,
-        refillWarningDays: 2,
-        time: "08:30 AM"
+        day: 12,
+        totalDays: 30,
+        refillWarningDays: 4,
+        time: "09:00 AM"
       },
       {
         id: "pill_3",
-        name: "Levo citr",
-        dosage: "12mg (2x Daily)",
+        name: "Atorvastatin",
+        dosage: "20mg (1x Evening)",
         doctor: "Dr. Robert Chen",
         rxNum: "Rx #91044",
-        day: 1,
-        totalDays: 7,
-        refillWarningDays: 3,
-        time: "08:30 AM"
+        day: 22,
+        totalDays: 30,
+        refillWarningDays: 5,
+        time: "09:00 PM"
       }
     ];
 
-    // 2. Dynamic Bills Data
-    let billsData = [
+    let pillsData = JSON.parse(JSON.stringify(defaultPillsData));
+
+    // 2. Dynamic Bills Data (Pristine Sample Records)
+    const defaultBillsData = [
       {
         id: "bill_1",
         title: "Electric Utility Bill",
         payee: "ConEd",
-        dueDate: "October 8 (2 Days Left)",
+        dueDate: "October 8",
         amount: 120.00,
+        isPaid: false
+      },
+      {
+        id: "bill_2",
+        title: "High-Speed Fiber Internet",
+        payee: "Verizon",
+        dueDate: "October 18",
+        amount: 79.99,
         isPaid: false
       }
     ];
 
+    let billsData = JSON.parse(JSON.stringify(defaultBillsData));
+
     // 3. Dynamic Expenses Data (Categorized by Utility, Food, Travel, Household, Medical, Other)
-    let expensesData = [
+    const defaultExpensesData = [
       { id: "exp_1", name: "💡 ConEd Electric & Gas", amount: 142.50, category: "Utility", date: "Oct 2" },
       { id: "exp_2", name: "🍔 Whole Foods Groceries", amount: 68.20, category: "Food", date: "Oct 4" },
-      { id: "exp_3", name: "🚗 MetroCard & Gas Refill", amount: 45.00, category: "Travel", date: "Oct 5" },
+      { id: "exp_3", name: "🚗 MetroCard & Transit Refill", amount: 45.00, category: "Travel", date: "Oct 5" },
       { id: "exp_4", name: "🏠 Home Supplies & Cleaning", amount: 52.40, category: "Household", date: "Oct 5" },
       { id: "exp_5", name: "💊 CVS Pharmacy Rx Refill", amount: 25.00, category: "Medical", date: "Oct 6" }
     ];
 
+    let expensesData = JSON.parse(JSON.stringify(defaultExpensesData));
+
     let monthlySalary = 5000.00;
     let activeExpenseCategoryFilter = 'All';
+
+    // Reset Demo Data Function (Clears out local test entries like 'hgdgt', 'citrizen')
+    function resetDemoData() {
+      pillsData = JSON.parse(JSON.stringify(defaultPillsData));
+      billsData = JSON.parse(JSON.stringify(defaultBillsData));
+      expensesData = JSON.parse(JSON.stringify(defaultExpensesData));
+      monthlySalary = 5000.00;
+      localStorage.removeItem('omnitask_pills');
+      localStorage.removeItem('omnitask_bills');
+      localStorage.removeItem('omnitask_expenses');
+      localStorage.removeItem('omnitask_monthly_salary');
+      persistAllData();
+      renderAllViews();
+      showToast("✨ Demo data reset to pristine clinical sample records!");
+    }
 
     // 4. Dynamic Workouts Data
     let workoutsData = [
@@ -4938,6 +5039,39 @@
       `;
     }
 
+    // Dynamic Dose Timing Status Evaluator (Overdue / Due Now / Scheduled)
+    function getDoseTimingStatus(pill, timeSlot) {
+      const isCompleted = pill.day >= pill.totalDays;
+      if (isCompleted) {
+        return { label: 'Course Done ✓', color: 'var(--emerald)', isOverdue: false, bg: 'rgba(16,185,129,0.15)' };
+      }
+
+      const now = new Date();
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+      // Parse time string e.g. "08:30 AM", "1:00 PM", "9:00 PM"
+      const timeStr = (pill.time || timeSlot || '08:30 AM').trim();
+      const parts = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+      let schedMinutes = 8 * 60 + 30; // default 08:30
+      if (parts) {
+        let h = parseInt(parts[1], 10);
+        const m = parseInt(parts[2], 10);
+        const ampm = parts[3].toUpperCase();
+        if (ampm === 'PM' && h < 12) h += 12;
+        if (ampm === 'AM' && h === 12) h = 0;
+        schedMinutes = h * 60 + m;
+      }
+
+      const diff = currentMinutes - schedMinutes;
+      if (diff > 30) {
+        return { label: `⚠️ Overdue (${timeStr})`, color: 'var(--rose)', isOverdue: true, bg: 'rgba(244,63,94,0.16)' };
+      } else if (diff >= -15 && diff <= 30) {
+        return { label: `🔔 Due Now (${timeStr})`, color: 'var(--amber)', isOverdue: false, bg: 'rgba(245,158,11,0.16)' };
+      } else {
+        return { label: `🕒 Scheduled (${timeStr})`, color: '#cbd5e1', isOverdue: false, bg: 'rgba(255,255,255,0.06)' };
+      }
+    }
+
     // 1b. Render Cockpit Medications (Home Dashboard Bento)
     function renderCockpitMedications() {
       const container = document.getElementById('activeMedicationsCockpitList');
@@ -4964,40 +5098,45 @@
           rawName = p.name.substring(0, p.name.length - p.dosage.length).trim();
         }
 
-        // Schedule times matching mockup (8:30 AM, 1:00 PM, 9:00 PM)
+        // Schedule times matching clinical schedule (8:30 AM, 1:00 PM, 9:00 PM)
         const times = ['8:30 AM', '1:00 PM', '9:00 PM'];
         const scheduleTime = times[idx % times.length];
+        const status = getDoseTimingStatus(p, scheduleTime);
 
         const item = document.createElement('div');
         item.className = 'cockpit-rx-item';
+        item.style.padding = '0.75rem';
         item.innerHTML = `
-          <div style="display:flex; align-items:center; gap:0.75rem; min-width:0; flex:1;">
-            ${get3DPillSVG(rawName, 44, 24)}
+          <div style="display:flex; align-items:flex-start; gap:0.75rem; min-width:0; flex:1;">
+            <div style="margin-top:2px; flex-shrink:0;">
+              ${get3DPillSVG(rawName, 44, 24)}
+            </div>
             <div style="min-width:0; flex:1;">
-              <div style="display:flex; align-items:center; gap:0.4rem; justify-content:space-between;">
-                <div style="font-weight:800; font-size:0.86rem; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                  ${escapeHTML(rawName)} <span style="font-size:0.75rem; font-weight:700; color:#38bdf8;">${escapeHTML(rawDosage)}</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:0.35rem;">
-                  <span class="pill-badge" style="background:rgba(255,255,255,0.06); color:var(--text-muted); font-size:0.66rem; font-family:'JetBrains Mono',monospace;">🕒 ${scheduleTime}</span>
-                  <span style="font-size:0.7rem; font-family:'JetBrains Mono',monospace; color:${isCompleted ? 'var(--emerald)' : 'var(--text-muted)'}; font-weight:700;">
-                    ${isCompleted ? 'Done ✓' : `Day ${p.day}/${p.totalDays}`}
-                  </span>
-                </div>
+              <!-- Dedicated Line for Medication Name to prevent truncation -->
+              <div style="font-weight:800; font-size:0.92rem; color:var(--text); line-height:1.25;">
+                ${escapeHTML(rawName)} <span style="font-size:0.76rem; font-weight:700; color:#38bdf8; margin-left:3px;">${escapeHTML(rawDosage)}</span>
               </div>
-              <div style="display:flex; align-items:center; gap:0.5rem; margin-top:5px;">
+              <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap; margin-top:4px;">
+                <span class="pill-badge" style="background:${status.bg}; color:${status.color}; border:1px solid ${status.isOverdue ? 'rgba(244,63,94,0.35)' : 'rgba(255,255,255,0.1)'}; font-size:0.68rem; font-family:'JetBrains Mono',monospace; font-weight:700;">
+                  ${status.label}
+                </span>
+                <span style="font-size:0.7rem; font-family:'JetBrains Mono',monospace; color:${isCompleted ? 'var(--emerald)' : '#cbd5e1'}; font-weight:700;">
+                  ${isCompleted ? 'Done ✓' : `Day ${p.day}/${p.totalDays}`}
+                </span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-top:6px;">
                 <div class="progress-track" style="height:6px; flex:1; margin:0;" title="${pct}% Completed">
-                  <div class="progress-fill" style="width:${pct}%; background:${isCompleted ? 'var(--emerald)' : 'linear-gradient(90deg, #38bdf8, #22c55e)'};"></div>
+                  <div class="progress-fill" style="width:${pct}%; background:${isCompleted ? 'var(--emerald)' : status.isOverdue ? 'linear-gradient(90deg, #f59e0b, #ef4444)' : 'linear-gradient(90deg, #38bdf8, #22c55e)'};"></div>
                 </div>
-                <span style="font-size:0.68rem; color:var(--text-muted); cursor:pointer; font-weight:600;" onclick="openEditDoseModal('${p.id}')" title="Edit dosage separately">✏️ Dose</span>
+                <span style="font-size:0.68rem; color:#cbd5e1; cursor:pointer; font-weight:700; text-decoration:underline;" onclick="openEditDoseModal('${p.id}')" title="Edit dosage separately">✏️ Dose</span>
               </div>
             </div>
           </div>
           <div style="display:flex; align-items:center; gap:0.35rem; margin-left:0.5rem; flex-shrink:0;">
             ${isCompleted ? `
-              <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.72rem; color:var(--emerald); border-color:rgba(16,185,129,0.3); background:rgba(16,185,129,0.1);" onclick="openEditDoseModal('${p.id}')">Completed ✓</button>
+              <button class="btn btn-secondary" style="padding:0.3rem 0.65rem; font-size:0.74rem; color:var(--emerald); border-color:rgba(16,185,129,0.3); background:rgba(16,185,129,0.1);" onclick="openEditDoseModal('${p.id}')">Completed ✓</button>
             ` : `
-              <button class="btn" style="background:rgba(6, 182, 212, 0.12); border:1px solid rgba(6, 182, 212, 0.35); color:#22d3ee; padding:0.32rem 0.75rem; font-size:0.75rem; font-weight:800; border-radius:8px; box-shadow:0 2px 10px rgba(6,182,212,0.18);" onclick="takePillDoseDynamic('${p.id}')">✓ Mark Taken</button>
+              <button class="btn" style="background:${status.isOverdue ? 'linear-gradient(135deg, #ef4444, #dc2626)' : 'rgba(6, 182, 212, 0.15)'}; border:1px solid ${status.isOverdue ? 'rgba(239,68,68,0.5)' : 'rgba(6, 182, 212, 0.35)'}; color:${status.isOverdue ? '#ffffff' : '#22d3ee'}; padding:0.35rem 0.75rem; font-size:0.75rem; font-weight:800; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.2);" onclick="takePillDoseDynamic('${p.id}')">✓ Mark Taken</button>
             `}
           </div>
         `;
@@ -5089,11 +5228,90 @@
       });
     }
 
-    function updateSeniorClock() {
-      const elem = document.getElementById('seniorClockDisplay');
-      if (!elem) return;
+    // Dynamic Date, Time, Greeting & Weather Updater
+    function updateLiveDateTime() {
       const now = new Date();
-      elem.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const hours = now.getHours();
+
+      // 1. Dynamic Greeting based on current local hour
+      let greeting = 'Good morning';
+      if (hours >= 12 && hours < 17) {
+        greeting = 'Good afternoon';
+      } else if (hours >= 17 || hours < 5) {
+        greeting = 'Good evening';
+      }
+
+      // 2. Localized Dates
+      const dayNameFull = now.toLocaleDateString('en-US', { weekday: 'long' });
+      const dayNameShort = now.toLocaleDateString('en-US', { weekday: 'short' });
+      const monthFull = now.toLocaleDateString('en-US', { month: 'long' });
+      const monthShort = now.toLocaleDateString('en-US', { month: 'short' });
+      const dateNum = now.getDate();
+      const yearNum = now.getFullYear();
+
+      // Topbar date
+      const topbarDateElem = document.getElementById('topbarDateStr');
+      if (topbarDateElem) {
+        topbarDateElem.textContent = `${dayNameShort}, ${monthShort} ${dateNum}, ${yearNum}`;
+      }
+
+      // Hero Greeting & Subtitle Date
+      const heroGreetingElem = document.getElementById('heroGreetingTitle');
+      if (heroGreetingElem) {
+        const u = document.getElementById('activeUserName');
+        const name = (u && u.textContent.trim()) ? u.textContent.trim() : 'Aswin';
+        heroGreetingElem.textContent = `${greeting}, ${name}`;
+      }
+      const heroDateSubElem = document.getElementById('heroDateSubtitle');
+      if (heroDateSubElem) {
+        heroDateSubElem.textContent = `"A calmer, more organised life together." • ${dayNameFull}, ${monthFull} ${dateNum}`;
+      }
+
+      // Senior Banner Greeting & Subtitle Date
+      const seniorGreetingElem = document.getElementById('seniorGreetingTitle');
+      if (seniorGreetingElem) {
+        seniorGreetingElem.textContent = `${greeting}, Eleanor! 🌸`;
+      }
+      const seniorDateSubElem = document.getElementById('seniorDateSubtitle');
+      if (seniorDateSubElem) {
+        seniorDateSubElem.innerHTML = `Today is <strong>${dayNameFull}, ${monthFull} ${dateNum}</strong> • Your caregiver <strong>John Vance</strong> is online.`;
+      }
+
+      // Senior Digital Clock
+      const clockElem = document.getElementById('seniorClockDisplay');
+      if (clockElem) {
+        clockElem.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+
+      // Dynamic Weather Pill (Time-based condition & temperature)
+      const weatherElem = document.getElementById('weatherPillDisplay');
+      if (weatherElem) {
+        let icon = '☀️';
+        let cond = 'Sunny';
+        let temp = '22°C';
+        if (hours >= 19 || hours < 6) {
+          icon = '🌙';
+          cond = 'Clear';
+          temp = '18°C';
+        } else if (hours >= 6 && hours < 11) {
+          icon = '⛅';
+          cond = 'Mild';
+          temp = '20°C';
+        } else if (hours >= 11 && hours < 17) {
+          icon = '☀️';
+          cond = 'Warm';
+          temp = '24°C';
+        } else {
+          icon = '🌅';
+          cond = 'Cool';
+          temp = '21°C';
+        }
+        weatherElem.innerHTML = `<span style="font-size:0.85rem;">${icon}</span> <span>${temp} ${cond}</span>`;
+      }
+    }
+
+    function updateSeniorClock() {
+      updateLiveDateTime();
     }
 
     function acknowledgeCaregiverDose() {
@@ -5650,173 +5868,55 @@
       });
     }
 
-    // 7. Render Aggregated Home Calendar Timeline
+    // 7. Render Aggregated Home Calendar Timeline (Focused on Selected Date)
     function renderTimeline() {
       const container = document.getElementById('timelineListContainer');
       if (!container) return;
       container.innerHTML = '';
 
-      // Add Pills
-      pillsData.forEach((p, idx) => {
-        const name = escapeHTML(p.name || 'Rx');
-        const dosage = escapeHTML(p.dosage || '');
-        const doctor = escapeHTML(p.doctor || 'Dr. Sarah Lin');
-        const isDone = p.day >= p.totalDays;
-        const times = ['08:30 AM', '01:00 PM', '09:00 PM'];
-        const timeStr = times[idx % times.length];
+      const dayEvents = getEventsForDay(calSelectedDay, calCurrentMonth, calCurrentYear);
 
-        const div = document.createElement('div');
-        div.className = 'timeline-event-item';
-        div.style.borderLeft = isDone ? '3.5px solid #10b981' : '3.5px solid #06b6d4';
-        div.innerHTML = `
-          <div style="display:flex; align-items:center; gap:0.75rem; min-width:0; flex:1;">
-            <div style="width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, rgba(6,182,212,0.18) 0%, rgba(16,185,129,0.12) 100%); border:1px solid rgba(6,182,212,0.35); display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 12px rgba(6,182,212,0.25);">
-              ${get3DPillSVG(name, 28, 16)}
-            </div>
-            <div style="min-width:0; flex:1;">
-              <div style="display:flex; align-items:center; justify-content:space-between; gap:0.4rem;">
-                <div style="font-size:0.86rem; font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:flex; align-items:center; gap:5px;">
-                  <span>${name}</span>
-                  ${dosage ? `<span style="font-size:0.7rem; font-weight:700; color:#38bdf8; background:rgba(6,182,212,0.12); border:1px solid rgba(6,182,212,0.25); padding:1px 6px; border-radius:6px;">${dosage}</span>` : ''}
-                </div>
-                <span style="font-size:0.72rem; font-family:'JetBrains Mono',monospace; font-weight:800; color:#38bdf8; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:7px; padding:2px 7px;">${timeStr}</span>
-              </div>
-              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:3px; display:flex; justify-content:space-between; align-items:center;">
-                <span>${doctor} • Dose #${p.day}</span>
-                <span style="font-size:0.68rem; font-weight:800; border-radius:6px; padding:2px 7px; background:${isDone ? 'rgba(16,185,129,0.16)' : 'rgba(56,189,248,0.12)'}; border:1px solid ${isDone ? 'rgba(16,185,129,0.35)' : 'rgba(56,189,248,0.3)'}; color:${isDone ? '#86efac' : '#7dd3fc'};">
-                  ${isDone ? 'Taken ✓' : 'Scheduled'}
-                </span>
-              </div>
-            </div>
+      if (dayEvents.length === 0) {
+        container.innerHTML = `
+          <div style="color:var(--text-muted); font-size:0.8rem; padding:1.5rem 1rem; text-align:center; background:rgba(255,255,255,0.02); border-radius:12px; border:1px dashed rgba(255,255,255,0.08);">
+            No scheduled items or reminders for this date.<br>
+            <button class="btn btn-secondary" style="margin-top:0.6rem; padding:0.25rem 0.65rem; font-size:0.75rem; color:#38bdf8;" onclick="openQuickAddModal()">＋ Add Event</button>
           </div>
         `;
-        container.appendChild(div);
-      });
-
-      // Add Bills
-      billsData.forEach(b => {
-        const title = escapeHTML(b.title || 'Bill');
-        const payee = escapeHTML(b.payee || 'Utility');
-        const dueDate = escapeHTML(b.dueDate || 'Upcoming');
-        const isPaid = !!b.isPaid;
-
-        const div = document.createElement('div');
-        div.className = 'timeline-event-item';
-        div.style.borderLeft = isPaid ? '3.5px solid #10b981' : '3.5px solid #f59e0b';
-        div.innerHTML = `
-          <div style="display:flex; align-items:center; gap:0.75rem; min-width:0; flex:1;">
-            <div style="width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, rgba(245,158,11,0.2) 0%, rgba(217,119,6,0.12) 100%); border:1px solid rgba(245,158,11,0.35); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#fbbf24; box-shadow:0 0 12px rgba(245,158,11,0.25);">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-            </div>
-            <div style="min-width:0; flex:1;">
-              <div style="display:flex; align-items:center; justify-content:space-between; gap:0.4rem;">
-                <div style="font-size:0.86rem; font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                  ${title} <span style="font-size:0.72rem; font-weight:600; color:var(--text-muted);">(${payee})</span>
+      } else {
+        dayEvents.forEach((evt) => {
+          const div = document.createElement('div');
+          div.className = 'timeline-event-item';
+          div.style.borderLeft = `3.5px solid ${evt.color}`;
+          div.innerHTML = `
+            <div style="display:flex; align-items:center; gap:0.75rem; min-width:0; flex:1;">
+              <div style="width:34px; height:34px; border-radius:10px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem;">
+                ${evt.icon}
+              </div>
+              <div style="min-width:0; flex:1;">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:0.4rem;">
+                  <div style="font-size:0.86rem; font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                    ${escapeHTML(evt.title)}
+                  </div>
+                  <span style="font-size:0.72rem; font-family:'JetBrains Mono',monospace; font-weight:800; color:#cbd5e1; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:7px; padding:2px 7px;">${evt.time}</span>
                 </div>
-                <span style="font-size:0.74rem; font-family:'JetBrains Mono',monospace; font-weight:800; color:${isPaid ? '#86efac' : '#fbbf24'}; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:7px; padding:2px 7px;">$${parseFloat(b.amount || 0).toFixed(2)}</span>
-              </div>
-              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:3px; display:flex; justify-content:space-between; align-items:center;">
-                <span>Due: ${dueDate}</span>
-                <span style="font-size:0.68rem; font-weight:800; border-radius:6px; padding:2px 7px; background:${isPaid ? 'rgba(16,185,129,0.16)' : 'rgba(245,158,11,0.15)'}; border:1px solid ${isPaid ? 'rgba(16,185,129,0.35)' : 'rgba(245,158,11,0.35)'}; color:${isPaid ? '#86efac' : '#fbbf24'};">
-                  ${isPaid ? 'Paid ✓' : 'Pending'}
-                </span>
-              </div>
-            </div>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-
-      // Add Appointments
-      appointmentsData.forEach(a => {
-        const div = document.createElement('div');
-        div.className = 'timeline-event-item';
-        div.style.borderLeft = '3.5px solid #6366f1';
-        div.innerHTML = `
-          <div style="display:flex; align-items:center; gap:0.75rem; min-width:0; flex:1;">
-            <div style="width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, rgba(99,102,241,0.2) 0%, rgba(79,70,229,0.12) 100%); border:1px solid rgba(99,102,241,0.35); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#a5b4fc; box-shadow:0 0 12px rgba(99,102,241,0.25);">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-            </div>
-            <div style="min-width:0; flex:1;">
-              <div style="display:flex; align-items:center; justify-content:space-between; gap:0.4rem;">
-                <div style="font-size:0.86rem; font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                  ${escapeHTML(a.title || 'Appointment')}
+                <div style="font-size:0.7rem; color:#cbd5e1; margin-top:3px; display:flex; justify-content:space-between; align-items:center;">
+                  <span style="text-transform:capitalize;">${evt.type}</span>
+                  <span style="font-size:0.68rem; font-weight:800; border-radius:6px; padding:2px 7px; background:rgba(255,255,255,0.06); color:${evt.color};">
+                    ${evt.isPaid ? 'Paid ✓' : 'Scheduled'}
+                  </span>
                 </div>
-                <span style="font-size:0.72rem; font-family:'JetBrains Mono',monospace; font-weight:800; color:#a5b4fc; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:7px; padding:2px 7px;">11:00 AM</span>
-              </div>
-              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:3px; display:flex; justify-content:space-between; align-items:center;">
-                <span>${escapeHTML(a.sub || 'Medical Clinic')}</span>
-                <span style="font-size:0.68rem; font-weight:800; border-radius:6px; padding:2px 7px; background:rgba(99,102,241,0.16); border:1px solid rgba(99,102,241,0.35); color:#c7d2fe;">Confirmed</span>
               </div>
             </div>
-          </div>
-        `;
-        container.appendChild(div);
-      });
+          `;
+          container.appendChild(div);
+        });
+      }
 
-      // Add Workouts
-      workoutsData.forEach(w => {
-        const title = escapeHTML(w.title || 'Workout');
-        const div = document.createElement('div');
-        div.className = 'timeline-event-item';
-        div.style.borderLeft = '3.5px solid #a855f7';
-        div.innerHTML = `
-          <div style="display:flex; align-items:center; gap:0.75rem; min-width:0; flex:1;">
-            <div style="width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, rgba(168,85,247,0.2) 0%, rgba(147,51,234,0.12) 100%); border:1px solid rgba(168,85,247,0.35); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#c084fc; box-shadow:0 0 12px rgba(168,85,247,0.25);">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-            </div>
-            <div style="min-width:0; flex:1;">
-              <div style="display:flex; align-items:center; justify-content:space-between; gap:0.4rem;">
-                <div style="font-size:0.86rem; font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                  ${title}
-                </div>
-                <span style="font-size:0.72rem; font-family:'JetBrains Mono',monospace; font-weight:800; color:#c084fc; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:7px; padding:2px 7px;">05:30 PM</span>
-              </div>
-              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:3px; display:flex; justify-content:space-between; align-items:center;">
-                <span>${(w.exercises || []).length || 1} Routine Scheduled</span>
-                <span style="font-size:0.68rem; font-weight:800; border-radius:6px; padding:2px 7px; background:rgba(168,85,247,0.16); border:1px solid rgba(168,85,247,0.35); color:#d8b4fe;">Planned</span>
-              </div>
-            </div>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-
-      // Add Habits
-      habitsData.forEach(h => {
-        const emoji = escapeHTML(h.emoji || '✨');
-        const title = escapeHTML(h.title || 'Habit');
-
-        const div = document.createElement('div');
-        div.className = 'timeline-event-item';
-        div.style.borderLeft = '3.5px solid #06b6d4';
-        div.innerHTML = `
-          <div style="display:flex; align-items:center; gap:0.75rem; min-width:0; flex:1;">
-            <div style="width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg, rgba(6,182,212,0.2) 0%, rgba(8,145,178,0.12) 100%); border:1px solid rgba(6,182,212,0.35); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.15rem; box-shadow:0 0 12px rgba(6,182,212,0.25);">
-              ${emoji}
-            </div>
-            <div style="min-width:0; flex:1;">
-              <div style="display:flex; align-items:center; justify-content:space-between; gap:0.4rem;">
-                <div style="font-size:0.86rem; font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                  ${title}
-                </div>
-                <span style="font-size:0.72rem; font-family:'JetBrains Mono',monospace; font-weight:800; color:#38bdf8; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:7px; padding:2px 7px;">Daily</span>
-              </div>
-              <div style="font-size:0.7rem; color:var(--text-muted); margin-top:3px; display:flex; justify-content:space-between; align-items:center;">
-                <span>${h.count || 0} Sessions Logged</span>
-                <span style="font-size:0.68rem; font-weight:800; border-radius:6px; padding:2px 7px; background:rgba(6,182,212,0.16); border:1px solid rgba(6,182,212,0.35); color:#7dd3fc;">×${h.count || 0} Done</span>
-              </div>
-            </div>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-
-      const count = pillsData.length + billsData.length + workoutsData.length + habitsData.length + appointmentsData.length;
       const countBadge = document.getElementById('timelineCountBadge');
-      if (countBadge) countBadge.textContent = `${count} Items Aggregated`;
+      if (countBadge) countBadge.textContent = `${dayEvents.length} Item${dayEvents.length === 1 ? '' : 's'} Scheduled`;
       const calBadge = document.getElementById('calEventCountBadge');
-      if (calBadge) calBadge.textContent = `🟢 ${count} Dynamic Events Aggregated`;
+      if (calBadge) calBadge.textContent = `${dayEvents.length} Events on Focused Day`;
     }
 
     // Generic Delete function
@@ -7355,12 +7455,14 @@
       syncCalendarControls();
       updateFocusedDateDisplay();
       renderCalendarEngine();
+      renderTimeline();
       showToast(`📅 Focused on ${calMonthNames[calCurrentMonth]} ${day}, ${calCurrentYear}`);
     }
 
     function calculateAndDisplayDailySpend() {
       let total = 0;
       let spendItems = [];
+      let hasUnpaidBills = false;
 
       // Format focused date: YYYY-MM-DD
       const mStr = String(calCurrentMonth + 1).padStart(2, '0');
@@ -7369,6 +7471,8 @@
       const shortMonth = calMonthNames[calCurrentMonth].slice(0, 3).toLowerCase();
       const realNow = new Date();
       const isTodayFocused = (calSelectedDay === realNow.getDate() && calCurrentMonth === realNow.getMonth() && calCurrentYear === realNow.getFullYear());
+
+      const recordedTitles = new Set();
 
       // Check bills due around or on this date
       billsData.forEach(b => {
@@ -7384,64 +7488,136 @@
           bDate.includes(`${calSelectedDay}rd`)
         );
         if (matchesISO || matchesFmt) {
-          total += parseFloat(b.amount || 0);
-          spendItems.push(`${b.title} ($${parseFloat(b.amount || 0).toFixed(2)})`);
+          if (!b.isPaid) {
+            hasUnpaidBills = true;
+          }
+          const amt = parseFloat(b.amount || 0);
+          total += amt;
+          const cleanTitle = b.title.replace(/^💡\s*/, '').trim().toLowerCase();
+          recordedTitles.add(cleanTitle);
+          spendItems.push(`${b.title} ($${amt.toFixed(2)})${b.isPaid ? ' [Paid ✓]' : ' [Pending]'}`);
         }
       });
 
-      // Check expenses strictly on this date
+      // Check expenses strictly on this date (avoid duplicate counting of auto-linked bills)
       expensesData.forEach(e => {
         const eDate = (e.date || '').toLowerCase();
         const matchesISO = (eDate === focusedISO);
         const matchesToday = isTodayFocused && (eDate === 'today');
         const matchesShort = (eDate.includes(shortMonth) && (eDate.includes(` ${calSelectedDay}`) || eDate.includes(`${calSelectedDay}`)));
         if (matchesISO || matchesToday || matchesShort) {
-          total += parseFloat(e.amount || 0);
-          spendItems.push(`${e.name} ($${parseFloat(e.amount || 0).toFixed(2)})`);
+          const cleanName = (e.name || '').replace(/^💡\s*/, '').replace(/\(Auto-Linked\)/i, '').trim().toLowerCase();
+          if (!recordedTitles.has(cleanName)) {
+            const amt = parseFloat(e.amount || 0);
+            total += amt;
+            spendItems.push(`${e.name} ($${amt.toFixed(2)})`);
+            recordedTitles.add(cleanName);
+          }
         }
       });
 
       const spendElem = document.getElementById('calDailySpend');
       const descElem = document.getElementById('calSpendDesc');
+      const payNowBtn = document.getElementById('calPayNowBtn');
+
       if (spendElem) spendElem.textContent = `$${total.toFixed(2)}`;
       if (descElem) {
         if (spendItems.length > 0) {
-          descElem.innerHTML = `Includes: <strong>${spendItems.slice(0, 3).map(escapeHTML).join(', ')}</strong>${spendItems.length > 3 ? ` +${spendItems.length - 3} more` : ''}.`;
+          descElem.innerHTML = `Breakdown: <strong>${spendItems.slice(0, 3).map(escapeHTML).join(', ')}</strong>${spendItems.length > 3 ? ` +${spendItems.length - 3} more` : ''}.`;
         } else {
           descElem.textContent = `No scheduled bills or recorded expenses on this date ($0.00).`;
         }
       }
+
+      if (payNowBtn) {
+        if (!hasUnpaidBills) {
+          payNowBtn.textContent = 'All Settled ✓';
+          payNowBtn.style.background = 'rgba(16, 185, 129, 0.15)';
+          payNowBtn.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+          payNowBtn.style.color = '#34d399';
+          payNowBtn.style.boxShadow = 'none';
+        } else {
+          payNowBtn.textContent = 'Pay Now';
+          payNowBtn.style.background = 'linear-gradient(135deg, #4f46e5 0%, #6366f1 100%)';
+          payNowBtn.style.borderColor = 'rgba(255, 255, 255, 0.28)';
+          payNowBtn.style.color = '#ffffff';
+          payNowBtn.style.boxShadow = '0 4px 18px rgba(99,102,241,0.55)';
+        }
+      }
     }
 
+    // Truly Data-Driven Day Events (Only dates with actual items receive dots)
     function getEventsForDay(day, month, year) {
       const events = [];
-      
-      // Pills are daily active courses
+      const mStr = String(month + 1).padStart(2, '0');
+      const dStr = String(day).padStart(2, '0');
+      const targetISO = `${year}-${mStr}-${dStr}`;
+      const shortMonth = calMonthNames[month].slice(0, 3).toLowerCase();
+      const dateObj = new Date(year, month, day);
+      const dayOfWeek = (dateObj.getDay() + 6) % 7; // 0=Mon, 2=Wed, 4=Fri
+
+      // 1. Pills: active course only during prescription duration
       if (pillsData.length > 0) {
         pillsData.forEach(p => {
-          events.push({ type: 'pill', color: 'var(--emerald)', title: `${p.name} ${p.dosage}`, icon: '💊', time: '08:30 AM' });
+          if (day <= (p.totalDays || 30)) {
+            events.push({ type: 'pill', color: 'var(--emerald)', title: `${p.name} ${p.dosage}`, icon: '💊', time: p.time || '08:30 AM' });
+          }
         });
       }
 
-      // Bills due
+      // 2. Bills: ONLY on exact scheduled due dates
       billsData.forEach(b => {
-        events.push({ type: 'bill', color: 'var(--amber)', title: `${b.title} ($${parseFloat(b.amount||0).toFixed(2)})`, icon: '💳', time: '10:00 AM', isPaid: b.isPaid });
+        const bDate = (b.dueDate || '').toLowerCase();
+        const matchesISO = bDate.includes(targetISO);
+        const matchesFmt = bDate.includes(shortMonth) && (
+          bDate.includes(` ${day},`) || 
+          bDate.includes(` ${day} `) || 
+          bDate.endsWith(` ${day}`) || 
+          bDate.includes(`${day}th`) || 
+          bDate.includes(`${day}st`) || 
+          bDate.includes(`${day}nd`) || 
+          bDate.includes(`${day}rd`)
+        );
+        if (matchesISO || matchesFmt) {
+          events.push({ type: 'bill', color: 'var(--amber)', title: `${b.title} ($${parseFloat(b.amount||0).toFixed(2)})`, icon: '💳', time: '10:00 AM', isPaid: b.isPaid });
+        }
       });
 
-      // Workouts
-      workoutsData.forEach(w => {
-        events.push({ type: 'fitness', color: 'var(--purple)', title: w.title, icon: '🏋️', time: '05:30 PM' });
-      });
+      // 3. Workouts: Scheduled on routine days (Mon=0, Wed=2, Fri=4)
+      if (dayOfWeek === 0 || dayOfWeek === 2 || dayOfWeek === 4) {
+        workoutsData.forEach(w => {
+          events.push({ type: 'fitness', color: 'var(--purple)', title: w.title, icon: '🏋️', time: '05:30 PM' });
+        });
+      }
 
-      // Habits
-      habitsData.forEach(h => {
-        events.push({ type: 'habit', color: 'var(--cyan)', title: `${h.emoji || '✨'} ${h.title}`, icon: h.emoji || '✨', time: '12:00 PM' });
-      });
-
-      // Appointments
+      // 4. Appointments: ONLY on exact scheduled date
       appointmentsData.forEach(a => {
-        events.push({ type: 'appointment', color: '#6366f1', title: a.title, icon: '📅', time: '02:00 PM' });
+        const aDate = (a.date || '').toLowerCase();
+        const matchesISO = aDate.includes(targetISO);
+        const matchesFmt = aDate.includes(shortMonth) && (
+          aDate.includes(` ${day}`) || 
+          aDate.includes(`${day} `) ||
+          aDate.includes(`${day}th`) ||
+          aDate.includes(`${day}st`) ||
+          aDate.includes(`${day}nd`) ||
+          aDate.includes(`${day}rd`)
+        );
+        if (matchesISO || matchesFmt) {
+          events.push({ type: 'appointment', color: '#6366f1', title: a.title, icon: '📅', time: '10:00 AM' });
+        }
       });
+
+      // 5. Habits: logged routine on active days (up to current day of current month)
+      const now = new Date();
+      const isPastOrToday = (year < now.getFullYear()) || 
+        (year === now.getFullYear() && month < now.getMonth()) || 
+        (year === now.getFullYear() && month === now.getMonth() && day <= now.getDate());
+
+      if (isPastOrToday && habitsData.length > 0) {
+        habitsData.forEach(h => {
+          events.push({ type: 'habit', color: 'var(--cyan)', title: `${h.emoji || '✨'} ${h.title}`, icon: h.emoji || '✨', time: '12:00 PM' });
+        });
+      }
 
       return events;
     }
@@ -7749,8 +7925,27 @@
       syncCalendarControls();
       updateFocusedDateDisplay();
       updatePrivacyPauseUI();
+      updateLiveDateTime();
       renderAllViews();
       setInterval(updatePrivacyPauseUI, 30000);
+      setInterval(updateLiveDateTime, 30000);
+
+      // Keyboard Shortcut: Cmd+K / Ctrl+K to focus omni-search
+      window.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+          e.preventDefault();
+          const inp = document.getElementById('globalOmniSearchInput');
+          if (inp) {
+            inp.focus();
+            inp.select();
+          }
+        }
+      });
+
+      // Global safety handler for inline stopPropagation calls
+      window.stopPropagation = function(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
+      };
     });
   </script>
 </body>
