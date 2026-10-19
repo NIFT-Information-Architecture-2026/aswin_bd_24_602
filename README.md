@@ -8,7 +8,8 @@
 > - [Master UX Research Studies, Datasets & Card Sorting Kit](docs/research/UX_RESEARCH_STUDIES_AND_DATA.md)
 > - [UX Research Synthesis & Architectural Blueprint](docs/research/UX_RESEARCH_SYNTHESIS.md)
 > - [Master UX Research & Academic Case Study](docs/research/UX_RESEARCH_AND_DOCUMENTATION.md)
-> - [Full Conversation & Decision Record](docs/research/task-manager-app-full-conversation-record.md)
+> - [Master Button-to-Button Sitemap & Interactive Flow](docs/sitemaps/OMNITASK_BUTTON_TO_BUTTON_SITEMAP.md)
+> - [Figma Visual Sitemap & Mockup Blueprint](docs/sitemaps/OMNITASK_FIGMA_IMAGE_SITEMAP.md)
 > - [Information Architecture Spec v4 (PDF)](docs/specs/pdfs/task-manager-app-ia-spec-v4.pdf) | [v1 Markdown Spec](docs/specs/task-manager-app-ia-spec.md)
 
 ---
