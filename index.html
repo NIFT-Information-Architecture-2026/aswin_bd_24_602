@@ -1253,11 +1253,14 @@
     /* 2. Unified Split Calendar Grid */
     .unified-calendar-split {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
+      grid-template-columns: 1.25fr 0.95fr;
+      width: 100%;
+      margin-bottom: 1.25rem;
       background: radial-gradient(ellipse at 15% 10%, rgba(99, 102, 241, 0.16) 0%, transparent 60%),
                   radial-gradient(ellipse at 85% 90%, rgba(6, 182, 212, 0.12) 0%, transparent 55%),
                   linear-gradient(145deg, rgba(17, 24, 46, 0.8) 0%, rgba(9, 13, 26, 0.95) 100%);
       backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 22px;
       overflow: hidden;
@@ -1265,7 +1268,7 @@
       position: relative;
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 1024px) {
       .unified-calendar-split {
         grid-template-columns: 1fr;
       }
@@ -2261,6 +2264,32 @@
         padding: 0.45rem 0.7rem !important;
       }
 
+      .unified-calendar-split {
+        grid-template-columns: 1fr !important;
+        border-radius: 16px !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .cal-split-left {
+        padding: 0.75rem 0.55rem !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+
+      .cal-split-right {
+        padding: 0.85rem 0.75rem !important;
+        border-left: none !important;
+      }
+
+      .cal-month-grid {
+        gap: 3px !important;
+      }
+
+      .cal-weekday-header {
+        font-size: 0.68rem !important;
+        padding: 4px 0 !important;
+      }
+
       .cal-day-cell {
         min-height: 46px !important;
         padding: 4px 2px !important;
@@ -2276,6 +2305,22 @@
       .cal-dot {
         width: 5px !important;
         height: 5px !important;
+      }
+
+      #calHeaderLabel {
+        font-size: 1.02rem !important;
+      }
+
+      .cal-legend-row {
+        gap: 0.45rem !important;
+        font-size: 0.7rem !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+      }
+
+      #categoryBreakdownGrid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
       }
 
       input, select, textarea, .form-input {
@@ -2329,6 +2374,36 @@
         min-height: 220px !important;
         max-height: 300px !important;
       }
+      #categoryBreakdownGrid {
+        grid-template-columns: 1fr !important;
+      }
+      .cal-month-grid {
+        gap: 2px !important;
+      }
+      .cal-day-cell {
+        min-height: 42px !important;
+        font-size: 0.74rem !important;
+      }
+    }
+
+    /* Senior Mode & Caregiver Mode Calendar Alignment */
+    body.senior-mode .unified-calendar-split {
+      border: 2px solid var(--emerald) !important;
+      background: var(--surface) !important;
+      margin-top: 1rem !important;
+    }
+    body.senior-mode .cal-weekday-header {
+      font-size: 0.95rem !important;
+      font-weight: 900 !important;
+      color: var(--text) !important;
+    }
+    body.senior-mode .cal-day-cell {
+      min-height: 58px !important;
+      font-size: 1.15rem !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+    }
+    body.caregiver-mode .unified-calendar-split {
+      border: 1px solid rgba(244, 63, 94, 0.4) !important;
     }
 
     /* Split-Screen Login Experience */
@@ -3055,12 +3130,10 @@
            TAB VIEW 1: 📅 HOME CALENDAR AGGREGATOR (Bento Cockpit)
            ====================================================================== -->
       <div class="app-view-panel active-view" id="view_home">
-        <div class="grid-bento-cockpit">
-          
-          <!-- Left/Center Column: Unified Split Calendar & Agenda Card -->
-          <div class="unified-calendar-split">
-            <!-- Left Split: Calendar Month Matrix -->
-            <div class="cal-split-left">
+        <!-- Primary Dashboard Centerpiece: Full-Width Unified Interactive Calendar & Agenda -->
+        <div class="unified-calendar-split" id="dashboardCalendarHero">
+          <!-- Left Split: Calendar Month Matrix -->
+          <div class="cal-split-left">
               <!-- Calendar Navigation Header -->
               <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
                 <div style="display:flex; align-items:center; gap:0.5rem;">
@@ -3160,13 +3233,13 @@
               </div>
             </div>
 
-          </div>
+          </div> <!-- Close .cal-split-right -->
+        </div> <!-- Close #dashboardCalendarHero (.unified-calendar-split) -->
 
-          <!-- Right Column: Active Medications & 3 Bento Status Tiles -->
-          <div style="display:flex; flex-direction:column; gap:1rem;">
-            
-            <!-- Active Medications Card -->
-            <div class="panel-box" style="flex:1;">
+        <!-- Dashboard Multi-Column Bento Cockpit: Active Medications & Domain Status Tiles -->
+        <div class="grid-bento-cockpit" id="dashboardBentoCockpit">
+          <!-- Left Column: Active Medications Card -->
+          <div class="panel-box" style="flex:1;">
               <div class="panel-header">
                 <div style="display:flex; align-items:center; gap:0.4rem;">
                   <span>💊 Active Medications</span>
@@ -3231,9 +3304,7 @@
               </div>
             </div>
 
-          </div>
-
-        </div>
+          </div> <!-- Close #dashboardBentoCockpit -->
 
         <!-- 2. SENIOR TABLET COCKPIT: Giant Tactile & Accessible System (Step 3) -->
         <div class="senior-tablet-cockpit" id="seniorTabletCockpit">
@@ -3939,14 +4010,16 @@
             <h2 style="font-size:1.35rem; font-weight:900; margin:0;">Family & Personal Calendar</h2>
             <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Cross-domain schedule view: Meds, Bills, Fitness, and Appointments.</p>
           </div>
-          <div style="display:flex; gap:0.5rem; align-items:center;">
+          <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+            <button class="btn btn-secondary" onclick="switchPrimaryTab('home')" style="font-size:0.76rem; padding:0.32rem 0.65rem;">📅 View Dashboard Calendar</button>
             <button class="btn btn-secondary" onclick="goToToday()">Today</button>
             <button class="btn" onclick="openQuickAddModal()">➕ Add Event</button>
           </div>
         </div>
 
-        <!-- Weekly Time-Blocking Matrix (Screen 2) -->
-        <div class="cal-week-grid-table">
+        <!-- Weekly Time-Blocking Matrix (Screen 2) - Fluid Responsive Horizontal Scroll -->
+        <div class="cal-week-scroll-wrapper" style="overflow-x:auto; -webkit-overflow-scrolling:touch; width:100%; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.35);">
+          <div class="cal-week-grid-table" style="min-width:680px;">
           <!-- Header row -->
           <div class="cal-week-header-cell">Time</div>
           <div class="cal-week-header-cell">Sun 10/4</div>
@@ -4051,6 +4124,7 @@
           </div>
           <div class="cal-week-slot"></div>
         </div>
+        </div> <!-- Close .cal-week-scroll-wrapper -->
       </div>
 
       <!-- ======================================================================
@@ -4068,7 +4142,7 @@
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.25rem;">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap:1.25rem;">
           <!-- Card 1: Eleanor's Adherence Radial Ring -->
           <div class="panel-box">
             <div class="panel-header">
