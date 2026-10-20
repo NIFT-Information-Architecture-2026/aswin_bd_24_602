@@ -776,6 +776,7 @@
       display: flex;
       flex-direction: column;
       min-width: 0;
+      width: 100%;
       overflow-x: hidden;
     }
 
@@ -791,6 +792,9 @@
       position: sticky;
       top: 0;
       z-index: 90;
+      width: 100%;
+      box-sizing: border-box;
+      flex-shrink: 0;
     }
 
     .topbar-search {
@@ -3030,106 +3034,106 @@
       <!-- Main Viewport Container -->
       <main class="app-viewport">
 
-        <!-- Scenic Hero Mountain Vista Header (#masterTelemetryRibbon) -->
-        <div id="masterTelemetryRibbon" class="scenic-hero-banner">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-            <div>
-              <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(7, 10, 19, 0.65); backdrop-filter:blur(10px); padding:4px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.14); margin-bottom:0.5rem;">
-                <span class="online-indicator" style="box-shadow:0 0 10px #22c55e;"></span>
-                <span style="font-size:0.74rem; color:#86efac; font-weight:800; letter-spacing:0.03em; text-transform:uppercase;">🔒 Local Browser Storage • Evaluation Sandbox</span>
-              </div>
-              <h1 class="scenic-hero-title" id="heroGreetingTitle">Good morning, Aswin</h1>
-              <p class="scenic-hero-subtitle" id="heroDateSubtitle">"A calmer, more organised life together." • Today</p>
-            </div>
-            <div style="display:flex; align-items:center; gap:0.6rem;">
-              <button class="btn btn-secondary" style="background:rgba(15, 23, 42, 0.7); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.18); color:#fff; font-size:0.78rem; font-weight:700; border-radius:10px;" onclick="openQuickAddModal()">
-                ＋ Quick Add
-              </button>
-              <button class="btn" style="background:linear-gradient(135deg, #4f46e5, #6366f1); color:#fff; font-size:0.78rem; font-weight:800; border:none; border-radius:10px; box-shadow:0 6px 18px rgba(99,102,241,0.5);" onclick="switchPrimaryTab('reminders')">
-                💊 Med Log
-              </button>
-            </div>
+        <!-- Senior Dignity & Audio Readout Bar (Shown in Senior Mode) -->
+        <div id="seniorDignityBar" style="background:var(--emerald-bg); border:2px solid var(--emerald); padding:0.9rem 1.25rem; border-radius:14px; display:none; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem; color:var(--emerald); font-weight:800; font-size:1.1rem;">
+            <span>🛡️ Monitored by Caregiver John Vance</span>
+            <span class="pill-badge" style="background:var(--surface); color:var(--emerald); font-size:0.85rem;">Adherence 96%</span>
           </div>
-
-          <div class="scenic-chips-row">
-            <!-- Chip 1: Eleanor Vance -->
-            <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Eleanor's Health Stream">
-              <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #22c55e; flex-shrink:0;">EV</div>
-              <div>
-                <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;">
-                  Eleanor Vance <span class="online-indicator" style="box-shadow:0 0 8px #22c55e;"></span>
-                </div>
-                <div style="font-size:0.68rem; color:#86efac; font-weight:700;">96% adherence • All good today</div>
-              </div>
-            </div>
-
-            <!-- Chip 2: John Vance -->
-            <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Caregiver Stream">
-              <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #0ea5e9, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #38bdf8; flex-shrink:0;">JV</div>
-              <div>
-                <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;">
-                  John Vance <span class="online-indicator" style="box-shadow:0 0 8px #38bdf8;"></span>
-                </div>
-                <div style="font-size:0.68rem; color:#67e8f9; font-weight:700;">Caregiver Profile • Ready</div>
-              </div>
-            </div>
-
-            <!-- Chip 3: Home & Devices -->
-            <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="All Home Systems & IoT Sensors Active">
-              <div style="width:30px; height:30px; border-radius:50%; background:rgba(99,102,241,0.25); border:1px solid rgba(99,102,241,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
-              </div>
-              <div>
-                <div style="font-size:0.8rem; font-weight:800; color:#fff;">3 Household Profiles</div>
-                <div style="font-size:0.68rem; color:#cbd5e1;">Local encrypted storage</div>
-              </div>
-            </div>
-
-            <!-- Chip 4: Needs Attention -->
-            <div class="scenic-chip" onclick="switchPrimaryTab('home')" title="2 items require your attention">
-              <div style="width:30px; height:30px; border-radius:50%; background:rgba(234,179,8,0.25); border:1px solid rgba(234,179,8,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fde047" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              </div>
-              <div>
-                <div style="font-size:0.8rem; font-weight:800; color:#fde047;">2 items need attention</div>
-                <div style="font-size:0.68rem; color:#cbd5e1;">Doctor Appt 11 AM • ConEd Bill</div>
-              </div>
-            </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button class="btn btn-secondary" style="background:var(--surface); border:2px solid var(--emerald); font-weight:800;" onclick="speakSeniorSchedule()">
+              🗣️ Listen to Schedule (Voice)
+            </button>
+            <button class="btn btn-secondary" id="seniorPrivacyBtn" style="background:var(--surface); border:2px solid var(--emerald); font-weight:800;" onclick="openPrivacyPauseModal()">
+              🔒 Pause Telemetry
+            </button>
           </div>
         </div>
 
-      <!-- Senior Dignity & Audio Readout Bar (Shown in Senior Mode) -->
-      <div id="seniorDignityBar" style="background:var(--emerald-bg); border:2px solid var(--emerald); padding:0.9rem 1.25rem; border-radius:14px; display:none; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
-        <div style="display:flex; align-items:center; gap:0.6rem; color:var(--emerald); font-weight:800; font-size:1.1rem;">
-          <span>🛡️ Monitored by Caregiver John Vance</span>
-          <span class="pill-badge" style="background:var(--surface); color:var(--emerald); font-size:0.85rem;">Adherence 96%</span>
+        <!-- Caregiver Telemetry Active Bar (Shown in Caregiver Mode) -->
+        <div class="caregiver-bar" id="caregiverBar">
+          <div>
+            <strong>🛡️ Caregiver Telemetry Active:</strong> Monitored Patient: <em>Eleanor Vance (Senior Profile)</em>
+          </div>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);">Adherence: 96%</span>
+            <span class="pill-badge" style="background:rgba(6,182,212,0.15); color:var(--cyan);" id="cgLiveStatus">🟢 Stream: Live</span>
+            <button class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.74rem;" onclick="callSeniorPatient()">📞 Call Eleanor</button>
+          </div>
         </div>
-        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-          <button class="btn btn-secondary" style="background:var(--surface); border:2px solid var(--emerald); font-weight:800;" onclick="speakSeniorSchedule()">
-            🗣️ Listen to Schedule (Voice)
-          </button>
-          <button class="btn btn-secondary" id="seniorPrivacyBtn" style="background:var(--surface); border:2px solid var(--emerald); font-weight:800;" onclick="openPrivacyPauseModal()">
-            🔒 Pause Telemetry
-          </button>
-        </div>
-      </div>
 
-      <!-- Caregiver Telemetry Active Bar (Shown in Caregiver Mode) -->
-      <div class="caregiver-bar" id="caregiverBar">
-        <div>
-          <strong>🛡️ Caregiver Telemetry Active:</strong> Monitored Patient: <em>Eleanor Vance (Senior Profile)</em>
-        </div>
-        <div style="display:flex; gap:0.5rem; align-items:center;">
-          <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);">Adherence: 96%</span>
-          <span class="pill-badge" style="background:rgba(6,182,212,0.15); color:var(--cyan);" id="cgLiveStatus">🟢 Stream: Live</span>
-          <button class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.74rem;" onclick="callSeniorPatient()">📞 Call Eleanor</button>
-        </div>
-      </div>
+        <!-- ======================================================================
+             TAB VIEW 1: 📅 HOME CALENDAR AGGREGATOR (Bento Cockpit)
+             ====================================================================== -->
+        <div class="app-view-panel active-view" id="view_home">
 
-      <!-- ======================================================================
-           TAB VIEW 1: 📅 HOME CALENDAR AGGREGATOR (Bento Cockpit)
-           ====================================================================== -->
-      <div class="app-view-panel active-view" id="view_home">
+          <!-- Scenic Hero Mountain Vista Header (#masterTelemetryRibbon) -->
+          <div id="masterTelemetryRibbon" class="scenic-hero-banner">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+              <div>
+                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(7, 10, 19, 0.65); backdrop-filter:blur(10px); padding:4px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.14); margin-bottom:0.5rem;">
+                  <span class="online-indicator" style="box-shadow:0 0 10px #22c55e;"></span>
+                  <span style="font-size:0.74rem; color:#86efac; font-weight:800; letter-spacing:0.03em; text-transform:uppercase;">🔒 Local Browser Storage • Evaluation Sandbox</span>
+                </div>
+                <h1 class="scenic-hero-title" id="heroGreetingTitle">Good morning, Aswin</h1>
+                <p class="scenic-hero-subtitle" id="heroDateSubtitle">"A calmer, more organised life together." • Today</p>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.6rem;">
+                <button class="btn btn-secondary" style="background:rgba(15, 23, 42, 0.7); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.18); color:#fff; font-size:0.78rem; font-weight:700; border-radius:10px;" onclick="openQuickAddModal()">
+                  ＋ Quick Add
+                </button>
+                <button class="btn" style="background:linear-gradient(135deg, #4f46e5, #6366f1); color:#fff; font-size:0.78rem; font-weight:800; border:none; border-radius:10px; box-shadow:0 6px 18px rgba(99,102,241,0.5);" onclick="switchPrimaryTab('reminders')">
+                  💊 Med Log
+                </button>
+              </div>
+            </div>
+
+            <div class="scenic-chips-row">
+              <!-- Chip 1: Eleanor Vance -->
+              <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Eleanor's Health Stream">
+                <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #22c55e; flex-shrink:0;">EV</div>
+                <div>
+                  <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;">
+                    Eleanor Vance <span class="online-indicator" style="box-shadow:0 0 8px #22c55e;"></span>
+                  </div>
+                  <div style="font-size:0.68rem; color:#86efac; font-weight:700;">96% adherence • All good today</div>
+                </div>
+              </div>
+
+              <!-- Chip 2: John Vance -->
+              <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Caregiver Stream">
+                <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #0ea5e9, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #38bdf8; flex-shrink:0;">JV</div>
+                <div>
+                  <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;">
+                    John Vance <span class="online-indicator" style="box-shadow:0 0 8px #38bdf8;"></span>
+                  </div>
+                  <div style="font-size:0.68rem; color:#67e8f9; font-weight:700;">Caregiver Profile • Ready</div>
+                </div>
+              </div>
+
+              <!-- Chip 3: Home & Devices -->
+              <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="All Home Systems & IoT Sensors Active">
+                <div style="width:30px; height:30px; border-radius:50%; background:rgba(99,102,241,0.25); border:1px solid rgba(99,102,241,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+                </div>
+                <div>
+                  <div style="font-size:0.8rem; font-weight:800; color:#fff;">3 Household Profiles</div>
+                  <div style="font-size:0.68rem; color:#cbd5e1;">Local encrypted storage</div>
+                </div>
+              </div>
+
+              <!-- Chip 4: Needs Attention -->
+              <div class="scenic-chip" onclick="switchPrimaryTab('home')" title="2 items require your attention">
+                <div style="width:30px; height:30px; border-radius:50%; background:rgba(234,179,8,0.25); border:1px solid rgba(234,179,8,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fde047" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div>
+                  <div style="font-size:0.8rem; font-weight:800; color:#fde047;">2 items need attention</div>
+                  <div style="font-size:0.68rem; color:#cbd5e1;">Doctor Appt 11 AM • ConEd Bill</div>
+                </div>
+              </div>
+            </div>
+          </div>
         <!-- Primary Dashboard Centerpiece: Full-Width Unified Interactive Calendar & Agenda -->
         <div class="unified-calendar-split" id="dashboardCalendarHero">
           <!-- Left Split: Calendar Month Matrix -->
@@ -3231,9 +3235,8 @@
                   Routine →
                 </button>
               </div>
-            </div>
+            </div> <!-- Close .cal-split-right -->
 
-          </div> <!-- Close .cal-split-right -->
         </div> <!-- Close #dashboardCalendarHero (.unified-calendar-split) -->
 
         <!-- Dashboard Multi-Column Bento Cockpit: Active Medications & Domain Status Tiles -->
@@ -4038,27 +4041,29 @@
           <div class="cal-week-grid-table" style="min-width:680px;">
           <!-- Header row -->
           <div class="cal-week-header-cell">Time</div>
-          <div class="cal-week-header-cell">Sun 10/4</div>
-          <div class="cal-week-header-cell">Mon 10/5</div>
-          <div class="cal-week-header-cell active-day-col">Tue 10/6 (Today)</div>
-          <div class="cal-week-header-cell">Wed 10/7</div>
-          <div class="cal-week-header-cell">Thu 10/8</div>
-          <div class="cal-week-header-cell">Fri 10/9</div>
-          <div class="cal-week-header-cell">Sat 10/10</div>
+          <div class="cal-week-header-cell" id="calWeekHeader_0">Sun 10/18</div>
+          <div class="cal-week-header-cell" id="calWeekHeader_1">Mon 10/19</div>
+          <div class="cal-week-header-cell" id="calWeekHeader_2">Tue 10/20</div>
+          <div class="cal-week-header-cell active-day-col" id="calWeekHeader_3">Wed 10/21 (Today)</div>
+          <div class="cal-week-header-cell" id="calWeekHeader_4">Thu 10/22</div>
+          <div class="cal-week-header-cell" id="calWeekHeader_5">Fri 10/23</div>
+          <div class="cal-week-header-cell" id="calWeekHeader_6">Sat 10/24</div>
 
           <!-- 08:00 AM Slot -->
           <div class="cal-week-time-cell">08:00</div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
+            <div class="cal-event-pill-block pill-med">💊 Metformin 500mg</div>
+          </div>
+          <div class="cal-week-slot">
             <div class="cal-event-pill-block pill-med" onclick="switchPrimaryTab('reminders')">
               <strong>💊 08:30</strong> Metformin 500mg
             </div>
           </div>
           <div class="cal-week-slot">
-            <div class="cal-event-pill-block pill-med">💊 Metformin</div>
+            <div class="cal-event-pill-block pill-health">🩺 Fasting Lab (8 AM)</div>
           </div>
-          <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
 
@@ -4068,12 +4073,12 @@
           <div class="cal-week-slot">
             <div class="cal-event-pill-block pill-work">💼 Sprint Planning</div>
           </div>
+          <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
             <div class="cal-event-pill-block pill-fitness" onclick="switchPrimaryTab('fitness')">
               <strong>🏃 10:00</strong> 5km Morning Run
             </div>
           </div>
-          <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
             <div class="cal-event-pill-block pill-fitness">🏃 Gym Workout</div>
           </div>
@@ -4086,6 +4091,7 @@
           <div class="cal-week-time-cell">11:00</div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
             <div class="cal-event-pill-block pill-health" onclick="switchPrimaryTab('home')">
               <strong>🩺 11:00</strong> Dr. Martinez (Telehealth)
@@ -4094,10 +4100,10 @@
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
-          <div class="cal-week-slot"></div>
 
           <!-- 01:00 PM Slot -->
           <div class="cal-week-time-cell">13:00</div>
+          <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
@@ -4106,10 +4112,10 @@
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
-          <div class="cal-week-slot"></div>
 
           <!-- 04:00 PM Slot -->
           <div class="cal-week-time-cell">16:00</div>
+          <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
@@ -4117,7 +4123,6 @@
               <strong>💳 16:00</strong> ConEd Electric Due ($142.50)
             </div>
           </div>
-          <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
             <div class="cal-event-pill-block pill-bill">💳 Water Utility ($55)</div>
           </div>
@@ -4128,12 +4133,12 @@
           <div class="cal-week-time-cell">19:00</div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
+          <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
             <div class="cal-event-pill-block pill-family" onclick="callSeniorPatient()">
               <strong>👨‍👩‍👧 19:00</strong> Family Video Check-in
             </div>
           </div>
-          <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
             <div class="cal-event-pill-block pill-family">👨‍👩‍👧 Movie Night</div>
@@ -4141,6 +4146,18 @@
           <div class="cal-week-slot"></div>
         </div>
         </div> <!-- Close .cal-week-scroll-wrapper -->
+
+        <!-- Quick Day Inspection & Schedule Tips -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; padding:0.85rem 1.25rem; background:var(--surface); border:1px solid var(--surface-border); border-radius:12px; margin-top:1rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem; font-size:0.82rem; color:var(--text-muted);">
+            <span>💡 <strong>Tip:</strong> Cross-domain schedule aggregates Meds, Bills, Fitness & Appointments.</span>
+            <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.2rem 0.5rem;" onclick="switchPrimaryTab('home')">Home Dashboard</button>
+          </div>
+          <div style="display:flex; gap:0.4rem;">
+            <button class="btn btn-secondary" style="font-size:0.74rem;" onclick="printDoctorSummary()">📋 Export Schedule (PDF)</button>
+            <button class="btn" style="font-size:0.74rem;" onclick="openQuickAddModal()">➕ Add Event</button>
+          </div>
+        </div>
       </div>
 
       <!-- ======================================================================
@@ -4345,6 +4362,7 @@
     </nav>
 
     </div> <!-- Close .app-main-content -->
+  </div> <!-- Close #appContainer (.app-layout-root) -->
 
   <!-- ==========================================================================
        MODALS: INGESTION, FAMILY HUB, CASCADE EDIT
@@ -5083,12 +5101,14 @@
       pillsData = JSON.parse(JSON.stringify(defaultPillsData));
       billsData = JSON.parse(JSON.stringify(defaultBillsData));
       expensesData = JSON.parse(JSON.stringify(defaultExpensesData));
+      appointmentsData = JSON.parse(JSON.stringify(defaultAppointmentsData));
       monthlySalary = 5000.00;
       householdTasks = JSON.parse(JSON.stringify(defaultHouseholdTasks));
       localStorage.removeItem('omnitask_household_tasks');
       localStorage.removeItem('omnitask_pills');
       localStorage.removeItem('omnitask_bills');
       localStorage.removeItem('omnitask_expenses');
+      localStorage.removeItem('omnitask_appointments');
       localStorage.removeItem('omnitask_monthly_salary');
       streakCount = 7;
       localStorage.setItem('omnitask_streak', '7');
@@ -5130,8 +5150,8 @@
       }
     ];
 
-    // 6. Dynamic Appointments Data
-    let appointmentsData = [
+    // 6. Dynamic Appointments Data (Pristine Clinical Sample Records)
+    const defaultAppointmentsData = [
       {
         id: "apt_1",
         title: "Cardiology Routine Checkup",
@@ -5146,6 +5166,8 @@
       }
     ];
 
+    let appointmentsData = JSON.parse(JSON.stringify(defaultAppointmentsData));
+
     let streakCount = 7;
     let lastActionUndo = null;
     let editingTarget = null;
@@ -5157,7 +5179,11 @@
     function loadPersistedData() {
       try {
         const p = localStorage.getItem('omnitask_pills');
-        if (p) pillsData = JSON.parse(p);
+        if (p) {
+          const parsedP = JSON.parse(p);
+          const sanitizedP = parsedP.filter(item => !['dolo', 'citrizen', 'levo cltr', 'hgdgt', 'test'].includes((item.name || '').toLowerCase().trim()));
+          pillsData = (sanitizedP.length > 0) ? sanitizedP : JSON.parse(JSON.stringify(defaultPillsData));
+        }
         const b = localStorage.getItem('omnitask_bills');
         if (b) billsData = JSON.parse(b);
         const e = localStorage.getItem('omnitask_expenses');
@@ -5174,7 +5200,11 @@
         const h = localStorage.getItem('omnitask_habits');
         if (h) habitsData = JSON.parse(h);
         const a = localStorage.getItem('omnitask_appointments');
-        if (a) appointmentsData = JSON.parse(a);
+        if (a) {
+          const parsedA = JSON.parse(a);
+          const sanitizedA = parsedA.filter(item => !['dr reddy', 'dr snethil', 'test'].includes((item.title || '').toLowerCase().trim()));
+          appointmentsData = (sanitizedA.length > 0) ? sanitizedA : JSON.parse(JSON.stringify(defaultAppointmentsData));
+        }
         const s = localStorage.getItem('omnitask_security');
         if (s) securityConfig = JSON.parse(s);
         const st = localStorage.getItem('omnitask_streak');
@@ -5376,6 +5406,10 @@
       const targetView = document.getElementById(`view_${tab}`);
       if (targetView) targetView.classList.add('active-view');
 
+      if (tab === 'calendar') {
+        updateDedicatedWeekHeaders();
+      }
+
       saveSessionState(true);
 
       const tabNames = {
@@ -5486,8 +5520,35 @@
        DYNAMIC RENDERING ENGINES
        ========================================================================== */
 
+    /* Dedicated Week Calendar Header Sync */
+    function updateDedicatedWeekHeaders() {
+      const today = new Date();
+      const todayDay = today.getDay(); // 0 is Sun
+      const sunday = new Date(today);
+      sunday.setDate(today.getDate() - todayDay);
+
+      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      for (let i = 0; i < 7; i++) {
+        const cur = new Date(sunday);
+        cur.setDate(sunday.getDate() + i);
+        const m = cur.getMonth() + 1;
+        const d = cur.getDate();
+        const isToday = (cur.toDateString() === today.toDateString());
+        const cell = document.getElementById(`calWeekHeader_${i}`);
+        if (cell) {
+          cell.textContent = `${dayNames[i]} ${m}/${d}${isToday ? ' (Today)' : ''}`;
+          if (isToday) {
+            cell.classList.add('active-day-col');
+          } else {
+            cell.classList.remove('active-day-col');
+          }
+        }
+      }
+    }
+
     function renderAllViews() {
       renderCalendarEngine();
+      updateDedicatedWeekHeaders();
       renderHouseholdTasks();
       renderPills();
       renderCockpitMedications();
@@ -8106,6 +8167,7 @@
       calCurrentMonth = now.getMonth();
       calSelectedDay = now.getDate();
       syncCalendarControls();
+      updateDedicatedWeekHeaders();
       selectCalendarDay(now.getDate(), now.getMonth(), now.getFullYear());
     }
 
