@@ -906,7 +906,7 @@
     .scenic-hero-banner {
       background: linear-gradient(180deg, rgba(7, 10, 19, 0.45) 0%, rgba(7, 10, 19, 0.92) 100%),
                   radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 60%),
-                  url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80') center 35%/cover no-repeat;
+                  linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.90) 50%, rgba(15, 23, 42, 0.98) 100%) center 35%/cover no-repeat;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 22px;
       padding: 1.85rem 2.2rem;
@@ -2874,7 +2874,7 @@
       <div class="family-members-list">
         <!-- Eleanor Vance -->
         <div class="family-member-item" onclick="switchPrimaryTab('oversight')" title="Eleanor Vance (Senior Mode) • 96% Adherence">
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" class="member-avatar" alt="Eleanor">
+          <div class="member-avatar avatar-badge" style="background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid var(--emerald); border-radius:50%; flex-shrink:0;">EV</div>
           <div class="member-info">
             <div class="member-name">Eleanor Vance</div>
             <div class="member-role" style="color:var(--emerald);">Senior • 96% Adherence</div>
@@ -2884,7 +2884,7 @@
 
         <!-- John Vance -->
         <div class="family-member-item" onclick="switchPrimaryTab('oversight')" title="John Vance (Caregiver) • Online">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" class="member-avatar" alt="John">
+          <div class="member-avatar avatar-badge" style="background:linear-gradient(135deg, #0ea5e9, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid var(--accent); border-radius:50%; flex-shrink:0;">JV</div>
           <div class="member-info">
             <div class="member-name">John Vance</div>
             <div class="member-role" style="color:var(--cyan);">Caregiver • Active</div>
@@ -2894,7 +2894,7 @@
 
         <!-- Aswin -->
         <div class="family-member-item active-user" onclick="switchPrimaryTab('home')" title="Aswin (Account Owner / Power User)">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" class="member-avatar" alt="Aswin">
+          <div class="member-avatar avatar-badge" style="background:linear-gradient(135deg, #8b5cf6, #d946ef); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid var(--purple); border-radius:50%; flex-shrink:0;">AV</div>
           <div class="member-info">
             <div class="member-name">Aswin</div>
             <div class="member-role" style="color:var(--accent);">Master • You</div>
@@ -2909,7 +2909,7 @@
 
       <!-- Bottom System Status Pill -->
       <div style="margin-top:auto; padding-top:1rem; border-top:1px solid var(--surface-border); display:flex; align-items:center; justify-content:space-between; font-size:0.7rem; color:var(--text-muted);">
-        <span>v2.4 Pro</span>
+        <span>v4.4 Prototype</span>
         <span style="color:var(--emerald);">● Connected</span>
       </div>
     </aside>
@@ -2936,7 +2936,7 @@
 
         <!-- Date & Weather Pill -->
         <div class="topbar-date-weather">
-          <span id="topbarDateStr">Tue, Oct 6, 2026</span>
+          <span id="topbarDateStr">Calendar OS</span>
           <span class="weather-pill" id="weatherPillDisplay">☀️ 22°C Sunny</span>
         </div>
 
@@ -2969,7 +2969,7 @@
 
           <!-- User Profile Avatar Pill -->
           <button class="user-avatar-btn" onclick="toggleProfileDropdown()" id="userProfileBtn">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" class="topbar-avatar" alt="Aswin">
+            <div class="topbar-avatar" style="background:linear-gradient(135deg, #8b5cf6, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border-radius:50%; flex-shrink:0;">AV</div>
             <span id="activeUserName" style="font-weight:800; font-size:0.84rem; color:#ffffff; text-shadow:0 1px 2px rgba(0,0,0,0.6);">Aswin</span>
             <span style="font-size:0.68rem; opacity:0.8; color:#ffffff;">▾</span>
           </button>
@@ -3039,7 +3039,7 @@
                 <span style="font-size:0.74rem; color:#86efac; font-weight:800; letter-spacing:0.03em; text-transform:uppercase;">🔒 Local Encrypted Vault • Private & Offline</span>
               </div>
               <h1 class="scenic-hero-title" id="heroGreetingTitle">Good morning, Aswin</h1>
-              <p class="scenic-hero-subtitle" id="heroDateSubtitle">"A calmer, more organised life together." • Tuesday, October 6</p>
+              <p class="scenic-hero-subtitle" id="heroDateSubtitle">"A calmer, more organised life together." • Today</p>
             </div>
             <div style="display:flex; align-items:center; gap:0.6rem;">
               <button class="btn btn-secondary" style="background:rgba(15, 23, 42, 0.7); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.18); color:#fff; font-size:0.78rem; font-weight:700; border-radius:10px;" onclick="openQuickAddModal()">
@@ -3054,7 +3054,7 @@
           <div class="scenic-chips-row">
             <!-- Chip 1: Eleanor Vance -->
             <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Eleanor's Health Stream">
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid #22c55e;" alt="Eleanor">
+              <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #22c55e; flex-shrink:0;">EV</div>
               <div>
                 <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;">
                   Eleanor Vance <span class="online-indicator" style="box-shadow:0 0 8px #22c55e;"></span>
@@ -3065,7 +3065,7 @@
 
             <!-- Chip 2: John Vance -->
             <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Caregiver Stream">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" style="width:30px; height:30px; border-radius:50%; object-fit:cover; border:2px solid #38bdf8;" alt="John">
+              <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #0ea5e9, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #38bdf8; flex-shrink:0;">JV</div>
               <div>
                 <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;">
                   John Vance <span class="online-indicator" style="box-shadow:0 0 8px #38bdf8;"></span>
@@ -3185,7 +3185,7 @@
                 <div style="display:flex; justify-content:space-between; align-items:flex-start;">
                   <div>
                     <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-                      <h3 style="font-size:1.25rem; font-weight:900; color:#ffffff; letter-spacing:-0.02em; margin:0;" id="calSelectedDateText">Thursday, October 15, 2026</h3>
+                      <h3 style="font-size:1.25rem; font-weight:900; color:#ffffff; letter-spacing:-0.02em; margin:0;" id="calSelectedDateText">Today's Schedule</h3>
                       <span class="pill-badge" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:#e2e8f0; font-size:0.72rem; font-weight:800; padding:3px 9px; border-radius:20px; backdrop-filter:blur(8px);" id="timelineCountBadge">13 Items Aggregated</span>
                     </div>
                     <div id="calSelectedDateSub" style="font-size:0.75rem; color:var(--text-muted); margin-top:3px;">Here's what's planned for today.</div>
@@ -3221,7 +3221,7 @@
               <!-- Motivational Botanical Quote Card (Screen 3) -->
               <div class="motivational-banner-card" style="margin-top:0.75rem;">
                 <div style="display:flex; align-items:center; gap:0.75rem;">
-                  <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=120&q=80" alt="Botanical Plant" style="width:46px; height:46px; border-radius:10px; object-fit:cover; flex-shrink:0; border:1px solid rgba(255,255,255,0.1);">
+                  <div style="width:46px; height:46px; border-radius:10px; background:linear-gradient(135deg, rgba(16,185,129,0.22), rgba(6,182,212,0.18)); border:1px solid rgba(16,185,129,0.35); display:inline-flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">ðŸŒ±</div>
                   <div>
                     <div style="font-size:0.82rem; font-weight:800; color:var(--text); font-style:italic;">"Small consistent actions create big results"</div>
                     <div style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">5 of 8 scheduled tasks completed today. Keep up the momentum!</div>
@@ -3258,19 +3258,19 @@
 
             <!-- 3 Bottom Bento Tiles Row -->
             <div class="bento-tiles-row">
-              <!-- Tile 1: Bills & Expenses -->
+              <!-- Tile 1: Bills & Expenses (Dynamically updated) -->
               <div class="bento-tile" onclick="switchPrimaryTab('expense')">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                   <div class="bento-icon-box" style="background:rgba(245,158,11,0.16); color:#f59e0b; border:1px solid rgba(245,158,11,0.35); box-shadow:0 0 16px rgba(245,158,11,0.2);">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                   </div>
-                  <span class="pill-badge" style="background:rgba(245,158,11,0.15); color:#fbbf24; font-size:0.68rem; font-weight:800;">2 pending</span>
+                  <span class="pill-badge" id="bentoBillsPendingCount" style="background:rgba(245,158,11,0.15); color:#fbbf24; font-size:0.68rem; font-weight:800;">2 pending</span>
                 </div>
                 <div>
                   <div style="font-size:0.8rem; font-weight:800; color:var(--text);">Bills & Expenses</div>
-                  <div style="font-size:1.15rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:2px; color:#f8fafc;">$124.50</div>
+                  <div style="font-size:1.15rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:2px; color:#f8fafc;" id="bentoBillsTotalAmount">$199.99</div>
                 </div>
-                <div style="font-size:0.72rem; color:var(--accent); font-weight:800; display:flex; align-items:center; gap:3px;">Pay Bills <span>→</span></div>
+                <div style="font-size:0.72rem; color:var(--accent); font-weight:800; display:flex; align-items:center; gap:3px;">Manage Ledger <span>→</span></div>
               </div>
 
               <!-- Tile 2: Fitness & Habits -->
@@ -3288,17 +3288,17 @@
                 <div style="font-size:0.72rem; color:#c084fc; font-weight:800; display:flex; align-items:center; gap:3px;">Log Workout <span>→</span></div>
               </div>
 
-              <!-- Tile 3: Household Tasks -->
+              <!-- Tile 3: Household Tasks (Interactive State Bound) -->
               <div class="bento-tile" onclick="switchPrimaryTab('oversight')">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                   <div class="bento-icon-box" style="background:rgba(16,185,129,0.16); color:#34d399; border:1px solid rgba(16,185,129,0.35); box-shadow:0 0 16px rgba(16,185,129,0.2);">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
                   </div>
-                  <span class="pill-badge" style="background:rgba(244,63,94,0.15); color:#fda4af; font-size:0.68rem; font-weight:800;">2 urgent</span>
+                  <span class="pill-badge" id="bentoHouseholdBadge" style="background:rgba(244,63,94,0.15); color:#fda4af; font-size:0.68rem; font-weight:800;">2 urgent</span>
                 </div>
                 <div>
                   <div style="font-size:0.8rem; font-weight:800; color:var(--text);">Household Tasks</div>
-                  <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">3 open tasks</div>
+                  <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;" id="bentoHouseholdDesc">3 pending tasks</div>
                 </div>
                 <div style="font-size:0.72rem; color:#38bdf8; font-weight:800; display:flex; align-items:center; gap:3px;">View Tasks <span>→</span></div>
               </div>
@@ -3317,7 +3317,7 @@
               <div>
                 <h2 style="font-size:1.85rem; font-weight:900; margin:0; color:var(--text); line-height:1.2;" id="seniorGreetingTitle">Good Morning, Eleanor! 🌸</h2>
                 <div style="font-size:1.15rem; color:var(--text); margin-top:4px;" id="seniorDateSubtitle">
-                  Today is <strong>Tuesday, October 6</strong> • Your caregiver <strong>John Vance</strong> is online.
+                  Today is <strong>Focused Date</strong> • Your caregiver <strong>John Vance</strong> is online.
                 </div>
               </div>
             </div>
@@ -3433,6 +3433,20 @@
         <!-- 3. CAREGIVER TELEMETRY COCKPIT: Real-Time Guardian Stream & Escalation Ladder (Step 4) -->
         <div class="caregiver-telemetry-cockpit" id="caregiverCockpit">
           
+          <!-- Patient Privacy Pause Active Alert Banner -->
+          <div id="cgPrivacyPauseAlertBanner" style="display:none; background:rgba(245,158,11,0.16); border:1px solid rgba(245,158,11,0.4); border-radius:12px; padding:0.85rem 1.15rem; margin-bottom:1rem; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <span style="font-size:1.5rem;">🟡</span>
+              <div>
+                <div style="font-weight:800; color:#fbbf24; font-size:0.88rem;">Patient Privacy Pause Active (Eleanor Vance)</div>
+                <div style="font-size:0.74rem; color:#cbd5e1; margin-top:2px;">Routine sensor streaming paused by patient. Emergency SOS & Fallback safety alarms remain 100% active.</div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span class="pill-badge" id="cgPauseCountdownBadge" style="background:rgba(245,158,11,0.25); color:#fef08a; font-weight:800; font-family:'JetBrains Mono',monospace;">Pause Active</span>
+            </div>
+          </div>
+
           <!-- Guardian Stream Header -->
           <div class="cg-guardian-header">
             <div style="display:flex; align-items:center; gap:1rem;">
@@ -3513,7 +3527,7 @@
               <div>
                 <h4 style="font-size:1.05rem; font-weight:900; margin:0; display:flex; align-items:center; gap:0.4rem;">
                   <span>⚡ Missed Dose Escalation Protocol</span>
-                  <span style="font-size:0.75rem; font-weight:600; color:var(--text-muted);">(Life Safety IA Rule 3.3)</span>
+                  <span style="font-size:0.75rem; font-weight:600; color:var(--text-muted);">(Caregiver Safety Protocol)</span>
                 </h4>
                 <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">
                   Automatic 4-stage escalation triggers if scheduled medication is unconfirmed.
@@ -3822,7 +3836,7 @@
               <span>🏋️ Workout Routine Runner</span>
               <div style="display:flex; gap:0.4rem; align-items:center;">
                 <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.25rem 0.5rem;" onclick="openQuickAddModal('fitness')">➕ Add Workout</button>
-                <span class="pill-badge" style="background:var(--purple-bg); color:var(--purple);" id="streakBadgeText">4-Day Streak</span>
+                <span class="pill-badge" style="background:var(--purple-bg); color:var(--purple);" id="streakBadgeText">7-Day Streak</span>
               </div>
             </div>
 
@@ -3957,10 +3971,24 @@
 
           </div>
 
+          <!-- Card 3B: Interactive Household & Maintenance Tasks -->
+          <div class="panel-box" style="grid-column: 1 / -1;">
+            <div class="panel-header">
+              <span>🧹 Household & Safety Task Management</span>
+              <span class="pill-badge" id="householdTaskHeaderBadge" style="background:var(--amber-bg); color:var(--amber);">3 Open Tasks</span>
+            </div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.75rem;">
+              Interactive safety and maintenance tasks with persistent local storage state.
+            </div>
+            <div id="householdTasksContainer" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:0.75rem;">
+              <!-- Dynamic interactive task cards rendered by JS -->
+            </div>
+          </div>
+
           <!-- Card 4: Missed Dose Escalation Protocol (T0 -> T+5m -> T+12m) -->
           <div class="panel-box" style="grid-column: 1 / -1;">
             <div class="panel-header">
-              <span>⚡ Missed Dose Escalation Protocol (Life Safety IA Rule 3.3)</span>
+              <span>⚡ Missed Dose Escalation Protocol (Caregiver Safety Protocol)</span>
               <span class="pill-badge" id="escalationStatusBadge" style="background:var(--emerald-bg); color:var(--emerald);">Status: Active & Nominal</span>
             </div>
 
@@ -4249,15 +4277,15 @@
               <div style="display:flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.03); padding:0.65rem 0.85rem; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
                 <div style="width:36px; height:36px; border-radius:10px; background:rgba(16,185,129,0.15); color:var(--emerald); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;">🔥</div>
                 <div>
-                  <div style="font-size:0.84rem; font-weight:800; color:#ffffff;">4-Day Perfect Adherence Streak</div>
+                  <div style="font-size:0.84rem; font-weight:800; color:#ffffff;">7-Day Perfect Adherence Streak</div>
                   <div style="font-size:0.7rem; color:#cbd5e1;">Zero missed doses across morning & evening routines.</div>
                 </div>
               </div>
               <div style="display:flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.03); padding:0.65rem 0.85rem; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
                 <div style="width:36px; height:36px; border-radius:10px; background:rgba(99,102,241,0.15); color:#a5b4fc; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;">🩺</div>
                 <div>
-                  <div style="font-size:0.84rem; font-weight:800; color:#ffffff;">Next Lab: Blood Panel & Fasting</div>
-                  <div style="font-size:0.7rem; color:#cbd5e1;">Quest Diagnostics • Scheduled Oct 22 at 08:00 AM.</div>
+                  <div style="font-size:0.84rem; font-weight:800; color:#ffffff;">Next Clinical Lab Work</div>
+                  <div style="font-size:0.7rem; color:#cbd5e1;" id="insightsLabText">Quest Diagnostics • Scheduled Comprehensive Metabolic Panel</div>
                 </div>
               </div>
               <div style="display:flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.03); padding:0.65rem 0.85rem; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
@@ -4270,32 +4298,32 @@
             </div>
           </div>
 
-          <!-- Card 4: Monthly Spend Breakdown (Full Width) -->
+          <!-- Card 4: Monthly Spend Breakdown (Dynamically Bound to Single Source of Truth) -->
           <div class="panel-box" style="grid-column: 1 / -1; margin-top:0.25rem;">
             <div class="panel-header">
-              <span>💳 October Financial Summary by Category</span>
-              <span class="pill-badge" style="background:var(--surface-hover); color:var(--text);">$2,840.50 Total</span>
+              <span>💳 Monthly Financial Summary by Category</span>
+              <span class="pill-badge" id="insightsTotalSpendBadge" style="background:var(--surface-hover); color:var(--text);">$333.10 Total</span>
             </div>
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:0.5rem;">
+            <div id="insightsCategoryGrid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:0.5rem;">
               <div class="module-card">
                 <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Utilities & Bills</div>
-                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$642.50</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatUtilityAmt">$142.50</div>
                 <div style="font-size:0.72rem; color:var(--emerald); margin-top:2px;">● On track vs $700 budget</div>
               </div>
               <div class="module-card">
                 <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Pharmacy & Medical</div>
-                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$218.00</div>
-                <div style="font-size:0.72rem; color:var(--cyan); margin-top:2px;">● Fully reimbursed ($45 pending)</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatMedicalAmt">$25.00</div>
+                <div style="font-size:0.72rem; color:var(--cyan); margin-top:2px;">● Tracked from clinical Rx refills</div>
               </div>
               <div class="module-card">
-                <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Groceries & Household</div>
-                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$840.00</div>
-                <div style="font-size:0.72rem; color:var(--amber); margin-top:2px;">● 84% of monthly target</div>
+                <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Groceries & Food</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatFoodAmt">$68.20</div>
+                <div style="font-size:0.72rem; color:var(--amber); margin-top:2px;">● Normal spend velocity</div>
               </div>
               <div class="module-card">
-                <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Discretionary & Leisure</div>
-                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;">$1,140.00</div>
-                <div style="font-size:0.72rem; color:var(--purple); margin-top:2px;">● Normal spend velocity</div>
+                <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Household & Travel</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatHouseholdAmt">$97.40</div>
+                <div style="font-size:0.72rem; color:var(--purple); margin-top:2px;">● Combined supplies & transit</div>
               </div>
             </div>
           </div>
@@ -4367,12 +4395,12 @@
       </div>
 
       <div class="form-group">
-        <label id="addTitleLabel">Title / Name (Mandatory Field 1)</label>
+        <label id="addTitleLabel">Title / Name</label>
         <input type="text" class="form-input" id="addTitleInput" placeholder="e.g. Lisinopril 10mg or Internet Bill">
       </div>
 
       <div class="form-group">
-        <label id="addAmountLabel">Amount / Dosage / Schedule (Mandatory Field 2)</label>
+        <label id="addAmountLabel">Details / Amount / Schedule</label>
         <input type="text" class="form-input" id="addAmountInput" placeholder="e.g. 10mg Once Daily or $85.00">
       </div>
 
@@ -4542,7 +4570,7 @@
         <div style="display:flex; gap:0.5rem;">
           <input type="text" class="form-input" id="editDoseStrength" placeholder="e.g. 12 mg or 500 mg" style="flex:1;" oninput="updateDosePreview()">
           <select class="form-input" id="editDoseUnitSelect" style="width:115px;" onchange="applyDoseUnitPreset()">
-            <option value="custom">Presets...</option>
+            <option value="custom">Select Preset...</option>
             <option value="5 mg">5 mg</option>
             <option value="10 mg">10 mg</option>
             <option value="12 mg">12 mg</option>
@@ -4565,7 +4593,7 @@
         <div style="display:flex; gap:0.5rem;">
           <input type="text" class="form-input" id="editDoseFrequency" placeholder="e.g. Twice a day or Once daily" style="flex:1;" oninput="updateDosePreview()">
           <select class="form-input" id="editDoseFreqPreset" style="width:130px;" onchange="applyFreqPreset()">
-            <option value="">Presets...</option>
+            <option value="">Select Preset...</option>
             <option value="Once Daily (Morning)">Once Daily</option>
             <option value="Twice a Day (Morning & Evening)">Twice a Day</option>
             <option value="3x Daily (With Meals)">3x Daily</option>
@@ -4609,11 +4637,11 @@
         <!-- Progress Bar Preview -->
         <div>
           <div style="display:flex; justify-content:space-between; font-size:0.72rem; color:var(--text-muted); margin-bottom:3px; font-weight:600;">
-            <span id="editDoseProgressLabel">Dose 1 of 30</span>
-            <span id="editDoseDaysLeftLabel">29 Days Left</span>
+            <span id="editDoseProgressLabel">Day 18 of 30</span>
+            <span id="editDoseDaysLeftLabel">12 Days Left</span>
           </div>
           <div class="progress-track" style="height:8px;">
-            <div class="progress-fill" id="editDoseProgressFill" style="width:3%;"></div>
+            <div class="progress-fill" id="editDoseProgressFill" style="width:60%;"></div>
           </div>
         </div>
       </div>
@@ -4651,9 +4679,9 @@
       <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; background:var(--surface-hover); padding:0.5rem 0.75rem; border-radius:8px; font-size:0.75rem;">
         <span style="color:var(--text-muted); font-weight:700;">Demo Presets:</span>
         <button class="sample-pill-btn" onclick="loadSampleBill('grocery')">🛒 Whole Foods ($52.40)</button>
-        <button class="sample-pill-btn" onclick="loadSampleBill('utility')">⚡ Electric Utility ($142.85)</button>
+        <button class="sample-pill-btn" onclick="loadSampleBill('utility')">⚡ Electric Utility ($142.50)</button>
         <button class="sample-pill-btn" onclick="loadSampleBill('cafe')">☕ Bistro Check ($11.25)</button>
-        <button class="sample-pill-btn" onclick="loadSampleBill('invalid')" style="color:var(--rose);">🚫 Non-Bill (Test Reject)</button>
+        <button class="sample-pill-btn" onclick="loadSampleBill('invalid')" style="color:var(--rose);">📷 Sample Photo (Non-Bill)</button>
         <button class="sample-pill-btn" style="border-color:var(--accent); color:var(--accent); margin-left:auto; font-weight:700;" onclick="triggerNativeCamera()">📷 Take Photo / Upload File</button>
       </div>
 
@@ -4706,7 +4734,7 @@
 
           <!-- Non-Bill Rejection Alert (Hidden unless is_bill = false) -->
           <div id="nonBillWarningBox" style="display:none; background:var(--rose-bg); border:1px solid var(--rose); border-radius:8px; padding:0.65rem 0.75rem; font-size:0.78rem; color:var(--rose);">
-            <strong>⚠️ Non-Bill Detected:</strong> The vision model determined this image is not a receipt or bill. Please upload a clear photo of an invoice, grocery receipt, or utility bill.
+            <strong>⚠️ Unsupported Document:</strong> The scanner did not detect receipt or invoice data in this image. Please capture a clear photo of an invoice, grocery receipt, or utility bill.
           </div>
 
           <!-- Duplicate Warning Alert (Hidden unless duplicate detected) -->
@@ -4763,7 +4791,7 @@
               <input type="number" step="0.01" class="form-input" id="scanTaxInput" placeholder="0.00" oninput="recalcScanFinancialMath()">
             </div>
             <div class="form-group">
-              <label style="font-size:0.68rem; color:var(--text); font-weight:800;">Total Amount (Integer Cents)</label>
+              <label style="font-size:0.68rem; color:var(--text); font-weight:800;">Total Amount ($)</label>
               <input type="number" step="0.01" class="form-input" id="scanTotalInput" style="font-weight:800; font-family:'JetBrains Mono',monospace; font-size:1.05rem; color:var(--emerald);" placeholder="0.00" oninput="recalcScanFinancialMath()">
             </div>
           </div>
@@ -4931,7 +4959,7 @@
 
       <div id="activePauseStatusBox" style="display:none; background:var(--amber-bg); border:1px solid var(--amber); border-radius:10px; padding:0.75rem; font-size:0.8rem; color:var(--amber);">
         <div style="font-weight:800;">🟡 Privacy Pause is currently ACTIVE</div>
-        <div id="activePauseCountdownText" style="margin-top:2px;">Time remaining: calculating...</div>
+        <div id="activePauseCountdownText" style="margin-top:2px;">Active Protection: Active & Monitoring</div>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem;">
@@ -5039,6 +5067,15 @@
 
     let billsData = JSON.parse(JSON.stringify(defaultBillsData));
 
+    // Dynamic Household & Maintenance Tasks
+    const defaultHouseholdTasks = [
+      { id: "task_1", title: "HVAC Air Filter Replacement", priority: "High", due: "Today", done: false },
+      { id: "task_2", title: "Refill Water Softener Salt", priority: "Normal", due: "Tomorrow", done: false },
+      { id: "task_3", title: "Verify Smoke & CO2 Detector Sensors", priority: "High", due: "This Week", done: false },
+      { id: "task_4", title: "Robot Vacuum Dustbin Service", priority: "Normal", due: "Completed", done: true }
+    ];
+    let householdTasks = JSON.parse(JSON.stringify(defaultHouseholdTasks));
+
     // 3. Dynamic Expenses Data (Categorized by Utility, Food, Travel, Household, Medical, Other)
     const defaultExpensesData = [
       { id: "exp_1", name: "💡 ConEd Electric & Gas", amount: 142.50, category: "Utility", date: "Oct 2" },
@@ -5059,6 +5096,8 @@
       billsData = JSON.parse(JSON.stringify(defaultBillsData));
       expensesData = JSON.parse(JSON.stringify(defaultExpensesData));
       monthlySalary = 5000.00;
+      householdTasks = JSON.parse(JSON.stringify(defaultHouseholdTasks));
+      localStorage.removeItem('omnitask_household_tasks');
       localStorage.removeItem('omnitask_pills');
       localStorage.removeItem('omnitask_bills');
       localStorage.removeItem('omnitask_expenses');
@@ -5117,7 +5156,7 @@
       }
     ];
 
-    let streakCount = 4;
+    let streakCount = 7;
     let lastActionUndo = null;
     let editingTarget = null;
     let editingItemId = null;
@@ -5135,6 +5174,11 @@
         if (e) expensesData = JSON.parse(e);
         const sal = localStorage.getItem('omnitask_monthly_salary');
         if (sal) monthlySalary = parseFloat(sal) || 5000.00;
+
+        const ht = localStorage.getItem('omnitask_household_tasks');
+        if (ht) {
+          try { householdTasks = JSON.parse(ht); } catch(e){}
+        }
         const w = localStorage.getItem('omnitask_workouts');
         if (w) workoutsData = JSON.parse(w);
         const h = localStorage.getItem('omnitask_habits');
@@ -5453,6 +5497,7 @@
 
     function renderAllViews() {
       renderCalendarEngine();
+      renderHouseholdTasks();
       renderPills();
       renderCockpitMedications();
       renderSeniorTabletPills();
@@ -5745,7 +5790,7 @@
 
           <!-- Eleanor Cheering Encouragement Bubble -->
           <div style="display:flex; align-items:center; gap:0.75rem; background:linear-gradient(135deg, rgba(99,102,241,0.12) 0%, rgba(6,182,212,0.1) 100%); border:1px solid rgba(99,102,241,0.25); border-radius:14px; padding:0.65rem 0.95rem;">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" style="width:34px; height:34px; border-radius:50%; object-fit:cover; border:2px solid #22c55e;" alt="Eleanor">
+            <div style="width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid #22c55e; flex-shrink:0;">EV</div>
             <div style="flex:1;">
               <span style="font-size:0.95rem; color:var(--text); font-weight:800;">"You're doing great! Stay consistent 💙"</span>
               <div style="font-size:0.78rem; color:var(--text-muted);">Caregiver John received automatic confirmation upon take.</div>
@@ -6265,6 +6310,109 @@
 
       const spend = document.getElementById('calDailySpend');
       if (spend) spend.textContent = `$${total.toFixed(2)}`;
+
+      // 6. Synchronize Single Source of Truth to Insights & Home Bento Tile 1
+      const insTotal = document.getElementById('insightsTotalSpendBadge');
+      if (insTotal) insTotal.textContent = `$${total.toFixed(2)} Total`;
+
+      const insUtil = document.getElementById('insightsCatUtilityAmt');
+      if (insUtil) insUtil.textContent = `$${(categoryTotals['Utility'] || 0).toFixed(2)}`;
+
+      const insMed = document.getElementById('insightsCatMedicalAmt');
+      if (insMed) insMed.textContent = `$${(categoryTotals['Medical'] || 0).toFixed(2)}`;
+
+      const insFood = document.getElementById('insightsCatFoodAmt');
+      if (insFood) insFood.textContent = `$${(categoryTotals['Food'] || 0).toFixed(2)}`;
+
+      const insHouse = document.getElementById('insightsCatHouseholdAmt');
+      if (insHouse) {
+        const comb = (categoryTotals['Household'] || 0) + (categoryTotals['Travel'] || 0) + (categoryTotals['Other'] || 0);
+        insHouse.textContent = `$${comb.toFixed(2)}`;
+      }
+
+      // Synchronize Home Bento Tile 1
+      const pendingBills = billsData.filter(b => !b.isPaid);
+      const pendingTotal = pendingBills.reduce((acc, b) => acc + (parseFloat(b.amount) || 0), 0);
+      const bentoPendingCount = document.getElementById('bentoBillsPendingCount');
+      if (bentoPendingCount) {
+        bentoPendingCount.textContent = `${pendingBills.length} pending`;
+        bentoPendingCount.style.background = pendingBills.length > 0 ? 'rgba(245,158,11,0.15)' : 'rgba(16,185,129,0.15)';
+        bentoPendingCount.style.color = pendingBills.length > 0 ? '#fbbf24' : '#34d399';
+      }
+      const bentoPendingTotal = document.getElementById('bentoBillsTotalAmount');
+      if (bentoPendingTotal) {
+        bentoPendingTotal.textContent = `$${pendingTotal.toFixed(2)}`;
+      }
+    }
+
+    // Interactive Household Tasks Management
+    function renderHouseholdTasks() {
+      const container = document.getElementById('householdTasksContainer');
+      const badge = document.getElementById('householdTaskHeaderBadge');
+      const bentoBadge = document.getElementById('bentoHouseholdBadge');
+      const bentoDesc = document.getElementById('bentoHouseholdDesc');
+
+      const openTasks = householdTasks.filter(t => !t.done);
+      const urgentTasks = openTasks.filter(t => t.priority === 'High');
+
+      if (badge) {
+        badge.textContent = `${openTasks.length} Open Task${openTasks.length === 1 ? '' : 's'}`;
+        badge.style.background = urgentTasks.length > 0 ? 'var(--rose-bg)' : 'var(--amber-bg)';
+        badge.style.color = urgentTasks.length > 0 ? 'var(--rose)' : 'var(--amber)';
+      }
+
+      if (bentoBadge) {
+        bentoBadge.textContent = urgentTasks.length > 0 ? `${urgentTasks.length} urgent` : `${openTasks.length} open`;
+        bentoBadge.style.background = urgentTasks.length > 0 ? 'rgba(244,63,94,0.15)' : 'rgba(16,185,129,0.15)';
+        bentoBadge.style.color = urgentTasks.length > 0 ? '#fda4af' : '#34d399';
+      }
+
+      if (bentoDesc) {
+        bentoDesc.textContent = `${openTasks.length} pending task${openTasks.length === 1 ? '' : 's'}`;
+      }
+
+      if (!container) return;
+      container.innerHTML = '';
+
+      householdTasks.forEach(task => {
+        const card = document.createElement('div');
+        card.className = 'module-card';
+        card.style.display = 'flex';
+        card.style.alignItems = 'center';
+        card.style.justifyContent = 'space-between';
+        card.style.gap = '0.75rem';
+        card.style.padding = '0.75rem 1rem';
+        card.style.opacity = task.done ? '0.6' : '1';
+
+        const prioColor = task.priority === 'High' ? 'var(--rose)' : 'var(--cyan)';
+        const prioBg = task.priority === 'High' ? 'var(--rose-bg)' : 'var(--cyan-bg)';
+
+        card.innerHTML = `
+          <div style="display:flex; align-items:center; gap:0.65rem; min-width:0; flex:1;">
+            <input type="checkbox" style="width:18px; height:18px; accent-color:var(--emerald); cursor:pointer;" ${task.done ? 'checked' : ''} onchange="toggleHouseholdTask('${task.id}')">
+            <div style="min-width:0;">
+              <div style="font-weight:800; font-size:0.86rem; color:var(--text); ${task.done ? 'text-decoration:line-through; color:var(--text-muted);' : ''}">
+                ${escapeHTML(task.title)}
+              </div>
+              <div style="font-size:0.72rem; color:var(--text-muted); margin-top:2px;">Due: ${escapeHTML(task.due)}</div>
+            </div>
+          </div>
+          <span class="pill-badge" style="background:${prioBg}; color:${prioColor}; font-size:0.68rem; font-weight:800; flex-shrink:0;">
+            ${escapeHTML(task.priority)}
+          </span>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function toggleHouseholdTask(taskId) {
+      const t = householdTasks.find(x => x.id === taskId);
+      if (t) {
+        t.done = !t.done;
+        localStorage.setItem('omnitask_household_tasks', JSON.stringify(householdTasks));
+        renderHouseholdTasks();
+        showToast(t.done ? `✅ Completed task: ${t.title}` : `↩ Reopened task: ${t.title}`);
+      }
     }
 
     // 4. Render Workouts List
@@ -6995,11 +7143,17 @@
           countdownTxt.textContent = `Time remaining: ${timeStr} until telemetry auto-resumes.`;
         }
         if (statusBox) statusBox.style.display = 'block';
+        const cgBanner = document.getElementById('cgPrivacyPauseAlertBanner');
+        const cgCountdown = document.getElementById('cgPauseCountdownBadge');
+        if (cgBanner) cgBanner.style.display = 'flex';
+        if (cgCountdown) cgCountdown.textContent = `Pause Active (${timeStr} Left)`;
       } else {
         if (until && until <= Date.now()) {
           localStorage.removeItem('omnitask_privacy_pause_until');
           showToast("🟢 Senior Privacy Pause concluded; telemetry resumed.");
         }
+        const cgBanner = document.getElementById('cgPrivacyPauseAlertBanner');
+        if (cgBanner) cgBanner.style.display = 'none';
         if (cgLive) {
           cgLive.textContent = "🟢 Stream: Live";
           cgLive.style.color = "var(--cyan)";
@@ -7034,7 +7188,7 @@
       closeSosModal();
     }
 
-    /* Missed Dose Escalation Simulator (Life Safety Rule 3.3) */
+    /* Missed Dose Escalation Simulator (Caregiver Safety Protocol) */
     let currentEscalationStage = 0;
 
     function simulateDoseEscalationNext() {
@@ -7062,6 +7216,8 @@
       const n2 = document.getElementById('cgStage2Card');
       const n3 = document.getElementById('cgStage3Card');
 
+      const delay = parseInt(securityConfig.escalationDelay, 10) || 30;
+
       // Reset styles
       [c1, c2, c3].forEach(el => { if (el) el.style.background = 'var(--card-bg)'; });
       [n0, n1, n2, n3].forEach(el => {
@@ -7077,7 +7233,7 @@
         const txt = "Status: T0 (Window Elapsed)";
         if (badge1) { badge1.textContent = txt; badge1.style.background = 'var(--amber-bg)'; badge1.style.color = 'var(--amber)'; }
         if (badge2) { badge2.textContent = txt; badge2.style.background = 'var(--amber-bg)'; badge2.style.color = 'var(--amber)'; }
-        const msg = "🟡 <strong>T0 Triggered (08:30 AM):</strong> Scheduled dose window elapsed without smart pillbox sensor confirmation. Waiting 5m buffer.";
+        const msg = `🟡 <strong>T0 Triggered (08:30 AM):</strong> Scheduled dose window elapsed without smart pillbox confirmation. Waiting ${delay}m delay threshold.`;
         if (log1) log1.innerHTML = msg;
         if (log2) log2.innerHTML = msg;
         showToast("⏱️ T0 Triggered: Metformin morning dose unconfirmed. Buffer active.");
@@ -7085,35 +7241,35 @@
         if (c2) c2.style.background = 'rgba(6,182,212,0.18)';
         if (n0) n0.classList.add('completed-stage');
         if (n1) n1.classList.add('active-stage');
-        const txt = "Status: T+5m (Tablet Nudge Active)";
+        const txt = `Status: T+${delay}m (Tablet Nudge Active)`;
         if (badge1) { badge1.textContent = txt; badge1.style.background = 'rgba(6,182,212,0.18)'; badge1.style.color = 'var(--cyan)'; }
         if (badge2) { badge2.textContent = txt; badge2.style.background = 'rgba(6,182,212,0.18)'; badge2.style.color = 'var(--cyan)'; }
-        const msg = "🔔 <strong>T+5m Triggered (08:35 AM):</strong> Soft tablet chime & voice prompt dispatched to Eleanor Vance's iPad.";
+        const msg = `🔔 <strong>T+${delay}m Triggered:</strong> Soft chime & audible high-contrast reminder spoken on Eleanor's interface.`;
         if (log1) log1.innerHTML = msg;
         if (log2) log2.innerHTML = msg;
-        showToast("🔔 T+5m: Gentle chime prompt & voice readout sent to Eleanor.");
+        showToast(`🔔 T+${delay}m: In-app prompt & voice readout sent to Eleanor.`);
       } else if (stage === 3) {
         if (c2) c2.style.background = 'rgba(168,85,247,0.18)';
         if (n0) n0.classList.add('completed-stage');
         if (n1) n1.classList.add('completed-stage');
         if (n2) n2.classList.add('active-stage');
-        const txt = "Status: T+10m (Caregiver SMS Sent)";
+        const txt = `Status: T+${delay}m (Caregiver Alert Sent)`;
         if (badge1) { badge1.textContent = txt; badge1.style.background = 'rgba(168,85,247,0.18)'; badge1.style.color = 'var(--purple)'; }
         if (badge2) { badge2.textContent = txt; badge2.style.background = 'rgba(168,85,247,0.18)'; badge2.style.color = 'var(--purple)'; }
-        const msg = "📱 <strong>T+10m Triggered (08:40 AM):</strong> Priority SMS alert dispatched to Caregiver John Vance (+1 555-0144).";
+        const msg = `📱 <strong>T+${delay}m Escalation:</strong> Priority alert dispatched to Caregiver John Vance (+1 555-0144).`;
         if (log1) log1.innerHTML = msg;
         if (log2) log2.innerHTML = msg;
-        showToast("📱 T+10m: Caregiver SMS alert dispatched to John Vance.");
+        showToast(`📱 T+${delay}m: Priority alert dispatched to Caregiver John Vance.`);
       } else if (stage === 4) {
         if (c3) c3.style.background = 'var(--rose-bg)';
         if (n0) n0.classList.add('completed-stage');
         if (n1) n1.classList.add('completed-stage');
         if (n2) n2.classList.add('completed-stage');
         if (n3) n3.classList.add('active-stage');
-        const txt = "Status: 🚨 T+12m (Critical Escalation Active)";
+        const txt = `Status: 🚨 T+${delay * 2}m (Critical Escalation Active)`;
         if (badge1) { badge1.textContent = txt; badge1.style.background = 'var(--rose-bg)'; badge1.style.color = 'var(--rose)'; }
         if (badge2) { badge2.textContent = txt; badge2.style.background = 'var(--rose-bg)'; badge2.style.color = 'var(--rose)'; }
-        const msg = "🚨 <strong>T+12m Triggered (08:42 AM):</strong> Automated voice phone call initiated & neighbor/emergency contacts alerted!";
+        const msg = `🚨 <strong>T+${delay * 2}m Emergency Trigger:</strong> Automated phone call initiated & emergency fallback contacts notified!`;
         if (log1) log1.innerHTML = msg;
         if (log2) log2.innerHTML = msg;
         showToast("🚨 T+12m: Priority escalation call & emergency alert dispatched!");
@@ -7419,15 +7575,15 @@
           vendor: "Eversource Energy",
           date: today,
           currency: "USD",
-          subtotal: 142.85,
+          subtotal: 142.50,
           tax: 0.00,
-          total: 142.85,
+          total: 142.50,
           category: "Utilities",
           confidence: 0.95,
           target_route: "bill",
           line_items: items
         };
-        svgDataUrl = createSyntheticReceiptSvg("Eversource Energy", today, items, 142.85, 0.00, 142.85);
+        svgDataUrl = createSyntheticReceiptSvg("Eversource Energy", today, items, 142.50, 0.00, 142.50);
       } else if (type === 'cafe') {
         const items = [
           { name: "Bella Donovan Flat White", qty: 1, price: 5.50 },
@@ -7461,7 +7617,7 @@
           target_route: "expense",
           line_items: []
         };
-        svgDataUrl = createSyntheticReceiptSvg("Non-Bill", today, [], 0, 0, 0, true);
+        svgDataUrl = createSyntheticReceiptSvg("Sample Photo", today, [], 0, 0, 0, true);
       }
 
       currentScannedImage = {
@@ -7551,7 +7707,7 @@
       if (!data.is_bill) {
         if (nonBillBox) nonBillBox.style.display = 'block';
         if (confirmBtn) {
-          confirmBtn.textContent = '⚠️ Force Save Non-Bill';
+          confirmBtn.textContent = '⚠️ Save Photo Record';
           confirmBtn.style.background = 'var(--rose)';
         }
       } else {
@@ -8612,6 +8768,23 @@
           }
         }
       });
+
+      // Omni-search input live filtering across all cards
+      const omniSearchInp = document.getElementById('globalOmniSearchInput');
+      if (omniSearchInp) {
+        omniSearchInp.addEventListener('input', (e) => {
+          const q = (e.target.value || '').trim().toLowerCase();
+          const allCards = document.querySelectorAll('.module-card');
+          allCards.forEach(card => {
+            if (!q) {
+              card.style.display = '';
+            } else {
+              const text = card.textContent.toLowerCase();
+              card.style.display = text.includes(q) ? '' : 'none';
+            }
+          });
+        });
+      }
 
       // Global safety handler for inline stopPropagation calls
       window.stopPropagation = function(e) {
