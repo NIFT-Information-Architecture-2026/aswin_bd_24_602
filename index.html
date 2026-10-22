@@ -2723,7 +2723,7 @@
         
         <div>
           <h1 style="font-size:1.45rem; font-weight:800; letter-spacing:-0.02em;">Welcome Back</h1>
-          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Select a persona or enter your credentials to access your dashboard:</p>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Select your family role or enter credentials. The interface adapts immediately to who signs in:</p>
         </div>
 
         <!-- 3 Persona Cards -->
@@ -2733,39 +2733,49 @@
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <div style="font-size:0.88rem; font-weight:800; display:flex; align-items:center; gap:0.4rem;">
                 <span>👤</span>
-                <span>Personal & Power User (Aswin)</span>
+                <span id="landPowerTitle">Family Admin & Power User (Aswin)</span>
               </div>
               <span class="pill-badge" id="landBadgePower" style="background:var(--accent-light); color:var(--accent);">Active</span>
             </div>
-            <div class="card-sub" style="font-size:0.75rem;">Full life calendar, budget ledgers, fitness streaks, and Family Oversight Hub.</div>
+            <div class="card-sub" style="font-size:0.75rem;">Full life calendar, ₹ budget ledgers, fitness streaks, and Household Hub.</div>
           </div>
 
           <div class="persona-landing-card" id="landSenior" onclick="pickLandingPersona('senior')">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <div style="font-size:0.88rem; font-weight:800; display:flex; align-items:center; gap:0.4rem;">
                 <span>👵</span>
-                <span>Senior Mode (Eleanor Vance)</span>
+                <span id="landSeniorTitle">Elder Person (Eleanor Vance)</span>
               </div>
               <span class="pill-badge" id="landBadgeSenior" style="background:var(--emerald-bg); color:var(--emerald); display:none;">Senior Shield</span>
             </div>
-            <div class="card-sub" style="font-size:0.75rem;">Accessible high-contrast 24pt+ text, 56dp touch targets, and voice audio readouts.</div>
+            <div class="card-sub" style="font-size:0.75rem;">Accessible 24pt+ high-contrast text, 56dp touch targets, voice readout & 112 SOS.</div>
           </div>
 
           <div class="persona-landing-card" id="landCaregiver" onclick="pickLandingPersona('caregiver')">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <div style="font-size:0.88rem; font-weight:800; display:flex; align-items:center; gap:0.4rem;">
                 <span>🛡️</span>
-                <span>Caregiver Account (John Vance)</span>
+                <span id="landCaregiverTitle">Caregiver Account (John Vance)</span>
               </div>
               <span class="pill-badge" id="landBadgeCaregiver" style="background:var(--rose-bg); color:var(--rose); display:none;">Telemetry</span>
             </div>
-            <div class="card-sub" style="font-size:0.75rem;">Live patient adherence stream, emergency calling, and escalation ladder.</div>
+            <div class="card-sub" style="font-size:0.75rem;">Live patient adherence stream, IoT sensor telemetry, and 1-tap elder calling.</div>
           </div>
 
         </div>
 
+        <!-- Role Calibration Notice -->
+        <div id="landRoleNotice" style="padding:0.55rem 0.75rem; border-radius:10px; background:rgba(99,102,241,0.12); border:1px solid rgba(99,102,241,0.25); font-size:0.74rem; color:#c7d2fe; line-height:1.4;">
+          ⚡ <strong>Power User Mode:</strong> Full multi-calendar matrix, ₹ household finances, habit streaks & family governance.
+        </div>
+
         <!-- Auth Inputs -->
         <div style="display:flex; flex-direction:column; gap:0.65rem; background:var(--bg); padding:0.9rem; border-radius:12px; border:1px solid var(--surface-border);">
+          <div class="form-group" id="landNameGroup">
+            <label style="font-size:0.72rem; font-weight:700; color:var(--text-muted);" for="landDisplayName">Your Display Name</label>
+            <input type="text" class="form-input" id="landDisplayName" value="Aswin" placeholder="Enter your display name">
+          </div>
+
           <div class="form-group">
             <label style="font-size:0.72rem; font-weight:700; color:var(--text-muted);" for="landEmail">Account Email / ID</label>
             <input type="text" class="form-input" id="landEmail" value="aswin@omnitask.app">
@@ -2784,7 +2794,7 @@
           <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.74rem; color:var(--text-muted); margin-top:2px;">
             <label style="display:flex; align-items:center; gap:0.35rem; cursor:pointer;">
               <input type="checkbox" id="chkRememberMe" checked style="accent-color:var(--accent);">
-              <span>Stay signed in on this browser</span>
+              <span>Stay signed in on this device</span>
             </label>
             <span style="color:var(--accent); cursor:pointer; font-weight:600;" onclick="showToast('💡 Password reset PIN can be updated in Master Family Hub')">Need Help?</span>
           </div>
@@ -2793,7 +2803,7 @@
         <!-- Submit Buttons -->
         <div style="display:flex; flex-direction:column; gap:0.55rem;">
           <button class="btn" style="justify-content:center; padding:0.75rem; font-size:0.92rem; border-radius:10px; box-shadow:0 4px 14px rgba(99,102,241,0.35);" onclick="enterDashboard()">
-            🔑 Sign In & Launch Dashboard
+            🔑 Sign In & Recalibrate Workspace
           </button>
           <button class="btn btn-secondary" style="justify-content:center; padding:0.6rem; font-size:0.82rem; border-radius:10px;" onclick="enterDashboardGuest()">
             🚀 Continue as Guest (Instant Demo Mode)
@@ -2877,30 +2887,30 @@
 
       <div class="family-members-list">
         <!-- Eleanor Vance -->
-        <div class="family-member-item" onclick="switchPrimaryTab('oversight')" title="Eleanor Vance (Senior Mode) • 96% Adherence">
-          <div class="member-avatar avatar-badge" style="background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid var(--emerald); border-radius:50%; flex-shrink:0;">EV</div>
+        <div class="family-member-item" onclick="switchPrimaryTab('oversight')" title="Eleanor Vance (Senior Mode) • 96% Adherence" id="sidebarSeniorMemberItem">
+          <div class="member-avatar avatar-badge" id="sidebarSeniorMemberAvatar" style="background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid var(--emerald); border-radius:50%; flex-shrink:0;">EV</div>
           <div class="member-info">
-            <div class="member-name">Eleanor Vance</div>
+            <div class="member-name" id="sidebarSeniorMemberName">Eleanor Vance</div>
             <div class="member-role" style="color:var(--emerald);">Senior • 96% Adherence</div>
           </div>
           <span class="online-indicator"></span>
         </div>
 
         <!-- John Vance -->
-        <div class="family-member-item" onclick="switchPrimaryTab('oversight')" title="John Vance (Caregiver) • Online">
-          <div class="member-avatar avatar-badge" style="background:linear-gradient(135deg, #0ea5e9, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid var(--accent); border-radius:50%; flex-shrink:0;">JV</div>
+        <div class="family-member-item" onclick="switchPrimaryTab('oversight')" title="John Vance (Caregiver) • Online" id="sidebarCaregiverMemberItem">
+          <div class="member-avatar avatar-badge" id="sidebarCaregiverMemberAvatar" style="background:linear-gradient(135deg, #0ea5e9, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid var(--accent); border-radius:50%; flex-shrink:0;">JV</div>
           <div class="member-info">
-            <div class="member-name">John Vance</div>
+            <div class="member-name" id="sidebarCaregiverMemberName">John Vance</div>
             <div class="member-role" style="color:var(--cyan);">Caregiver • Active</div>
           </div>
           <span class="online-indicator"></span>
         </div>
 
         <!-- Aswin -->
-        <div class="family-member-item active-user" onclick="switchPrimaryTab('home')" title="Aswin (Account Owner / Power User)">
-          <div class="member-avatar avatar-badge" style="background:linear-gradient(135deg, #8b5cf6, #d946ef); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid var(--purple); border-radius:50%; flex-shrink:0;">AV</div>
+        <div class="family-member-item active-user" onclick="switchPrimaryTab('home')" title="Aswin (Account Owner / Power User)" id="sidebarAdminMemberItem">
+          <div class="member-avatar avatar-badge" id="sidebarAdminMemberAvatar" style="background:linear-gradient(135deg, #8b5cf6, #d946ef); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.75rem; border:2px solid var(--purple); border-radius:50%; flex-shrink:0;">AV</div>
           <div class="member-info">
-            <div class="member-name">Aswin</div>
+            <div class="member-name" id="sidebarAdminMemberName">Aswin</div>
             <div class="member-role" style="color:var(--accent);">Master • You</div>
           </div>
           <span class="online-indicator"></span>
@@ -3090,10 +3100,10 @@
 
             <div class="scenic-chips-row">
               <!-- Chip 1: Eleanor Vance -->
-              <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Eleanor's Health Stream">
-                <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #22c55e; flex-shrink:0;">EV</div>
+              <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Senior Health Stream">
+                <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #22c55e; flex-shrink:0;" id="scenicChipSeniorAvatar">EV</div>
                 <div>
-                  <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;">
+                  <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;" id="scenicChipSeniorName">
                     Eleanor Vance <span class="online-indicator" style="box-shadow:0 0 8px #22c55e;"></span>
                   </div>
                   <div style="font-size:0.68rem; color:#86efac; font-weight:700;">96% adherence • All good today</div>
@@ -3213,7 +3223,7 @@
                   <div style="width:46px; height:46px; border-radius:14px; background:linear-gradient(135deg, rgba(99,102,241,0.35) 0%, rgba(168,85,247,0.22) 100%); border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:1.45rem; box-shadow:0 4px 16px rgba(99,102,241,0.35); flex-shrink:0;">🛍️</div>
                   <div>
                     <div style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; font-weight:800; letter-spacing:0.06em;">Today's Spend</div>
-                    <div style="font-size:1.4rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff; text-shadow:0 2px 10px rgba(0,0,0,0.5);" id="calDailySpend">$0.00</div>
+                    <div style="font-size:1.4rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff; text-shadow:0 2px 10px rgba(0,0,0,0.5);" id="calDailySpend">₹0.00</div>
                     <div style="font-size:0.7rem; color:#fbbf24; font-weight:700; margin-top:2px;" id="calSpendDesc">No scheduled bills pending</div>
                   </div>
                 </div>
@@ -3271,7 +3281,7 @@
                 </div>
                 <div>
                   <div style="font-size:0.8rem; font-weight:800; color:var(--text);">Bills & Expenses</div>
-                  <div style="font-size:1.15rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:2px; color:#f8fafc;" id="bentoBillsTotalAmount">$199.99</div>
+                  <div style="font-size:1.15rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:2px; color:#f8fafc;" id="bentoBillsTotalAmount">₹199.99</div>
                 </div>
                 <div style="font-size:0.72rem; color:var(--accent); font-weight:800; display:flex; align-items:center; gap:3px;">Manage Ledger <span>→</span></div>
               </div>
@@ -3458,11 +3468,11 @@
               </div>
               <div>
                 <div style="display:flex; align-items:center; gap:0.5rem;">
-                  <h3 style="font-size:1.35rem; font-weight:900; margin:0;">Eleanor Vance (Mom) • Live Guardian Stream</h3>
+                  <h3 style="font-size:1.35rem; font-weight:900; margin:0;" id="oversightStreamHeaderTitle">Eleanor Vance (Mom) • Live Guardian Stream</h3>
                   <span class="pill-badge" style="background:rgba(16,185,129,0.15); color:var(--emerald); font-weight:800; font-size:0.75rem;">🟢 Telemetry Active</span>
                 </div>
-                <div style="font-size:0.82rem; color:var(--text-muted); margin-top:3px;">
-                  Assigned Caregiver: <strong>John Vance (+1 555-0144)</strong> • Primary Residence: Living Room Hub
+                <div style="font-size:0.82rem; color:var(--text-muted); margin-top:3px;" id="oversightAssignedCaregiver">
+                  Assigned Caregiver: <strong>John Vance (+91 98765 43212)</strong> • Primary Residence: Living Room Hub
                 </div>
               </div>
             </div>
@@ -3607,7 +3617,7 @@
                 + Add Note
               </button>
             </div>
-            <div style="display:flex; flex-direction:column; gap:0.45rem; font-size:0.78rem; color:var(--text);">
+            <div style="display:flex; flex-direction:column; gap:0.45rem; font-size:0.78rem; color:var(--text);" id="caregiverLiveStream">
               <div style="display:flex; justify-content:space-between; padding:0.4rem 0.6rem; background:var(--bg); border-radius:8px;">
                 <span>✅ <strong>08:35 AM:</strong> Morning dose Metformin 500mg verified by Smart Pillbox sensor.</span>
                 <span style="color:var(--text-muted); font-size:0.72rem;">Verified by System</span>
@@ -3702,7 +3712,7 @@
                 <span style="font-size:0.74rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Monthly Salary / Income</span>
                 <span style="font-size:1.15rem;">💵</span>
               </div>
-              <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--text); margin-top:4px;" id="dispMonthlySalary">$5,000.00</div>
+              <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--text); margin-top:4px;" id="dispMonthlySalary">₹5,000.00</div>
               <div style="font-size:0.72rem; color:var(--text-muted); margin-top:2px;">Configured monthly earnings base</div>
             </div>
 
@@ -3712,7 +3722,7 @@
                 <span style="font-size:0.74rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Total Month Expenses</span>
                 <span class="pill-badge" id="dispSpendPctBadge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.68rem;">6.7% of Salary</span>
               </div>
-              <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--amber); margin-top:4px;" id="dispTotalSpentMonth">$333.10</div>
+              <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--amber); margin-top:4px;" id="dispTotalSpentMonth">₹333.10</div>
               <div style="font-size:0.72rem; color:var(--text-muted); margin-top:2px;" id="dispSpentCountText">5 expenses recorded this month</div>
             </div>
 
@@ -3722,7 +3732,7 @@
                 <span style="font-size:0.74rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Remaining Net Savings</span>
                 <span class="pill-badge" id="dispSavingsStatusBadge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.68rem;">✨ In Surplus</span>
               </div>
-              <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--emerald); margin-top:4px;" id="dispNetSavings">+$4,666.90</div>
+              <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--emerald); margin-top:4px;" id="dispNetSavings">+₹4,666.90</div>
               <div style="font-size:0.72rem; color:var(--emerald); margin-top:2px;" id="dispSavingsPctText">93.3% of income retained in savings</div>
             </div>
           </div>
@@ -3772,9 +3782,9 @@
             <div class="module-card">
               <div class="card-top">
                 <div class="card-title">Utility & Household Allowance</div>
-                <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);" id="budgetRemainingBadge">$680.00 Remaining</span>
+                <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);" id="budgetRemainingBadge">₹680.00 Remaining</span>
               </div>
-              <div class="card-sub" id="budgetSubtitleText">$171.70 spent of $850.00 monthly allowance.</div>
+              <div class="card-sub" id="budgetSubtitleText">₹171.70 spent of ₹850.00 monthly allowance.</div>
               <div class="progress-track" style="height:10px;">
                 <div class="progress-fill" id="budgetProgressFill" style="width:20%; background:var(--amber);"></div>
               </div>
@@ -4120,11 +4130,11 @@
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot">
             <div class="cal-event-pill-block pill-bill" onclick="switchPrimaryTab('expense')">
-              <strong>💳 16:00</strong> ConEd Electric Due ($142.50)
+              <strong>💳 16:00</strong> Electricity Bill Due (₹142.50)
             </div>
           </div>
           <div class="cal-week-slot">
-            <div class="cal-event-pill-block pill-bill">💳 Water Utility ($55)</div>
+            <div class="cal-event-pill-block pill-bill">💳 Water Utility (₹55)</div>
           </div>
           <div class="cal-week-slot"></div>
           <div class="cal-week-slot"></div>
@@ -4307,27 +4317,27 @@
           <div class="panel-box" style="grid-column: 1 / -1; margin-top:0.25rem;">
             <div class="panel-header">
               <span>💳 Monthly Financial Summary by Category</span>
-              <span class="pill-badge" id="insightsTotalSpendBadge" style="background:var(--surface-hover); color:var(--text);">$333.10 Total</span>
+              <span class="pill-badge" id="insightsTotalSpendBadge" style="background:var(--surface-hover); color:var(--text);">₹333.10 Total</span>
             </div>
             <div id="insightsCategoryGrid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:0.5rem;">
               <div class="module-card">
                 <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Utilities & Bills</div>
-                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatUtilityAmt">$142.50</div>
-                <div style="font-size:0.72rem; color:var(--emerald); margin-top:2px;">● On track vs $700 budget</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatUtilityAmt">₹142.50</div>
+                <div style="font-size:0.72rem; color:var(--emerald); margin-top:2px;">● On track vs ₹700 budget</div>
               </div>
               <div class="module-card">
                 <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Pharmacy & Medical</div>
-                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatMedicalAmt">$25.00</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatMedicalAmt">₹25.00</div>
                 <div style="font-size:0.72rem; color:var(--cyan); margin-top:2px;">● Tracked from clinical Rx refills</div>
               </div>
               <div class="module-card">
                 <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Groceries & Food</div>
-                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatFoodAmt">$68.20</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatFoodAmt">₹68.20</div>
                 <div style="font-size:0.72rem; color:var(--amber); margin-top:2px;">● Normal spend velocity</div>
               </div>
               <div class="module-card">
                 <div style="font-size:0.75rem; color:#cbd5e1; text-transform:uppercase; font-weight:700;">Household & Travel</div>
-                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatHouseholdAmt">$97.40</div>
+                <div style="font-size:1.25rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:4px;" id="insightsCatHouseholdAmt">₹97.40</div>
                 <div style="font-size:0.72rem; color:var(--purple); margin-top:2px;">● Combined supplies & transit</div>
               </div>
             </div>
@@ -4380,11 +4390,12 @@
         <label>Select Life Domain Module</label>
         <select class="form-input" id="addDomainSelect" onchange="updateQuickAddFields()">
           <option value="pill">💊 Prescription Pill Reminder</option>
-          <option value="bill">💳 Bill / Payment Reminder</option>
-          <option value="expense">📊 Expense Ledger Entry</option>
+          <option value="bill">💳 Bill / Payment Reminder (₹)</option>
+          <option value="expense">📊 Expense Ledger Entry (₹)</option>
+          <option value="task">📋 Household Task & Chore</option>
+          <option value="appointment">📅 Medical Appointment</option>
           <option value="fitness">🏋️ Workout Routine</option>
           <option value="habit">✨ Custom Emoji Habit</option>
-          <option value="appointment">📅 Medical Appointment</option>
         </select>
       </div>
 
@@ -4400,6 +4411,27 @@
         </select>
       </div>
 
+      <div class="form-group" id="addDoctorGroup" style="display:none;">
+        <label id="addDoctorLabel">Prescribing Doctor / Clinic Facility</label>
+        <input type="text" class="form-input" id="addDoctorInput" placeholder="e.g. Dr. Sarah Lin">
+      </div>
+
+      <div class="form-group" id="addTaskPriorityGroup" style="display:none;">
+        <label>Task Priority & Assignee</label>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <select class="form-input" id="addTaskPrioritySelect">
+            <option value="Normal">🟢 Normal Priority</option>
+            <option value="High">🔴 Urgent / High Priority</option>
+            <option value="Low">⚪ Low Priority</option>
+          </select>
+          <select class="form-input" id="addTaskAssigneeSelect">
+            <option value="Aswin" id="assigneeOptAdmin">👤 Aswin</option>
+            <option value="Eleanor Vance" id="assigneeOptSenior">👵 Eleanor Vance</option>
+            <option value="John Vance" id="assigneeOptCaregiver">🛡️ John Vance</option>
+          </select>
+        </div>
+      </div>
+
       <div class="form-group">
         <label id="addTitleLabel">Title / Name</label>
         <input type="text" class="form-input" id="addTitleInput" placeholder="e.g. Lisinopril 10mg or Internet Bill">
@@ -4407,7 +4439,7 @@
 
       <div class="form-group">
         <label id="addAmountLabel">Details / Amount / Schedule</label>
-        <input type="text" class="form-input" id="addAmountInput" placeholder="e.g. 10mg Once Daily or $85.00">
+        <input type="text" class="form-input" id="addAmountInput" placeholder="e.g. 10mg Once Daily or ₹85.00">
       </div>
 
       <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
@@ -4432,19 +4464,19 @@
       </p>
 
       <div class="form-group" style="margin-top:0.85rem;">
-        <label style="font-size:0.75rem; font-weight:700;">Monthly Salary Amount ($ USD)</label>
+        <label style="font-size:0.75rem; font-weight:700;">Monthly Salary Amount (₹ INR)</label>
         <div style="position:relative;">
-          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-weight:800; font-size:1.15rem; color:var(--text-muted);">$</span>
+          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-weight:800; font-size:1.15rem; color:var(--text-muted);">₹</span>
           <input type="number" step="50" min="0" class="form-input" id="inpMonthlySalary" value="5000" style="padding-left:1.85rem; font-size:1.15rem; font-weight:800; font-family:'JetBrains Mono',monospace;">
         </div>
       </div>
 
       <div style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.4rem;">
         <span style="font-size:0.72rem; color:var(--text-muted); width:100%; font-weight:600;">Quick Salary Presets:</span>
-        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(3500)">$3,500</button>
-        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(5000)">$5,000</button>
-        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(6500)">$6,500</button>
-        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(8000)">$8,000</button>
+        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(3500)">₹3,500</button>
+        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(5000)">₹5,000</button>
+        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(6500)">₹6,500</button>
+        <button type="button" class="btn btn-secondary" style="padding:0.25rem 0.55rem; font-size:0.72rem;" onclick="setSalaryPreset(8000)">₹8,000</button>
       </div>
 
       <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.25rem; border-top:1px solid var(--surface-border); padding-top:0.85rem;">
@@ -4469,36 +4501,75 @@
         As the <strong>Master Account Owner (Aswin)</strong>, you manage credentials, PIN provisioning, and caregiver access rules.
       </p>
 
-      <div style="background:var(--bg); border:1.5px solid var(--emerald); border-radius:12px; padding:1rem; display:flex; flex-direction:column; gap:0.75rem;">
+      <div style="background:var(--bg); border:1.5px solid var(--accent); border-radius:12px; padding:1rem; display:flex; flex-direction:column; gap:0.65rem;">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <strong style="font-size:0.88rem; color:var(--emerald);">👵 Senior Profile (Eleanor Vance)</strong>
+          <strong style="font-size:0.88rem; color:var(--accent);">👤 Master Family Admin Profile</strong>
+          <span class="pill-badge" style="background:var(--accent-light); color:var(--accent);">Household Owner</span>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.55rem;">
+          <div class="form-group">
+            <label style="font-size:0.72rem; font-weight:700;">Your Full Name</label>
+            <input type="text" class="form-input" id="cfgAdminName" value="Aswin">
+          </div>
+          <div class="form-group">
+            <label style="font-size:0.72rem; font-weight:700;">Contact Phone Number</label>
+            <input type="text" class="form-input" id="cfgAdminPhone" value="+91 98765 43210">
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--bg); border:1.5px solid var(--emerald); border-radius:12px; padding:1rem; display:flex; flex-direction:column; gap:0.65rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.88rem; color:var(--emerald);" id="cfgSeniorHeaderTitle">👵 Elder Profile (Eleanor Vance)</strong>
           <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald);">Senior Shield Active</span>
         </div>
 
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.55rem;">
+          <div class="form-group">
+            <label style="font-size:0.72rem; font-weight:700;">Elder Person Name</label>
+            <input type="text" class="form-input" id="cfgSeniorName" value="Eleanor Vance">
+          </div>
+          <div class="form-group">
+            <label style="font-size:0.72rem; font-weight:700;">Elder Phone Number</label>
+            <input type="text" class="form-input" id="cfgSeniorPhone" value="+91 98765 43211">
+          </div>
+        </div>
+
         <div class="form-group">
-          <label style="font-size:0.75rem; font-weight:700;">Elder 4-Digit Access PIN (Master Provisioned)</label>
+          <label style="font-size:0.72rem; font-weight:700;">Elder 4-Digit Access PIN (Simplified Phone / Tablet Login)</label>
           <div style="display:flex; gap:0.6rem; align-items:center;">
-            <input type="text" maxlength="4" class="form-input" id="cfgSeniorPin" value="1234" style="font-family:'JetBrains Mono',monospace; font-size:1.2rem; font-weight:800; letter-spacing:0.25em; text-align:center; width:110px; border-color:var(--emerald);">
+            <input type="text" maxlength="4" class="form-input" id="cfgSeniorPin" value="1234" style="font-family:'JetBrains Mono',monospace; font-size:1.15rem; font-weight:800; letter-spacing:0.25em; text-align:center; width:110px; border-color:var(--emerald);">
             <div style="font-size:0.72rem; color:var(--text-muted); line-height:1.3;">
-              Master sets the simplified PIN. Updates immediately on Eleanor's tablet/phone with 0-friction login.
+              Sets the simplified PIN. Updates immediately on the elder person's phone for 0-friction access.
             </div>
           </div>
         </div>
       </div>
 
-      <div style="background:var(--bg); border:1.5px solid var(--rose); border-radius:12px; padding:1rem; display:flex; flex-direction:column; gap:0.75rem;">
+      <div style="background:var(--bg); border:1.5px solid var(--rose); border-radius:12px; padding:1rem; display:flex; flex-direction:column; gap:0.65rem;">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <strong style="font-size:0.88rem; color:var(--rose);">🛡️ Caregiver Account (John Vance)</strong>
+          <strong style="font-size:0.88rem; color:var(--rose);" id="cfgCaregiverHeaderTitle">🛡️ Caregiver Account (John Vance)</strong>
           <span class="pill-badge" style="background:var(--rose-bg); color:var(--rose);">Telemetry Live</span>
         </div>
 
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.55rem;">
+          <div class="form-group">
+            <label style="font-size:0.72rem; font-weight:700;">Caregiver Name</label>
+            <input type="text" class="form-input" id="cfgCaregiverName" value="John Vance">
+          </div>
+          <div class="form-group">
+            <label style="font-size:0.72rem; font-weight:700;">Caregiver Phone</label>
+            <input type="text" class="form-input" id="cfgCaregiverPhone" value="+91 98765 43212">
+          </div>
+        </div>
+
         <div class="form-group">
-          <label style="font-size:0.75rem; font-weight:700;">Caregiver Access Password / Invite Token</label>
+          <label style="font-size:0.72rem; font-weight:700;">Caregiver Access Password / Invite Token</label>
           <input type="text" class="form-input" id="cfgCaregiverPass" value="caregiver2026" style="font-family:'JetBrains Mono',monospace; font-size:0.85rem;">
         </div>
 
         <div class="form-group">
-          <label style="font-size:0.75rem; font-weight:700;">Missed Dose Escalation Trigger Delay</label>
+          <label style="font-size:0.72rem; font-weight:700;">Missed Dose Escalation Trigger Delay</label>
           <select class="form-input" id="cfgEscalationDelay" style="font-size:0.82rem;">
             <option value="15">15 Minutes (Urgent Alert)</option>
             <option value="30" selected>30 Minutes (Standard Escalation Ladder)</option>
@@ -4684,9 +4755,9 @@
       <!-- Preset Quick Selection Bar -->
       <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; background:var(--surface-hover); padding:0.5rem 0.75rem; border-radius:8px; font-size:0.75rem;">
         <span style="color:var(--text-muted); font-weight:700;">Demo Presets:</span>
-        <button class="sample-pill-btn" onclick="loadSampleBill('grocery')">🛒 Whole Foods ($52.40)</button>
-        <button class="sample-pill-btn" onclick="loadSampleBill('utility')">⚡ Electric Utility ($142.50)</button>
-        <button class="sample-pill-btn" onclick="loadSampleBill('cafe')">☕ Bistro Check ($11.25)</button>
+        <button class="sample-pill-btn" onclick="loadSampleBill('grocery')">🛒 Supermarket Grocery (₹52.40)</button>
+        <button class="sample-pill-btn" onclick="loadSampleBill('utility')">⚡ Electric Utility (₹142.50)</button>
+        <button class="sample-pill-btn" onclick="loadSampleBill('cafe')">☕ Pharmacy & Cafe (₹11.25)</button>
         <button class="sample-pill-btn" onclick="loadSampleBill('invalid')" style="color:var(--rose);">📷 Sample Photo (Non-Bill)</button>
         <button class="sample-pill-btn" style="border-color:var(--accent); color:var(--accent); margin-left:auto; font-weight:700;" onclick="triggerNativeCamera()">📷 Take Photo / Upload File</button>
       </div>
@@ -4893,17 +4964,17 @@
 
       <!-- Quick Dial Numbers -->
       <div style="display:flex; flex-direction:column; gap:0.55rem;">
-        <a href="tel:911" class="btn" style="background:#ef4444; color:#fff; font-size:1.05rem; font-weight:900; padding:0.9rem; text-decoration:none; display:flex; justify-content:center; align-items:center; gap:0.6rem; border-radius:12px; box-shadow:0 4px 14px rgba(239,68,68,0.4);" onclick="trackEmergencyDial('911')">
-          📞 DIAL 911 (EMERGENCY SERVICES)
+        <a href="tel:112" class="btn" style="background:#ef4444; color:#fff; font-size:1.05rem; font-weight:900; padding:0.9rem; text-decoration:none; display:flex; justify-content:center; align-items:center; gap:0.6rem; border-radius:12px; box-shadow:0 4px 14px rgba(239,68,68,0.4);" onclick="trackEmergencyDial('112 Emergency')">
+          🚨 DIAL 112 (NATIONAL EMERGENCY DISPATCH)
         </a>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.55rem;">
-          <a href="tel:+15550144" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Caregiver John')">
-            <span style="font-weight:800; font-size:0.88rem;">🛡️ John Vance</span>
-            <span style="font-size:0.72rem; color:var(--text-muted);">Caregiver • 555-0144</span>
+          <a href="tel:+919876543211" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Caregiver')">
+            <span style="font-weight:800; font-size:0.88rem;" id="sosCaregiverName">🛡️ John Vance</span>
+            <span style="font-size:0.72rem; color:var(--text-muted);" id="sosCaregiverPhone">Caregiver • +91 98765 43211</span>
           </a>
-          <a href="tel:+15550188" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Master Admin Aswin')">
-            <span style="font-weight:800; font-size:0.88rem;">👤 Aswin</span>
-            <span style="font-size:0.72rem; color:var(--text-muted);">Family Admin • 555-0188</span>
+          <a href="tel:+919876543210" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Family Admin')">
+            <span style="font-weight:800; font-size:0.88rem;" id="sosAdminName">👤 Aswin</span>
+            <span style="font-size:0.72rem; color:var(--text-muted);" id="sosAdminPhone">Family Admin • +91 98765 43210</span>
           </a>
         </div>
       </div>
@@ -5173,11 +5244,120 @@
     let editingTarget = null;
     let editingItemId = null;
 
+    // Household Profiles Engine (Multi-Device Persona Personalization)
+    let householdProfiles = {
+      power: { name: 'Aswin', role: 'Master Admin', email: 'aswin@omnitask.app', phone: '+91 98765 43210', initials: 'AV' },
+      senior: { name: 'Eleanor Vance', role: 'Senior Profile', email: 'eleanor.vance@senior.care', phone: '+91 98765 43211', initials: 'EV' },
+      caregiver: { name: 'John Vance', role: 'Primary Caregiver', email: 'john.vance@caregiver.guardian', phone: '+91 98765 43212', initials: 'JV' }
+    };
+
+    function getInitials(name) {
+      if (!name) return '??';
+      const parts = name.trim().split(/\s+/);
+      if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+      return name.slice(0, 2).toUpperCase();
+    }
+
+    function updateHouseholdProfileUI() {
+      // 1. Landing Titles
+      const landPow = document.getElementById('landPowerTitle');
+      if (landPow) landPow.textContent = `Family Admin & Power User (${householdProfiles.power.name})`;
+      const landSen = document.getElementById('landSeniorTitle');
+      if (landSen) landSen.textContent = `Elder Person (${householdProfiles.senior.name})`;
+      const landCg = document.getElementById('landCaregiverTitle');
+      if (landCg) landCg.textContent = `Caregiver Account (${householdProfiles.caregiver.name})`;
+
+      // 2. Active User
+      const activeObj = householdProfiles[currentRole] || householdProfiles.power;
+      const userElem = document.getElementById('activeUserName');
+      if (userElem) userElem.textContent = activeObj.name;
+      const dropName = document.getElementById('dropdownUserName');
+      if (dropName) dropName.textContent = `${activeObj.name} (${activeObj.role})`;
+      const dropEmail = document.getElementById('dropdownUserEmail');
+      if (dropEmail) dropEmail.textContent = activeObj.email;
+      const topAvatar = document.querySelector('.topbar-avatar');
+      if (topAvatar) topAvatar.textContent = getInitials(activeObj.name);
+
+      // 3. Hero Greeting
+      const heroGreeting = document.getElementById('heroGreetingTitle');
+      if (heroGreeting) heroGreeting.textContent = `Good morning, ${activeObj.name}`;
+      const seniorGreeting = document.getElementById('seniorGreetingTitle');
+      if (seniorGreeting) seniorGreeting.innerHTML = `Good Morning, ${householdProfiles.senior.name}! ☀️`;
+
+      // 4. Senior & Caregiver Bars
+      const seniorBar = document.getElementById('seniorDignityBar');
+      if (seniorBar) {
+        const span = seniorBar.querySelector('span');
+        if (span) span.innerHTML = `🛡️ Monitored by Caregiver <strong>${householdProfiles.caregiver.name}</strong>`;
+      }
+      const cgBar = document.getElementById('caregiverBar');
+      if (cgBar) {
+        const strong = cgBar.querySelector('div');
+        if (strong) strong.innerHTML = `<strong>🛡️ Caregiver Telemetry Active:</strong> Monitored Patient: <em>${householdProfiles.senior.name} (Senior Profile)</em>`;
+      }
+
+      // 5. SOS Quick Dials
+      const sosCg = document.getElementById('sosCaregiverName');
+      if (sosCg) sosCg.textContent = `🛡️ ${householdProfiles.caregiver.name}`;
+      const sosCgP = document.getElementById('sosCaregiverPhone');
+      if (sosCgP) sosCgP.textContent = `Caregiver • ${householdProfiles.caregiver.phone}`;
+
+      const sosAd = document.getElementById('sosAdminName');
+      if (sosAd) sosAd.textContent = `👤 ${householdProfiles.power.name}`;
+      const sosAdP = document.getElementById('sosAdminPhone');
+      if (sosAdP) sosAdP.textContent = `Family Admin • ${householdProfiles.power.phone}`;
+
+      // 6. Sidebar Family Circle
+      const sideAdName = document.getElementById('sidebarAdminMemberName');
+      if (sideAdName) sideAdName.textContent = householdProfiles.power.name;
+      const sideAdAv = document.getElementById('sidebarAdminMemberAvatar');
+      if (sideAdAv) sideAdAv.textContent = householdProfiles.power.initials || getInitials(householdProfiles.power.name);
+
+      const sideSnName = document.getElementById('sidebarSeniorMemberName');
+      if (sideSnName) sideSnName.textContent = householdProfiles.senior.name;
+      const sideSnAv = document.getElementById('sidebarSeniorMemberAvatar');
+      if (sideSnAv) sideSnAv.textContent = householdProfiles.senior.initials || getInitials(householdProfiles.senior.name);
+
+      const sideCgName = document.getElementById('sidebarCaregiverMemberName');
+      if (sideCgName) sideCgName.textContent = householdProfiles.caregiver.name;
+      const sideCgAv = document.getElementById('sidebarCaregiverMemberAvatar');
+      if (sideCgAv) sideCgAv.textContent = householdProfiles.caregiver.initials || getInitials(householdProfiles.caregiver.name);
+
+      // 7. Scenic Chip & Oversight Header
+      const chipSnName = document.getElementById('scenicChipSeniorName');
+      if (chipSnName) chipSnName.innerHTML = `${householdProfiles.senior.name} <span class="online-indicator" style="box-shadow:0 0 8px #22c55e;"></span>`;
+      const chipSnAv = document.getElementById('scenicChipSeniorAvatar');
+      if (chipSnAv) chipSnAv.textContent = householdProfiles.senior.initials || getInitials(householdProfiles.senior.name);
+
+      const ovHead = document.getElementById('oversightStreamHeaderTitle');
+      if (ovHead) ovHead.textContent = `${householdProfiles.senior.name} (Mom) • Live Guardian Stream`;
+
+      // 8. Family Modal Section Headers
+      const cfgSnHead = document.getElementById('cfgSeniorHeaderTitle');
+      if (cfgSnHead) cfgSnHead.textContent = `👵 Elder Profile (${householdProfiles.senior.name})`;
+      const cfgCgHead = document.getElementById('cfgCaregiverHeaderTitle');
+      if (cfgCgHead) cfgCgHead.textContent = `🛡️ Caregiver Account (${householdProfiles.caregiver.name})`;
+
+      // 9. Quick Add Assignee Options
+      const optAd = document.getElementById('assigneeOptAdmin');
+      if (optAd) optAd.textContent = `👤 ${householdProfiles.power.name}`;
+      const optSn = document.getElementById('assigneeOptSenior');
+      if (optSn) optSn.textContent = `👵 ${householdProfiles.senior.name}`;
+      const optCg = document.getElementById('assigneeOptCaregiver');
+      if (optCg) optCg.textContent = `🛡️ ${householdProfiles.caregiver.name}`;
+    }
+
     /* ==========================================================================
        LOCALSTORAGE PERSISTENCE ENGINE
        ========================================================================== */
     function loadPersistedData() {
       try {
+        const hp = localStorage.getItem('omnitask_household_profiles');
+        if (hp) {
+          try {
+            householdProfiles = Object.assign(householdProfiles, JSON.parse(hp));
+          } catch(e) {}
+        }
         const p = localStorage.getItem('omnitask_pills');
         if (p) {
           const parsedP = JSON.parse(p);
@@ -5217,6 +5397,8 @@
 
     function persistAllData() {
       try {
+        localStorage.setItem('omnitask_household_profiles', JSON.stringify(householdProfiles));
+        localStorage.setItem('omnitask_household_tasks', JSON.stringify(householdTasks));
         localStorage.setItem('omnitask_pills', JSON.stringify(pillsData));
         localStorage.setItem('omnitask_bills', JSON.stringify(billsData));
         localStorage.setItem('omnitask_expenses', JSON.stringify(expensesData));
@@ -5246,21 +5428,30 @@
       activeCard.style.border = `2px solid ${role === 'power' ? 'var(--accent)' : role === 'senior' ? 'var(--emerald)' : 'var(--rose)'}`;
       activeCard.style.background = 'var(--surface-hover)';
 
+      const nameInp = document.getElementById('landDisplayName');
+      const notice = document.getElementById('landRoleNotice');
+
       if (role === 'senior') {
-        document.getElementById('landEmail').value = 'eleanor.vance@senior.care';
-        document.getElementById('landPassLabel').textContent = 'Senior 4-Digit PIN';
+        if (nameInp) nameInp.value = householdProfiles.senior.name;
+        document.getElementById('landEmail').value = householdProfiles.senior.email;
+        document.getElementById('landPassLabel').textContent = 'Elder 4-Digit Access PIN';
         document.getElementById('landPass').value = '';
-        document.getElementById('landPass').placeholder = 'Enter 4-digit PIN (default: 1234)';
+        document.getElementById('landPass').placeholder = `Enter 4-digit PIN (default: ${securityConfig.seniorPin || '1234'})`;
+        if (notice) notice.innerHTML = `👵 <strong>Elder Person (Senior Mode):</strong> Recalibrates workspace into high-contrast 24pt+ text, 56dp buttons, daily regimen checklist, voice readout & 112 SOS.`;
       } else if (role === 'caregiver') {
-        document.getElementById('landEmail').value = 'john.vance@caregiver.guardian';
+        if (nameInp) nameInp.value = householdProfiles.caregiver.name;
+        document.getElementById('landEmail').value = householdProfiles.caregiver.email;
         document.getElementById('landPassLabel').textContent = 'Caregiver Access Password';
         document.getElementById('landPass').value = '';
         document.getElementById('landPass').placeholder = 'Enter password (default: caregiver2026)';
+        if (notice) notice.innerHTML = `🛡️ <strong>Caregiver Mode:</strong> Recalibrates into live patient stream, IoT telemetry (Smart Pillbox / Biometrics), missed-dose escalation timeline & 1-tap elder calling.`;
       } else {
-        document.getElementById('landEmail').value = 'aswin@omnitask.app';
+        if (nameInp) nameInp.value = householdProfiles.power.name;
+        document.getElementById('landEmail').value = householdProfiles.power.email;
         document.getElementById('landPassLabel').textContent = 'Password';
         document.getElementById('landPass').value = '';
         document.getElementById('landPass').placeholder = 'Enter password';
+        if (notice) notice.innerHTML = `⚡ <strong>Power User (Master):</strong> Full multi-calendar matrix, ₹ household finances, habit streaks & family governance.`;
       }
     }
 
@@ -5289,14 +5480,22 @@
         return;
       }
 
+      const customName = document.getElementById('landDisplayName')?.value?.trim();
+      if (customName && householdProfiles[landingPersonaRole]) {
+        householdProfiles[landingPersonaRole].name = customName;
+        householdProfiles[landingPersonaRole].initials = getInitials(customName);
+        localStorage.setItem('omnitask_household_profiles', JSON.stringify(householdProfiles));
+      }
+
       toggleLoginScreen(false);
       setMode(landingPersonaRole);
-      let userName = 'Aswin';
-      let userEmail = 'aswin@omnitask.app';
-      if (landingPersonaRole === 'senior') {
-        userName = 'Eleanor Vance';
-        userEmail = 'eleanor.vance@senior.care';
-        document.getElementById('activeUserName').textContent = userName;
+      
+      const activeObj = householdProfiles[landingPersonaRole];
+      saveSessionState(true, landingPersonaRole, activeObj.name, activeObj.email);
+      updateHouseholdProfileUI();
+      renderAllViews();
+      showToast(`🔑 Signed in as ${activeObj.name} (${activeObj.role}) - Workspace Recalibrated`);
+    }
         document.getElementById('dropdownUserName').textContent = 'Eleanor Vance (Senior)';
         document.getElementById('dropdownUserEmail').textContent = userEmail;
         showToast("🔑 Logged in as Eleanor Vance (Senior Mode Active)");
@@ -6017,7 +6216,7 @@
               <button class="btn btn-secondary senior-hide" style="padding:0.25rem 0.5rem; font-size:0.72rem; color:var(--rose);" onclick="deleteItem('bill', '${b.id}')">🗑️</button>
             </div>
           </div>
-          <div style="font-size:1.6rem; font-weight:800; font-family:'JetBrains Mono',monospace;">$${parseFloat(b.amount || 0).toFixed(2)}</div>
+          <div style="font-size:1.6rem; font-weight:800; font-family:'JetBrains Mono',monospace;">₹${parseFloat(b.amount || 0).toFixed(2)}</div>
           <div class="card-sub">⚡ Status: ${b.isPaid ? '<strong style="color:var(--emerald);">✅ Paid & Logged to Expense</strong>' : '<strong style="color:var(--amber);">Pending Payment</strong>'}</div>
           ${!b.isPaid ? `
             <button class="btn" style="background:var(--accent); padding:0.65rem 1.25rem; font-size:0.9rem;" onclick="payBillDynamic('${b.id}')">
@@ -6025,7 +6224,7 @@
             </button>
           ` : `
             <button class="btn btn-emerald" style="padding:0.65rem 1.25rem; font-size:0.9rem;" disabled>
-              ✅ Paid ($${parseFloat(b.amount || 0).toFixed(2)})
+              ✅ Paid (₹${parseFloat(b.amount || 0).toFixed(2)})
             </button>
           `}
         `;
@@ -6056,7 +6255,7 @@
       renderExpenses();
       renderTimeline();
 
-      showToast(`💳 Paid ${b.title} ($${b.amount.toFixed(2)}) • Auto-linked to Expense Ledger!`);
+      showToast(`💳 Paid ${b.title} (₹${b.amount.toFixed(2)}) • Auto-linked to Expense Ledger!`);
     }
 
     // Category Normalization Helper (Supports Utility, Food, Travel, Household, Medical, Other)
@@ -6092,14 +6291,14 @@
       const inp = document.getElementById('inpMonthlySalary');
       const val = parseFloat(inp ? inp.value : 0);
       if (isNaN(val) || val <= 0) {
-        alert("Please enter a valid monthly salary amount (greater than $0).");
+        alert("Please enter a valid monthly salary amount (greater than ₹0).");
         return;
       }
       monthlySalary = val;
       persistAllData();
       renderExpenses();
       closeSalaryModal();
-      showToast(`💰 Monthly salary updated to $${monthlySalary.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}!`);
+      showToast(`💰 Monthly salary updated to ₹${monthlySalary.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}!`);
     }
 
     function filterExpenseLedger(category) {
@@ -6143,16 +6342,16 @@
 
       // Update Monthly Salary & Cashflow Cockpit Metrics
       const dispSal = document.getElementById('dispMonthlySalary');
-      if (dispSal) dispSal.textContent = `$${monthlySalary.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      if (dispSal) dispSal.textContent = `₹${monthlySalary.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
       const dispTot = document.getElementById('dispTotalSpentMonth');
-      if (dispTot) dispTot.textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      if (dispTot) dispTot.textContent = `₹${total.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
       const netSavings = monthlySalary - total;
       const dispSav = document.getElementById('dispNetSavings');
       if (dispSav) {
         const sign = netSavings >= 0 ? '+' : '-';
-        dispSav.textContent = `${sign}$${Math.abs(netSavings).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        dispSav.textContent = `${sign}₹${Math.abs(netSavings).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         dispSav.style.color = netSavings >= 0 ? 'var(--emerald)' : 'var(--rose)';
       }
 
@@ -6200,12 +6399,12 @@
       if (dispSavPctText) {
         dispSavPctText.textContent = netSavings >= 0 
           ? `${savingsPct.toFixed(1)}% of income retained in savings`
-          : `Deficit of $${Math.abs(netSavings).toFixed(2)} beyond monthly salary`;
+          : `Deficit of ₹${Math.abs(netSavings).toFixed(2)} beyond monthly salary`;
       }
 
       const dispCapRatio = document.getElementById('dispCapacityRatio');
       if (dispCapRatio) {
-        dispCapRatio.textContent = `${burnPct.toFixed(1)}% Burned ($${total.toFixed(2)} of $${monthlySalary.toFixed(2)})`;
+        dispCapRatio.textContent = `${burnPct.toFixed(1)}% Burned (₹${total.toFixed(2)} of ₹${monthlySalary.toFixed(2)})`;
       }
 
       const dispBurnFill = document.getElementById('dispSalaryBurnFill');
@@ -6254,7 +6453,7 @@
                 </span>
               </div>
               <div style="font-size:1.35rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:0.4rem; color:var(--text);">
-                $${catSpent.toFixed(2)}
+                ₹${catSpent.toFixed(2)}
               </div>
               <div style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">
                 ${catShareOfTotal}% of total spend • ${catShareOfSalary}% of salary
@@ -6338,10 +6537,10 @@
                 <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); font-size:0.65rem; padding:0.1rem 0.35rem;">AI ${Math.round(e.confidence * 100)}%</span>
               ` : ''}
             </div>
-            <div class="card-sub" style="font-size:0.72rem; margin-top:2px;">Date: ${date} ${e.tax ? `• Tax: $${parseFloat(e.tax).toFixed(2)}` : ''}</div>
+            <div class="card-sub" style="font-size:0.72rem; margin-top:2px;">Date: ${date} ${e.tax ? `• Tax: ₹${parseFloat(e.tax).toFixed(2)}` : ''}</div>
           </div>
           <div style="display:flex; align-items:center; gap:0.6rem;">
-            <strong style="font-family:'JetBrains Mono',monospace; font-size:0.98rem; color:var(--text);">$${parseFloat(e.amount || 0).toFixed(2)}</strong>
+            <strong style="font-family:'JetBrains Mono',monospace; font-size:0.98rem; color:var(--text);">₹${parseFloat(e.amount || 0).toFixed(2)}</strong>
             <button class="btn btn-secondary" style="padding:0.2rem 0.4rem; font-size:0.7rem; color:var(--rose);" onclick="deleteItem('expense', '${e.id}')" title="Delete Expense">🗑️</button>
           </div>
         `;
@@ -6354,32 +6553,32 @@
       const pct = Math.min(100, Math.round(((categoryTotals.Utility + categoryTotals.Household) / budgetTotal) * 100));
 
       const badge = document.getElementById('budgetRemainingBadge');
-      if (badge) badge.textContent = `$${remaining.toFixed(2)} Remaining`;
+      if (badge) badge.textContent = `₹${remaining.toFixed(2)} Remaining`;
       const sub = document.getElementById('budgetSubtitleText');
-      if (sub) sub.textContent = `$${(categoryTotals.Utility + categoryTotals.Household).toFixed(2)} spent of $${budgetTotal.toFixed(2)} utility allowance.`;
+      if (sub) sub.textContent = `₹${(categoryTotals.Utility + categoryTotals.Household).toFixed(2)} spent of ₹${budgetTotal.toFixed(2)} utility allowance.`;
       const fill = document.getElementById('budgetProgressFill');
       if (fill) fill.style.width = `${pct}%`;
 
       const spend = document.getElementById('calDailySpend');
-      if (spend) spend.textContent = `$${total.toFixed(2)}`;
+      if (spend) spend.textContent = `₹${total.toFixed(2)}`;
 
       // 6. Synchronize Single Source of Truth to Insights & Home Bento Tile 1
       const insTotal = document.getElementById('insightsTotalSpendBadge');
-      if (insTotal) insTotal.textContent = `$${total.toFixed(2)} Total`;
+      if (insTotal) insTotal.textContent = `₹${total.toFixed(2)} Total`;
 
       const insUtil = document.getElementById('insightsCatUtilityAmt');
-      if (insUtil) insUtil.textContent = `$${(categoryTotals['Utility'] || 0).toFixed(2)}`;
+      if (insUtil) insUtil.textContent = `₹${(categoryTotals['Utility'] || 0).toFixed(2)}`;
 
       const insMed = document.getElementById('insightsCatMedicalAmt');
-      if (insMed) insMed.textContent = `$${(categoryTotals['Medical'] || 0).toFixed(2)}`;
+      if (insMed) insMed.textContent = `₹${(categoryTotals['Medical'] || 0).toFixed(2)}`;
 
       const insFood = document.getElementById('insightsCatFoodAmt');
-      if (insFood) insFood.textContent = `$${(categoryTotals['Food'] || 0).toFixed(2)}`;
+      if (insFood) insFood.textContent = `₹${(categoryTotals['Food'] || 0).toFixed(2)}`;
 
       const insHouse = document.getElementById('insightsCatHouseholdAmt');
       if (insHouse) {
         const comb = (categoryTotals['Household'] || 0) + (categoryTotals['Travel'] || 0) + (categoryTotals['Other'] || 0);
-        insHouse.textContent = `$${comb.toFixed(2)}`;
+        insHouse.textContent = `₹${comb.toFixed(2)}`;
       }
 
       // Synchronize Home Bento Tile 1
@@ -6393,8 +6592,9 @@
       }
       const bentoPendingTotal = document.getElementById('bentoBillsTotalAmount');
       if (bentoPendingTotal) {
-        bentoPendingTotal.textContent = `$${pendingTotal.toFixed(2)}`;
+        bentoPendingTotal.textContent = `₹${pendingTotal.toFixed(2)}`;
       }
+    }
     }
 
     // Interactive Household Tasks Management
@@ -6742,43 +6942,62 @@
       const titleInput = document.getElementById('addTitleInput');
       const amountInput = document.getElementById('addAmountInput');
       const catGroup = document.getElementById('addExpenseCategoryGroup');
+      const docGroup = document.getElementById('addDoctorGroup');
+      const taskGroup = document.getElementById('addTaskPriorityGroup');
+      const docLabel = document.getElementById('addDoctorLabel');
+      const docInput = document.getElementById('addDoctorInput');
+
+      if (catGroup) catGroup.style.display = 'none';
+      if (docGroup) docGroup.style.display = 'none';
+      if (taskGroup) taskGroup.style.display = 'none';
 
       if (domain === 'pill') {
-        if (catGroup) catGroup.style.display = 'none';
+        if (docGroup) {
+          docGroup.style.display = 'block';
+          if (docLabel) docLabel.textContent = "Prescribing Doctor (e.g. Dr. Sarah Lin)";
+          if (docInput) docInput.placeholder = "e.g. Dr. Sarah Lin";
+        }
         titleLabel.textContent = "Medication Name (e.g. Metformin or Lisinopril)";
         titleInput.placeholder = "e.g. Lisinopril";
         amountLabel.textContent = "Dosage & Frequency (e.g. 10mg Daily)";
         amountInput.placeholder = "e.g. 10mg Once Daily";
       } else if (domain === 'bill') {
-        if (catGroup) catGroup.style.display = 'none';
         titleLabel.textContent = "Bill Name / Payee (e.g. Electric or Internet)";
         titleInput.placeholder = "e.g. High-Speed Internet";
-        amountLabel.textContent = "Bill Amount ($)";
-        amountInput.placeholder = "e.g. 85.00";
+        amountLabel.textContent = "Bill Amount (₹ INR)";
+        amountInput.placeholder = "e.g. 850.00";
       } else if (domain === 'expense') {
         if (catGroup) catGroup.style.display = 'block';
         titleLabel.textContent = "Expense Description / Merchant";
-        titleInput.placeholder = "e.g. Trader Joe's Groceries, ConEd, Uber";
-        amountLabel.textContent = "Expense Amount ($)";
-        amountInput.placeholder = "e.g. 42.50";
+        titleInput.placeholder = "e.g. Supermarket Groceries, Electric Utility, Pharmacy";
+        amountLabel.textContent = "Expense Amount (₹ INR)";
+        amountInput.placeholder = "e.g. 420.50";
+      } else if (domain === 'task') {
+        if (taskGroup) taskGroup.style.display = 'block';
+        titleLabel.textContent = "Household Task / Chore Description";
+        titleInput.placeholder = "e.g. Clean AC Filter or Restock First-Aid Kit";
+        amountLabel.textContent = "Due Date / Schedule Note";
+        amountInput.placeholder = "e.g. Today, Tomorrow, or Oct 28";
       } else if (domain === 'fitness') {
-        if (catGroup) catGroup.style.display = 'none';
         titleLabel.textContent = "Workout Title / Muscle Group";
         titleInput.placeholder = "e.g. Leg Day & Cardio Blast";
         amountLabel.textContent = "Routine Subtitle / Target";
         amountInput.placeholder = "e.g. AI Routine • Quads & 20m Elliptical";
       } else if (domain === 'habit') {
-        if (catGroup) catGroup.style.display = 'none';
         titleLabel.textContent = "Habit Name (e.g. Hydration or Reading)";
         titleInput.placeholder = "e.g. Read 20 Pages";
         amountLabel.textContent = "Emoji & Schedule Details";
         amountInput.placeholder = "e.g. 📚 Evening Reading (20m)";
       } else if (domain === 'appointment') {
-        if (catGroup) catGroup.style.display = 'none';
-        titleLabel.textContent = "Appointment Title & Clinic";
+        if (docGroup) {
+          docGroup.style.display = 'block';
+          if (docLabel) docLabel.textContent = "Clinic or Specialist Facility";
+          if (docInput) docInput.placeholder = "e.g. City General Cardiology Clinic";
+        }
+        titleLabel.textContent = "Appointment Title";
         titleInput.placeholder = "e.g. Dental Checkup & Cleaning";
-        amountLabel.textContent = "Date & Time (e.g. Oct 24 • 02:00 PM)";
-        amountInput.placeholder = "e.g. Oct 24 • 02:00 PM";
+        amountLabel.textContent = "Date & Time (e.g. Oct 28 • 02:00 PM)";
+        amountInput.placeholder = "e.g. Oct 28 • 02:00 PM";
       }
     }
 
@@ -6795,11 +7014,12 @@
       let destinationName = "Expenses & Bills";
 
       if (domain === 'pill') {
+        const doctorVal = document.getElementById('addDoctorInput')?.value?.trim() || "Dr. Sarah Lin";
         pillsData.push({
           id: "pill_" + Date.now(),
           name: title,
           dosage: amount || "10mg (Daily)",
-          doctor: "Dr. Sarah Lin",
+          doctor: doctorVal,
           rxNum: "Rx #" + Math.floor(10000 + Math.random() * 90000),
           day: 1,
           totalDays: 30,
@@ -6808,7 +7028,7 @@
         destinationName = "Reminders & Pills";
         switchPrimaryTab('reminders');
       } else if (domain === 'bill') {
-        const num = parseFloat(amount.replace(/[^0-9.]/g, '')) || 85.00;
+        const num = parseFloat(amount.replace(/[^0-9.]/g, '')) || 850.00;
         billsData.push({
           id: "bill_" + Date.now(),
           title: title,
@@ -6820,7 +7040,7 @@
         destinationName = "Bills Hub";
         switchPrimaryTab('expense');
       } else if (domain === 'expense') {
-        const num = parseFloat(amount.replace(/[^0-9.]/g, '')) || 25.00;
+        const num = parseFloat(amount.replace(/[^0-9.]/g, '')) || 250.00;
         const catSelect = document.getElementById('addExpenseCategorySelect');
         const selectedCat = catSelect ? catSelect.value : "Food";
         const catIcons = { Utility: "💡", Food: "🍔", Travel: "🚗", Household: "🏠", Medical: "💊", Other: "🛍️" };
@@ -6835,6 +7055,19 @@
         });
         destinationName = "Expense Ledger";
         switchPrimaryTab('expense');
+      } else if (domain === 'task') {
+        const priorityVal = document.getElementById('addTaskPrioritySelect')?.value || "Normal";
+        const assigneeVal = document.getElementById('addTaskAssigneeSelect')?.value || householdProfiles.power.name;
+        householdTasks.unshift({
+          id: "task_" + Date.now(),
+          title: title,
+          priority: priorityVal,
+          due: amount || "Today",
+          assignee: assigneeVal,
+          done: false
+        });
+        destinationName = "Household Tasks";
+        switchPrimaryTab('home');
       } else if (domain === 'fitness') {
         workoutsData.push({
           id: "fit_" + Date.now(),
@@ -6860,10 +7093,11 @@
         destinationName = "Habit Tracker";
         switchPrimaryTab('fitness');
       } else if (domain === 'appointment') {
+        const clinicVal = document.getElementById('addDoctorInput')?.value?.trim() || "Medical Clinic Consultation";
         appointmentsData.push({
           id: "apt_" + Date.now(),
           title: title,
-          sub: "Medical Clinic Consultation",
+          sub: clinicVal,
           date: amount || "Oct 28 • 11:00 AM"
         });
         destinationName = "Appointments Hub";
@@ -6887,7 +7121,7 @@
         document.getElementById('modalTitle').textContent = '✏️ Edit Bill & Cascade Sync';
         document.getElementById('editField1Label').textContent = 'Bill Payee / Title';
         document.getElementById('editField1').value = b.title;
-        document.getElementById('editField2Label').textContent = 'Amount ($)';
+        document.getElementById('editField2Label').textContent = 'Amount (₹)';
         document.getElementById('editField2').value = b.amount;
         document.getElementById('cascadeBox').style.display = 'block';
         const shortcut = document.getElementById('pillDoseShortcutBox');
@@ -6923,7 +7157,7 @@
         const b = billsData.find(x => x.id === editingItemId) || billsData[0];
         b.title = val1;
         b.amount = parseFloat(val2) || 120.00;
-        showToast(`✏️ Updated ${b.title} to $${b.amount.toFixed(2)} (Cascade Synced)`);
+        showToast(`✏️ Updated ${b.title} to ₹${b.amount.toFixed(2)} (Cascade Synced)`);
       } else {
         const p = pillsData.find(x => x.id === editingItemId) || pillsData[0];
         p.name = val1;
@@ -7096,6 +7330,12 @@
 
     /* Master Family Hub Settings */
     function openFamilySettingsModal() {
+      if (document.getElementById('cfgAdminName')) document.getElementById('cfgAdminName').value = householdProfiles.power.name || 'Aswin';
+      if (document.getElementById('cfgAdminPhone')) document.getElementById('cfgAdminPhone').value = householdProfiles.power.phone || '+91 98765 43210';
+      if (document.getElementById('cfgSeniorName')) document.getElementById('cfgSeniorName').value = householdProfiles.senior.name || 'Eleanor Vance';
+      if (document.getElementById('cfgSeniorPhone')) document.getElementById('cfgSeniorPhone').value = householdProfiles.senior.phone || '+91 98765 43211';
+      if (document.getElementById('cfgCaregiverName')) document.getElementById('cfgCaregiverName').value = householdProfiles.caregiver.name || 'John Vance';
+      if (document.getElementById('cfgCaregiverPhone')) document.getElementById('cfgCaregiverPhone').value = householdProfiles.caregiver.phone || '+91 98765 43212';
       document.getElementById('cfgSeniorPin').value = securityConfig.seniorPin;
       document.getElementById('cfgCaregiverPass').value = securityConfig.caregiverPass;
       document.getElementById('cfgEscalationDelay').value = securityConfig.escalationDelay;
@@ -7120,23 +7360,50 @@
       securityConfig.caregiverPass = passVal || 'caregiver2026';
       securityConfig.escalationDelay = delayVal;
 
+      const adminName = document.getElementById('cfgAdminName') ? document.getElementById('cfgAdminName').value.trim() : '';
+      const adminPhone = document.getElementById('cfgAdminPhone') ? document.getElementById('cfgAdminPhone').value.trim() : '';
+      const seniorName = document.getElementById('cfgSeniorName') ? document.getElementById('cfgSeniorName').value.trim() : '';
+      const seniorPhone = document.getElementById('cfgSeniorPhone') ? document.getElementById('cfgSeniorPhone').value.trim() : '';
+      const caregiverName = document.getElementById('cfgCaregiverName') ? document.getElementById('cfgCaregiverName').value.trim() : '';
+      const caregiverPhone = document.getElementById('cfgCaregiverPhone') ? document.getElementById('cfgCaregiverPhone').value.trim() : '';
+
+      if (adminName) {
+        householdProfiles.power.name = adminName;
+        householdProfiles.power.initials = getInitials(adminName);
+      }
+      if (adminPhone) householdProfiles.power.phone = adminPhone;
+
+      if (seniorName) {
+        householdProfiles.senior.name = seniorName;
+        householdProfiles.senior.initials = getInitials(seniorName);
+      }
+      if (seniorPhone) householdProfiles.senior.phone = seniorPhone;
+
+      if (caregiverName) {
+        householdProfiles.caregiver.name = caregiverName;
+        householdProfiles.caregiver.initials = getInitials(caregiverName);
+      }
+      if (caregiverPhone) householdProfiles.caregiver.phone = caregiverPhone;
+
       document.getElementById('dropdownSeniorPinVal').textContent = pinVal;
       persistAllData();
+      updateHouseholdProfileUI();
 
       closeFamilySettingsModal();
-      showToast(`👨‍👩‍👧 Master Governance: Senior 4-Digit PIN updated to [${pinVal}] & synced across household devices!`);
+      showToast(`👨‍👩‍👧 Master Governance: Household profiles & 4-digit PIN [${pinVal}] updated and synced across devices!`);
     }
 
     /* Senior Voice Readout */
     function speakSeniorSchedule() {
+      const sName = (householdProfiles && householdProfiles.senior && householdProfiles.senior.name) ? householdProfiles.senior.name : "Eleanor";
       if ('speechSynthesis' in window) {
-        const text = "Good morning Eleanor. You have taken your morning Metformin dose. Your Electric utility bill is scheduled for payment. Have a wonderful day!";
+        const text = `Good morning ${sName}. You have taken your scheduled medication. Have a wonderful day!`;
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.rate = 0.9;
         window.speechSynthesis.speak(utterance);
         showToast("🗣️ Reading daily schedule out loud via Web Speech API...");
       } else {
-        alert("🗣️ Voice Readout:\nGood morning Eleanor. You have taken your morning Metformin dose. Have a wonderful day!");
+        alert(`🗣️ Voice Readout:\nGood morning ${sName}. You have taken your scheduled medication. Have a wonderful day!`);
       }
     }
 
@@ -7165,13 +7432,36 @@
     function applyPrivacyPause(hours) {
       const until = Date.now() + hours * 3600 * 1000;
       localStorage.setItem('omnitask_privacy_pause_until', until.toString());
-      showToast(`🔒 Privacy Pause activated for ${hours} Hours. Telemetry masked; emergency alarms remain 100% active.`);
+
+      const elderName = (householdProfiles && householdProfiles.senior && householdProfiles.senior.name) ? householdProfiles.senior.name : "Eleanor Vance";
+      const nowStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const stream = document.getElementById('caregiverLiveStream');
+      if (stream) {
+        const item = document.createElement('div');
+        item.className = 'stream-item';
+        item.style.borderLeft = '3px solid var(--amber)';
+        item.style.background = 'var(--amber-bg)';
+        item.innerHTML = `<strong>⚠️ Privacy Pause:</strong> ${elderName} initiated a ${hours}h Privacy Pause. Sensor telemetry paused; Emergency 112 SOS active. <span style="font-size:0.7rem; color:var(--text-muted);">${nowStr}</span>`;
+        stream.insertBefore(item, stream.firstChild);
+      }
+
+      showToast(`🔒 Privacy Pause activated for ${hours} Hours. Telemetry masked; emergency 112 alarms remain 100% active.`);
       closePrivacyPauseModal();
       updatePrivacyPauseUI();
     }
 
     function cancelPrivacyPause() {
       localStorage.removeItem('omnitask_privacy_pause_until');
+      const elderName = (householdProfiles && householdProfiles.senior && householdProfiles.senior.name) ? householdProfiles.senior.name : "Eleanor Vance";
+      const nowStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const stream = document.getElementById('caregiverLiveStream');
+      if (stream) {
+        const item = document.createElement('div');
+        item.className = 'stream-item';
+        item.style.borderLeft = '3px solid var(--emerald)';
+        item.innerHTML = `<strong>🟢 Privacy Shield Ended:</strong> ${elderName} resumed full sensor telemetry stream. <span style="font-size:0.7rem; color:var(--text-muted);">${nowStr}</span>`;
+        stream.insertBefore(item, stream.firstChild);
+      }
       showToast("🟢 Senior Privacy Pause ended. Telemetry stream resumed.");
       closePrivacyPauseModal();
       updatePrivacyPauseUI();
@@ -7548,7 +7838,7 @@
       let y = 180;
       items.forEach(it => {
         itemsXml += `<text x="35" y="${y}" font-family="monospace" font-size="13" fill="%231e293b">${it.qty}x ${it.name}</text>
-                     <text x="365" y="${y}" font-family="monospace" font-size="13" fill="%231e293b" text-anchor="end">$${it.price.toFixed(2)}</text>`;
+                     <text x="365" y="${y}" font-family="monospace" font-size="13" fill="%231e293b" text-anchor="end">₹${it.price.toFixed(2)}</text>`;
         y += 24;
       });
 
@@ -7561,7 +7851,7 @@
         <rect x="15" y="15" width="370" height="530" rx="8" fill="%23f8fafc" stroke="%23cbd5e1" stroke-width="1.5" filter="url(%23shadow)"/>
         <!-- Header -->
         <text x="200" y="65" font-family="sans-serif" font-size="20" font-weight="900" fill="%230f172a" text-anchor="middle">${title.toUpperCase()}</text>
-        <text x="200" y="90" font-family="sans-serif" font-size="12" fill="%2364748b" text-anchor="middle">Store %23482 • Boston, MA</text>
+        <text x="200" y="90" font-family="sans-serif" font-size="12" fill="%2364748b" text-anchor="middle">Store %23482 • Bangalore, KA</text>
         <text x="200" y="110" font-family="monospace" font-size="12" fill="%2364748b" text-anchor="middle">Date: ${date} • 14:32</text>
         <line x1="35" y1="135" x2="365" y2="135" stroke="%2394a3b8" stroke-dasharray="4 4" stroke-width="1.5"/>
         <text x="35" y="155" font-family="monospace" font-size="11" font-weight="bold" fill="%23475569">ITEM</text>
@@ -7572,11 +7862,11 @@
         <line x1="35" y1="${y + 10}" x2="365" y2="${y + 10}" stroke="%2394a3b8" stroke-dasharray="4 4" stroke-width="1.5"/>
         <!-- Totals -->
         <text x="35" y="${y + 35}" font-family="monospace" font-size="13" fill="%23475569">Subtotal:</text>
-        <text x="365" y="${y + 35}" font-family="monospace" font-size="13" fill="%23475569" text-anchor="end">$${subtotal.toFixed(2)}</text>
-        <text x="35" y="${y + 58}" font-family="monospace" font-size="13" fill="%23475569">Tax (HST/GST):</text>
-        <text x="365" y="${y + 58}" font-family="monospace" font-size="13" fill="%23475569" text-anchor="end">$${tax.toFixed(2)}</text>
+        <text x="365" y="${y + 35}" font-family="monospace" font-size="13" fill="%23475569" text-anchor="end">₹${subtotal.toFixed(2)}</text>
+        <text x="35" y="${y + 58}" font-family="monospace" font-size="13" fill="%23475569">Tax (GST):</text>
+        <text x="365" y="${y + 58}" font-family="monospace" font-size="13" fill="%23475569" text-anchor="end">₹${tax.toFixed(2)}</text>
         <text x="35" y="${y + 88}" font-family="monospace" font-size="17" font-weight="bold" fill="%230f172a">TOTAL:</text>
-        <text x="365" y="${y + 88}" font-family="monospace" font-size="18" font-weight="bold" fill="%23059669" text-anchor="end">$${total.toFixed(2)}</text>
+        <text x="365" y="${y + 88}" font-family="monospace" font-size="18" font-weight="bold" fill="%23059669" text-anchor="end">₹${total.toFixed(2)}</text>
         <!-- Barcode -->
         <line x1="60" y1="510" x2="340" y2="510" stroke="%230f172a" stroke-dasharray="3 2 5 2 7 3 2 4 6 2" stroke-width="18"/>
         <text x="200" y="535" font-family="monospace" font-size="10" fill="%2364748b" text-anchor="middle">AUTHENTIC FISCAL RECEIPT</text>
@@ -7839,7 +8129,7 @@
         tr.innerHTML = `
           <td>${it.name || 'Item'}</td>
           <td style="text-align:center;">${it.qty || 1}</td>
-          <td style="text-align:right; font-family:'JetBrains Mono',monospace;">$${parseFloat(it.price || 0).toFixed(2)}</td>
+          <td style="text-align:right; font-family:'JetBrains Mono',monospace;">₹${parseFloat(it.price || 0).toFixed(2)}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -7874,7 +8164,7 @@
         mathBadge.textContent = '✓ Math Balances';
       } else {
         mathBadge.style.color = 'var(--amber)';
-        mathBadge.textContent = `⚠️ Math Mismatch ($${calculated.toFixed(2)} vs $${total.toFixed(2)})`;
+        mathBadge.textContent = `⚠️ Math Mismatch (₹${calculated.toFixed(2)} vs ₹${total.toFixed(2)})`;
       }
     }
 
@@ -7940,7 +8230,7 @@
         dupBadge.textContent = '⚠️ Duplicate Flagged';
         if (dupAlert) {
           dupAlert.style.display = 'block';
-          dupAlert.innerHTML = `<strong>⚠️ Potential Duplicate:</strong> An entry from <strong>${vendor}</strong> for <strong>$${numTotal.toFixed(2)}</strong> already exists in your ledger.`;
+          dupAlert.innerHTML = `<strong>⚠️ Potential Duplicate:</strong> An entry from <strong>${vendor}</strong> for <strong>₹${numTotal.toFixed(2)}</strong> already exists in your ledger.`;
         }
       } else {
         dupBadge.style.color = 'var(--emerald)';
@@ -7969,7 +8259,7 @@
       const vendor = (document.getElementById('scanVendorInput')?.value || '').trim() || 'Scanned Bill';
       const dateVal = document.getElementById('scanDateInput')?.value || new Date().toISOString().split('T')[0];
       const category = document.getElementById('scanCategorySelect')?.value || 'Other';
-      const currency = document.getElementById('scanCurrencySelect')?.value || 'USD';
+      const currency = document.getElementById('scanCurrencySelect')?.value || 'INR';
       const subtotal = parseFloat(document.getElementById('scanSubtotalInput')?.value || 0);
       const tax = parseFloat(document.getElementById('scanTaxInput')?.value || 0);
       const total = parseFloat(document.getElementById('scanTotalInput')?.value || 0);
@@ -8012,7 +8302,7 @@
           lineItems: lineItems
         };
         expensesData.unshift(newExp);
-        showToast(`🧾 Logged "${vendor}" ($${total.toFixed(2)}) to Expense Ledger!`);
+        showToast(`🧾 Logged "${vendor}" (₹${total.toFixed(2)}) to Expense Ledger!`);
       } else {
         const newBill = {
           id: "bill_" + Date.now(),
@@ -8028,7 +8318,7 @@
           confidence: confidence
         };
         billsData.unshift(newBill);
-        showToast(`💳 Scheduled "${vendor}" Bill ($${total.toFixed(2)}) due ${dateVal}!`);
+        showToast(`💳 Scheduled "${vendor}" Bill (₹${total.toFixed(2)}) due ${dateVal}!`);
       }
 
       persistAllData();
@@ -8057,7 +8347,7 @@
       if (title) title.textContent = `Receipt Audit: ${exp.name || 'Expense'}`;
       if (meta) {
         const confStr = exp.confidence ? ` • AI Conf: ${Math.round(exp.confidence * 100)}%` : '';
-        meta.textContent = `${exp.date || 'Recorded'} • $${parseFloat(exp.amount || 0).toFixed(2)}${confStr}`;
+        meta.textContent = `${exp.date || 'Recorded'} • ₹${parseFloat(exp.amount || 0).toFixed(2)}${confStr}`;
       }
       if (modal) modal.style.display = 'flex';
     }
@@ -8343,7 +8633,7 @@
           total += amt;
           const cleanTitle = b.title.replace(/^💡\s*/, '').trim().toLowerCase();
           recordedTitles.add(cleanTitle);
-          spendItems.push(`${b.title} ($${amt.toFixed(2)})${b.isPaid ? ' [Paid ✓]' : ' [Pending]'}`);
+          spendItems.push(`${b.title} (₹${amt.toFixed(2)})${b.isPaid ? ' [Paid ✓]' : ' [Pending]'}`);
         }
       });
 
@@ -8358,7 +8648,7 @@
           if (!recordedTitles.has(cleanName)) {
             const amt = parseFloat(e.amount || 0);
             total += amt;
-            spendItems.push(`${e.name} ($${amt.toFixed(2)})`);
+            spendItems.push(`${e.name} (₹${amt.toFixed(2)})`);
             recordedTitles.add(cleanName);
           }
         }
@@ -8368,12 +8658,12 @@
       const descElem = document.getElementById('calSpendDesc');
       const payNowBtn = document.getElementById('calPayNowBtn');
 
-      if (spendElem) spendElem.textContent = `$${total.toFixed(2)}`;
+      if (spendElem) spendElem.textContent = `₹${total.toFixed(2)}`;
       if (descElem) {
         if (spendItems.length > 0) {
           descElem.innerHTML = `Breakdown: <strong>${spendItems.slice(0, 3).map(escapeHTML).join(', ')}</strong>${spendItems.length > 3 ? ` +${spendItems.length - 3} more` : ''}.`;
         } else {
-          descElem.textContent = `No scheduled bills or recorded expenses on this date ($0.00).`;
+          descElem.textContent = `No scheduled bills or recorded expenses on this date (₹0.00).`;
         }
       }
 
@@ -8433,7 +8723,7 @@
           bDate.includes(`${day}rd`)
         );
         if (matchesISO || matchesFmt) {
-          events.push({ type: 'bill', color: 'var(--amber)', title: `${b.title} ($${parseFloat(b.amount||0).toFixed(2)})`, icon: '💳', time: '10:00 AM', isPaid: b.isPaid });
+          events.push({ type: 'bill', color: 'var(--amber)', title: `${b.title} (₹${parseFloat(b.amount||0).toFixed(2)})`, icon: '💳', time: '10:00 AM', isPaid: b.isPaid });
         }
       });
 
