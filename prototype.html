@@ -2033,6 +2033,36 @@
       to { transform: translateY(0); opacity: 1; }
     }
 
+    /* Single-Use Habit Emoji Selector Chips */
+    .habit-emoji-chip {
+      padding: 0.38rem 0.65rem;
+      font-size: 1.25rem;
+      line-height: 1;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--surface-border);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .habit-emoji-chip:hover {
+      background: rgba(99, 102, 241, 0.22);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .habit-emoji-chip.active-emoji {
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+      border-color: #818cf8 !important;
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.55);
+      transform: scale(1.12);
+    }
+
     /* ==========================================================================
        RESPONSIVE WORKSPACE ARCHITECTURE (Laptop, Tablet & Mobile Phone)
        ========================================================================== */
@@ -4432,6 +4462,23 @@
         </div>
       </div>
 
+      <!-- Dedicated Habit Emoji Selector (One-Time Unique Emoji Selection) -->
+      <div class="form-group" id="addHabitEmojiGroup" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+          <label style="margin:0; font-weight:700; font-size:0.75rem;">Select Unique Habit Emoji <span style="color:var(--rose);">*</span></label>
+          <span class="pill-badge" id="habitEmojiUniqueBadge" style="background:rgba(99,102,241,0.18); color:var(--accent); font-size:0.68rem; font-weight:800;">One-time use</span>
+        </div>
+        <select class="form-input" id="addHabitEmojiSelect" onchange="onHabitEmojiSelectChange(this.value)">
+          <!-- Populated dynamically with unused emojis only -->
+        </select>
+        <div id="habitEmojiChipsContainer" style="display:flex; gap:0.4rem; overflow-x:auto; padding:0.4rem 0.1rem; margin-top:0.35rem; -webkit-overflow-scrolling:touch;">
+          <!-- Dynamically populated emoji chips -->
+        </div>
+        <div id="habitEmojiNotice" style="font-size:0.68rem; color:var(--text-muted); margin-top:3px;">
+          ℹ️ Each emoji can only be assigned to one habit. Once used, it is removed from future custom entries.
+        </div>
+      </div>
+
       <div class="form-group">
         <label id="addTitleLabel">Title / Name</label>
         <input type="text" class="form-input" id="addTitleInput" placeholder="e.g. Lisinopril 10mg or Internet Bill">
@@ -5174,6 +5221,8 @@
       localStorage.removeItem('omnitask_appointments');
       localStorage.removeItem('omnitask_monthly_salary');
       localStorage.removeItem('omnitask_privacy_pause_until');
+      localStorage.removeItem('omnitask_habits');
+      habitsData = JSON.parse(JSON.stringify(defaultHabitsData));
       streakCount = 7;
       localStorage.setItem('omnitask_streak', '7');
       persistAllData();
@@ -5197,7 +5246,7 @@
     ];
 
     // 5. Dynamic Habits Data
-    let habitsData = [
+    const defaultHabitsData = [
       {
         id: "hab_1",
         title: "Guitar Practice Sessions",
@@ -5214,6 +5263,8 @@
         details: "6 of 8 Glasses Drank Today"
       }
     ];
+
+    let habitsData = JSON.parse(JSON.stringify(defaultHabitsData));
 
     // 6. Dynamic Appointments Data (Pristine Clinical Sample Records)
     const defaultAppointmentsData = [
@@ -6918,6 +6969,124 @@
       document.getElementById('addAmountInput').value = '';
     }
 
+    // Habit Emoji Catalog for Single-Use Habits Selection
+    const HABIT_EMOJI_CATALOG = [
+      { emoji: "🎸", label: "Guitar & Music" },
+      { emoji: "💧", label: "Hydration & Water" },
+      { emoji: "📚", label: "Reading & Learning" },
+      { emoji: "🧘", label: "Meditation & Mindfulness" },
+      { emoji: "🚶", label: "Daily Steps & Walking" },
+      { emoji: "🏃", label: "Running & Cardio" },
+      { emoji: "🚴", label: "Cycling & Commute" },
+      { emoji: "😴", label: "Sleep & Recovery" },
+      { emoji: "🥗", label: "Healthy Greens & Diet" },
+      { emoji: "✍️", label: "Journaling & Reflection" },
+      { emoji: "🌿", label: "Gardening & Nature" },
+      { emoji: "☀️", label: "Morning Routine" },
+      { emoji: "🍎", label: "Nutrition & Fruit" },
+      { emoji: "🍵", label: "Tea & Relaxation" },
+      { emoji: "🎯", label: "Deep Focus & Study" },
+      { emoji: "🧹", label: "Home Organization" },
+      { emoji: "🎨", label: "Creative Arts" },
+      { emoji: "🏊", label: "Swimming & Laps" },
+      { emoji: "💪", label: "Strength Training" },
+      { emoji: "🕊️", label: "Gratitude & Prayer" },
+      { emoji: "🧠", label: "Brain Training & Puzzles" },
+      { emoji: "🐶", label: "Pet Care & Dog Walk" },
+      { emoji: "📵", label: "Digital Detox" },
+      { emoji: "🦷", label: "Dental Care & Floss" },
+      { emoji: "✨", label: "Sparkle & Custom" }
+    ];
+
+    function populateHabitEmojiOptions() {
+      const select = document.getElementById('addHabitEmojiSelect');
+      const chipsContainer = document.getElementById('habitEmojiChipsContainer');
+      const badge = document.getElementById('habitEmojiUniqueBadge');
+      const notice = document.getElementById('habitEmojiNotice');
+      if (!select || !chipsContainer) return;
+
+      select.innerHTML = '';
+      chipsContainer.innerHTML = '';
+
+      // Set of emojis already assigned to existing habits (Single-Use Rule)
+      const usedEmojis = new Set(habitsData.map(h => (h.emoji || '').trim()).filter(Boolean));
+      const available = HABIT_EMOJI_CATALOG.filter(item => !usedEmojis.has(item.emoji.trim()));
+
+      if (available.length === 0) {
+        const opt = document.createElement('option');
+        opt.value = "";
+        opt.textContent = "All preset emojis currently in use";
+        select.appendChild(opt);
+        select.disabled = true;
+        chipsContainer.innerHTML = '<span style="font-size:0.75rem; color:var(--amber);">⚠️ All preset emojis are assigned to active habits. Delete a habit to release its emoji.</span>';
+        if (badge) {
+          badge.textContent = "All In Use";
+          badge.style.background = 'var(--rose-bg)';
+          badge.style.color = 'var(--rose)';
+        }
+        return;
+      }
+
+      select.disabled = false;
+      available.forEach((item, idx) => {
+        const opt = document.createElement('option');
+        opt.value = item.emoji;
+        opt.textContent = `${item.emoji} ${item.label}`;
+        if (idx === 0) opt.selected = true;
+        select.appendChild(opt);
+
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'habit-emoji-chip' + (idx === 0 ? ' active-emoji' : '');
+        chip.setAttribute('data-emoji', item.emoji);
+        chip.title = item.label;
+        chip.textContent = item.emoji;
+        chip.onclick = () => selectHabitEmojiChip(item.emoji);
+        chipsContainer.appendChild(chip);
+      });
+
+      const initialVal = available[0].emoji;
+      select.value = initialVal;
+      if (badge) {
+        badge.textContent = `Selected: ${initialVal} (${available.length} available)`;
+        badge.style.background = 'rgba(99,102,241,0.18)';
+        badge.style.color = 'var(--accent)';
+      }
+      if (notice) {
+        notice.textContent = `ℹ️ ${available.length} unique emoji${available.length === 1 ? '' : 's'} available. Each emoji can only be used once across all habits.`;
+      }
+    }
+
+    function onHabitEmojiSelectChange(val) {
+      highlightSelectedHabitEmojiChip(val);
+      const badge = document.getElementById('habitEmojiUniqueBadge');
+      if (badge && val) {
+        badge.textContent = `Selected: ${val}`;
+        badge.style.background = 'rgba(16,185,129,0.18)';
+        badge.style.color = 'var(--emerald)';
+      }
+    }
+
+    function selectHabitEmojiChip(emoji) {
+      const sel = document.getElementById('addHabitEmojiSelect');
+      if (sel) {
+        sel.value = emoji;
+        onHabitEmojiSelectChange(emoji);
+      }
+    }
+
+    function highlightSelectedHabitEmojiChip(val) {
+      const container = document.getElementById('habitEmojiChipsContainer');
+      if (!container) return;
+      container.querySelectorAll('.habit-emoji-chip').forEach(btn => {
+        if (btn.getAttribute('data-emoji') === val) {
+          btn.classList.add('active-emoji');
+        } else {
+          btn.classList.remove('active-emoji');
+        }
+      });
+    }
+
     function updateQuickAddFields() {
       const domain = document.getElementById('addDomainSelect').value;
       const titleLabel = document.getElementById('addTitleLabel');
@@ -6927,12 +7096,14 @@
       const catGroup = document.getElementById('addExpenseCategoryGroup');
       const docGroup = document.getElementById('addDoctorGroup');
       const taskGroup = document.getElementById('addTaskPriorityGroup');
+      const habitEmojiGroup = document.getElementById('addHabitEmojiGroup');
       const docLabel = document.getElementById('addDoctorLabel');
       const docInput = document.getElementById('addDoctorInput');
 
       if (catGroup) catGroup.style.display = 'none';
       if (docGroup) docGroup.style.display = 'none';
       if (taskGroup) taskGroup.style.display = 'none';
+      if (habitEmojiGroup) habitEmojiGroup.style.display = 'none';
 
       if (domain === 'pill') {
         if (docGroup) {
@@ -6967,10 +7138,14 @@
         amountLabel.textContent = "Routine Subtitle / Target";
         amountInput.placeholder = "e.g. AI Routine • Quads & 20m Elliptical";
       } else if (domain === 'habit') {
-        titleLabel.textContent = "Habit Name (e.g. Hydration or Reading)";
+        if (habitEmojiGroup) {
+          habitEmojiGroup.style.display = 'block';
+          populateHabitEmojiOptions();
+        }
+        titleLabel.textContent = "Habit Name (e.g. Reading, Walking, Meditation)";
         titleInput.placeholder = "e.g. Read 20 Pages";
-        amountLabel.textContent = "Emoji & Schedule Details";
-        amountInput.placeholder = "e.g. 📚 Evening Reading (20m)";
+        amountLabel.textContent = "Schedule & Target Details";
+        amountInput.placeholder = "e.g. Evening Routine (20 mins)";
       } else if (domain === 'appointment') {
         if (docGroup) {
           docGroup.style.display = 'block';
@@ -7064,12 +7239,24 @@
         destinationName = "Fitness & Workouts";
         switchPrimaryTab('fitness');
       } else if (domain === 'habit') {
-        const emojiMatch = amount.match(/(\p{Extended_Pictographic})/u);
-        const emoji = emojiMatch ? emojiMatch[0] : "✨";
+        const emojiSel = document.getElementById('addHabitEmojiSelect');
+        let selectedEmoji = emojiSel ? emojiSel.value : '';
+        if (!selectedEmoji) {
+          const emojiMatch = amount.match(/(\p{Extended_Pictographic})/u);
+          selectedEmoji = emojiMatch ? emojiMatch[0] : "✨";
+        }
+
+        // Single-use validation rule: Ensure emoji is unique and not already assigned
+        const isAlreadyUsed = habitsData.some(h => (h.emoji || '').trim() === selectedEmoji.trim());
+        if (isAlreadyUsed) {
+          alert(`⚠️ The emoji '${selectedEmoji}' is already assigned to an existing habit! Each emoji can only be used once.`);
+          return;
+        }
+
         habitsData.push({
           id: "hab_" + Date.now(),
           title: title,
-          emoji: emoji,
+          emoji: selectedEmoji,
           count: 1,
           details: amount || "1 Session Logged"
         });
