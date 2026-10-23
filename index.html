@@ -2773,18 +2773,18 @@
         <div style="display:flex; flex-direction:column; gap:0.65rem; background:var(--bg); padding:0.9rem; border-radius:12px; border:1px solid var(--surface-border);">
           <div class="form-group" id="landNameGroup">
             <label style="font-size:0.72rem; font-weight:700; color:var(--text-muted);" for="landDisplayName">Your Display Name</label>
-            <input type="text" class="form-input" id="landDisplayName" value="Aswin" placeholder="Enter your display name">
+            <input type="text" class="form-input" id="landDisplayName" value="Aswin" placeholder="Enter your display name" onkeydown="if(event.key==='Enter') enterDashboard()">
           </div>
 
           <div class="form-group">
             <label style="font-size:0.72rem; font-weight:700; color:var(--text-muted);" for="landEmail">Account Email / ID</label>
-            <input type="text" class="form-input" id="landEmail" value="aswin@omnitask.app">
+            <input type="text" class="form-input" id="landEmail" value="aswin@omnitask.app" onkeydown="if(event.key==='Enter') enterDashboard()">
           </div>
           
           <div class="form-group">
             <label style="font-size:0.72rem; font-weight:700; color:var(--text-muted);" id="landPassLabel" for="landPass">Password</label>
             <div class="password-wrapper">
-              <input type="password" class="form-input" id="landPass" value="••••••••" style="width:100%; padding-right:2.2rem;">
+              <input type="password" class="form-input" id="landPass" value="••••••••" style="width:100%; padding-right:2.2rem;" onkeydown="if(event.key==='Enter') enterDashboard()">
               <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility()" title="Toggle password visibility" id="pwdToggleBtn">
                 👁️
               </button>
@@ -5435,21 +5435,21 @@
         if (nameInp) nameInp.value = householdProfiles.senior.name;
         document.getElementById('landEmail').value = householdProfiles.senior.email;
         document.getElementById('landPassLabel').textContent = 'Elder 4-Digit Access PIN';
-        document.getElementById('landPass').value = '';
+        document.getElementById('landPass').value = securityConfig.seniorPin || '1234';
         document.getElementById('landPass').placeholder = `Enter 4-digit PIN (default: ${securityConfig.seniorPin || '1234'})`;
         if (notice) notice.innerHTML = `👵 <strong>Elder Person (Senior Mode):</strong> Recalibrates workspace into high-contrast 24pt+ text, 56dp buttons, daily regimen checklist, voice readout & 112 SOS.`;
       } else if (role === 'caregiver') {
         if (nameInp) nameInp.value = householdProfiles.caregiver.name;
         document.getElementById('landEmail').value = householdProfiles.caregiver.email;
         document.getElementById('landPassLabel').textContent = 'Caregiver Access Password';
-        document.getElementById('landPass').value = '';
+        document.getElementById('landPass').value = securityConfig.caregiverPass || 'caregiver2026';
         document.getElementById('landPass').placeholder = 'Enter password (default: caregiver2026)';
         if (notice) notice.innerHTML = `🛡️ <strong>Caregiver Mode:</strong> Recalibrates into live patient stream, IoT telemetry (Smart Pillbox / Biometrics), missed-dose escalation timeline & 1-tap elder calling.`;
       } else {
         if (nameInp) nameInp.value = householdProfiles.power.name;
         document.getElementById('landEmail').value = householdProfiles.power.email;
         document.getElementById('landPassLabel').textContent = 'Password';
-        document.getElementById('landPass').value = '';
+        document.getElementById('landPass').value = '••••••••';
         document.getElementById('landPass').placeholder = 'Enter password';
         if (notice) notice.innerHTML = `⚡ <strong>Power User (Master):</strong> Full multi-calendar matrix, ₹ household finances, habit streaks & family governance.`;
       }
@@ -5471,49 +5471,38 @@
       const passInp = document.getElementById('landPass');
       const passVal = passInp ? passInp.value.trim() : '';
 
-      if (landingPersonaRole === 'senior' && passVal && passVal !== securityConfig.seniorPin) {
-        showToast("❌ Incorrect Senior PIN. Please verify with Family Admin.");
-        return;
+      if (landingPersonaRole === 'senior') {
+        const correctPin = (securityConfig && securityConfig.seniorPin) ? securityConfig.seniorPin : '1234';
+        if (passVal && passVal !== correctPin && passVal !== '••••••••') {
+          showToast(`❌ Incorrect Senior PIN. Please enter ${correctPin} or reset in Family Hub.`);
+          return;
+        }
       }
-      if (landingPersonaRole === 'caregiver' && passVal && passVal !== securityConfig.caregiverPass) {
-        showToast("❌ Incorrect Caregiver Password.");
-        return;
+      if (landingPersonaRole === 'caregiver') {
+        const correctPass = (securityConfig && securityConfig.caregiverPass) ? securityConfig.caregiverPass : 'caregiver2026';
+        if (passVal && passVal !== correctPass && passVal !== '••••••••') {
+          showToast(`❌ Incorrect Caregiver Password. Default is '${correctPass}'.`);
+          return;
+        }
       }
 
       const customName = document.getElementById('landDisplayName')?.value?.trim();
       if (customName && householdProfiles[landingPersonaRole]) {
         householdProfiles[landingPersonaRole].name = customName;
         householdProfiles[landingPersonaRole].initials = getInitials(customName);
-        localStorage.setItem('omnitask_household_profiles', JSON.stringify(householdProfiles));
+        try {
+          localStorage.setItem('omnitask_household_profiles', JSON.stringify(householdProfiles));
+        } catch(e) {}
       }
 
       toggleLoginScreen(false);
       setMode(landingPersonaRole);
       
-      const activeObj = householdProfiles[landingPersonaRole];
+      const activeObj = householdProfiles[landingPersonaRole] || householdProfiles.power;
       saveSessionState(true, landingPersonaRole, activeObj.name, activeObj.email);
       updateHouseholdProfileUI();
       renderAllViews();
       showToast(`🔑 Signed in as ${activeObj.name} (${activeObj.role}) - Workspace Recalibrated`);
-    }
-        document.getElementById('dropdownUserName').textContent = 'Eleanor Vance (Senior)';
-        document.getElementById('dropdownUserEmail').textContent = userEmail;
-        showToast("🔑 Logged in as Eleanor Vance (Senior Mode Active)");
-      } else if (landingPersonaRole === 'caregiver') {
-        userName = 'John Vance';
-        userEmail = 'john.vance@caregiver.guardian';
-        document.getElementById('activeUserName').textContent = userName;
-        document.getElementById('dropdownUserName').textContent = 'John Vance (Caregiver)';
-        document.getElementById('dropdownUserEmail').textContent = userEmail;
-        showToast("🔑 Logged in as John Vance (Caregiver Telemetry Active)");
-      } else {
-        document.getElementById('activeUserName').textContent = userName;
-        document.getElementById('dropdownUserName').textContent = userName;
-        document.getElementById('dropdownUserEmail').textContent = userEmail;
-        showToast("🔑 Logged in as Aswin (Power User Profile)");
-      }
-      saveSessionState(true, landingPersonaRole, userName, userEmail);
-      renderAllViews();
     }
 
     function enterDashboardGuest() {
@@ -6594,7 +6583,6 @@
       if (bentoPendingTotal) {
         bentoPendingTotal.textContent = `₹${pendingTotal.toFixed(2)}`;
       }
-    }
     }
 
     // Interactive Household Tasks Management
