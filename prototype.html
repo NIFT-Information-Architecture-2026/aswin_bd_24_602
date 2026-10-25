@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -2655,6 +2655,100 @@
       color: var(--accent);
       background: rgba(99, 102, 241, 0.12);
     }
+
+    /* ==========================================================================
+       LAPTOP DASHBOARD REDESIGN (Figma Reference Match)
+       ========================================================================== */
+    .dashboard-laptop-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 1.25rem;
+      align-items: start;
+      width: 100%;
+    }
+    @media (max-width: 1200px) {
+      .dashboard-laptop-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .dashboard-main-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+    .dashboard-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+    .bento-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 1100px) {
+      .bento-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .bento-kpi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .bento-kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      padding: 1.1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.25);
+    }
+    .bento-kpi-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .dashboard-3col-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 1100px) {
+      .dashboard-3col-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .quick-action-tile:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+    .role-btn.active {
+      background: #2563eb !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
+    }
+    .sidebar-nav-item.active {
+      background: #2563eb !important;
+      color: #ffffff !important;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+    }
   </style>
 </head>
 <body>
@@ -2866,12 +2960,12 @@
 
       <!-- Brand & Status -->
       <div class="sidebar-brand" onclick="switchPrimaryTab('home')">
-        <div class="sidebar-logo-icon">OT</div>
+        <div class="sidebar-logo-icon" style="background:linear-gradient(135deg, #6366f1, #8b5cf6); border-radius:10px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 16px rgba(99,102,241,0.5);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><polygon points="12 2 2 7 2 17 12 22 22 17 22 7 12 2"/></svg>
+        </div>
         <div style="flex:1;">
-          <div class="sidebar-brand-name">OmniTask</div>
-          <div style="font-size:0.7rem; color:var(--emerald); display:flex; align-items:center; gap:4px; font-weight:700;">
-            <span class="online-indicator"></span> Life OS • Connected
-          </div>
+          <div class="sidebar-brand-name" style="font-weight:900; letter-spacing:-0.02em;">OmniTask</div>
+          <div style="font-size:0.68rem; color:#94a3b8; font-weight:700;">Personal Life OS</div>
         </div>
       </div>
 
@@ -2951,10 +3045,33 @@
         + Add Member
       </button>
 
-      <!-- Bottom System Status Pill -->
-      <div style="margin-top:auto; padding-top:1rem; border-top:1px solid var(--surface-border); display:flex; align-items:center; justify-content:space-between; font-size:0.7rem; color:var(--text-muted);">
-        <span>v4.4 Prototype</span>
-        <span style="color:var(--emerald);">● Connected</span>
+            <!-- Bottom System Section: Settings, Help, User Profile & Status -->
+      <div style="margin-top:auto; padding-top:0.75rem; border-top:1px solid var(--surface-border); display:flex; flex-direction:column; gap:0.25rem;">
+        <button class="sidebar-nav-item" onclick="openFamilySettingsModal()" style="padding:0.4rem 0.65rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span style="font-size:0.78rem;">Settings</span>
+        </button>
+        <button class="sidebar-nav-item" onclick="showToast('ðŸ’¡ OmniTask Life OS: Keyboard shortcuts (âŒ˜K) & full multi-persona support active.')" style="padding:0.4rem 0.65rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+          <span style="font-size:0.78rem;">Help</span>
+        </button>
+
+        <!-- User Profile Card in Sidebar -->
+        <div class="sidebar-user-card" onclick="toggleProfileDropdown()" style="display:flex; align-items:center; gap:0.65rem; padding:0.55rem 0.7rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; margin-top:0.4rem; cursor:pointer;" title="Master Account Owner Profile">
+          <div style="position:relative; width:30px; height:30px; flex-shrink:0;">
+            <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #8b5cf6, #6366f1); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; color:#fff;">AS</div>
+            <span class="online-indicator" style="position:absolute; bottom:0; right:0; border:2px solid var(--surface); width:7px; height:7px;"></span>
+          </div>
+          <div style="flex:1; min-width:0;">
+            <div style="font-weight:800; font-size:0.78rem; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Aswin S</div>
+            <div style="font-size:0.65rem; color:var(--text-muted); display:flex; align-items:center; gap:2px;">Power Mode <span style="font-size:0.7rem;">â€º</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.65rem; color:var(--text-muted); padding:0.25rem 0.5rem 0 0.5rem;">
+          <span>v4.4 Prototype</span>
+          <span style="color:var(--emerald);">â— Connected</span>
+        </div>
       </div>
     </aside>
 
@@ -2962,7 +3079,7 @@
     <div class="app-main-content">
 
       <!-- Modern Topbar Header -->
-      <header class="app-topbar">
+            <header class="app-topbar">
         <!-- Mobile Drawer Toggle Button (Visible on <= 1024px) -->
         <button class="topbar-icon-btn mobile-menu-btn" id="mobileMenuToggleBtn" onclick="toggleSidebarMobile()" aria-label="Toggle Navigation Menu">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -2972,50 +3089,61 @@
           </svg>
         </button>
 
-        <!-- Global Search -->
-        <div class="topbar-search">
-          <span>🔍</span>
-          <input type="text" id="globalOmniSearchInput" placeholder="Search tasks, pills, bills... (⌘K)" oninput="handleGlobalSearch(this.value)">
-        </div>
-
-        <!-- Date & Weather Pill -->
-        <div class="topbar-date-weather">
-          <span id="topbarDateStr">Calendar OS</span>
-          <span class="weather-pill" id="weatherPillDisplay">☀️ 22°C Sunny</span>
-        </div>
-
-        <!-- Persona Switcher Pills (Clean Line SVGs) -->
+        <!-- Persona Switcher Pills (âš¡ Power, ðŸ‘¤ Senior Dignity, ðŸ›¡ï¸ Caregiver) -->
         <div class="role-switch-pills">
           <button class="role-btn active" id="btnRolePower" onclick="setMode('power')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span class="role-btn-label">Power</span>
           </button>
           <button class="role-btn" id="btnRoleSenior" onclick="setMode('senior')">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="role-btn-label">Senior</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="role-btn-label">Senior Dignity</span>
           </button>
           <button class="role-btn" id="btnRoleCaregiver" onclick="setMode('caregiver')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="role-btn-label">Caregiver</span>
           </button>
         </div>
 
-        <!-- Topbar Action Icons & Profile -->
+        <!-- Global Search with âŒ˜ K -->
+        <div class="topbar-search" style="max-width:380px;">
+          <span>ðŸ”</span>
+          <input type="text" id="globalOmniSearchInput" placeholder="Search tasks, meds, expenses..." oninput="handleGlobalSearch(this.value)">
+          <kbd style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:5px; padding:2px 6px; font-size:0.65rem; color:#cbd5e1; font-family:inherit;">âŒ˜ K</kbd>
+        </div>
+
+        <!-- Topbar Action Icons & Right Utilities -->
         <div class="topbar-actions">
-          <button class="btn btn-secondary" onclick="openFamilySettingsModal()" id="btnHeaderFamily" title="Master User: Senior PIN & Household Hub" style="padding:0.35rem 0.7rem; font-size:0.78rem; display:inline-flex; align-items:center; gap:5px;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <!-- Date & Weather Pills -->
+          <div class="topbar-date-weather" style="display:inline-flex; align-items:center; gap:0.4rem;">
+            <span id="topbarDateStr" style="font-weight:700; font-size:0.78rem; color:#cbd5e1;">Fri, Oct 23, 2026</span>
+            <span class="weather-pill" id="weatherPillDisplay" style="font-size:0.74rem;">â˜€ï¸ 26Â°C Hyderabad</span>
+          </div>
+
+          <button class="btn btn-secondary" onclick="openFamilySettingsModal()" id="btnHeaderFamily" title="Master User: Senior PIN & Household Hub" style="padding:0.32rem 0.65rem; font-size:0.75rem; display:inline-flex; align-items:center; gap:4px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             Family Hub
           </button>
+
           <button class="topbar-icon-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle Theme">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
           </button>
-          <button class="topbar-icon-btn" onclick="showToast('🔔 2 Notifications: Dr. Martinez appointment at 11:00 AM & ConEd Bill due today.')" title="Notifications">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span class="notification-badge">2</span>
+
+          <button class="topbar-icon-btn" onclick="showToast('ðŸ”” 3 Notifications: Dr. Lin review, ConEd due Oct 26, & Metformin taken.')" title="Notifications">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notification-badge">3</span>
+          </button>
+
+          <!-- Emergency Dial 112 SOS Pill Button (Matching mockup) -->
+          <button class="btn" onclick="openSosModal()" style="background:#ef4444; color:#ffffff; font-weight:900; font-size:0.75rem; padding:0.35rem 0.85rem; border-radius:20px; border:none; display:inline-flex; align-items:center; gap:4px; box-shadow:0 3px 12px rgba(239,68,68,0.45); cursor:pointer;" title="Emergency SOS Dial 112">
+            ðŸ“ž 112
           </button>
 
           <!-- User Profile Avatar Pill -->
           <button class="user-avatar-btn" onclick="toggleProfileDropdown()" id="userProfileBtn">
-            <div class="topbar-avatar" style="background:linear-gradient(135deg, #8b5cf6, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border-radius:50%; flex-shrink:0;">AV</div>
-            <span id="activeUserName" style="font-weight:800; font-size:0.84rem; color:#ffffff; text-shadow:0 1px 2px rgba(0,0,0,0.6);">Aswin</span>
-            <span style="font-size:0.68rem; opacity:0.8; color:#ffffff;">▾</span>
+            <div class="topbar-avatar" style="position:relative; width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg, #8b5cf6, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.7rem; flex-shrink:0;">
+              AS
+              <span class="online-indicator" style="position:absolute; bottom:0; right:0; width:8px; height:8px; border:1.5px solid #0f172a;"></span>
+            </div>
+            <span id="activeUserName" style="font-weight:800; font-size:0.82rem; color:#ffffff;">Aswin S</span>
+            <span style="font-size:0.65rem; opacity:0.8; color:#ffffff;">â–¾</span>
           </button>
 
           <!-- Profile Dropdown (Preserved for compatibility) -->
@@ -3023,38 +3151,38 @@
             <div class="dropdown-header">
               <div style="font-weight:800; font-size:0.88rem;" id="dropdownUserName">Aswin</div>
               <div style="font-size:0.72rem; color:var(--text-muted);" id="dropdownUserEmail">aswin@omnitask.app</div>
-              <span class="pill-badge" style="background:var(--accent-light); color:var(--accent); align-self:flex-start; margin-top:2px;">⚡ Master Account Owner</span>
+              <span class="pill-badge" style="background:var(--accent-light); color:var(--accent); align-self:flex-start; margin-top:2px;">âš¡ Master Account Owner</span>
             </div>
 
             <div class="dropdown-item" onclick="switchPrimaryTab('oversight'); toggleProfileDropdown();">
-              <span>🛡️ Household Oversight Hub</span>
-              <span style="font-size:0.7rem; color:var(--cyan);">Open →</span>
+              <span>ðŸ›¡ï¸ Household Oversight Hub</span>
+              <span style="font-size:0.7rem; color:var(--cyan);">Open â†’</span>
             </div>
             <div class="dropdown-item" onclick="openFamilySettingsModal(); toggleProfileDropdown();">
-              <span>👨‍👩‍👧 Family Circle & Senior PIN</span>
-              <span style="font-size:0.7rem; color:var(--text-muted);" id="dropdownSeniorPinVal">••••</span>
+              <span>ðŸ‘¨â€ðŸ‘©â€ðŸ‘§ Family Circle & Senior PIN</span>
+              <span style="font-size:0.7rem; color:var(--text-muted);" id="dropdownSeniorPinVal">â€¢â€¢â€¢â€¢</span>
             </div>
 
             <div class="dropdown-divider"></div>
 
             <div class="dropdown-item" onclick="printDoctorSummary(); toggleProfileDropdown();">
-              <span>📋 Doctor Visit Summary (PDF)</span>
-              <span>📄</span>
+              <span>ðŸ“‹ Doctor Visit Summary (PDF)</span>
+              <span>ðŸ“„</span>
             </div>
             <div class="dropdown-item" onclick="exportExpenseCSV(); toggleProfileDropdown();">
-              <span>📊 Export Expense Ledger (CSV)</span>
-              <span>💾</span>
+              <span>ðŸ“Š Export Expense Ledger (CSV)</span>
+              <span>ðŸ’¾</span>
             </div>
             <div class="dropdown-item" onclick="resetDemoData(); toggleProfileDropdown();" style="color:var(--amber);">
-              <span>🔄 Reset Demo Data (Clean Sample)</span>
-              <span>↺</span>
+              <span>ðŸ”„ Reset Demo Data (Clean Sample)</span>
+              <span>â†º</span>
             </div>
 
             <div class="dropdown-divider"></div>
 
             <div class="dropdown-item" onclick="toggleLoginScreen(true); toggleProfileDropdown();" style="color:var(--rose);">
-              <span>🚪 Sign Out / Switch User</span>
-              <span>→</span>
+              <span>ðŸšª Sign Out / Switch User</span>
+              <span>â†’</span>
             </div>
           </div>
         </div>
@@ -3107,247 +3235,550 @@
              ====================================================================== -->
         <div class="app-view-panel active-view" id="view_home">
 
-          <!-- Scenic Hero Mountain Vista Header (#masterTelemetryRibbon) -->
-          <div id="masterTelemetryRibbon" class="scenic-hero-banner">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-              <div>
-                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(7, 10, 19, 0.65); backdrop-filter:blur(10px); padding:4px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.14); margin-bottom:0.5rem;">
-                  <span class="online-indicator" style="box-shadow:0 0 10px #22c55e;"></span>
-                  <span style="font-size:0.74rem; color:#86efac; font-weight:800; letter-spacing:0.03em; text-transform:uppercase;">🔒 Local Browser Storage • Evaluation Sandbox</span>
-                </div>
-                <h1 class="scenic-hero-title" id="heroGreetingTitle">Good morning, Aswin</h1>
-                <p class="scenic-hero-subtitle" id="heroDateSubtitle">"A calmer, more organised life together." • Today</p>
-              </div>
-              <div style="display:flex; align-items:center; gap:0.6rem;">
-                <button class="btn btn-secondary" style="background:rgba(15, 23, 42, 0.7); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.18); color:#fff; font-size:0.78rem; font-weight:700; border-radius:10px;" onclick="openQuickAddModal()">
-                  ＋ Quick Add
-                </button>
-                <button class="btn" style="background:linear-gradient(135deg, #4f46e5, #6366f1); color:#fff; font-size:0.78rem; font-weight:800; border:none; border-radius:10px; box-shadow:0 6px 18px rgba(99,102,241,0.5);" onclick="switchPrimaryTab('reminders')">
-                  💊 Med Log
-                </button>
-              </div>
-            </div>
+        <!-- ======================================================================
+             LAPTOP REDESIGN: 2-COLUMN MASTER DASHBOARD (Main 72% / Right 28%)
+             ====================================================================== -->
+        <div class="dashboard-laptop-layout">
 
-            <div class="scenic-chips-row">
-              <!-- Chip 1: Eleanor Vance -->
-              <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Senior Health Stream">
-                <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #22c55e; flex-shrink:0;" id="scenicChipSeniorAvatar">EV</div>
-                <div>
-                  <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;" id="scenicChipSeniorName">
-                    Eleanor Vance <span class="online-indicator" style="box-shadow:0 0 8px #22c55e;"></span>
+          <!-- ==================== LEFT / MAIN COLUMN ==================== -->
+          <div class="dashboard-main-col">
+
+            <!-- 1. Scenic Mountain Vista Hero Banner (#masterTelemetryRibbon) -->
+            <div id="masterTelemetryRibbon" class="scenic-hero-banner">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem;">
+                <div style="flex:1; min-width:260px;">
+                  <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(7, 10, 19, 0.65); backdrop-filter:blur(10px); padding:4px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.14); margin-bottom:0.4rem;">
+                    <span class="online-indicator" style="box-shadow:0 0 10px #22c55e;"></span>
+                    <span style="font-size:0.72rem; color:#86efac; font-weight:800; letter-spacing:0.03em; text-transform:uppercase;">ðŸ”’ Local Client-Side Sandbox (Prototype)</span>
                   </div>
-                  <div style="font-size:0.68rem; color:#86efac; font-weight:700;">96% adherence • All good today</div>
-                </div>
-              </div>
-
-              <!-- Chip 2: John Vance -->
-              <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="View Caregiver Stream">
-                <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #0ea5e9, #6366f1); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #38bdf8; flex-shrink:0;">JV</div>
-                <div>
-                  <div style="font-size:0.8rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:5px;">
-                    John Vance <span class="online-indicator" style="box-shadow:0 0 8px #38bdf8;"></span>
-                  </div>
-                  <div style="font-size:0.68rem; color:#67e8f9; font-weight:700;">Caregiver Profile • Ready</div>
-                </div>
-              </div>
-
-              <!-- Chip 3: Home & Devices -->
-              <div class="scenic-chip" onclick="switchPrimaryTab('oversight')" title="All Home Systems & IoT Sensors Active">
-                <div style="width:30px; height:30px; border-radius:50%; background:rgba(99,102,241,0.25); border:1px solid rgba(99,102,241,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
-                </div>
-                <div>
-                  <div style="font-size:0.8rem; font-weight:800; color:#fff;">3 Household Profiles</div>
-                  <div style="font-size:0.68rem; color:#cbd5e1;">Local browser storage (Sandbox)</div>
-                </div>
-              </div>
-
-              <!-- Chip 4: Needs Attention -->
-              <div class="scenic-chip" onclick="switchPrimaryTab('home')" title="2 items require your attention">
-                <div style="width:30px; height:30px; border-radius:50%; background:rgba(234,179,8,0.25); border:1px solid rgba(234,179,8,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fde047" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                </div>
-                <div>
-                  <div style="font-size:0.8rem; font-weight:800; color:#fde047;">2 items need attention</div>
-                  <div style="font-size:0.68rem; color:#cbd5e1;">Doctor Appt 11 AM • ConEd Bill</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <!-- Primary Dashboard Centerpiece: Full-Width Unified Interactive Calendar & Agenda -->
-        <div class="unified-calendar-split" id="dashboardCalendarHero">
-          <!-- Left Split: Calendar Month Matrix -->
-          <div class="cal-split-left">
-              <!-- Calendar Navigation Header -->
-              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
-                <div style="display:flex; align-items:center; gap:0.5rem;">
-                  <button class="cal-nav-btn" onclick="prevCalendarMonth()" title="Previous Month">◀</button>
-                  <span style="font-weight:900; font-size:1.15rem; color:#ffffff; letter-spacing:-0.02em;" id="calHeaderLabel">Current Calendar</span>
-                  <button class="cal-nav-btn" onclick="nextCalendarMonth()" title="Next Month">▶</button>
+                  <h1 class="scenic-hero-title" id="heroGreetingTitle" style="font-size:1.9rem; font-weight:900; letter-spacing:-0.02em; margin:0.2rem 0; text-transform:uppercase;">GOOD EVENING, Aswin!</h1>
+                  <p class="scenic-hero-subtitle" id="heroDateSubtitle" style="font-size:0.88rem; color:#cbd5e1; margin:0; font-style:italic;">"Discipline today, freedom tomorrow." â€¢ Friday, Oct 23</p>
                 </div>
 
-                <!-- Controls & View Switcher -->
-                <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
-                  <button class="btn btn-secondary" style="padding:0.28rem 0.65rem; font-size:0.74rem; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35); color:#a5b4fc; font-weight:800; border-radius:8px;" onclick="goToToday()">Today</button>
-
-                  <select class="form-input" id="calMonthSelect" onchange="changeCalMonth(this.value)" style="padding:0.2rem 0.4rem; font-size:0.74rem; font-weight:700; width:auto; display:none;">
-                    <option value="0">January</option><option value="1">February</option><option value="2">March</option><option value="3">April</option><option value="4">May</option><option value="5">June</option><option value="6">July</option><option value="7">August</option><option value="8">September</option><option value="9">October</option><option value="10">November</option><option value="11">December</option>
-                  </select>
-
-                  <select class="form-input" id="calYearSelect" onchange="changeCalYear(this.value)" style="padding:0.2rem 0.4rem; font-size:0.74rem; font-weight:700; width:auto; display:none;">
-                    <option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option>
-                  </select>
-
-                  <div class="cal-view-pills-track">
-                    <button class="cal-view-btn active" id="btnViewMonth" onclick="setCalendarViewMode('month')">Month</button>
-                    <button class="cal-view-btn" id="btnViewWeek" onclick="setCalendarViewMode('week')">Week</button>
-                    <button class="cal-view-btn" id="btnViewDay" onclick="setCalendarViewMode('day')">Day</button>
-                  </div>
-
-                  <span class="pill-badge" style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); color:#86efac; font-size:0.72rem; font-weight:800; padding:4px 10px; border-radius:20px; box-shadow:0 2px 8px rgba(16,185,129,0.15);" id="calEventCountBadge">11 events</span>
-                </div>
-              </div>
-
-              <!-- Dynamic Calendar Grid Container -->
-              <div id="calendarGridContainer" style="margin-top:0.25rem;">
-                <!-- Rendered dynamically by JS -->
-              </div>
-
-              <!-- Multi-Category Legend Row -->
-              <div class="cal-legend-row">
-                <span class="legend-item"><span class="legend-dot" style="background:var(--emerald);"></span> Medication</span>
-                <span class="legend-item"><span class="legend-dot" style="background:var(--amber);"></span> Bills</span>
-                <span class="legend-item"><span class="legend-dot" style="background:var(--purple);"></span> Fitness</span>
-                <span class="legend-item"><span class="legend-dot" style="background:#6366f1;"></span> Appointments</span>
-                <span class="legend-item"><span class="legend-dot" style="background:var(--cyan);"></span> Habits</span>
-              </div>
-            </div>
-
-            <!-- Right Split: Focused Day Agenda & Today's Spend -->
-            <div class="cal-split-right">
-              <div>
-                <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                  <div>
-                    <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-                      <h3 style="font-size:1.25rem; font-weight:900; color:#ffffff; letter-spacing:-0.02em; margin:0;" id="calSelectedDateText">Today's Schedule</h3>
-                      <span class="pill-badge" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); color:#e2e8f0; font-size:0.72rem; font-weight:800; padding:3px 9px; border-radius:20px; backdrop-filter:blur(8px);" id="timelineCountBadge">13 Items Aggregated</span>
+                <!-- Right Side Frosted Glass Card: Today's Focus -->
+                <div class="hero-focus-card" style="background:rgba(15, 23, 42, 0.68); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:0.9rem 1.25rem; min-width:275px; box-shadow:0 10px 25px rgba(0,0,0,0.45);">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.55rem;">
+                    <div style="font-size:0.78rem; font-weight:800; color:#ffffff; display:flex; align-items:center; gap:5px;">
+                      <span style="color:#60a5fa;">ðŸŽ¯</span> Today's Focus
                     </div>
-                    <div id="calSelectedDateSub" style="font-size:0.75rem; color:var(--text-muted); margin-top:3px;">Here's what's planned for today.</div>
+                    <span class="pill-badge" style="background:rgba(37,99,235,0.25); color:#93c5fd; font-size:0.65rem; font-weight:800;">3 items</span>
                   </div>
-                  <button class="btn btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.76rem; font-weight:800; background:rgba(99,102,241,0.18); border:1px solid rgba(99,102,241,0.4); color:#c7d2fe; border-radius:10px; box-shadow:0 2px 10px rgba(99,102,241,0.25); backdrop-filter:blur(10px);" onclick="openQuickAddModal()">＋ Add</button>
-                </div>
-
-                <!-- Daily Agenda Feed -->
-                <div id="timelineListContainer" style="display:flex; flex-direction:column; gap:0.55rem; margin-top:0.85rem; max-height:270px; overflow-y:auto; padding-right:4px;">
-                  <!-- Dynamic agenda slots rendered by JS -->
-                </div>
-
-                <div style="margin-top:0.65rem; text-align:right;">
-                  <span style="font-size:0.76rem; color:#38bdf8; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:4px; transition:all 0.2s;" onclick="switchPrimaryTab('reminders')">View full schedule <span>→</span></span>
-                </div>
-              </div>
-
-              <!-- Today's Spend Bento Card -->
-              <div class="today-spend-card">
-                <div style="display:flex; align-items:center; gap:0.85rem;">
-                  <div style="width:46px; height:46px; border-radius:14px; background:linear-gradient(135deg, rgba(99,102,241,0.35) 0%, rgba(168,85,247,0.22) 100%); border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:1.45rem; box-shadow:0 4px 16px rgba(99,102,241,0.35); flex-shrink:0;">🛍️</div>
-                  <div>
-                    <div style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; font-weight:800; letter-spacing:0.06em;">Today's Spend</div>
-                    <div style="font-size:1.4rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff; text-shadow:0 2px 10px rgba(0,0,0,0.5);" id="calDailySpend">₹0.00</div>
-                    <div style="font-size:0.7rem; color:#fbbf24; font-weight:700; margin-top:2px;" id="calSpendDesc">No scheduled bills pending</div>
+                  <div style="display:flex; flex-direction:column; gap:0.45rem;">
+                    <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.75rem; color:#86efac; cursor:pointer;">
+                      <input type="checkbox" checked style="accent-color:#10b981; width:14px; height:14px; cursor:pointer;" onchange="showToast('âœ… Focus item updated: Budget proposal done')">
+                      <span style="text-decoration:line-through; opacity:0.85;">Submit Q4 Budget Proposal</span>
+                    </label>
+                    <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.75rem; color:#f1f5f9; cursor:pointer;">
+                      <input type="checkbox" style="accent-color:#2563eb; width:14px; height:14px; cursor:pointer;" onchange="showToast('âœ… Focus item updated: Morning Metformin')">
+                      <span>Take Morning Metformin (500mg)</span>
+                    </label>
+                    <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.75rem; color:#f1f5f9; cursor:pointer;">
+                      <input type="checkbox" style="accent-color:#2563eb; width:14px; height:14px; cursor:pointer;" onchange="showToast('âœ… Focus item updated: 30-min run')">
+                      <span>30-min Evening Run</span>
+                    </label>
                   </div>
                 </div>
-                <button class="btn" id="calPayNowBtn" style="background:linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); border:1px solid rgba(255,255,255,0.28); color:#ffffff; padding:0.55rem 1.15rem; font-size:0.85rem; font-weight:800; border-radius:10px; box-shadow:0 4px 18px rgba(99,102,241,0.55), inset 0 1px 1px rgba(255,255,255,0.4);" onclick="switchPrimaryTab('expense')">
-                  Pay Now
-                </button>
-              </div>
-
-              <!-- Motivational Botanical Quote Card (Screen 3) -->
-              <div class="motivational-banner-card" style="margin-top:0.75rem;">
-                <div style="display:flex; align-items:center; gap:0.75rem;">
-                  <div style="width:46px; height:46px; border-radius:10px; background:linear-gradient(135deg, rgba(16,185,129,0.22), rgba(6,182,212,0.18)); border:1px solid rgba(16,185,129,0.35); display:inline-flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0;">🌱</div>
-                  <div>
-                    <div style="font-size:0.82rem; font-weight:800; color:var(--text); font-style:italic;">"Small consistent actions create big results"</div>
-                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">5 of 8 scheduled tasks completed today. Keep up the momentum!</div>
-                  </div>
-                </div>
-                <button class="btn btn-secondary" style="padding:0.3rem 0.6rem; font-size:0.72rem; white-space:nowrap;" onclick="switchPrimaryTab('fitness')">
-                  Routine →
-                </button>
-              </div>
-            </div> <!-- Close .cal-split-right -->
-
-        </div> <!-- Close #dashboardCalendarHero (.unified-calendar-split) -->
-
-        <!-- Dashboard Multi-Column Bento Cockpit: Active Medications & Domain Status Tiles -->
-        <div class="grid-bento-cockpit" id="dashboardBentoCockpit">
-          <!-- Left Column: Active Medications Card -->
-          <div class="panel-box" style="flex:1;">
-              <div class="panel-header">
-                <div style="display:flex; align-items:center; gap:0.4rem;">
-                  <span>💊 Active Medications</span>
-                  <span class="pill-badge" style="background:rgba(16,185,129,0.15); color:var(--emerald); font-size:0.7rem;" id="activeRxCountBadge">3 active</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:0.4rem;">
-                  <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.2rem 0.55rem; color:var(--emerald); font-weight:700; border-color:rgba(16,185,129,0.35);" onclick="openQuickAddModal('pill')">＋ Add Rx</button>
-                  <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.2rem 0.55rem;" onclick="switchPrimaryTab('reminders')">View all →</button>
-                </div>
-              </div>
-
-              <div id="activeMedicationsCockpitList" style="display:flex; flex-direction:column; gap:0.6rem;">
-                <!-- Dynamically rendered pill cards matching mockup -->
               </div>
             </div>
 
-            <!-- 3 Bottom Bento Tiles Row -->
-            <div class="bento-tiles-row">
-              <!-- Tile 1: Bills & Expenses (Dynamically updated) -->
-              <div class="bento-tile" onclick="switchPrimaryTab('expense')">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <div class="bento-icon-box" style="background:rgba(245,158,11,0.16); color:#f59e0b; border:1px solid rgba(245,158,11,0.35); box-shadow:0 0 16px rgba(245,158,11,0.2);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            <!-- 2. Four Bento KPI Status Cards Row (#dashboardBentoCockpit) -->
+            <div class="bento-kpi-grid" id="dashboardBentoCockpit">
+              <!-- Card 1: Medication Adherence -->
+              <div class="bento-kpi-card" onclick="switchPrimaryTab('reminders')">
+                <div class="bento-kpi-header">
+                  <span style="font-size:0.78rem; font-weight:800; color:var(--text);">Medication Adherence</span>
+                  <span class="pill-badge" style="background:rgba(16,185,129,0.18); color:#34d399; font-size:0.65rem;" id="activeRxCountBadge">Active Course</span>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-top:0.4rem;">
+                  <div style="position:relative; width:54px; height:54px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="54" height="54" viewBox="0 0 36 36">
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3.5"/>
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="3.5" stroke-dasharray="96, 100" stroke-linecap="round"/>
+                    </svg>
+                    <span style="position:absolute; font-size:0.8rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff;">96%</span>
                   </div>
-                  <span class="pill-badge" id="bentoBillsPendingCount" style="background:rgba(245,158,11,0.15); color:#fbbf24; font-size:0.68rem; font-weight:800;">1 pending</span>
+                  <div style="display:flex; flex-direction:column; align-items:flex-end;">
+                    <div style="display:flex; align-items:flex-end; gap:3px; height:30px;">
+                      <div style="width:5px; height:75%; background:rgba(16,185,129,0.5); border-radius:3px;"></div>
+                      <div style="width:5px; height:100%; background:#10b981; border-radius:3px;"></div>
+                      <div style="width:5px; height:100%; background:#10b981; border-radius:3px;"></div>
+                      <div style="width:5px; height:85%; background:rgba(16,185,129,0.7); border-radius:3px;"></div>
+                      <div style="width:5px; height:100%; background:#10b981; border-radius:3px;"></div>
+                      <div style="width:5px; height:100%; background:#10b981; border-radius:3px;"></div>
+                      <div style="width:5px; height:95%; background:#10b981; border-radius:3px;"></div>
+                    </div>
+                    <span style="font-size:0.65rem; color:var(--text-muted); margin-top:3px; font-weight:700;">7-day trend</span>
+                  </div>
                 </div>
-                <div>
-                  <div style="font-size:0.8rem; font-weight:800; color:var(--text);">Bills & Expenses</div>
-                  <div style="font-size:1.15rem; font-weight:900; font-family:'JetBrains Mono',monospace; margin-top:2px; color:#f8fafc;" id="bentoBillsTotalAmount">₹142.50</div>
-                </div>
-                <div style="font-size:0.72rem; color:var(--accent); font-weight:800; display:flex; align-items:center; gap:3px;">Manage Ledger <span>→</span></div>
               </div>
 
-              <!-- Tile 2: Fitness & Habits -->
-              <div class="bento-tile" onclick="switchPrimaryTab('fitness')">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <div class="bento-icon-box" style="background:rgba(168,85,247,0.16); color:#c084fc; border:1px solid rgba(168,85,247,0.35); box-shadow:0 0 16px rgba(168,85,247,0.2);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-                  </div>
-                  <span class="pill-badge" id="bentoHabitCountBadge" style="background:rgba(168,85,247,0.15); color:#d8b4fe; font-size:0.68rem; font-weight:800;">Habits Active</span>
+              <!-- Card 2: Bills Pending -->
+              <div class="bento-kpi-card" onclick="switchPrimaryTab('expense')">
+                <div class="bento-kpi-header">
+                  <span style="font-size:0.78rem; font-weight:800; color:var(--text);">Bills Pending</span>
+                  <span class="pill-badge" id="bentoBillsPendingCount" style="background:rgba(245,158,11,0.18); color:#fbbf24; font-size:0.65rem;">âš¡ 1 payment due</span>
                 </div>
-                <div>
-                  <div style="font-size:0.8rem; font-weight:800; color:var(--text);">Fitness & Habits</div>
-                  <div style="font-size:0.78rem; color:#34d399; font-weight:800; margin-top:2px;" id="bentoStreakText">🔥 7-Day Streak</div>
+                <div style="margin-top:0.35rem;">
+                  <div style="font-size:1.45rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff;" id="bentoBillsTotalAmount">â‚¹142.50</div>
+                  <div style="font-size:0.68rem; color:var(--text-muted); margin-top:2px;">Next: ConEd due Oct 26</div>
                 </div>
-                <div style="font-size:0.72rem; color:#c084fc; font-weight:800; display:flex; align-items:center; gap:3px;">Log Workout <span>→</span></div>
+                <svg width="100%" height="20" viewBox="0 0 120 20" style="margin-top:0.4rem; overflow:visible;">
+                  <path d="M0,15 Q30,18 60,8 T120,4" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="120" cy="4" r="3" fill="#f59e0b"/>
+                </svg>
               </div>
 
-              <!-- Tile 3: Household Tasks (Interactive State Bound) -->
-              <div class="bento-tile" onclick="switchPrimaryTab('oversight')">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <div class="bento-icon-box" style="background:rgba(16,185,129,0.16); color:#34d399; border:1px solid rgba(16,185,129,0.35); box-shadow:0 0 16px rgba(16,185,129,0.2);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+              <!-- Card 3: 7-Day Streak -->
+              <div class="bento-kpi-card" onclick="switchPrimaryTab('fitness')">
+                <div class="bento-kpi-header">
+                  <span style="font-size:0.78rem; font-weight:800; color:var(--text);">7-Day Streak</span>
+                  <span class="pill-badge" id="bentoHabitCountBadge" style="background:rgba(249,115,22,0.18); color:#fb923c; font-size:0.65rem;">ðŸ”¥ On fire</span>
+                </div>
+                <div style="display:flex; align-items:baseline; gap:0.5rem; margin-top:0.25rem;">
+                  <div style="font-size:1.75rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#f97316;" id="bentoStreakText">7</div>
+                  <div style="font-size:0.72rem; color:#86efac; font-weight:800;">Keep it going!</div>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-top:0.45rem;">
+                  <span style="width:14px; height:14px; border-radius:50%; background:#22c55e; display:inline-flex; align-items:center; justify-content:center; font-size:0.55rem; color:#fff;" title="Mon">âœ“</span>
+                  <span style="width:14px; height:14px; border-radius:50%; background:#22c55e; display:inline-flex; align-items:center; justify-content:center; font-size:0.55rem; color:#fff;" title="Tue">âœ“</span>
+                  <span style="width:14px; height:14px; border-radius:50%; background:#22c55e; display:inline-flex; align-items:center; justify-content:center; font-size:0.55rem; color:#fff;" title="Wed">âœ“</span>
+                  <span style="width:14px; height:14px; border-radius:50%; background:#22c55e; display:inline-flex; align-items:center; justify-content:center; font-size:0.55rem; color:#fff;" title="Thu">âœ“</span>
+                  <span style="width:14px; height:14px; border-radius:50%; background:#22c55e; display:inline-flex; align-items:center; justify-content:center; font-size:0.55rem; color:#fff;" title="Fri">âœ“</span>
+                  <span style="width:14px; height:14px; border-radius:50%; background:#22c55e; display:inline-flex; align-items:center; justify-content:center; font-size:0.55rem; color:#fff;" title="Sat">âœ“</span>
+                  <span style="width:14px; height:14px; border-radius:50%; background:#f97316; display:inline-flex; align-items:center; justify-content:center; font-size:0.55rem; color:#fff; box-shadow:0 0 8px #f97316;" title="Sun">â˜…</span>
+                </div>
+              </div>
+
+              <!-- Card 4: Monthly Budget -->
+              <div class="bento-kpi-card" onclick="openSalaryModal()">
+                <div class="bento-kpi-header">
+                  <span style="font-size:0.78rem; font-weight:800; color:var(--text);">Monthly Budget</span>
+                  <span class="pill-badge" style="background:rgba(59,130,246,0.18); color:#60a5fa; font-size:0.65rem;">50% spent</span>
+                </div>
+                <div style="margin-top:0.35rem;">
+                  <div style="font-size:1.15rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff;">â‚¹12,500 <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">of â‚¹25,000</span></div>
+                  <div style="width:100%; height:7px; background:rgba(255,255,255,0.08); border-radius:5px; margin-top:0.45rem; overflow:hidden;">
+                    <div style="width:50%; height:100%; background:linear-gradient(90deg, #2563eb, #6366f1); border-radius:5px;"></div>
                   </div>
-                  <span class="pill-badge" id="bentoHouseholdBadge" style="background:rgba(244,63,94,0.15); color:#fda4af; font-size:0.68rem; font-weight:800;">2 urgent</span>
+                  <div style="font-size:0.68rem; color:var(--text-muted); margin-top:0.35rem;">â‚¹12,500 remaining Â· 8 days left</div>
                 </div>
-                <div>
-                  <div style="font-size:0.8rem; font-weight:800; color:var(--text);">Household Tasks</div>
-                  <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;" id="bentoHouseholdDesc">3 pending tasks</div>
-                </div>
-                <div style="font-size:0.72rem; color:#38bdf8; font-weight:800; display:flex; align-items:center; gap:3px;">View Tasks <span>→</span></div>
               </div>
             </div>
 
-          </div> <!-- Close #dashboardBentoCockpit -->
+            <!-- 3. Middle 3-Column Section (Calendar, Agenda, Spend) (#dashboardCalendarHero) -->
+            <div class="dashboard-3col-grid" id="dashboardCalendarHero">
+              <!-- Col 1: Interactive Calendar -->
+              <div class="panel-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
+                    <div style="display:flex; align-items:center; gap:0.4rem;">
+                      <button class="cal-nav-btn" onclick="prevCalendarMonth()" title="Previous Month">â—€</button>
+                      <span style="font-weight:900; font-size:0.95rem; color:#ffffff; letter-spacing:-0.01em;" id="calHeaderLabel">October 2026</span>
+                      <button class="cal-nav-btn" onclick="nextCalendarMonth()" title="Next Month">â–¶</button>
+                    </div>
+                    <div class="cal-view-pills-track" style="transform:scale(0.88); transform-origin:right center;">
+                      <button class="cal-view-btn active" id="btnViewMonth" onclick="setCalendarViewMode('month')">Month</button>
+                      <button class="cal-view-btn" id="btnViewWeek" onclick="setCalendarViewMode('week')">Week</button>
+                      <button class="cal-view-btn" id="btnViewDay" onclick="setCalendarViewMode('day')">Day</button>
+                    </div>
+                    <select class="form-input" id="calMonthSelect" onchange="changeCalMonth(this.value)" style="display:none;"></select>
+                    <select class="form-input" id="calYearSelect" onchange="changeCalYear(this.value)" style="display:none;"></select>
+                    <span id="calEventCountBadge" style="display:none;"></span>
+                  </div>
+                  <div id="calendarGridContainer" style="min-height:190px;"></div>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.68rem; color:var(--text-muted); padding-top:0.5rem; border-top:1px solid rgba(255,255,255,0.06); margin-top:0.5rem;">
+                  <span style="display:inline-flex; align-items:center; gap:3px;"><span style="width:6px; height:6px; border-radius:50%; background:#3b82f6;"></span> Tasks</span>
+                  <span style="display:inline-flex; align-items:center; gap:3px;"><span style="width:6px; height:6px; border-radius:50%; background:#10b981;"></span> Meds</span>
+                  <span style="display:inline-flex; align-items:center; gap:3px;"><span style="width:6px; height:6px; border-radius:50%; background:#f59e0b;"></span> Bills</span>
+                  <span style="display:inline-flex; align-items:center; gap:3px;"><span style="width:6px; height:6px; border-radius:50%; background:#8b5cf6;"></span> Fitness</span>
+                </div>
+              </div>
+
+              <!-- Col 2: Today's Agenda (Today Â· Fri, Oct 23) -->
+              <div class="panel-box" style="display:flex; flex-direction:column;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
+                  <div>
+                    <div style="font-weight:900; font-size:0.95rem; color:#ffffff;" id="calSelectedDateText">Today Â· Fri, Oct 23</div>
+                    <div style="font-size:0.68rem; color:var(--text-muted);" id="calSelectedDateSub">5 items scheduled</div>
+                    <span id="timelineCountBadge" style="display:none;"></span>
+                  </div>
+                  <button class="btn btn-primary" onclick="openQuickAddModal()" style="font-size:0.74rem; font-weight:800; padding:0.28rem 0.65rem; border-radius:8px; background:#2563eb; color:#fff;">
+                    + Add Task
+                  </button>
+                </div>
+                <div id="timelineListContainer" style="display:flex; flex-direction:column; gap:0.5rem; overflow-y:auto; max-height:225px; padding-right:3px;">
+                  <!-- Dynamically populated by JS renderTimeline -->
+                </div>
+              </div>
+
+              <!-- Col 3: Today's Spend -->
+              <div class="panel-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                    <span style="font-size:0.8rem; font-weight:800; color:var(--text);">Today's Spend</span>
+                    <span class="pill-badge" style="background:rgba(239,68,68,0.18); color:#f87171; font-size:0.65rem; font-weight:800;">â–² 12% vs avg</span>
+                  </div>
+                  <div style="display:flex; align-items:baseline; gap:0.5rem;">
+                    <div style="font-size:1.6rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff;" id="calDailySpend">â‚¹420</div>
+                    <div style="font-size:0.7rem; color:var(--text-muted);" id="calSpendDesc">Daily spend velocity</div>
+                  </div>
+
+                  <div style="display:flex; flex-direction:column; gap:0.45rem; margin-top:0.75rem;">
+                    <div>
+                      <div style="display:flex; justify-content:space-between; font-size:0.7rem; margin-bottom:2px;">
+                        <span style="color:var(--text-muted);">Food & Dining</span>
+                        <span style="font-family:'JetBrains Mono',monospace; font-weight:800; color:#ffffff;">â‚¹240</span>
+                      </div>
+                      <div style="width:100%; height:5px; background:rgba(255,255,255,0.06); border-radius:3px; overflow:hidden;">
+                        <div style="width:57%; height:100%; background:#f59e0b; border-radius:3px;"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div style="display:flex; justify-content:space-between; font-size:0.7rem; margin-bottom:2px;">
+                        <span style="color:var(--text-muted);">Transport</span>
+                        <span style="font-family:'JetBrains Mono',monospace; font-weight:800; color:#ffffff;">â‚¹120</span>
+                      </div>
+                      <div style="width:100%; height:5px; background:rgba(255,255,255,0.06); border-radius:3px; overflow:hidden;">
+                        <div style="width:28%; height:100%; background:#3b82f6; border-radius:3px;"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div style="display:flex; justify-content:space-between; font-size:0.7rem; margin-bottom:2px;">
+                        <span style="color:var(--text-muted);">Coffee & Snacks</span>
+                        <span style="font-family:'JetBrains Mono',monospace; font-weight:800; color:#ffffff;">â‚¹60</span>
+                      </div>
+                      <div style="width:100%; height:5px; background:rgba(255,255,255,0.06); border-radius:3px; overflow:hidden;">
+                        <div style="width:14%; height:100%; background:#8b5cf6; border-radius:3px;"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div style="display:flex; justify-content:space-between; font-size:0.7rem; margin-bottom:2px;">
+                        <span style="color:var(--text-muted);">Shopping</span>
+                        <span style="font-family:'JetBrains Mono',monospace; font-weight:800; color:#ffffff;">â‚¹0</span>
+                      </div>
+                      <div style="width:100%; height:5px; background:rgba(255,255,255,0.06); border-radius:3px; overflow:hidden;">
+                        <div style="width:0%; height:100%; background:#10b981; border-radius:3px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button id="calPayNowBtn" class="btn btn-secondary" onclick="switchPrimaryTab('expense')" style="width:100%; margin-top:0.75rem; font-size:0.74rem; font-weight:700; padding:0.35rem; border-radius:8px;">
+                  View Expense Ledger â†’
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. Bottom 3-Column Section (Expenses, Fitness, Pill) -->
+            <div class="dashboard-3col-grid">
+              <!-- Col 1: Recent Expenses Table -->
+              <div class="panel-box" style="display:flex; flex-direction:column;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+                  <span style="font-size:0.8rem; font-weight:800; color:var(--text);">Recent Expenses</span>
+                  <span onclick="switchPrimaryTab('expense')" style="font-size:0.72rem; color:#3b82f6; font-weight:700; cursor:pointer;">View All â†’</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.45rem; flex:1;">
+                  <!-- Row 1: ConEd -->
+                  <div style="display:flex; align-items:center; justify-content:space-between; padding:0.38rem 0.5rem; background:rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                      <div style="width:26px; height:26px; border-radius:7px; background:rgba(245,158,11,0.18); display:flex; align-items:center; justify-content:center; font-size:0.85rem;">âš¡</div>
+                      <div>
+                        <div style="font-size:0.76rem; font-weight:800; color:#fff;">ConEd Electric</div>
+                        <div style="font-size:0.65rem; color:var(--text-muted);">Due Oct 26</div>
+                      </div>
+                    </div>
+                    <div style="text-align:right;">
+                      <div style="font-size:0.78rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff;">â‚¹142.50</div>
+                      <span class="pill-badge" style="background:rgba(239,68,68,0.18); color:#f87171; font-size:0.6rem; padding:1px 5px;">Pending</span>
+                    </div>
+                  </div>
+                  <!-- Row 2: ACT Fibernet -->
+                  <div style="display:flex; align-items:center; justify-content:space-between; padding:0.38rem 0.5rem; background:rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                      <div style="width:26px; height:26px; border-radius:7px; background:rgba(59,130,246,0.18); display:flex; align-items:center; justify-content:center; font-size:0.85rem;">ðŸŒ</div>
+                      <div>
+                        <div style="font-size:0.76rem; font-weight:800; color:#fff;">ACT Fibernet</div>
+                        <div style="font-size:0.65rem; color:var(--text-muted);">Oct 20</div>
+                      </div>
+                    </div>
+                    <div style="text-align:right;">
+                      <div style="font-size:0.78rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff;">â‚¹75.00</div>
+                      <span class="pill-badge" style="background:rgba(16,185,129,0.18); color:#34d399; font-size:0.6rem; padding:1px 5px;">Paid</span>
+                    </div>
+                  </div>
+                  <!-- Row 3: Spotify -->
+                  <div style="display:flex; align-items:center; justify-content:space-between; padding:0.38rem 0.5rem; background:rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                      <div style="width:26px; height:26px; border-radius:7px; background:rgba(16,185,129,0.18); display:flex; align-items:center; justify-content:center; font-size:0.85rem;">ðŸŽµ</div>
+                      <div>
+                        <div style="font-size:0.76rem; font-weight:800; color:#fff;">Spotify Premium</div>
+                        <div style="font-size:0.65rem; color:var(--text-muted);">Oct 18</div>
+                      </div>
+                    </div>
+                    <div style="text-align:right;">
+                      <div style="font-size:0.78rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff;">â‚¹19.99</div>
+                      <span class="pill-badge" style="background:rgba(16,185,129,0.18); color:#34d399; font-size:0.6rem; padding:1px 5px;">Paid</span>
+                    </div>
+                  </div>
+                  <!-- Row 4: Gym -->
+                  <div style="display:flex; align-items:center; justify-content:space-between; padding:0.38rem 0.5rem; background:rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                      <div style="width:26px; height:26px; border-radius:7px; background:rgba(139,92,246,0.18); display:flex; align-items:center; justify-content:center; font-size:0.85rem;">ðŸ‹ï¸</div>
+                      <div>
+                        <div style="font-size:0.76rem; font-weight:800; color:#fff;">Cult.fit Gym</div>
+                        <div style="font-size:0.65rem; color:var(--text-muted);">Oct 15</div>
+                      </div>
+                    </div>
+                    <div style="text-align:right;">
+                      <div style="font-size:0.78rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff;">â‚¹45.00</div>
+                      <span class="pill-badge" style="background:rgba(16,185,129,0.18); color:#34d399; font-size:0.6rem; padding:1px 5px;">Paid</span>
+                    </div>
+                  </div>
+                  <!-- Row 5: Zomato -->
+                  <div style="display:flex; align-items:center; justify-content:space-between; padding:0.38rem 0.5rem; background:rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                      <div style="width:26px; height:26px; border-radius:7px; background:rgba(239,68,68,0.18); display:flex; align-items:center; justify-content:center; font-size:0.85rem;">ðŸ”</div>
+                      <div>
+                        <div style="font-size:0.76rem; font-weight:800; color:#fff;">Zomato Dinner</div>
+                        <div style="font-size:0.65rem; color:var(--text-muted);">Oct 12</div>
+                      </div>
+                    </div>
+                    <div style="text-align:right;">
+                      <div style="font-size:0.78rem; font-weight:900; font-family:'JetBrains Mono',monospace; color:#ffffff;">â‚¹50.61</div>
+                      <span class="pill-badge" style="background:rgba(16,185,129,0.18); color:#34d399; font-size:0.6rem; padding:1px 5px;">Paid</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Col 2: Fitness Card -->
+              <div class="panel-box fitness-spotlight-card" style="display:flex; flex-direction:column; justify-content:space-between; background:linear-gradient(180deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.94) 100%), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80') center/cover no-repeat; border:1px solid rgba(255,255,255,0.12);">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                    <span class="pill-badge" style="background:rgba(168,85,247,0.25); color:#d8b4fe; font-size:0.65rem; font-weight:800;">FITNESS</span>
+                    <span class="pill-badge" style="background:rgba(249,115,22,0.25); color:#fdba74; font-size:0.65rem; font-weight:800;">7-day streak ðŸ”¥</span>
+                  </div>
+                  <h3 style="font-size:0.95rem; font-weight:900; color:#ffffff; margin:0.35rem 0 0.25rem 0;">Today's Workout: Lower Body & Core</h3>
+                  <div style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.4rem;">
+                    <span class="pill-badge" style="background:rgba(255,255,255,0.08); color:#cbd5e1; font-size:0.65rem;">â± 45 mins</span>
+                    <span class="pill-badge" style="background:rgba(255,255,255,0.08); color:#cbd5e1; font-size:0.65rem;">ðŸ”¥ 320 kcal</span>
+                    <span class="pill-badge" style="background:rgba(255,255,255,0.08); color:#cbd5e1; font-size:0.65rem;">ðŸ’ª 4 exercises</span>
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:0.25rem; margin-top:0.6rem; font-size:0.72rem; color:#94a3b8;">
+                    <div>â€¢ Barbell Squats 4 Ã— 10</div>
+                    <div>â€¢ Romanian Deadlifts 3 Ã— 12</div>
+                    <div>â€¢ Core Plank 3 Ã— 60s</div>
+                  </div>
+                </div>
+                <button class="btn btn-primary" onclick="completeWorkout()" style="background:linear-gradient(135deg, #8b5cf6, #6366f1); border:none; width:100%; margin-top:0.75rem; font-weight:800; font-size:0.78rem; border-radius:10px; box-shadow:0 4px 15px rgba(139,92,246,0.35);">
+                  Start Workout â–¶
+                </button>
+              </div>
+
+              <!-- Col 3: Pill Reminder Card (Next Medication) -->
+              <div class="panel-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                    <span style="font-size:0.8rem; font-weight:800; color:var(--text);">Next Medication</span>
+                    <span class="pill-badge" style="background:rgba(16,185,129,0.18); color:#34d399; font-size:0.65rem; font-weight:800;">In 2 hrs</span>
+                  </div>
+
+                  <div style="display:flex; align-items:center; gap:0.75rem; margin-top:0.35rem;">
+                    <div style="width:48px; height:48px; border-radius:14px; background:linear-gradient(135deg, rgba(37,99,235,0.25), rgba(16,185,129,0.25)); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0;">
+                      ðŸ’Š
+                    </div>
+                    <div>
+                      <div style="font-size:0.9rem; font-weight:900; color:#ffffff;">Metformin HCl</div>
+                      <div style="font-size:0.72rem; color:var(--text-muted); margin-top:1px;">500mg â€¢ 1 tablet with dinner</div>
+                    </div>
+                  </div>
+
+                  <div style="margin-top:0.65rem; padding:0.45rem 0.65rem; background:rgba(255,255,255,0.02); border-radius:8px; border:1px solid rgba(255,255,255,0.06); font-size:0.72rem; color:#cbd5e1;">
+                    <div style="display:flex; justify-content:space-between;">
+                      <span>Active Course</span>
+                      <span style="font-weight:800; color:#86efac;">Day 18 of 30</span>
+                    </div>
+                    <div style="font-size:0.65rem; color:var(--text-muted); margin-top:2px;">12 days remaining in current pack</div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="display:flex; gap:0.45rem; margin-top:0.75rem;">
+                    <button class="btn btn-primary" onclick="takePillDoseDynamic('p1')" style="flex:1; background:#2563eb; font-weight:800; font-size:0.75rem; border-radius:8px;">
+                      Mark as Taken âœ“
+                    </button>
+                    <button class="btn btn-secondary" onclick="showToast('â° Metformin reminder snoozed for 15 mins')" style="font-size:0.75rem; border-radius:8px; padding:0.3rem 0.6rem;">
+                      Snooze
+                    </button>
+                  </div>
+                  <div id="activeMedicationsCockpitList" style="display:none;"></div>
+                </div>
+              </div>
+            </div>
+
+          </div> <!-- Close .dashboard-main-col -->
+
+          <!-- ==================== RIGHT COLUMN ==================== -->
+          <div class="dashboard-right-col">
+
+            <!-- 1. Botanical Aesthetic Quote Card -->
+            <div class="botanical-quote-card" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.90) 100%), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80') center/cover no-repeat; border:1px solid rgba(255,255,255,0.12); border-radius:18px; padding:1.25rem 1.4rem; min-height:140px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 12px 30px -8px rgba(0,0,0,0.5);">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <span style="font-size:1.4rem;">ðŸŒ±</span>
+                <span class="pill-badge" style="background:rgba(255,255,255,0.12); backdrop-filter:blur(10px); color:#e2e8f0; font-size:0.62rem; font-weight:800;">OmniTask Philosophy</span>
+              </div>
+              <div>
+                <p style="font-size:0.92rem; font-weight:800; color:#ffffff; font-style:italic; line-height:1.4; margin:0; text-shadow:0 2px 10px rgba(0,0,0,0.8);">
+                  "A calmer, more intentional life for every generation."
+                </p>
+                <div style="font-size:0.68rem; color:#94a3b8; margin-top:4px;">Power â€¢ Dignity â€¢ Peace of Mind</div>
+              </div>
+            </div>
+
+            <!-- 2. Quick Actions (2x2 Gradient Tiles) -->
+            <div class="panel-box">
+              <div style="font-size:0.8rem; font-weight:800; color:var(--text); margin-bottom:0.65rem;">Quick Actions</div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.55rem;">
+                <div class="quick-action-tile" onclick="openQuickAddModal('task')" style="background:linear-gradient(135deg, rgba(37,99,235,0.35), rgba(29,78,216,0.18)); border:1px solid rgba(59,130,246,0.35); border-radius:12px; padding:0.75rem; cursor:pointer; transition:all 0.15s ease;">
+                  <div style="font-size:1.25rem;">ðŸ“</div>
+                  <div style="font-size:0.78rem; font-weight:800; color:#ffffff; margin-top:0.35rem;">+ Add Task</div>
+                  <div style="font-size:0.62rem; color:var(--text-muted);">Calendar & Todo</div>
+                </div>
+                <div class="quick-action-tile" onclick="openQuickAddModal('expense')" style="background:linear-gradient(135deg, rgba(245,158,11,0.35), rgba(217,119,6,0.18)); border:1px solid rgba(245,158,11,0.35); border-radius:12px; padding:0.75rem; cursor:pointer; transition:all 0.15s ease;">
+                  <div style="font-size:1.25rem;">ðŸ’³</div>
+                  <div style="font-size:0.78rem; font-weight:800; color:#ffffff; margin-top:0.35rem;">Log Expense</div>
+                  <div style="font-size:0.62rem; color:var(--text-muted);">Receipts & Bills</div>
+                </div>
+                <div class="quick-action-tile" onclick="openQuickAddModal('pill')" style="background:linear-gradient(135deg, rgba(16,185,129,0.35), rgba(5,150,105,0.18)); border:1px solid rgba(16,185,129,0.35); border-radius:12px; padding:0.75rem; cursor:pointer; transition:all 0.15s ease;">
+                  <div style="font-size:1.25rem;">ðŸ’Š</div>
+                  <div style="font-size:0.78rem; font-weight:800; color:#ffffff; margin-top:0.35rem;">Take Pill</div>
+                  <div style="font-size:0.62rem; color:var(--text-muted);">Rx Adherence</div>
+                </div>
+                <div class="quick-action-tile" onclick="openQuickAddModal('fitness')" style="background:linear-gradient(135deg, rgba(139,92,246,0.35), rgba(99,102,241,0.18)); border:1px solid rgba(139,92,246,0.35); border-radius:12px; padding:0.75rem; cursor:pointer; transition:all 0.15s ease;">
+                  <div style="font-size:1.25rem;">ðŸ‹ï¸</div>
+                  <div style="font-size:0.78rem; font-weight:800; color:#ffffff; margin-top:0.35rem;">Start Workout</div>
+                  <div style="font-size:0.62rem; color:var(--text-muted);">Daily Fitness</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Habit Clusters (3/5 today) -->
+            <div class="panel-box">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                <span style="font-size:0.8rem; font-weight:800; color:var(--text);">Habit Clusters</span>
+                <span class="pill-badge" style="background:rgba(99,102,241,0.2); color:#a5b4fc; font-size:0.65rem; font-weight:800;">3/5 today</span>
+              </div>
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:0.25rem;">
+                <!-- Water 3/4 (75%) -->
+                <div onclick="incrementHabit(0)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer;" title="Water: 3/4 (Click to log)">
+                  <div style="position:relative; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="44" height="44" viewBox="0 0 36 36">
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#06b6d4" stroke-width="3" stroke-dasharray="75, 100" stroke-linecap="round"/>
+                    </svg>
+                    <span style="position:absolute; font-size:1.05rem;">ðŸ’§</span>
+                  </div>
+                  <span style="font-size:0.62rem; font-weight:800; color:#06b6d4; margin-top:3px;">3/4</span>
+                </div>
+                <!-- Exercise 1/1 (100%) -->
+                <div onclick="incrementHabit(1)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer;" title="Exercise: 1/1 (Completed)">
+                  <div style="position:relative; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="44" height="44" viewBox="0 0 36 36">
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="100, 100" stroke-linecap="round"/>
+                    </svg>
+                    <span style="position:absolute; font-size:1.05rem;">ðŸƒ</span>
+                  </div>
+                  <span style="font-size:0.62rem; font-weight:800; color:#10b981; margin-top:3px;">1/1</span>
+                </div>
+                <!-- Reading 0/1 (0%) -->
+                <div onclick="incrementHabit(2)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer;" title="Reading: 0/1 (Click to log)">
+                  <div style="position:relative; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="44" height="44" viewBox="0 0 36 36">
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="0, 100" stroke-linecap="round"/>
+                    </svg>
+                    <span style="position:absolute; font-size:1.05rem;">ðŸ“–</span>
+                  </div>
+                  <span style="font-size:0.62rem; font-weight:800; color:var(--text-muted); margin-top:3px;">0/1</span>
+                </div>
+                <!-- No Smoke 1/1 (100%) -->
+                <div onclick="incrementHabit(3)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer;" title="No Smoke: 1/1 (Completed)">
+                  <div style="position:relative; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="44" height="44" viewBox="0 0 36 36">
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="100, 100" stroke-linecap="round"/>
+                    </svg>
+                    <span style="position:absolute; font-size:1.05rem;">ðŸš­</span>
+                  </div>
+                  <span style="font-size:0.62rem; font-weight:800; color:#f59e0b; margin-top:3px;">1/1</span>
+                </div>
+                <!-- Sleep 7h (87%) -->
+                <div onclick="showToast('ðŸ˜´ Sleep logged: 7.5 hours uninterrupted.')" style="display:flex; flex-direction:column; align-items:center; cursor:pointer;" title="Sleep: 7h logged">
+                  <div style="position:relative; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="44" height="44" viewBox="0 0 36 36">
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
+                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="87, 100" stroke-linecap="round"/>
+                    </svg>
+                    <span style="position:absolute; font-size:1.05rem;">ðŸ˜´</span>
+                  </div>
+                  <span style="font-size:0.62rem; font-weight:800; color:#3b82f6; margin-top:3px;">7h</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Family Oversight Circle -->
+            <div class="panel-box">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
+                <span style="font-size:0.8rem; font-weight:800; color:var(--text);">Family Circle</span>
+                <span class="pill-badge" style="background:rgba(16,185,129,0.18); color:#34d399; font-size:0.65rem; font-weight:800;">Active</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:0.55rem;">
+                <!-- Eleanor Vance -->
+                <div onclick="switchPrimaryTab('oversight')" style="display:flex; align-items:center; justify-content:space-between; padding:0.45rem 0.6rem; background:rgba(255,255,255,0.02); border-radius:10px; border:1px solid rgba(255,255,255,0.05); cursor:pointer;">
+                  <div style="display:flex; align-items:center; gap:0.55rem;">
+                    <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #ec4899, #f43f5e); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #22c55e;" id="scenicChipSeniorAvatar">EV</div>
+                    <div>
+                      <div style="font-size:0.78rem; font-weight:800; color:#ffffff;" id="scenicChipSeniorName">Eleanor Vance</div>
+                      <div style="font-size:0.65rem; color:#86efac;">Resting at home</div>
+                    </div>
+                  </div>
+                  <span class="pill-badge" style="background:rgba(16,185,129,0.18); color:#34d399; font-size:0.65rem; font-weight:800;">96% Adherence</span>
+                </div>
+                <!-- John Carter -->
+                <div onclick="switchPrimaryTab('oversight')" style="display:flex; align-items:center; justify-content:space-between; padding:0.45rem 0.6rem; background:rgba(255,255,255,0.02); border-radius:10px; border:1px solid rgba(255,255,255,0.05); cursor:pointer;">
+                  <div style="display:flex; align-items:center; gap:0.55rem;">
+                    <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #0ea5e9, #6366f1); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #38bdf8;">JC</div>
+                    <div>
+                      <div style="font-size:0.78rem; font-weight:800; color:#ffffff;">John Carter</div>
+                      <div style="font-size:0.65rem; color:var(--text-muted);">Primary Guardian</div>
+                    </div>
+                  </div>
+                  <span style="font-size:0.68rem; color:#38bdf8; font-weight:800; display:flex; align-items:center; gap:4px;"><span class="online-indicator"></span> Online</span>
+                </div>
+                <!-- Dr. Sarah Lin -->
+                <div onclick="showMedicalId()" style="display:flex; align-items:center; justify-content:space-between; padding:0.45rem 0.6rem; background:rgba(255,255,255,0.02); border-radius:10px; border:1px solid rgba(255,255,255,0.05); cursor:pointer;">
+                  <div style="display:flex; align-items:center; gap:0.55rem;">
+                    <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #a855f7, #ec4899); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; border:2px solid #c084fc;">SL</div>
+                    <div>
+                      <div style="font-size:0.78rem; font-weight:800; color:#ffffff;">Dr. Sarah Lin</div>
+                      <div style="font-size:0.65rem; color:var(--text-muted);">Cardiologist</div>
+                    </div>
+                  </div>
+                  <span style="font-size:0.68rem; color:#d8b4fe; font-weight:800;">Next: Nov 10</span>
+                </div>
+              </div>
+              <!-- Hidden elements to preserve JS compatibility -->
+              <div style="display:none;">
+                <span id="bentoHouseholdBadge"></span>
+                <span id="bentoHouseholdDesc"></span>
+              </div>
+            </div>
+
+          </div> <!-- Close .dashboard-right-col -->
+
+        </div> <!-- Close .dashboard-laptop-layout -->
 
         <!-- 2. SENIOR TABLET COCKPIT: Giant Tactile & Accessible System (Step 3) -->
         <div class="senior-tablet-cockpit" id="seniorTabletCockpit">
