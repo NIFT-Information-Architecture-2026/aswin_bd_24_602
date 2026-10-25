@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -354,18 +354,20 @@
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 14px rgba(99, 102, 241, 0.25);
     }
     .cal-day-cell.selected-day {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.9) 0%, rgba(129, 140, 248, 0.75) 100%) !important;
+      background: #2563eb !important;
       color: #ffffff !important;
-      border: 1px solid rgba(255, 255, 255, 0.45) !important;
-      border-radius: 12px !important;
-      box-shadow: 0 6px 22px -2px rgba(99, 102, 241, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.6) !important;
-      transform: scale(1.04);
+      border: none !important;
+      border-radius: 8px !important;
+      box-shadow: none !important;
+      filter: none !important;
+      transform: none !important;
       z-index: 2;
     }
     .cal-day-cell.today-cell:not(.selected-day) {
-      border: 1.5px solid #22d3ee !important;
-      background: rgba(6, 182, 212, 0.08) !important;
-      box-shadow: 0 0 14px rgba(6, 182, 212, 0.28), inset 0 0 8px rgba(6, 182, 212, 0.15) !important;
+      border: 1.5px solid #2563eb !important;
+      background: rgba(37, 99, 235, 0.08) !important;
+      box-shadow: none !important;
+      filter: none !important;
     }
     .cal-day-cell.other-month {
       opacity: 0.25;
@@ -457,8 +459,8 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      box-shadow: 0 0 6px currentcolor;
-      filter: drop-shadow(0 0 3px currentcolor);
+      box-shadow: none !important;
+      filter: none !important;
     }
     .cal-week-grid {
       display: flex;
@@ -1380,7 +1382,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      box-shadow: 0 0 6px currentcolor;
+      box-shadow: none !important;
     }
 
     /* 3. Today's Spend Banner */
@@ -2749,6 +2751,257 @@
       font-weight: 800;
       box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
     }
+
+    /* ==========================================================================
+       FIGMA LIGHT THEME VERSION (Pixel-Matched to Reference Screenshot)
+       ========================================================================== */
+    html[data-theme="light"],
+    html[data-theme="light"] body {
+      background: #f4f6fa !important;
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .app-layout-root {
+      background: #f4f6fa !important;
+    }
+
+    /* Sidebar in Light Theme: Crisp pure white with clean subtle border */
+    html[data-theme="light"] .app-sidebar {
+      background: #ffffff !important;
+      border-right: 1px solid #e2e8f0 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    html[data-theme="light"] .sidebar-brand-name {
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .sidebar-nav-item {
+      color: #475569 !important;
+    }
+
+    html[data-theme="light"] .sidebar-nav-item:hover {
+      background: #f1f5f9 !important;
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .sidebar-nav-item.active {
+      background: #eff6ff !important;
+      color: #2563eb !important;
+      font-weight: 800 !important;
+      box-shadow: none !important;
+    }
+
+    html[data-theme="light"] .sidebar-nav-item.active svg {
+      stroke: #2563eb !important;
+    }
+
+    html[data-theme="light"] .sidebar-user-card {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+    }
+
+    html[data-theme="light"] .sidebar-user-card div {
+      color: #0f172a !important;
+    }
+
+    /* Mode Switcher in Sidebar in Light Theme */
+    html[data-theme="light"] .sidebar-mode-card {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+    }
+
+    /* Topbar in Light Theme: Clean white bar */
+    html[data-theme="light"] .app-topbar {
+      background: #ffffff !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03) !important;
+    }
+
+    html[data-theme="light"] .topbar-search {
+      background: #f1f5f9 !important;
+      border: 1px solid #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .topbar-search input {
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .topbar-search input::placeholder {
+      color: #94a3b8 !important;
+    }
+
+    html[data-theme="light"] .topbar-date-weather span {
+      color: #475569 !important;
+    }
+
+    html[data-theme="light"] .weather-pill {
+      background: #f1f5f9 !important;
+      border: 1px solid #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .topbar-icon-btn {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      color: #475569 !important;
+    }
+
+    html[data-theme="light"] .topbar-icon-btn:hover {
+      background: #f1f5f9 !important;
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .role-switch-pills {
+      background: #f1f5f9 !important;
+      border: 1px solid #e2e8f0 !important;
+    }
+
+    html[data-theme="light"] .role-btn {
+      color: #64748b !important;
+    }
+
+    html[data-theme="light"] .role-btn.active {
+      background: #2563eb !important;
+      color: #ffffff !important;
+      box-shadow: none !important;
+    }
+
+    /* Panels & Bento Cards in Light Theme: Sharp crisp white boxes, zero blur/glow */
+    html[data-theme="light"] .panel-box,
+    html[data-theme="light"] .bento-kpi-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    html[data-theme="light"] .panel-box:hover,
+    html[data-theme="light"] .bento-kpi-card:hover {
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    html[data-theme="light"] .bento-kpi-header span {
+      color: #0f172a !important;
+    }
+
+    /* Headings and numbers in light theme */
+    html[data-theme="light"] h1:not(.scenic-hero-title),
+    html[data-theme="light"] h2:not(.scenic-hero-title),
+    html[data-theme="light"] h3:not(.scenic-hero-title),
+    html[data-theme="light"] h4,
+    html[data-theme="light"] #bentoBillsTotalAmount,
+    html[data-theme="light"] #bentoStreakText,
+    html[data-theme="light"] #calDailySpend,
+    html[data-theme="light"] #calSelectedDateText,
+    html[data-theme="light"] #calHeaderLabel {
+      color: #0f172a !important;
+    }
+
+    /* Calendar in Light Theme */
+    html[data-theme="light"] .cal-nav-btn {
+      background: #f1f5f9 !important;
+      border: 1px solid #e2e8f0 !important;
+      color: #475569 !important;
+    }
+
+    html[data-theme="light"] .cal-nav-btn:hover {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .cal-weekday-header {
+      color: #64748b !important;
+      font-weight: 700 !important;
+    }
+
+    html[data-theme="light"] .cal-day-cell {
+      background: #ffffff !important;
+      border: 1px solid #f1f5f9 !important;
+      color: #1e293b !important;
+      box-shadow: none !important;
+    }
+
+    html[data-theme="light"] .cal-day-cell:hover:not(.other-month) {
+      background: #f8fafc !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: none !important;
+    }
+
+    html[data-theme="light"] .cal-day-cell.selected-day {
+      background: #2563eb !important;
+      color: #ffffff !important;
+      border: none !important;
+      border-radius: 8px !important;
+      box-shadow: none !important;
+      filter: none !important;
+    }
+
+    html[data-theme="light"] .cal-day-cell.today-cell:not(.selected-day) {
+      border: 1.5px solid #2563eb !important;
+      background: #eff6ff !important;
+      color: #2563eb !important;
+      box-shadow: none !important;
+    }
+
+    html[data-theme="light"] .cal-day-cell.other-month {
+      opacity: 0.35 !important;
+      background: transparent !important;
+      border-color: transparent !important;
+      color: #94a3b8 !important;
+    }
+
+    html[data-theme="light"] .cal-view-pills-track {
+      background: #f1f5f9 !important;
+      border: 1px solid #e2e8f0 !important;
+    }
+
+    html[data-theme="light"] .cal-view-btn {
+      color: #64748b !important;
+    }
+
+    html[data-theme="light"] .cal-view-btn.active {
+      background: #4f46e5 !important;
+      color: #ffffff !important;
+    }
+
+    /* Universal Removal of Glow & Blur on Dots & Halos */
+    .cal-dot,
+    .legend-dot {
+      box-shadow: none !important;
+      filter: none !important;
+    }
+    .cal-day-cell,
+    .cal-day-cell.selected-day,
+    .cal-day-cell.today-cell {
+      box-shadow: none !important;
+      filter: none !important;
+    }
+
+    /* Light Theme Quick Action Tiles: Soft pastel tints */
+    html[data-theme="light"] .quick-action-tile {
+      box-shadow: none !important;
+    }
+
+    /* Light Theme Table Rows */
+    html[data-theme="light"] .panel-box div[style*="background:rgba(255,255,255,0.02)"] {
+      background: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+    }
+    html[data-theme="light"] .panel-box div[style*="color:#fff"] {
+      color: #0f172a !important;
+    }
+    html[data-theme="light"] .panel-box div[style*="color:#ffffff"] {
+      color: #0f172a !important;
+    }
   </style>
 </head>
 <body>
@@ -3045,19 +3298,30 @@
         + Add Member
       </button>
 
-            <!-- Bottom System Section: Settings, Help, User Profile & Status -->
-      <div style="margin-top:auto; padding-top:0.75rem; border-top:1px solid var(--surface-border); display:flex; flex-direction:column; gap:0.25rem;">
-        <button class="sidebar-nav-item" onclick="openFamilySettingsModal()" style="padding:0.4rem 0.65rem;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          <span style="font-size:0.78rem;">Settings</span>
-        </button>
-        <button class="sidebar-nav-item" onclick="showToast('ðŸ’¡ OmniTask Life OS: Keyboard shortcuts (âŒ˜K) & full multi-persona support active.')" style="padding:0.4rem 0.65rem;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-          <span style="font-size:0.78rem;">Help</span>
-        </button>
+            <!-- Bottom System Section: Mode Switcher, User Profile, Settings, Help & Status -->
+      <div style="margin-top:auto; padding-top:0.75rem; border-top:1px solid var(--surface-border); display:flex; flex-direction:column; gap:0.5rem;">
+        
+        <!-- Mode Switcher Card -->
+        <div class="sidebar-mode-card" style="padding:0.65rem 0.75rem; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; display:flex; flex-direction:column; gap:0.35rem;">
+          <div style="font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-muted); padding:0 0.2rem;">Mode</div>
+          <div class="role-switch-pills" style="display:flex; flex-direction:column; gap:0.25rem; background:transparent; border:none; padding:0;">
+            <button class="role-btn active" id="btnRolePower" onclick="setMode('power')" style="display:flex; align-items:center; width:100%; text-align:left; gap:0.55rem; padding:0.45rem 0.65rem; border-radius:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span class="role-btn-label" style="font-weight:700;">Power</span>
+            </button>
+            <button class="role-btn" id="btnRoleSenior" onclick="setMode('senior')" style="display:flex; align-items:center; width:100%; text-align:left; gap:0.55rem; padding:0.45rem 0.65rem; border-radius:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="role-btn-label" style="font-weight:700;">Senior Dignity</span>
+            </button>
+            <button class="role-btn" id="btnRoleCaregiver" onclick="setMode('caregiver')" style="display:flex; align-items:center; width:100%; text-align:left; gap:0.55rem; padding:0.45rem 0.65rem; border-radius:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span class="role-btn-label" style="font-weight:700;">Caregiver</span>
+            </button>
+          </div>
+        </div>
 
         <!-- User Profile Card in Sidebar -->
-        <div class="sidebar-user-card" onclick="toggleProfileDropdown()" style="display:flex; align-items:center; gap:0.65rem; padding:0.55rem 0.7rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; margin-top:0.4rem; cursor:pointer;" title="Master Account Owner Profile">
+        <div class="sidebar-user-card" onclick="toggleProfileDropdown()" style="display:flex; align-items:center; gap:0.65rem; padding:0.55rem 0.7rem; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; cursor:pointer;" title="Master Account Owner Profile">
           <div style="position:relative; width:30px; height:30px; flex-shrink:0;">
             <div style="width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg, #8b5cf6, #6366f1); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.72rem; color:#fff;">AS</div>
             <span class="online-indicator" style="position:absolute; bottom:0; right:0; border:2px solid var(--surface); width:7px; height:7px;"></span>
@@ -3066,6 +3330,18 @@
             <div style="font-weight:800; font-size:0.78rem; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Aswin S</div>
             <div style="font-size:0.65rem; color:var(--text-muted); display:flex; align-items:center; gap:2px;">Power Mode <span style="font-size:0.7rem;">â€º</span></div>
           </div>
+        </div>
+
+        <!-- System Nav Items: Settings & Help -->
+        <div style="display:flex; flex-direction:column; gap:0.2rem;">
+          <button class="sidebar-nav-item" onclick="openFamilySettingsModal()" style="padding:0.4rem 0.65rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span style="font-size:0.78rem;">Settings</span>
+          </button>
+          <button class="sidebar-nav-item" onclick="showToast('OmniTask Life OS: Keyboard shortcuts (âŒ˜K) & full multi-persona support active.')" style="padding:0.4rem 0.65rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+            <span style="font-size:0.78rem;">Help</span>
+          </button>
         </div>
 
         <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.65rem; color:var(--text-muted); padding:0.25rem 0.5rem 0 0.5rem;">
@@ -3089,24 +3365,11 @@
           </svg>
         </button>
 
-        <!-- Persona Switcher Pills (âš¡ Power, ðŸ‘¤ Senior Dignity, ðŸ›¡ï¸ Caregiver) -->
-        <div class="role-switch-pills">
-          <button class="role-btn active" id="btnRolePower" onclick="setMode('power')">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span class="role-btn-label">Power</span>
-          </button>
-          <button class="role-btn" id="btnRoleSenior" onclick="setMode('senior')">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="role-btn-label">Senior Dignity</span>
-          </button>
-          <button class="role-btn" id="btnRoleCaregiver" onclick="setMode('caregiver')">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle; margin-right:3px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="role-btn-label">Caregiver</span>
-          </button>
-        </div>
-
-        <!-- Global Search with âŒ˜ K -->
+        <!-- Global Search with âŒ˜K -->
         <div class="topbar-search" style="max-width:380px;">
-          <span>ðŸ”</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7; flex-shrink:0;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <input type="text" id="globalOmniSearchInput" placeholder="Search tasks, meds, expenses..." oninput="handleGlobalSearch(this.value)">
-          <kbd style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:5px; padding:2px 6px; font-size:0.65rem; color:#cbd5e1; font-family:inherit;">âŒ˜ K</kbd>
+          <kbd style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:5px; padding:2px 6px; font-size:0.65rem; color:#cbd5e1; font-family:inherit;">âŒ˜K</kbd>
         </div>
 
         <!-- Topbar Action Icons & Right Utilities -->
@@ -3114,7 +3377,7 @@
           <!-- Date & Weather Pills -->
           <div class="topbar-date-weather" style="display:inline-flex; align-items:center; gap:0.4rem;">
             <span id="topbarDateStr" style="font-weight:700; font-size:0.78rem; color:#cbd5e1;">Fri, Oct 23, 2026</span>
-            <span class="weather-pill" id="weatherPillDisplay" style="font-size:0.74rem;">â˜€ï¸ 26Â°C Hyderabad</span>
+            <span class="weather-pill" id="weatherPillDisplay" style="font-size:0.74rem;"><span style="margin-right:3px;">&#9728;&#65039;</span><span>24&deg;C Sunny</span></span>
           </div>
 
           <button class="btn btn-secondary" onclick="openFamilySettingsModal()" id="btnHeaderFamily" title="Master User: Senior PIN & Household Hub" style="padding:0.32rem 0.65rem; font-size:0.75rem; display:inline-flex; align-items:center; gap:4px;">
@@ -3265,16 +3528,16 @@
                   </div>
                   <div style="display:flex; flex-direction:column; gap:0.45rem;">
                     <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.75rem; color:#86efac; cursor:pointer;">
-                      <input type="checkbox" checked style="accent-color:#10b981; width:14px; height:14px; cursor:pointer;" onchange="showToast('âœ… Focus item updated: Budget proposal done')">
-                      <span style="text-decoration:line-through; opacity:0.85;">Submit Q4 Budget Proposal</span>
+                      <input type="checkbox" checked style="accent-color:#10b981; width:14px; height:14px; cursor:pointer;" onchange="showToast('Focus item updated: Morning Workout')">
+                      <span style="text-decoration:line-through; opacity:0.85;">Morning Workout (07:00 AM)</span>
                     </label>
                     <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.75rem; color:#f1f5f9; cursor:pointer;">
-                      <input type="checkbox" style="accent-color:#2563eb; width:14px; height:14px; cursor:pointer;" onchange="showToast('âœ… Focus item updated: Morning Metformin')">
-                      <span>Take Morning Metformin (500mg)</span>
+                      <input type="checkbox" style="accent-color:#2563eb; width:14px; height:14px; cursor:pointer;" onchange="showToast('Focus item updated: Take Vitamins')">
+                      <span>Take Vitamins (08:30 AM)</span>
                     </label>
                     <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.75rem; color:#f1f5f9; cursor:pointer;">
-                      <input type="checkbox" style="accent-color:#2563eb; width:14px; height:14px; cursor:pointer;" onchange="showToast('âœ… Focus item updated: 30-min run')">
-                      <span>30-min Evening Run</span>
+                      <input type="checkbox" style="accent-color:#2563eb; width:14px; height:14px; cursor:pointer;" onchange="showToast('Focus item updated: Edit Portfolio Photos')">
+                      <span>Edit Portfolio Photos (02:00 PM)</span>
                     </label>
                   </div>
                 </div>
@@ -3372,9 +3635,13 @@
                 <div>
                   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
                     <div style="display:flex; align-items:center; gap:0.4rem;">
-                      <button class="cal-nav-btn" onclick="prevCalendarMonth()" title="Previous Month">â—€</button>
-                      <span style="font-weight:900; font-size:0.95rem; color:#ffffff; letter-spacing:-0.01em;" id="calHeaderLabel">October 2026</span>
-                      <button class="cal-nav-btn" onclick="nextCalendarMonth()" title="Next Month">â–¶</button>
+                      <button class="cal-nav-btn" onclick="prevCalendarMonth()" title="Previous Month" aria-label="Previous Month">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                      </button>
+                      <span style="font-weight:900; font-size:0.95rem; letter-spacing:-0.01em;" id="calHeaderLabel">October 2026</span>
+                      <button class="cal-nav-btn" onclick="nextCalendarMonth()" title="Next Month" aria-label="Next Month">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                      </button>
                     </div>
                     <div class="cal-view-pills-track" style="transform:scale(0.88); transform-origin:right center;">
                       <button class="cal-view-btn active" id="btnViewMonth" onclick="setCalendarViewMode('month')">Month</button>
@@ -6597,27 +6864,27 @@
       // Dynamic Weather Pill (Time-based condition & temperature)
       const weatherElem = document.getElementById('weatherPillDisplay');
       if (weatherElem) {
-        let icon = '☀️';
+        let icon = '\u2600\uFE0F';
         let cond = 'Sunny';
-        let temp = '22°C';
+        let temp = '24\u00B0C';
         if (hours >= 19 || hours < 6) {
-          icon = '🌙';
+          icon = '\uD83C\uDF19';
           cond = 'Clear';
-          temp = '18°C';
+          temp = '18\u00B0C';
         } else if (hours >= 6 && hours < 11) {
-          icon = '⛅';
+          icon = '\uD83C\uDF24\uFE0F';
           cond = 'Mild';
-          temp = '20°C';
+          temp = '21\u00B0C';
         } else if (hours >= 11 && hours < 17) {
-          icon = '☀️';
-          cond = 'Warm';
-          temp = '24°C';
+          icon = '\u2600\uFE0F';
+          cond = 'Sunny';
+          temp = '24\u00B0C';
         } else {
-          icon = '🌅';
+          icon = '\u26C5';
           cond = 'Cool';
-          temp = '21°C';
+          temp = '21\u00B0C';
         }
-        weatherElem.innerHTML = `<span style="font-size:0.85rem;">${icon}</span> <span>${temp} ${cond}</span>`;
+        weatherElem.innerHTML = `<span style="font-size:0.85rem; margin-right:3px;">${icon}</span> <span>${temp} ${cond}</span>`;
       }
     }
 
