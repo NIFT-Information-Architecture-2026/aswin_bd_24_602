@@ -3376,7 +3376,7 @@
         <div class="topbar-actions">
           <!-- Date & Weather Pills -->
           <div class="topbar-date-weather" style="display:inline-flex; align-items:center; gap:0.4rem;">
-            <span id="topbarDateStr" style="font-weight:700; font-size:0.78rem; color:#cbd5e1;">Fri, Oct 23, 2026</span>
+            <span id="topbarDateStr" style="font-weight:700; font-size:0.78rem; color:#cbd5e1;"></span>
             <span class="weather-pill" id="weatherPillDisplay" style="font-size:0.74rem;"><span style="margin-right:3px;">&#9728;&#65039;</span><span>24&deg;C Sunny</span></span>
           </div>
 
@@ -3516,7 +3516,7 @@
                     <span style="font-size:0.72rem; color:#86efac; font-weight:800; letter-spacing:0.03em; text-transform:uppercase;">Local Client-Side Sandbox (Prototype)</span>
                   </div>
                   <h1 class="scenic-hero-title" id="heroGreetingTitle" style="font-size:1.9rem; font-weight:900; letter-spacing:-0.02em; margin:0.2rem 0; text-transform:uppercase;">GOOD EVENING, Aswin!</h1>
-                  <p class="scenic-hero-subtitle" id="heroDateSubtitle" style="font-size:0.88rem; color:#cbd5e1; margin:0; font-style:italic;">"Discipline today, freedom tomorrow." &bull; Friday, Oct 23</p>
+                  <p class="scenic-hero-subtitle" id="heroDateSubtitle" style="font-size:0.88rem; color:#cbd5e1; margin:0; font-style:italic;">"A calmer, more organised life together."</p>
                 </div>
 
                 <!-- Right Side Frosted Glass Card: Today's Focus -->
@@ -3663,15 +3663,15 @@
                 </div>
               </div>
 
-              <!-- Col 2: Today's Agenda (Today Â· Fri, Oct 23) -->
+              <!-- Col 2: Today's Agenda (Dynamic Date & Timeline) -->
               <div class="panel-box" style="display:flex; flex-direction:column;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
                   <div>
-                    <div style="font-weight:900; font-size:0.95rem; color:#ffffff;" id="calSelectedDateText">Today Â· Fri, Oct 23</div>
+                    <div style="font-weight:900; font-size:0.95rem; color:#ffffff;" id="calSelectedDateText">Today's Agenda</div>
                     <div style="font-size:0.68rem; color:var(--text-muted);" id="calSelectedDateSub">5 items scheduled</div>
                     <span id="timelineCountBadge" style="display:none;"></span>
                   </div>
-                  <button class="btn btn-primary" onclick="openQuickAddModal()" style="font-size:0.74rem; font-weight:800; padding:0.28rem 0.65rem; border-radius:8px; background:#2563eb; color:#fff;">
+                  <button class="btn btn-primary" onclick="openQuickAddModal('task')" style="font-size:0.74rem; font-weight:800; padding:0.28rem 0.65rem; border-radius:8px; background:#2563eb; color:#fff;">
                     + Add Task
                   </button>
                 </div>
@@ -5035,7 +5035,7 @@
                 <div style="width:36px; height:36px; border-radius:10px; background:rgba(99,102,241,0.15); color:#a5b4fc; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;">🩺</div>
                 <div>
                   <div style="font-size:0.84rem; font-weight:800; color:#ffffff;">Next Clinical Lab Work</div>
-                  <div style="font-size:0.7rem; color:#cbd5e1;" id="insightsLabText">Date: Oct 28, 2026 • Quest Diagnostics Comprehensive Metabolic Panel (CMP)</div>
+                  <div style="font-size:0.7rem; color:#cbd5e1;" id="insightsLabText">Date: Next Scheduled Clinical Lab &bull; Quest Diagnostics Comprehensive Metabolic Panel (CMP)</div>
                 </div>
               </div>
               <div style="display:flex; align-items:center; gap:0.75rem; background:rgba(255,255,255,0.03); padding:0.65rem 0.85rem; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
@@ -5720,13 +5720,13 @@
           🚨 DIAL 112 (NATIONAL EMERGENCY DISPATCH)
         </a>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.55rem;">
-          <a href="tel:+919876543211" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Caregiver')">
-            <span style="font-weight:800; font-size:0.88rem;" id="sosCaregiverName">🛡️ John Vance</span>
-            <span style="font-size:0.72rem; color:var(--text-muted);" id="sosCaregiverPhone">Caregiver • +91 98765 43211</span>
+          <a href="tel:+919876543212" id="sosCaregiverLink" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Caregiver')">
+            <span style="font-weight:800; font-size:0.88rem;">&#128737;&#65039; <span id="sosCaregiverName">John Vance</span></span>
+            <span style="font-size:0.72rem; color:var(--text-muted);" id="sosCaregiverPhone">Caregiver &bull; +91 98765 43212</span>
           </a>
-          <a href="tel:+919876543210" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Family Admin')">
-            <span style="font-weight:800; font-size:0.88rem;" id="sosAdminName">👤 Aswin</span>
-            <span style="font-size:0.72rem; color:var(--text-muted);" id="sosAdminPhone">Family Admin • +91 98765 43210</span>
+          <a href="tel:+919876543210" id="sosAdminLink" class="btn btn-secondary" style="padding:0.75rem; text-decoration:none; display:flex; flex-direction:column; align-items:center; border-color:var(--card-border);" onclick="trackEmergencyDial('Family Admin')">
+            <span style="font-weight:800; font-size:0.88rem;">&#128100; <span id="sosAdminName">Aswin</span></span>
+            <span style="font-size:0.72rem; color:var(--text-muted);" id="sosAdminPhone">Family Admin &bull; +91 98765 43210</span>
           </a>
         </div>
       </div>
@@ -5971,19 +5971,23 @@
 
     let habitsData = JSON.parse(JSON.stringify(defaultHabitsData));
 
-    // 6. Dynamic Appointments Data (Pristine Clinical Sample Records)
+    // 6. Dynamic Appointments Data (Relative to Live Date)
+    const _initNowApt = new Date();
+    const _aptPast = new Date(_initNowApt); _aptPast.setDate(_initNowApt.getDate() - 7);
+    const _aptFut = new Date(_initNowApt); _aptFut.setDate(_initNowApt.getDate() + 5);
+    const _fmtApt = (d, time) => `${d.toLocaleDateString('en-US', { month: 'short' })} ${d.getDate()} &bull; ${time}`;
     const defaultAppointmentsData = [
       {
         id: "apt_1",
         title: "Cardiology Routine Checkup",
-        sub: "Dr. Sarah Lin • City Health Center Room 402",
-        date: "Oct 14 • 10:00 AM"
+        sub: "Dr. Sarah Lin &bull; City Health Center Room 402",
+        date: _fmtApt(_aptPast, "10:00 AM")
       },
       {
         id: "apt_2",
         title: "Blood Panel & Glucose Fasting Lab",
-        sub: "Quest Diagnostics • 120 Broadway Ave",
-        date: "Oct 22 • 08:00 AM"
+        sub: "Quest Diagnostics &bull; 120 Broadway Ave",
+        date: _fmtApt(_aptFut, "08:00 AM")
       }
     ];
 
@@ -6859,7 +6863,24 @@
       }
       const seniorDateSubElem = document.getElementById('seniorDateSubtitle');
       if (seniorDateSubElem) {
-        seniorDateSubElem.innerHTML = `Today is <strong>${dayNameFull}, ${monthFull} ${dateNum}</strong> • Your caregiver <strong>John Vance</strong> is online.`;
+        const cgName = (typeof householdProfiles !== 'undefined' && householdProfiles.caregiver && householdProfiles.caregiver.name) ? householdProfiles.caregiver.name : 'John Vance';
+        seniorDateSubElem.innerHTML = `Today is <strong>${dayNameFull}, ${monthFull} ${dateNum}, ${yearNum}</strong> &bull; Your caregiver <strong>${cgName}</strong> is online.`;
+      }
+
+      // Clinical Insights Next Lab Date
+      const labElem = document.getElementById('insightsLabText');
+      if (labElem) {
+        const nextLab = new Date(now);
+        nextLab.setDate(now.getDate() + 5);
+        const labMonth = nextLab.toLocaleDateString('en-US', { month: 'short' });
+        const labDay = nextLab.getDate();
+        const labYear = nextLab.getFullYear();
+        labElem.innerHTML = `Date: ${labMonth} ${labDay}, ${labYear} &bull; Quest Diagnostics Comprehensive Metabolic Panel (CMP)`;
+      }
+
+      // Sync dedicated week calendar headers dynamically
+      if (typeof updateDedicatedWeekHeaders === 'function') {
+        updateDedicatedWeekHeaders();
       }
 
       // Senior Digital Clock
@@ -7645,6 +7666,7 @@
         if (activePrimaryTab === 'expense') domainToSet = 'expense';
         else if (activePrimaryTab === 'reminders') domainToSet = 'pill';
         else if (activePrimaryTab === 'fitness') domainToSet = 'fitness';
+        else if (activePrimaryTab === 'home') domainToSet = 'task';
         else domainToSet = 'expense';
       }
       const sel = document.getElementById('addDomainSelect');
@@ -7656,9 +7678,19 @@
         if (catSel) catSel.value = defaultCategory;
       }
 
+      const domainNames = {
+        pill: 'Prescription Pill Reminder',
+        bill: 'Bill Reminder (₹)',
+        expense: 'Expense Entry (₹)',
+        task: 'Household Task & Chore',
+        appointment: 'Medical Appointment',
+        fitness: 'Workout Routine',
+        habit: 'Custom Emoji Habit'
+      };
       const header = document.getElementById('quickAddModalHeader');
       if (header) {
-        header.textContent = `➕ Add Entry — ${calMonthNames[calCurrentMonth]} ${calSelectedDay}, ${calCurrentYear}`;
+        const domainTitle = domainNames[domainToSet] || 'Entry';
+        header.textContent = `➕ Add ${domainTitle}`;
       }
 
       document.getElementById('quickAddModal').style.display = 'flex';
@@ -7799,6 +7831,20 @@
       const titleInput = document.getElementById('addTitleInput');
       const amountInput = document.getElementById('addAmountInput');
       const catGroup = document.getElementById('addExpenseCategoryGroup');
+      const header = document.getElementById('quickAddModalHeader');
+      if (header) {
+        const domainNames = {
+          pill: 'Prescription Pill Reminder',
+          bill: 'Bill Reminder (₹)',
+          expense: 'Expense Entry (₹)',
+          task: 'Household Task & Chore',
+          appointment: 'Medical Appointment',
+          fitness: 'Workout Routine',
+          habit: 'Custom Emoji Habit'
+        };
+        const domainTitle = domainNames[domain] || 'Entry';
+        header.textContent = `➕ Add ${domainTitle}`;
+      }
       const docGroup = document.getElementById('addDoctorGroup');
       const taskGroup = document.getElementById('addTaskPriorityGroup');
       const habitEmojiGroup = document.getElementById('addHabitEmojiGroup');
@@ -8394,6 +8440,28 @@
 
     /* Emergency SOS Functions */
     function openSosModal() {
+      if (typeof householdProfiles !== 'undefined') {
+        const cg = householdProfiles.caregiver;
+        const admin = householdProfiles.power;
+        const cgPhone = (cg && cg.phone) ? cg.phone : '+91 98765 43212';
+        const adminPhone = (admin && admin.phone) ? admin.phone : '+91 98765 43210';
+        const cgName = (cg && cg.name) ? cg.name : 'John Vance';
+        const adminName = (admin && admin.name) ? admin.name : 'Aswin';
+
+        const cgPhoneElem = document.getElementById('sosCaregiverPhone');
+        if (cgPhoneElem) cgPhoneElem.innerHTML = `Caregiver &bull; ${cgPhone}`;
+        const cgNameElem = document.getElementById('sosCaregiverName');
+        if (cgNameElem) cgNameElem.textContent = cgName;
+        const cgLinkElem = document.getElementById('sosCaregiverLink');
+        if (cgLinkElem) cgLinkElem.href = `tel:${cgPhone.replace(/\s+/g, '')}`;
+
+        const adminPhoneElem = document.getElementById('sosAdminPhone');
+        if (adminPhoneElem) adminPhoneElem.innerHTML = `Family Admin &bull; ${adminPhone}`;
+        const adminNameElem = document.getElementById('sosAdminName');
+        if (adminNameElem) adminNameElem.textContent = adminName;
+        const adminLinkElem = document.getElementById('sosAdminLink');
+        if (adminLinkElem) adminLinkElem.href = `tel:${adminPhone.replace(/\s+/g, '')}`;
+      }
       document.getElementById('sosModal').style.display = 'flex';
       if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
     }
@@ -9356,15 +9424,15 @@
     function updateFocusedDateDisplay() {
       const dateObj = new Date(calCurrentYear, calCurrentMonth, calSelectedDay);
       const dayName = calWeekdayFullNames[dateObj.getDay()];
-      const dateStr = `${dayName}, ${calMonthNames[calCurrentMonth]} ${calSelectedDay}, ${calCurrentYear}`;
+      const n = new Date();
+      const isToday = (calSelectedDay === n.getDate() && calCurrentMonth === n.getMonth() && calCurrentYear === n.getFullYear());
+      const dateStr = isToday ? `Today &bull; ${dayName.slice(0, 3)}, ${calMonthNames[calCurrentMonth].slice(0, 3)} ${calSelectedDay}` : `${dayName}, ${calMonthNames[calCurrentMonth]} ${calSelectedDay}, ${calCurrentYear}`;
       
       const txtElem = document.getElementById('calSelectedDateText');
-      if (txtElem) txtElem.textContent = dateStr;
+      if (txtElem) txtElem.innerHTML = dateStr;
 
       const subElem = document.getElementById('calSelectedDateSub');
       if (subElem) {
-        const n = new Date();
-        const isToday = (calSelectedDay === n.getDate() && calCurrentMonth === n.getMonth() && calCurrentYear === n.getFullYear());
         subElem.textContent = isToday ? "Here's what's planned for today." : "Here's what's planned for this day.";
       }
 
