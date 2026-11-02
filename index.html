@@ -3002,6 +3002,627 @@
     html[data-theme="light"] .panel-box div[style*="color:#ffffff"] {
       color: #0f172a !important;
     }
+
+    /* ==========================================================================
+       FITNESS & HABITS LIFE DASHBOARD (FIGMA FIT-LIFE UI UPGRADE)
+       ========================================================================== */
+    .fitness-ui-root {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+    }
+    .fitness-ui-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0.75rem 0 0.25rem 0;
+    }
+    .fitness-ui-greeting-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      margin-bottom: 2px;
+      font-weight: 600;
+    }
+    .fitness-ui-greeting-title {
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--text);
+    }
+    .fitness-grid-3 {
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr 0.9fr;
+      gap: 1.1rem;
+    }
+    .fitness-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.15rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+    .fitness-card:hover {
+      border-color: rgba(134, 239, 172, 0.4);
+      transform: translateY(-2px);
+    }
+    html[data-theme="light"] .fitness-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+    }
+    .fitness-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.85rem;
+    }
+    .fitness-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .fitness-select-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--surface-border);
+      color: var(--text-muted);
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      cursor: pointer;
+      outline: none;
+      font-family: inherit;
+    }
+    html[data-theme="light"] .fitness-select-pill {
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    /* Activity Bar Visualizer */
+    .activity-bar-container {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 6px;
+      height: 140px;
+      padding-top: 10px;
+    }
+    .activity-bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+    .activity-bar-track {
+      width: 100%;
+      max-width: 38px;
+      height: 108px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .activity-bar-track:hover {
+      transform: scale(1.05);
+    }
+    html[data-theme="light"] .activity-bar-track {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    .activity-bar-fill {
+      width: 100%;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.12);
+      transition: height 0.3s ease;
+    }
+    .activity-bar-track.active-bar .activity-bar-fill {
+      background: linear-gradient(180deg, #d9f99d 0%, #bbf7d0 100%);
+      box-shadow: 0 0 14px rgba(187, 247, 208, 0.4);
+    }
+    .activity-bar-pct {
+      position: absolute;
+      top: 10px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: var(--text-muted);
+    }
+    .activity-bar-track.active-bar .activity-bar-pct {
+      color: #0f172a;
+    }
+    .activity-bar-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .activity-bar-track.active-bar + .activity-bar-label {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    /* Ring Overview Visualizer */
+    .overview-content-row {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      height: 140px;
+    }
+    .ring-chart-wrap {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+    }
+    .ring-chart-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .ring-chart-val {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .ring-chart-sub {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .overview-metric-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      flex: 1;
+    }
+    .overview-metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .overview-metric-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+    .overview-metric-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .overview-metric-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+    .overview-metric-vals {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .overview-val-big {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .overview-val-delta {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #86efac;
+    }
+
+    /* Fitness Goal Cards */
+    .fitness-goal-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      height: 140px;
+    }
+    .goal-card-item {
+      border-radius: 16px;
+      padding: 0.75rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .goal-card-item:hover {
+      transform: translateY(-2px);
+    }
+    .goal-card-amber {
+      background: linear-gradient(145deg, #fef08a 0%, #fef9c3 100%);
+      color: #713f12;
+      border: 1px solid rgba(250, 204, 21, 0.4);
+    }
+    .goal-card-emerald {
+      background: linear-gradient(145deg, #a7f3d0 0%, #d1fae5 100%);
+      color: #064e3b;
+      border: 1px solid rgba(52, 211, 153, 0.4);
+    }
+    .goal-card-title {
+      font-size: 0.85rem;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    .goal-card-sets {
+      font-size: 0.68rem;
+      font-weight: 700;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+    .goal-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      background: rgba(0,0,0,0.08);
+      width: fit-content;
+      margin-top: 4px;
+    }
+    .goal-svg-graph {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      pointer-events: none;
+      opacity: 0.75;
+    }
+
+    /* Mid Row: Trainer Cards */
+    .trainer-card-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+    .trainer-card-node {
+      border-radius: 16px;
+      padding: 0.75rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      min-height: 145px;
+      justify-content: flex-start;
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .trainer-card-node:hover {
+      transform: translateY(-2px);
+    }
+    .trainer-card-node.yoga {
+      background: linear-gradient(160deg, rgba(254, 240, 138, 0.28) 0%, rgba(202, 138, 4, 0.12) 100%);
+      border-color: rgba(234, 179, 8, 0.35);
+    }
+    .trainer-card-node.power {
+      background: linear-gradient(160deg, rgba(167, 243, 208, 0.28) 0%, rgba(5, 150, 105, 0.12) 100%);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+    .trainer-name {
+      font-size: 0.86rem;
+      font-weight: 900;
+      color: var(--text);
+    }
+    .trainer-specialty {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .trainer-avatar-box {
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-top: 10px;
+    }
+
+    /* Recommended Activity List */
+    .rec-activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .rec-activity-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 0.6rem 0.75rem;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .rec-activity-item:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(134, 239, 172, 0.3);
+    }
+    html[data-theme="light"] .rec-activity-item {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    html[data-theme="light"] .rec-activity-item:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .rec-act-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+    .rec-act-info {
+      flex: 1;
+    }
+    .rec-act-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .rec-act-meta {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+    .rec-act-coach {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+    .coach-mini-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #475569;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.62rem;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* Heart Rate Box */
+    .heart-rate-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .heart-rate-graph-svg {
+      width: 100%;
+      height: 110px;
+    }
+
+    /* Bottom Row: Output Metrics */
+    .fitness-output-duo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .output-metric-card {
+      border-radius: 14px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .output-metric-card:hover {
+      transform: translateY(-2px);
+    }
+    .output-calory {
+      background: linear-gradient(135deg, rgba(254, 240, 138, 0.22) 0%, rgba(202, 138, 4, 0.08) 100%);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+    }
+    .output-weight {
+      background: linear-gradient(135deg, rgba(167, 243, 208, 0.22) 0%, rgba(5, 150, 105, 0.08) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    .output-icon-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      margin-right: 0.75rem;
+      background: rgba(255,255,255,0.08);
+    }
+    .output-details {
+      flex: 1;
+    }
+    .output-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .output-val {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .output-tag {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.68rem;
+      font-weight: 800;
+    }
+    .output-calory .output-tag {
+      background: rgba(234, 179, 8, 0.2);
+      color: #facc15;
+    }
+    .output-weight .output-tag {
+      background: rgba(16, 185, 129, 0.2);
+      color: #4ade80;
+    }
+
+    /* Recommended Food Tracker Horizontal Timeline */
+    .rec-food-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+      overflow-x: auto;
+      padding: 0.25rem 0;
+    }
+    .food-card-node {
+      border-radius: 14px;
+      padding: 0.75rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.025);
+      cursor: pointer;
+      min-height: 120px;
+      transition: all 0.15s ease;
+    }
+    .food-card-node:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(134, 239, 172, 0.3);
+    }
+    html[data-theme="light"] .food-card-node {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    .food-card-node.active-diet {
+      background: linear-gradient(135deg, rgba(167, 243, 208, 0.35) 0%, rgba(5, 150, 105, 0.15) 100%);
+      border-color: rgba(52, 211, 153, 0.6);
+      box-shadow: 0 4px 15px rgba(52, 211, 153, 0.15);
+    }
+    html[data-theme="light"] .food-card-node.active-diet {
+      background: #dcfce7;
+      border-color: #86efac;
+    }
+    .food-step-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .food-card-header-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 4px 0;
+    }
+    .food-check-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.62rem;
+      color: transparent;
+      flex-shrink: 0;
+    }
+    .food-card-node.active-diet .food-check-circle,
+    .food-card-node.done .food-check-circle {
+      background: #10b981;
+      border-color: #10b981;
+      color: #ffffff;
+    }
+    .food-title {
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .food-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 8px;
+    }
+    .food-timing {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+    .food-img-bubble {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 1024px) {
+      .fitness-grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .rec-food-timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .trainer-card-duo,
+      .fitness-goal-duo,
+      .rec-food-timeline {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4563,39 +5184,483 @@
       <!-- ======================================================================
            TAB VIEW 4: 🏋️ FITNESS & HABITS HUB
            ====================================================================== -->
+      <!-- ======================================================================
+           TAB VIEW 4: 🏋️ FITNESS & HABITS LIFE DASHBOARD (FIGMA FIT-LIFE UI UPGRADE)
+           ====================================================================== -->
       <div class="app-view-panel" id="view_fitness">
-        <div class="grid-2col">
+        <div class="fitness-ui-root">
           
-          <!-- Workout Routines -->
-          <div class="panel-box">
-            <div class="panel-header">
-              <span>🏋️ Workout Routine Runner</span>
-              <div style="display:flex; gap:0.4rem; align-items:center;">
-                <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.25rem 0.5rem;" onclick="openQuickAddModal('fitness')">➕ Add Workout</button>
-                <span class="pill-badge" style="background:var(--purple-bg); color:var(--purple);" id="streakBadgeText">7-Day Streak</span>
-              </div>
+          <!-- Top Greeting Sub-Bar -->
+          <div class="fitness-ui-header">
+            <div>
+              <div class="fitness-ui-greeting-sub">Personalized Health & Endurance Dashboard</div>
+              <h2 class="fitness-ui-greeting-title">Good Morning, Welcome Back! 💪</h2>
             </div>
-
-            <div id="workoutsListContainer" style="display:flex; flex-direction:column; gap:0.75rem;">
-              <!-- Dynamic Workouts Rendered by JS -->
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <span class="pill-badge" style="background:var(--purple-bg); color:var(--purple); font-weight:800; font-size:0.8rem;" id="streakBadgeText">7-Day Streak</span>
+              <button class="btn btn-primary" onclick="openQuickAddModal('fitness')" style="font-size:0.75rem; font-weight:800; padding:0.4rem 0.85rem; border-radius:10px; background:#2563eb; color:#fff;">
+                ➕ Add Workout
+              </button>
+              <button class="btn btn-secondary" onclick="openQuickAddModal('habit')" style="font-size:0.75rem; font-weight:800; padding:0.4rem 0.85rem; border-radius:10px;">
+                ✨ Add Habit
+              </button>
             </div>
           </div>
 
-          <!-- Same-Day Emoji Habit Clusters -->
-          <div class="panel-box">
-            <div class="panel-header">
-              <span>✨ Same-Day Habit Clusters</span>
-              <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.25rem 0.5rem;" onclick="openQuickAddModal('habit')">➕ Add Habit</button>
+          <!-- ROW 1: Activity (Monthly Bars), Overview (Ring Chart), Fitness Goal (Side Planks / Rope Lifting) -->
+          <div class="fitness-grid-3">
+            
+            <!-- Card 1: Activity -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">Activity</div>
+                <select class="fitness-select-pill" onchange="showToast('Filtered Activity to ' + this.value)">
+                  <option value="Monthly">Monthly ▾</option>
+                  <option value="Weekly">Weekly ▾</option>
+                  <option value="Yearly">Yearly ▾</option>
+                </select>
+              </div>
+              <div class="activity-bar-container" id="activityBarContainer">
+                <!-- Bar 1: Jan 30% -->
+                <div class="activity-bar-col" onclick="showToast('Jan Activity: 30% completion')">
+                  <div class="activity-bar-track">
+                    <span class="activity-bar-pct">30%</span>
+                    <div class="activity-bar-fill" style="height:30%;"></div>
+                  </div>
+                  <span class="activity-bar-label">Jan</span>
+                </div>
+                <!-- Bar 2: Feb 70% -->
+                <div class="activity-bar-col" onclick="showToast('Feb Activity: 70% completion')">
+                  <div class="activity-bar-track">
+                    <span class="activity-bar-pct">70%</span>
+                    <div class="activity-bar-fill" style="height:70%;"></div>
+                  </div>
+                  <span class="activity-bar-label">Feb</span>
+                </div>
+                <!-- Bar 3: Mar 50% -->
+                <div class="activity-bar-col" onclick="showToast('Mar Activity: 50% completion')">
+                  <div class="activity-bar-track">
+                    <span class="activity-bar-pct">50%</span>
+                    <div class="activity-bar-fill" style="height:50%;"></div>
+                  </div>
+                  <span class="activity-bar-label">Mar</span>
+                </div>
+                <!-- Bar 4: Apr 60% (Active Highlight) -->
+                <div class="activity-bar-col" onclick="showToast('Apr Activity: 60% completion (Target Achieved)')">
+                  <div class="activity-bar-track active-bar">
+                    <span class="activity-bar-pct">60%</span>
+                    <div class="activity-bar-fill" style="height:60%;"></div>
+                  </div>
+                  <span class="activity-bar-label">Apr</span>
+                </div>
+                <!-- Bar 5: May 09% -->
+                <div class="activity-bar-col" onclick="showToast('May Activity: 9% completion')">
+                  <div class="activity-bar-track">
+                    <span class="activity-bar-pct">09%</span>
+                    <div class="activity-bar-fill" style="height:15%;"></div>
+                  </div>
+                  <span class="activity-bar-label">May</span>
+                </div>
+                <!-- Bar 6: Jun 12% -->
+                <div class="activity-bar-col" onclick="showToast('Jun Activity: 12% completion')">
+                  <div class="activity-bar-track">
+                    <span class="activity-bar-pct">12%</span>
+                    <div class="activity-bar-fill" style="height:18%;"></div>
+                  </div>
+                  <span class="activity-bar-label">Jun</span>
+                </div>
+                <!-- Bar 7: Jul 11% -->
+                <div class="activity-bar-col" onclick="showToast('Jul Activity: 11% completion')">
+                  <div class="activity-bar-track">
+                    <span class="activity-bar-pct">11%</span>
+                    <div class="activity-bar-fill" style="height:17%;"></div>
+                  </div>
+                  <span class="activity-bar-label">Jul</span>
+                </div>
+                <!-- Bar 8: Aug 10% -->
+                <div class="activity-bar-col" onclick="showToast('Aug Activity: 10% completion')">
+                  <div class="activity-bar-track">
+                    <span class="activity-bar-pct">10%</span>
+                    <div class="activity-bar-fill" style="height:16%;"></div>
+                  </div>
+                  <span class="activity-bar-label">Aug</span>
+                </div>
+              </div>
             </div>
 
-            <div id="habitsListContainer" style="display:flex; flex-direction:column; gap:0.75rem;">
-              <!-- Dynamic Habit Clusters Rendered by JS -->
+            <!-- Card 2: Overview (Ring Chart & Nutrition Targets) -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">Overview</div>
+                <select class="fitness-select-pill" onchange="showToast('Filtered Nutrition Overview to ' + this.value)">
+                  <option value="Monthly">Monthly ▾</option>
+                  <option value="Weekly">Weekly ▾</option>
+                  <option value="Today">Today ▾</option>
+                </select>
+              </div>
+              <div class="overview-content-row">
+                <!-- Circular SVG Progress Ring (84% 1,290 ml) -->
+                <div class="ring-chart-wrap">
+                  <svg width="120" height="120" viewBox="0 0 120 120" style="transform: rotate(-90deg);">
+                    <!-- Background Track -->
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"></circle>
+                    <!-- Calories Burn Arc (Yellow) -->
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="#fde047" stroke-width="10" stroke-dasharray="301.59" stroke-dashoffset="200" stroke-linecap="round"></circle>
+                    <!-- Protein / Hydration Arc (Mint Green 84%) -->
+                    <circle cx="60" cy="60" r="48" fill="none" stroke="#86efac" stroke-width="10" stroke-dasharray="301.59" stroke-dashoffset="48.25" stroke-linecap="round"></circle>
+                  </svg>
+                  <div class="ring-chart-label">
+                    <span class="ring-chart-val">84%</span>
+                    <span class="ring-chart-sub">1,290 ml</span>
+                  </div>
+                </div>
+
+                <!-- Breakdown Legend & Metric Stats -->
+                <div class="overview-metric-list">
+                  <div class="overview-metric-item">
+                    <div class="overview-metric-top">
+                      <span class="overview-metric-name"><span class="overview-metric-dot" style="background:#fde047;"></span> Calories burn</span>
+                      <div class="overview-metric-vals">
+                        <span class="overview-val-big">33.5%</span>
+                        <span class="overview-val-delta">+1.25%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="overview-metric-item">
+                    <div class="overview-metric-top">
+                      <span class="overview-metric-name"><span class="overview-metric-dot" style="background:#86efac;"></span> Protein</span>
+                      <div class="overview-metric-vals">
+                        <span class="overview-val-big">23.02%</span>
+                        <span class="overview-val-delta">+3.43%</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="overview-metric-item">
+                    <div class="overview-metric-top">
+                      <span class="overview-metric-name"><span class="overview-metric-dot" style="background:#cbd5e1;"></span> Carbs</span>
+                      <div class="overview-metric-vals">
+                        <span class="overview-val-big">11.24%</span>
+                        <span class="overview-val-delta">+2.12%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Fitness Goal Duo (Side Planks & Rope Lifting) -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">Fitness goal</div>
+                <select class="fitness-select-pill" onchange="showToast('Filtered Goals to ' + this.value)">
+                  <option value="Monthly">Monthly ▾</option>
+                  <option value="Weekly">Weekly ▾</option>
+                </select>
+              </div>
+              <div class="fitness-goal-duo">
+                <!-- Goal 1: Side Planks -->
+                <div class="goal-card-item goal-card-amber" onclick="completeWorkout(); showToast('Completed Side Planks session! 12 sets logged.')">
+                  <div>
+                    <div class="goal-card-title">Side planks</div>
+                    <div class="goal-card-sets">12 sets/day</div>
+                    <div class="goal-badge-pill">
+                      <span>🎉</span> Bravo
+                    </div>
+                  </div>
+                  <svg class="goal-svg-graph" viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path d="M 0 35 Q 25 10 50 30 T 100 15" fill="none" stroke="#854d0e" stroke-width="2.5" stroke-linecap="round"></path>
+                    <circle cx="85" cy="17" r="3" fill="#854d0e"></circle>
+                  </svg>
+                </div>
+
+                <!-- Goal 2: Rope Lifting -->
+                <div class="goal-card-item goal-card-emerald" onclick="completeWorkout(); showToast('Completed Rope Lifting session! 10 sets logged.')">
+                  <div>
+                    <div class="goal-card-title">Rope lifting</div>
+                    <div class="goal-card-sets">10 sets/day</div>
+                    <div class="goal-badge-pill">
+                      <span>👍</span> Well
+                    </div>
+                  </div>
+                  <svg class="goal-svg-graph" viewBox="0 0 100 40" preserveAspectRatio="none">
+                    <path d="M 0 25 Q 30 35 60 15 T 100 28" fill="none" stroke="#065f46" stroke-width="2.5" stroke-linecap="round"></path>
+                    <circle cx="90" cy="26" r="3" fill="#065f46"></circle>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ROW 2: Trainer, Recommend Activity, Heart Rate -->
+          <div class="fitness-grid-3">
+            
+            <!-- Col 1: Trainer -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">Trainer</div>
+                <span style="font-size:0.74rem; font-weight:700; color:var(--accent); cursor:pointer;" onclick="showToast('View all assigned coaches: John Arnold & Adam Smith')">View all &rsaquo;</span>
+              </div>
+              <div class="trainer-card-duo">
+                <!-- Trainer 1: John Arnold -->
+                <div class="trainer-card-node yoga" onclick="showToast('Coach John Arnold: Yoga & Mobility routine scheduled.')">
+                  <div class="trainer-name">John Arnold</div>
+                  <div class="trainer-specialty">Yoga expert</div>
+                  <div class="trainer-avatar-box">
+                    <div style="width:52px; height:52px; border-radius:50%; background:#f59e0b; display:flex; align-items:center; justify-content:center; font-size:1.6rem; border:2px solid #fbbf24; box-shadow:0 4px 12px rgba(0,0,0,0.25);">
+                      🧘
+                    </div>
+                  </div>
+                </div>
+                <!-- Trainer 2: Adam Smith -->
+                <div class="trainer-card-node power" onclick="showToast('Coach Adam Smith: Hypertrophy & Power routine scheduled.')">
+                  <div class="trainer-name">Adam Smith</div>
+                  <div class="trainer-specialty">Fitness expert</div>
+                  <div class="trainer-avatar-box">
+                    <div style="width:52px; height:52px; border-radius:50%; background:#10b981; display:flex; align-items:center; justify-content:center; font-size:1.6rem; border:2px solid #34d399; box-shadow:0 4px 12px rgba(0,0,0,0.25);">
+                      🏋️
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col 2: Recommend Activity -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">Recommend activity</div>
+                <select class="fitness-select-pill" onchange="showToast('Filtered Recommended Activities to ' + this.value)">
+                  <option value="Monthly">Monthly ▾</option>
+                  <option value="Weekly">Weekly ▾</option>
+                </select>
+              </div>
+              <div class="rec-activity-list">
+                <!-- Activity 1: Fitness for beginners -->
+                <div class="rec-activity-item" onclick="showToast('Starting Fitness for beginners with Toren Twin!')">
+                  <div style="display:flex; align-items:center;">
+                    <div class="rec-act-icon" style="background:rgba(234, 179, 8, 0.2); color:#facc15;">🏋️</div>
+                    <div class="rec-act-info">
+                      <div class="rec-act-title">Fitness for beginners</div>
+                      <div class="rec-act-meta">17 Feb, 2026 at 5.30 PM</div>
+                    </div>
+                  </div>
+                  <div class="rec-act-coach">
+                    <span class="coach-mini-avatar">TT</span>
+                    <span>Toren Twin</span>
+                  </div>
+                </div>
+
+                <!-- Activity 2: Beginner to advance gym -->
+                <div class="rec-activity-item" onclick="showToast('Starting Beginner to advance gym with Ardin Swen!')">
+                  <div style="display:flex; align-items:center;">
+                    <div class="rec-act-icon" style="background:rgba(52, 211, 153, 0.2); color:#4ade80;">🏃</div>
+                    <div class="rec-act-info">
+                      <div class="rec-act-title">Beginner to advance gym</div>
+                      <div class="rec-act-meta">17 Feb, 2026 at 4.30 PM</div>
+                    </div>
+                  </div>
+                  <div class="rec-act-coach">
+                    <span class="coach-mini-avatar" style="background:#059669;">AS</span>
+                    <span>Ardin Swen</span>
+                  </div>
+                </div>
+
+                <!-- Activity 3: Ultimate body workout -->
+                <div class="rec-activity-item" onclick="showToast('Starting Ultimate body workout with Adam Smith!')">
+                  <div style="display:flex; align-items:center;">
+                    <div class="rec-act-icon" style="background:rgba(147, 197, 253, 0.2); color:#60a5fa;">⚡</div>
+                    <div class="rec-act-info">
+                      <div class="rec-act-title">Ultimate body workout</div>
+                      <div class="rec-act-meta">17 Feb, 2026 at 3.30 PM</div>
+                    </div>
+                  </div>
+                  <div class="rec-act-coach">
+                    <span class="coach-mini-avatar" style="background:#2563eb;">AS</span>
+                    <span>Adam Smith</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col 3: Heart Rate -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">Heart rate</div>
+                <select class="fitness-select-pill" onchange="showToast('Filtered Heart Rate telemetry to ' + this.value)">
+                  <option value="Weekly">Weekly ▾</option>
+                  <option value="Live">Live Telemetry ▾</option>
+                </select>
+              </div>
+              <div class="heart-rate-content">
+                <!-- SVG Waveform Chart with 70 beats/m pin -->
+                <svg class="heart-rate-graph-svg" viewBox="0 0 280 110" preserveAspectRatio="none">
+                  <!-- Grid Guides -->
+                  <line x1="30" y1="20" x2="270" y2="20" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3"></line>
+                  <text x="5" y="24" fill="var(--text-muted)" font-size="9">90b</text>
+
+                  <line x1="30" y1="50" x2="270" y2="50" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3"></line>
+                  <text x="5" y="54" fill="var(--text-muted)" font-size="9">80b</text>
+
+                  <line x1="30" y1="80" x2="270" y2="80" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3"></line>
+                  <text x="5" y="84" fill="var(--text-muted)" font-size="9">40b</text>
+
+                  <text x="12" y="104" fill="var(--text-muted)" font-size="9">0b</text>
+
+                  <!-- Smooth Heart Rate Spline -->
+                  <path d="M 35 98 C 65 98, 75 75, 100 45 C 120 20, 135 70, 160 52 C 185 35, 210 65, 260 48" fill="none" stroke="#d9f99d" stroke-width="3" stroke-linecap="round"></path>
+
+                  <!-- 70 beats/m Focal Pin on Tue -->
+                  <circle cx="160" cy="52" r="11" fill="#d9f99d" fill-opacity="0.3"></circle>
+                  <circle cx="160" cy="52" r="5" fill="#ffffff"></circle>
+                  <rect x="118" y="34" width="56" height="16" rx="4" fill="rgba(15,23,42,0.85)" stroke="rgba(217,249,157,0.4)"></rect>
+                  <text x="123" y="46" fill="#ffffff" font-size="8.5" font-weight="800">70beats/m</text>
+
+                  <!-- Weekday Labels -->
+                  <text x="40" y="108" fill="var(--text-muted)" font-size="9">Sun</text>
+                  <text x="95" y="108" fill="var(--text-muted)" font-size="9">Mon</text>
+                  <text x="150" y="108" fill="var(--text)" font-weight="800" font-size="9">Tue</text>
+                  <text x="205" y="108" fill="var(--text-muted)" font-size="9">Wed</text>
+                  <text x="250" y="108" fill="var(--text-muted)" font-size="9">Thu</text>
+                </svg>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ROW 3: Output (Calory loss / Weight loss) & Recommended food (4-Step Timeline) -->
+          <div class="fitness-grid-3" style="grid-template-columns: 0.95fr 2.05fr;">
+            
+            <!-- Col 1: Output -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">Output</div>
+                <select class="fitness-select-pill" onchange="showToast('Filtered Output metrics to ' + this.value)">
+                  <option value="Monthly">Monthly ▾</option>
+                  <option value="Weekly">Weekly ▾</option>
+                </select>
+              </div>
+              <div class="fitness-output-duo">
+                <!-- Metric 1: Calory loss -->
+                <div class="output-metric-card output-calory" onclick="showToast('Logged Calory loss: .123 gm today!')">
+                  <div style="display:flex; align-items:center;">
+                    <div class="output-icon-box">🥗</div>
+                    <div class="output-details">
+                      <div class="output-title">Calory loss</div>
+                      <div class="output-val">.123 gm</div>
+                    </div>
+                  </div>
+                  <span class="output-tag">😍 WOW</span>
+                </div>
+
+                <!-- Metric 2: Weight loss -->
+                <div class="output-metric-card output-weight" onclick="showToast('Logged Weight loss: 1.23 kg this month!')">
+                  <div style="display:flex; align-items:center;">
+                    <div class="output-icon-box">⚖️</div>
+                    <div class="output-details">
+                      <div class="output-title">Weight loss</div>
+                      <div class="output-val">1.23 kg</div>
+                    </div>
+                  </div>
+                  <span class="output-tag">🔥 Great</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Col 2: Recommended food (Day one -> Day four) -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">Recommended food</div>
+                <select class="fitness-select-pill" onchange="showToast('Filtered Nutrition Schedule to ' + this.value)">
+                  <option value="Monthly">Monthly ▾</option>
+                  <option value="Weekly">Weekly ▾</option>
+                </select>
+              </div>
+              <div class="rec-food-timeline">
+                
+                <!-- Day One: Veggies and Hummus -->
+                <div class="food-card-node done" onclick="showToast('Day 1 Completed: Veggies and Hummus logged for dinner!')">
+                  <span class="food-step-label">Day one</span>
+                  <div class="food-card-header-row">
+                    <span class="food-check-circle">✓</span>
+                    <span class="food-title">Veggis and Hummus</span>
+                  </div>
+                  <div class="food-bottom-row">
+                    <div class="food-timing"><strong>7</strong> days<br>only dinner time</div>
+                    <div class="food-img-bubble">🍲</div>
+                  </div>
+                </div>
+
+                <!-- Day Two: A bowl of salad (Active Day Highlight) -->
+                <div class="food-card-node active-diet" onclick="showToast('Day 2 Active: A bowl of salad marked for lunch!')">
+                  <span class="food-step-label">Day two</span>
+                  <div class="food-card-header-row">
+                    <span class="food-check-circle">✓</span>
+                    <span class="food-title">A bowl of salad</span>
+                  </div>
+                  <div class="food-bottom-row">
+                    <div class="food-timing"><strong>12</strong> days<br>only lunch time</div>
+                    <div class="food-img-bubble" style="background:rgba(16,185,129,0.3); border-color:#86efac;">🥗</div>
+                  </div>
+                </div>
+
+                <!-- Day Three: Green variety foods -->
+                <div class="food-card-node" onclick="showToast('Day 3 Queued: Green variety foods scheduled for breakfast!')">
+                  <span class="food-step-label">Day three</span>
+                  <div class="food-card-header-row">
+                    <span class="food-check-circle">✓</span>
+                    <span class="food-title">Green variety foods</span>
+                  </div>
+                  <div class="food-bottom-row">
+                    <div class="food-timing"><strong>13</strong> days<br>for breakfast</div>
+                    <div class="food-img-bubble">🥬</div>
+                  </div>
+                </div>
+
+                <!-- Day Four: A bowl of berries -->
+                <div class="food-card-node" onclick="showToast('Day 4 Queued: A bowl of berries scheduled for breakfast!')">
+                  <span class="food-step-label">Day four</span>
+                  <div class="food-card-header-row">
+                    <span class="food-check-circle">✓</span>
+                    <span class="food-title">A bowl of berries</span>
+                  </div>
+                  <div class="food-bottom-row">
+                    <div class="food-timing"><strong>9</strong> days<br>for breakfast</div>
+                    <div class="food-img-bubble">🍓</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom IA Extension: Dynamic Workouts & Custom Single-Use Habit Clusters -->
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.1rem; margin-top:0.25rem;">
+            <!-- Dynamic Workouts Runner -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">🏋️ Active Workout Regimen</div>
+                <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.25rem 0.6rem;" onclick="openQuickAddModal('fitness')">➕ Add Routine</button>
+              </div>
+              <div id="workoutsListContainer" style="display:flex; flex-direction:column; gap:0.75rem;">
+                <!-- Dynamic routines rendered by renderWorkouts() -->
+              </div>
+            </div>
+
+            <!-- Single-Use Habit Clusters -->
+            <div class="fitness-card">
+              <div class="fitness-card-header">
+                <div class="fitness-card-title">✨ Same-Day Habit Clusters</div>
+                <button class="btn btn-secondary" style="font-size:0.72rem; padding:0.25rem 0.6rem;" onclick="openQuickAddModal('habit')">➕ Add Habit</button>
+              </div>
+              <div id="habitsListContainer" style="display:flex; flex-direction:column; gap:0.75rem;">
+                <!-- Dynamic habit clusters rendered by renderHabits() -->
+              </div>
             </div>
           </div>
 
         </div>
       </div>
-
       <!-- ======================================================================
            TAB VIEW 5: 🛡️ HOUSEHOLD OVERSIGHT HUB
            ====================================================================== -->
