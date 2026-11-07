@@ -1469,7 +1469,7 @@
       background: linear-gradient(135deg, rgba(20, 27, 46, 0.65) 0%, rgba(13, 17, 30, 0.82) 100%);
       border: 1px solid rgba(255, 255, 255, 0.07);
       border-radius: 14px;
-      padding: 0.75rem 0.95rem;
+      padding: 0.6rem 0.85rem; flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1489,7 +1489,7 @@
       backdrop-filter: blur(18px) saturate(180%);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
-      padding: 0.75rem 0.95rem;
+      padding: 0.6rem 0.85rem; flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -4304,7 +4304,7 @@
               </div>
 
               <!-- Col 2: Today's Agenda (Dynamic Date & Timeline) -->
-              <div class="panel-box" style="display:flex; flex-direction:column;">
+              <div class="panel-box" style="display:flex; flex-direction:column; height:100%; box-sizing:border-box;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
                   <div>
                     <div style="font-weight:900; font-size:0.95rem; color:#ffffff;" id="calSelectedDateText">Today's Agenda</div>
@@ -4315,7 +4315,7 @@
                     + Add Task
                   </button>
                 </div>
-                <div id="timelineListContainer" style="display:flex; flex-direction:column; gap:0.5rem; overflow-y:auto; max-height:225px; padding-right:3px;">
+                <div id="timelineListContainer" style="display:flex; flex-direction:column; gap:0.5rem; overflow-y:auto; flex:1; min-height:0; max-height:300px; padding-right:3px;">
                   <!-- Dynamically populated by JS renderTimeline -->
                 </div>
               </div>
@@ -8692,15 +8692,15 @@
           div.style.borderLeft = `3.5px solid ${evt.color}`;
           div.innerHTML = `
             <div style="display:flex; align-items:center; gap:0.75rem; min-width:0; flex:1;">
-              <div style="width:34px; height:34px; border-radius:10px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem;">
+              <div style="width:32px; height:32px; border-radius:9px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem;">
                 ${evt.icon}
               </div>
               <div style="min-width:0; flex:1;">
                 <div style="display:flex; align-items:center; justify-content:space-between; gap:0.4rem;">
-                  <div style="font-size:0.86rem; font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                  <div style="font-size:0.83rem; font-weight:800; color:#ffffff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${escapeHTML(evt.title)}">
                     ${escapeHTML(evt.title)}
                   </div>
-                  <span style="font-size:0.72rem; font-family:'JetBrains Mono',monospace; font-weight:800; color:#cbd5e1; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:7px; padding:2px 7px;">${evt.time}</span>
+                  <span style="font-size:0.72rem; font-family:'JetBrains Mono',monospace; font-weight:800; color:#cbd5e1; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:2px 6px; flex-shrink:0; font-size:0.68rem;">${evt.time}</span>
                 </div>
                 <div style="font-size:0.7rem; color:#cbd5e1; margin-top:3px; display:flex; justify-content:space-between; align-items:center;">
                   <span style="text-transform:capitalize;">${evt.type}</span>
