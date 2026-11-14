@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -3642,7 +3642,465 @@
       border-color: #e2e8f0 !important;
     }
 
-  </style>
+  
+    /* ==========================================================================
+       MODERN PILL REGIMEN CARD (SLOT PILLBOX & COURSE ENGINE)
+       ========================================================================== */
+    .pill-regimen-card {
+      background: #0b1325 !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 22px !important;
+      padding: 1.5rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1.25rem !important;
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5) !important;
+      position: relative !important;
+      transition: all 0.25s ease !important;
+    }
+    .pill-regimen-card:hover {
+      border-color: rgba(56, 189, 248, 0.25) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.6) !important;
+    }
+    html[data-theme="light"] .pill-regimen-card {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    /* Regimen Card Header */
+    .regimen-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .regimen-med-block {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .regimen-icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 35% 35%, rgba(16, 185, 129, 0.35) 0%, rgba(6, 78, 59, 0.8) 100%);
+      border: 1.5px solid rgba(52, 211, 153, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+      flex-shrink: 0;
+    }
+    html[data-theme="light"] .regimen-icon-box {
+      background: radial-gradient(circle at 35% 35%, #ecfdf5 0%, #a7f3d0 100%);
+      border-color: #10b981;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2);
+    }
+    .regimen-title-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .regimen-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    html[data-theme="light"] .regimen-title {
+      color: #0f172a;
+    }
+    .regimen-pill-tag {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1.5px solid rgba(16, 185, 129, 0.4);
+      border-radius: 9999px;
+      padding: 4px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .regimen-pill-tag:hover {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: #34d399;
+    }
+    html[data-theme="light"] .regimen-pill-tag {
+      background: #ecfdf5;
+      color: #059669;
+      border-color: #10b981;
+    }
+    .regimen-subtitle {
+      color: #94a3b8;
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    html[data-theme="light"] .regimen-subtitle {
+      color: #64748b;
+    }
+
+    /* Regimen Manage Dropdown */
+    .regimen-menu-wrap {
+      position: relative;
+    }
+    .regimen-manage-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #f1f5f9;
+      border-radius: 10px;
+      padding: 0.55rem 1rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .regimen-manage-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    html[data-theme="light"] .regimen-manage-btn {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #1e293b;
+    }
+    html[data-theme="light"] .regimen-manage-btn:hover {
+      background: #e2e8f0;
+    }
+    .regimen-menu-dropdown {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+      padding: 6px;
+      min-width: 220px;
+      z-index: 100;
+      display: none;
+    }
+    html[data-theme="light"] .regimen-menu-dropdown {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+    .regimen-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: #e2e8f0;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s ease;
+    }
+    .regimen-menu-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    html[data-theme="light"] .regimen-menu-item {
+      color: #334155;
+    }
+    html[data-theme="light"] .regimen-menu-item:hover {
+      background: #f1f5f9;
+    }
+    .regimen-menu-item.danger {
+      color: #f43f5e;
+    }
+    .regimen-menu-item.danger:hover {
+      background: rgba(244, 63, 94, 0.12);
+    }
+
+    /* Daily Schedule Grid (3 Slots) */
+    .regimen-slot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+    }
+    @media (max-width: 640px) {
+      .regimen-slot-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .regimen-slot-card {
+      border-radius: 16px;
+      padding: 1.1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 116px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    /* Morning / Active Completed State */
+    .regimen-slot-card.morning-active {
+      background: rgba(16, 185, 129, 0.05);
+      border: 1.5px solid #10b981;
+    }
+    html[data-theme="light"] .regimen-slot-card.morning-active {
+      background: #f0fdf4;
+      border-color: #10b981;
+    }
+    /* Afternoon / Unscheduled State */
+    .regimen-slot-card.afternoon-inactive {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1.5px solid rgba(255, 255, 255, 0.07);
+      opacity: 0.65;
+    }
+    html[data-theme="light"] .regimen-slot-card.afternoon-inactive {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+      opacity: 0.8;
+    }
+    /* Evening / Due Next State */
+    .regimen-slot-card.evening-due {
+      background: rgba(56, 189, 248, 0.05);
+      border: 1.5px solid #0284c7;
+      box-shadow: 0 0 18px rgba(2, 132, 199, 0.18);
+    }
+    html[data-theme="light"] .regimen-slot-card.evening-due {
+      background: #f0f9ff;
+      border-color: #0284c7;
+      box-shadow: 0 2px 14px rgba(2, 132, 199, 0.12);
+    }
+
+    .slot-due-dot {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #38bdf8;
+      box-shadow: 0 0 10px #38bdf8;
+      animation: pulseDueDot 2s infinite ease-in-out;
+    }
+    @keyframes pulseDueDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25); opacity: 0.8; }
+    }
+
+    .slot-header-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .slot-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .slot-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    html[data-theme="light"] .slot-title {
+      color: #0f172a;
+    }
+    .slot-time {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    html[data-theme="light"] .slot-time {
+      color: #64748b;
+    }
+
+    /* Slot Status Badges */
+    .slot-status-pill {
+      border-radius: 9px;
+      padding: 7px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      border: none;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+    .slot-status-pill.slot-taken {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+    }
+    html[data-theme="light"] .slot-status-pill.slot-taken {
+      background: #dcfce7;
+      color: #15803d;
+    }
+    .slot-status-pill.slot-unscheduled {
+      background: rgba(255, 255, 255, 0.04);
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    html[data-theme="light"] .slot-status-pill.slot-unscheduled {
+      background: #f1f5f9;
+      color: #64748b;
+    }
+    .slot-status-pill.slot-due-btn {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .slot-status-pill.slot-due-btn:hover {
+      background: #0369a1;
+      transform: translateY(-1px);
+    }
+
+    /* Course Progress & Supply Tracker Container */
+    .regimen-progress-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    html[data-theme="light"] .regimen-progress-card {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+    .regimen-progress-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .regimen-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+    }
+    .regimen-stat-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.15);
+      margin: 0 0.5rem;
+    }
+    html[data-theme="light"] .regimen-stat-divider {
+      background: #cbd5e1;
+    }
+    .regimen-progress-track {
+      height: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    html[data-theme="light"] .regimen-progress-track {
+      background: #e2e8f0;
+    }
+    .regimen-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+      border-radius: 9999px;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.55);
+      transition: width 0.3s ease;
+    }
+
+    /* Bottom Action CTA Bar */
+    .regimen-cta-row {
+      display: flex;
+      gap: 0.85rem;
+      align-items: center;
+    }
+    @media (max-width: 500px) {
+      .regimen-cta-row {
+        flex-direction: column;
+      }
+      .regimen-btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    .regimen-btn-primary {
+      flex: 1;
+      background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 0.85rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      font-family: inherit;
+    }
+    .regimen-btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+    }
+    .regimen-btn-primary:active {
+      transform: translateY(1px);
+    }
+    .regimen-btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .regimen-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    html[data-theme="light"] .regimen-btn-secondary {
+      background: #f1f5f9;
+      color: #1e293b;
+      border-color: #cbd5e1;
+    }
+    html[data-theme="light"] .regimen-btn-secondary:hover {
+      background: #e2e8f0;
+    }</style>
 </head>
 <body>
 
@@ -6924,10 +7382,10 @@
       {
         id: "pill_1",
         name: "Metformin",
-        dosage: "500mg (2x Daily)",
+        dosage: "500mg • Twice Daily",
         doctor: "Dr. Sarah Lin",
         rxNum: "Rx #89421",
-        day: 18,
+        day: 22,
         totalDays: 30,
         refillWarningDays: 5,
         time: "08:30 AM"
@@ -7200,7 +7658,17 @@
         if (p) {
           const parsedP = JSON.parse(p);
           const sanitizedP = parsedP.filter(item => !['dolo', 'citrizen', 'levo cltr', 'hgdgt', 'test'].includes((item.name || '').toLowerCase().trim()));
-          pillsData = (sanitizedP.length > 0) ? sanitizedP : JSON.parse(JSON.stringify(defaultPillsData));
+          if (sanitizedP.length > 0) {
+            const met = sanitizedP.find(item => item.id === 'pill_1' || (item.name && item.name.toLowerCase() === 'metformin'));
+            if (met && met.day < 22) {
+              met.day = 22;
+              met.totalDays = 30;
+              met.dosage = "500mg • Twice Daily";
+            }
+            pillsData = sanitizedP;
+          } else {
+            pillsData = JSON.parse(JSON.stringify(defaultPillsData));
+          }
         }
         const b = localStorage.getItem('omnitask_bills');
         if (b) billsData = JSON.parse(b);
@@ -7588,7 +8056,7 @@
       updateSeniorClock();
     }
 
-    // 1. Render Pills & Medication Cards
+    // 1. Render Pills & Medication Cards (Modern Regimen Card Layout)
     function renderPills() {
       const container = document.getElementById('pillsListContainer');
       if (!container) return;
@@ -7602,70 +8070,273 @@
       pillsData.forEach((p, idx) => {
         const pct = Math.min(100, Math.round((p.day / p.totalDays) * 100));
         const daysLeft = Math.max(0, p.totalDays - p.day);
-        
+        const isDone = p.day >= p.totalDays;
+
         let rawName = p.name || 'Prescription';
-        let rawDosage = p.dosage || '10mg Daily';
+        let rawDosage = p.dosage || '500mg • Twice Daily';
         if (p.name && p.dosage && p.name.toLowerCase().endsWith(p.dosage.toLowerCase())) {
           rawName = p.name.substring(0, p.name.length - p.dosage.length).trim();
         }
 
         const displayName = escapeHTML(rawName);
-        const displayDosage = escapeHTML(rawDosage);
+        let displayDosage = escapeHTML(rawDosage.replace(/\(([^)]+)\)/g, '• $1'));
         const doctor = escapeHTML(p.doctor || 'Dr. Sarah Lin');
         const rxNum = escapeHTML(p.rxNum || 'Rx #89421');
+        const uid = 'rx_' + (p.id || idx);
+
+        // Determine Slot States based on medication schedule
+        const isTwiceDaily = rawDosage.toLowerCase().includes('2x') || rawDosage.toLowerCase().includes('twice');
+        const isEveningOnly = rawDosage.toLowerCase().includes('evening') || (p.time && p.time.toLowerCase().includes('pm'));
+
+        let morningState = {
+          title: 'Morning',
+          time: '08:30 AM',
+          activeClass: isEveningOnly ? 'afternoon-inactive' : 'morning-active',
+          badgeText: isEveningOnly ? '— Not scheduled' : (isDone ? '✓ Completed' : '✓ Taken at 08:32 AM'),
+          badgeClass: isEveningOnly ? 'slot-unscheduled' : 'slot-taken',
+          iconColor: isEveningOnly ? '#64748b' : '#10b981'
+        };
+
+        let afternoonState = {
+          title: 'Afternoon',
+          time: '—',
+          activeClass: 'afternoon-inactive',
+          badgeText: '— Not scheduled',
+          badgeClass: 'slot-unscheduled',
+          iconColor: '#64748b'
+        };
+
+        let eveningState = {
+          title: 'Evening',
+          time: '08:30 PM',
+          activeClass: isTwiceDaily || isEveningOnly ? 'evening-due' : 'afternoon-inactive',
+          badgeText: isDone ? '✓ Completed' : (isTwiceDaily || isEveningOnly ? 'Due Next' : '— Not scheduled'),
+          badgeClass: isDone ? 'slot-taken' : (isTwiceDaily || isEveningOnly ? 'slot-due-btn' : 'slot-unscheduled'),
+          iconColor: isTwiceDaily || isEveningOnly ? '#38bdf8' : '#64748b',
+          isDue: !isDone && (isTwiceDaily || isEveningOnly)
+        };
 
         const card = document.createElement('div');
-        card.className = 'module-card';
+        card.className = 'module-card pill-regimen-card';
         card.innerHTML = `
-          <div class="card-top">
-            <div>
-              <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
-                <span class="card-title" style="font-size:1.15rem; font-weight:800;">${displayName}</span>
-                <span class="pill-badge" style="background:var(--emerald-bg); color:var(--emerald); border:1px solid rgba(16,185,129,0.3); font-size:0.78rem; cursor:pointer;" onclick="openEditDoseModal('${p.id}')" title="Click to edit dose separately">
-                  💊 ${displayDosage} <span style="font-size:0.68rem; opacity:0.8;">✏️</span>
-                </span>
+          <!-- Regimen Header Row -->
+          <div class="regimen-card-header">
+            <div class="regimen-med-block">
+              <!-- 3D Pill Capsule Glow Icon -->
+              <div class="regimen-icon-box">
+                <svg width="34" height="34" viewBox="0 0 36 36" fill="none" style="transform:rotate(-40deg); filter:drop-shadow(0 4px 6px rgba(0,0,0,0.35));">
+                  <defs>
+                    <linearGradient id="pillGradGreen_${uid}" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#6ee7b7"/>
+                      <stop offset="45%" stop-color="#10b981"/>
+                      <stop offset="100%" stop-color="#047857"/>
+                    </linearGradient>
+                    <linearGradient id="pillGradWhite_${uid}" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#ffffff"/>
+                      <stop offset="45%" stop-color="#f1f5f9"/>
+                      <stop offset="100%" stop-color="#94a3b8"/>
+                    </linearGradient>
+                    <linearGradient id="pillGloss_${uid}" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+                      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M18 10 H12 C7.58 10 4 13.58 4 18 C4 22.42 7.58 26 12 26 H18 V10 Z" fill="url(#pillGradGreen_${uid})" />
+                  <path d="M18 10 H24 C28.42 10 32 13.58 32 18 C32 22.42 28.42 26 24 26 H18 V10 Z" fill="url(#pillGradWhite_${uid})" />
+                  <line x1="18" y1="10" x2="18" y2="26" stroke="rgba(0,0,0,0.25)" stroke-width="1.2" />
+                  <line x1="18.8" y1="10" x2="18.8" y2="26" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" />
+                  <path d="M10 12 C6.5 12 5.5 14 5.5 15.5 C7 14 11 13 18 13 C25 13 29 14 30.5 15.5 C30.5 14 29.5 12 26 12 Z" fill="url(#pillGloss_${uid})" />
+                </svg>
               </div>
-              <div class="card-sub" style="margin-top:3px;">${doctor} • ${rxNum}</div>
+
+              <div>
+                <div class="regimen-title-row">
+                  <span class="regimen-title">${displayName}</span>
+                  <span class="regimen-pill-tag" onclick="openEditDoseModal('${p.id}')" title="Click to adjust dosage & schedule">
+                    ${displayDosage}
+                  </span>
+                </div>
+                <div class="regimen-subtitle">${doctor} • ${rxNum}</div>
+              </div>
             </div>
-            <div style="display:flex; gap:0.35rem; align-items:center;">
-              <button class="btn btn-secondary" style="padding:0.25rem 0.6rem; font-size:0.72rem; color:var(--emerald); font-weight:700; border-color:rgba(16,185,129,0.35);" onclick="openEditDoseModal('${p.id}')" title="Edit Dose and Course Schedule Separately">
-                💊 Edit Dose
+
+            <!-- Manage Regimen Dropdown Action Button -->
+            <div class="regimen-menu-wrap">
+              <button type="button" class="regimen-manage-btn" onclick="toggleRegimenMenu('${p.id}', event)" title="Manage prescription details and course">
+                <span>Manage Regimen</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </button>
-              <button class="btn btn-secondary senior-hide" style="padding:0.25rem 0.5rem; font-size:0.72rem;" onclick="openEditModal('pill', '${p.id}')" title="Edit Medication Details">
-                ✏️ Edit
-              </button>
-              <button class="btn btn-secondary senior-hide" style="padding:0.25rem 0.5rem; font-size:0.72rem; color:var(--rose);" onclick="deleteItem('pill', '${p.id}')">🗑️</button>
+              <div id="regimenMenu_${p.id}" class="regimen-menu-dropdown">
+                <button type="button" class="regimen-menu-item" onclick="openEditDoseModal('${p.id}'); toggleRegimenMenu('${p.id}', event);">
+                  <span>💊</span>
+                  <span>Edit Dose / Strength</span>
+                </button>
+                <button type="button" class="regimen-menu-item" onclick="openEditModal('pill', '${p.id}'); toggleRegimenMenu('${p.id}', event);">
+                  <span>✏️</span>
+                  <span>Edit Regimen Details</span>
+                </button>
+                <div style="height:1px; background:rgba(255,255,255,0.08); margin:4px 0;"></div>
+                <button type="button" class="regimen-menu-item danger" onclick="deleteItem('pill', '${p.id}'); toggleRegimenMenu('${p.id}', event);">
+                  <span>🗑️</span>
+                  <span>Delete Prescription</span>
+                </button>
+              </div>
             </div>
           </div>
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; font-weight:700;">
-              <span>Course Progress: ${pct}%</span>
-              <div style="display:flex; align-items:center; gap:0.4rem;">
-                <span style="color:var(--text-muted);">${daysLeft} Days Left</span>
-                <span style="color:var(--emerald); cursor:pointer; font-size:0.72rem; text-decoration:underline; font-weight:700;" onclick="openEditDoseModal('${p.id}')">✏️ Adjust Dose</span>
+
+          <!-- Daily Schedule 3-Slot Grid (Pillbox) -->
+          <div class="regimen-slot-grid">
+            <!-- Morning Slot -->
+            <div class="regimen-slot-card ${morningState.activeClass}">
+              <div class="slot-header-row">
+                <div class="slot-icon-wrap">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${morningState.iconColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+                </div>
+                <div>
+                  <div class="slot-title">${morningState.title}</div>
+                  <div class="slot-time">${morningState.time}</div>
+                </div>
+              </div>
+              <div class="slot-status-pill ${morningState.badgeClass}">
+                ${morningState.badgeClass === 'slot-taken' ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
+                <span>${morningState.badgeText}</span>
               </div>
             </div>
-            <div class="progress-track" style="height:10px; cursor:pointer;" onclick="openEditDoseModal('${p.id}')" title="Click to adjust course progress">
-              <div class="progress-fill" style="width:${pct}%;"></div>
+
+            <!-- Afternoon Slot -->
+            <div class="regimen-slot-card ${afternoonState.activeClass}">
+              <div class="slot-header-row">
+                <div class="slot-icon-wrap">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${afternoonState.iconColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path><path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path><path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="slot-title">${afternoonState.title}</div>
+                  <div class="slot-time">${afternoonState.time}</div>
+                </div>
+              </div>
+              <div class="slot-status-pill ${afternoonState.badgeClass}">
+                <span>${afternoonState.badgeText}</span>
+              </div>
+            </div>
+
+            <!-- Evening Slot -->
+            <div class="regimen-slot-card ${eveningState.activeClass}">
+              ${eveningState.isDue ? '<div class="slot-due-dot"></div>' : ''}
+              <div class="slot-header-row">
+                <div class="slot-icon-wrap" style="background:rgba(56, 189, 248, 0.12);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${eveningState.iconColor}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="slot-title">${eveningState.title}</div>
+                  <div class="slot-time">${eveningState.time}</div>
+                </div>
+              </div>
+              ${eveningState.isDue ? `
+                <button type="button" class="slot-status-pill slot-due-btn" onclick="takePillDoseDynamic('${p.id}')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>Due Next</span>
+                </button>
+              ` : `
+                <div class="slot-status-pill ${eveningState.badgeClass}">
+                  <span>${eveningState.badgeText}</span>
+                </div>
+              `}
             </div>
           </div>
-          ${daysLeft <= (p.refillWarningDays || 5) ? `
-            <div style="background:var(--amber-bg); border:1px solid var(--amber); border-radius:8px; padding:0.45rem 0.75rem; font-size:0.78rem; color:var(--amber); font-weight:700;">
-              ⚠️ Proactive Refill Alert: ${daysLeft} days remaining in bottle.
+
+          <!-- Course Progress & Supply Tracker Bar -->
+          <div class="regimen-progress-card">
+            <div class="regimen-progress-meta-row">
+              <div class="regimen-stat-item" style="color:#34d399; font-weight:700;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Course Progress: <strong>Day ${p.day} of ${p.totalDays} (${pct}%)</strong></span>
+              </div>
+              <div style="display:flex; align-items:center;">
+                <div class="regimen-stat-divider"></div>
+                <div class="regimen-stat-item" style="color:#e2e8f0; font-weight:600;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 3h10v3H7z"></path>
+                    <path d="M5 8h14a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a1 1 0 0 1 1-1z"></path>
+                    <line x1="9" y1="13" x2="15" y2="13"></line>
+                  </svg>
+                  <span><strong>${daysLeft} Days Remaining</strong> • ${daysLeft <= (p.refillWarningDays || 5) ? '<span style="color:var(--amber); font-weight:700;">⚠️ Refill needed soon!</span>' : '<span style="color:#94a3b8;">Refill on track</span>'}</span>
+                  <span style="color:var(--emerald); cursor:pointer; font-size:0.75rem; text-decoration:underline; font-weight:700; margin-left:8px;" onclick="openEditDoseModal('${p.id}')">Adjust</span>
+                </div>
+              </div>
             </div>
-          ` : ''}
-          <div style="display:flex; gap:0.45rem; align-items:stretch;">
-            <button class="btn btn-emerald btn-senior-touch" style="flex:1; padding:0.65rem 1.25rem; font-size:0.95rem; justify-content:center;" onclick="takePillDoseDynamic('${p.id}')">
-              ✓ Take Dose (Day ${p.day} / ${p.totalDays})
+            <div class="regimen-progress-track" onclick="openEditDoseModal('${p.id}')" title="Click to adjust course progress">
+              <div class="regimen-progress-fill" style="width:${pct}%;"></div>
+            </div>
+          </div>
+
+          <!-- Bottom Action CTA Bar -->
+          <div class="regimen-cta-row">
+            <button type="button" class="regimen-btn-primary btn-senior-touch" onclick="takePillDoseDynamic('${p.id}')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>${isDone ? `✓ Course Completed (${p.totalDays} Days Done)` : `Take Evening Dose (Day ${p.day} / ${p.totalDays})`}</span>
             </button>
-            <button class="btn btn-secondary senior-hide" style="padding:0.65rem 0.85rem; font-size:0.82rem; font-weight:700; border-color:rgba(16,185,129,0.3);" onclick="openEditDoseModal('${p.id}')" title="Adjust dose number or schedule separately">
-              ✏️ Dose
+            <button type="button" class="regimen-btn-secondary" onclick="snoozePillReminder('${p.id}')" title="Snooze reminder for 15 minutes">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Snooze 15m</span>
             </button>
           </div>
         `;
         container.appendChild(card);
       });
     }
+
+    // Helper functions for Regimen Management & Snooze
+    function snoozePillReminder(pillId) {
+      const p = pillsData.find(x => x.id === pillId);
+      const name = p ? p.name : 'Medication';
+      showToast(`⏰ ${name} reminder snoozed for 15 minutes.`);
+    }
+
+    function toggleRegimenMenu(pillId, event) {
+      if (event && event.stopPropagation) {
+        event.stopPropagation();
+      }
+      const menu = document.getElementById('regimenMenu_' + pillId);
+      if (!menu) return;
+      const isOpen = menu.style.display === 'block';
+      document.querySelectorAll('.regimen-menu-dropdown').forEach(m => {
+        m.style.display = 'none';
+      });
+      if (!isOpen) {
+        menu.style.display = 'block';
+      }
+    }
+
+    window.addEventListener('click', function(e) {
+      if (!e.target.closest('.regimen-menu-wrap')) {
+        document.querySelectorAll('.regimen-menu-dropdown').forEach(m => {
+          m.style.display = 'none';
+        });
+      }
+    });
 
     // 3D Isometric Capsule Pill SVG Generator
     function get3DPillSVG(nameOrVariant, width = 48, height = 26) {
